@@ -414,17 +414,6 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
     </div>
   </section>
 
-  <!-- TRAILER BAND -->
-  <div class="band reveal" id="trailer">
-    <img src="assets/band-worlds.webp" alt="Ancient worlds from THE PATH: carved pillars, pyramids, great statues and misty mountain temples" width="1920" height="820" loading="lazy">
-    <div class="wrap">
-      <span class="eyebrow">The Path · Trailer</span>
-      <h2>One ride downtown. Seven worlds. <em>The Nexus.</em></h2>
-      <p>From a 1982 basement full of arcade cabinets to the last thing you see. Seventy-nine seconds.</p>
-      <button class="play" id="playTrailer"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i>Watch the trailer</button>
-    </div>
-  </div>
-
   <!-- WORLDS -->
   <section id="worlds">
     <div class="wrap">
@@ -496,7 +485,7 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
           <h4>Paper Arena goes live</h4>
           <p>Live-priced paper trading, scored on discipline. Version zero.</p>
         </article>
-        <article class="entry reveal d4">
+        <article class="entry reveal d4" data-trailer role="button" tabindex="0" style="cursor:pointer" aria-label="Watch THE NEXUS trailer">
           <div class="thumb"><img src="assets/log-nexus.webp" alt="" loading="lazy" width="640" height="400"></div>
           <time datetime="2026-09-22">Sep 22, 2026</time>
           <h4>THE NEXUS trailer, final cut</h4>
@@ -646,7 +635,7 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
   const modal = document.getElementById('modal'), tv = document.getElementById('trailerVideo');
   const open = () => { if (!tv.src) tv.src = 'https://thepath.bigpicsolutions.com/assets/trailer.mp4'; modal.classList.add('open'); tv.play().catch(() => {}); };
   const close = () => { modal.classList.remove('open'); tv.pause(); };
-  document.getElementById('playTrailer').addEventListener('click', open);
+  document.querySelectorAll('[data-trailer]').forEach(el => { el.addEventListener('click', open); el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } }); });
   document.getElementById('closeModal').addEventListener('click', close);
   modal.addEventListener('click', e => { if (e.target === modal) close(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
@@ -668,7 +657,7 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
     if (a.hostname && a.hostname !== location.hostname) return track('click', a.hostname + a.pathname);
     if (a.classList.contains('btn') || a.classList.contains('pill')) track('click', (a.textContent || '').trim().slice(0, 60));
   });
-  document.getElementById('playTrailer').addEventListener('click', () => track('trailer_play'));
+  document.querySelectorAll('[data-trailer]').forEach(el => el.addEventListener('click', () => track('trailer_play')));
 
   const likeBtns = [...document.querySelectorAll('.like')];
   const setBtn = (b, n, on) => { b.querySelector('.n').textContent = n; b.setAttribute('aria-pressed', on ? 'true' : 'false'); };
