@@ -584,7 +584,11 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
 </div>
 
 <div class="modal" id="reqModal" role="dialog" aria-modal="true" aria-labelledby="reqTitle">
-  <form class="req" id="reqForm" novalidate>
+  <form class="req" id="reqForm" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="[BigPic Studios] New request">
+    <input type="hidden" name="_captcha" value="true">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://studio.bigpicsolutions.com/?sent=1#work">
     <button type="button" class="x" id="closeReq" aria-label="Close">×</button>
     <span class="eyebrow">Work with the studio</span>
     <h3 id="reqTitle">Tell us what you want to build</h3>
@@ -600,9 +604,9 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
       <label>Email<input name="email" type="email" autocomplete="email" maxlength="250" required></label>
     </div>
     <label>Your idea<textarea name="message" rows="5" maxlength="4000" required placeholder="What should it do? Who is it for? Anything it should feel like?"></textarea></label>
-    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <label class="hp" aria-hidden="true">Website<input name="_honey" tabindex="-1" autocomplete="off"></label>
     <button class="btn btn-gold" type="submit" id="reqSend">Send it</button>
-    <p class="req-note">It goes straight to our own server, not a third party. We usually reply with a mockup.</p>
+    <p class="req-note">It goes straight to our inbox. After you send, a quick &ldquo;I&rsquo;m not a robot&rdquo; check keeps the bots out. We usually reply with a mockup.</p>
     <p class="req-msg" id="reqMsg" role="status"></p>
   </form>
 </div>
@@ -684,22 +688,22 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
   document.getElementById('closeReq').addEventListener('click', closeReq);
   reqModal.addEventListener('click', e => { if (e.target === reqModal) closeReq(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && reqModal.classList.contains('open')) closeReq(); });
-  reqForm.addEventListener('submit', async e => {
+  reqForm.addEventListener('submit', e => {
     e.preventDefault();
-    const f = reqForm, data = {kind:f.kind.value, name:f.name.value.trim(), email:f.email.value.trim(), message:f.message.value.trim(), website:f.website.value, visitor:vid};
-    if (!data.name || !/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(data.email) || data.message.length < 10) {
+    const f = reqForm, name = f.name.value.trim(), email = f.email.value.trim(), message = f.message.value.trim();
+    if (!name || !/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(email) || message.length < 10) {
       reqMsg.className = 'req-msg err'; reqMsg.textContent = 'Add your name, a real email, and a sentence or two about the idea.'; return; }
+    f._subject.value = '[BigPic Studios] ' + f.kind.options[f.kind.selectedIndex].text.split(':')[0] + ' from ' + name;
+    f.action = 'https://formsubmit.co/' + addr;
+    track('request_sent', f.kind.value);
     reqSend.disabled = true; reqSend.firstChild.textContent = 'Sending… ';
-    try {
-      const r = await fetch(PULSE + '/v1/request', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)});
-      if (!r.ok) throw new Error(r.status);
-      track('request_sent', data.kind);
-      f.reset(); reqMsg.className = 'req-msg'; reqMsg.textContent = 'Got it. It went straight to the studio. Expect a reply, usually with a mockup.';
-    } catch (err) {
-      const mail = 'mailto:' + addr + '?subject=' + encodeURIComponent('BigPic Studios: ' + data.kind) + '&body=' + encodeURIComponent(data.message);
-      reqMsg.className = 'req-msg err'; reqMsg.innerHTML = 'Our server didn\'t answer. <a href="' + mail + '" style="text-decoration:underline">Send it by email instead</a>.';
-    } finally { reqSend.disabled = false; reqSend.firstChild.textContent = 'Send it'; }
+    f.submit();
   });
+  if (new URLSearchParams(location.search).get('sent') === '1') {
+    history.replaceState(null, '', location.pathname + '#work');
+    reqMsg.className = 'req-msg'; reqMsg.textContent = 'Got it. It went straight to the studio. Expect a reply, usually with a mockup.';
+    reqModal.classList.add('open');
+  }
 
   // starfield
   const c = document.getElementById('sky'), x = c.getContext('2d');
