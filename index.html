@@ -258,13 +258,6 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
 .deal-item b{display:block;font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .deal-item b::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--sunrise);box-shadow:0 0 8px var(--sunrise);margin-right:10px;vertical-align:middle}
 .deal-item span{color:var(--mist);font-size:15px;line-height:1.45}
-/* ---------- support ---------- */
-.support{margin-top:26px;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:30px 34px;border-radius:var(--r);
-  border:1px solid var(--line-strong);background:radial-gradient(600px 200px at 0% 0%,rgba(244,162,97,.14),transparent 70%),rgba(13,18,31,.7)}
-.support[hidden]{display:none}
-.support h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.25;margin:8px 0 8px;max-width:620px}
-.support p{color:var(--muted);font-size:15px;max-width:560px}
-.support-actions{display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0}
 /* ---------- request form ---------- */
 .req{position:relative;width:min(640px,100%);max-height:92vh;overflow:auto;padding:34px 34px 28px;border-radius:18px;border:1px solid var(--line-strong);
   background:linear-gradient(180deg,rgba(18,26,46,.97),rgba(8,11,19,.98));box-shadow:0 0 80px rgba(244,162,97,.18);display:flex;flex-direction:column;gap:14px}
@@ -281,7 +274,7 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
 .req-msg.err{color:var(--coral)}
 .door .btn{cursor:pointer}
 @media (max-width:1080px){.deal{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:820px){.deal{grid-template-columns:1fr}.support{flex-direction:column;align-items:flex-start}.req .row{grid-template-columns:1fr}.req{padding:28px 22px 22px}}
+@media (max-width:820px){.deal{grid-template-columns:1fr}.req .row{grid-template-columns:1fr}.req{padding:28px 22px 22px}}
 
 /* ---------- modal ---------- */
 .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:4vw;background:rgba(2,3,6,.9);backdrop-filter:blur(8px)}
@@ -347,7 +340,8 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
     <a href="#log">Lab Log</a>
     <a href="#work">Work With Us</a>
     <a href="https://bigpicsolutions.com/">BigPic Solutions</a>
-    <a href="https://thepath.daryllgomas.com/" class="pill" target="_blank" rel="noopener">Play The Path <span class="beta-tag">Beta</span>
+    <a href="#support" data-support-open>&#9825; Support the dev</a>
+    <a href="https://thepath.bigpicsolutions.com/" class="pill" target="_blank" rel="noopener">Play The Path <span class="beta-tag">Beta</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
   <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -367,7 +361,7 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
         <p class="lede reveal d3">An independent studio. We build games, worlds and interactive experiences, and we show our work.</p>
         <div class="meta reveal d3"><span>Daryll + AI</span><span>25 years in IT</span></div>
         <div class="cta-row reveal d4">
-          <a class="btn btn-gold" href="https://thepath.daryllgomas.com/" target="_blank" rel="noopener">Play The Path, early beta
+          <a class="btn btn-gold" href="https://thepath.bigpicsolutions.com/" target="_blank" rel="noopener">Play The Path, early beta
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           <a class="btn btn-ghost" href="#games">Explore our work</a>
         </div>
@@ -392,7 +386,7 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
           <div class="media"><button class="like" data-project="the-path" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-the-path.webp" alt="THE JUNCTION video arcade glowing in red neon on a dark street at night" width="1200" height="750" loading="lazy"></div>
           <div class="body">
             <span class="status s-beta">Early beta · Chapter one</span>
-            <h3><a class="stretch" href="https://thepath.daryllgomas.com/" target="_blank" rel="noopener" data-track="the-path">The Path</a> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
+            <h3><a class="stretch" href="https://thepath.bigpicsolutions.com/" target="_blank" rel="noopener" data-track="the-path">The Path</a> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
             <p>A first-person story game. 1982, the ride downtown, THE JUNCTION arcade and the cabinet with no name. Seven worlds follow, and the path ends at the Nexus. Chapter one is free in your browser as an early beta: we're still building it.</p>
             <div class="tags"><span>Story game</span><span>First person</span><span>Early beta</span></div>
             <div class="foot"><span>Updated Sep 27, 2026</span><span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
@@ -568,18 +562,6 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
         </div>
       </div>
 
-      <!-- SUPPORT THE DEV (shows itself once a tip link or SOL address is set in the script) -->
-      <div class="support reveal" id="support" hidden>
-        <div class="support-copy">
-          <span class="eyebrow">Support the dev</span>
-          <h3>Everything here is free. If something made your day, buy the dev a coffee.</h3>
-          <p>Shareware rules: play first, pay what it's worth to you. Tips keep the lights on and the worlds growing.</p>
-        </div>
-        <div class="support-actions">
-          <a class="btn btn-gold" id="tipCard" href="#" target="_blank" rel="noopener" hidden>Tip with card <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <button class="btn btn-ghost" id="tipSol" hidden>Tip in SOL</button>
-        </div>
-      </div>
       <p class="aside-note reveal">Need a system built for your business? That's <a href="https://technology.bigpicsolutions.com/">BigPic Technology</a>.</p>
     </div>
   </section>
@@ -606,6 +588,8 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
   <p class="privacy">We count visits and likes anonymously, on our own server. No cookies, no ad trackers.</p>
   <div class="foot-bottom"><span>© 2026 BigPic Solutions</span><span>A more curious tomorrow</span></div>
 </footer>
+
+<script src="https://bigpicsolutions.com/support/support.js" defer></script>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="THE PATH trailer">
   <button class="x" id="closeModal" aria-label="Close trailer">×</button>
@@ -658,14 +642,11 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
     setTimeout(() => els.forEach(el => el.classList.add('in')), 4000); // never leave content hidden
   } else { els.forEach(el => el.classList.add('in')); }
 
-  // ---- studio config (fill these in to switch on Support the dev) ----
-  const TIP_URL = '';     // Stripe Payment Link ("customer chooses price")
-  const SOL_ADDRESS = ''; // Solana address for tips
   const addr = atob('ZGFyeWxsLmdvbWFzQGdtYWlsLmNvbQ==');
 
   // trailer modal
   const modal = document.getElementById('modal'), tv = document.getElementById('trailerVideo');
-  const open = () => { if (!tv.src) tv.src = 'https://thepath.daryllgomas.com/assets/trailer.mp4'; modal.classList.add('open'); tv.play().catch(() => {}); };
+  const open = () => { if (!tv.src) tv.src = 'https://thepath.bigpicsolutions.com/assets/trailer.mp4'; modal.classList.add('open'); tv.play().catch(() => {}); };
   const close = () => { modal.classList.remove('open'); tv.pause(); };
   document.getElementById('playTrailer').addEventListener('click', open);
   document.getElementById('closeModal').addEventListener('click', close);
@@ -707,16 +688,6 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
       .then(d => setBtn(b, d.likes, d.liked)).catch(() => setBtn(b, n, was));
   }));
 
-
-  // ---- support the dev ----
-  const sup = document.getElementById('support');
-  if (TIP_URL || SOL_ADDRESS) {
-    sup.hidden = false;
-    if (TIP_URL) { const a = document.getElementById('tipCard'); a.href = TIP_URL; a.hidden = false; a.addEventListener('click', () => track('tip_click', 'card')); }
-    if (SOL_ADDRESS) { const b = document.getElementById('tipSol'); b.hidden = false;
-      b.addEventListener('click', async () => { track('tip_click', 'sol');
-        try { await navigator.clipboard.writeText(SOL_ADDRESS); b.textContent = 'SOL address copied. Thank you!'; } catch (e) { b.textContent = SOL_ADDRESS; } }); }
-  }
 
   // ---- request form (self-hosted, BigPic Pulse) ----
   const reqModal = document.getElementById('reqModal'), reqForm = document.getElementById('reqForm'), reqMsg = document.getElementById('reqMsg'), reqSend = document.getElementById('reqSend');
