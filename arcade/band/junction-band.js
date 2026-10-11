@@ -205,7 +205,7 @@ export async function mountJunctionBand(el, options = {}) {
   const IDLE = { x: 0, y: 0, a: false, b: false, start: false };
   let last = performance.now();
   function frame(now) {
-    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    const dt = Math.max(0, Math.min(0.05, (now - last) / 1000)); last = now;
     if (run) {
       if (wantCoin && run.phase !== 'playing') { run.insertCoin(); over.classList.remove('show'); }
       wantCoin = false;

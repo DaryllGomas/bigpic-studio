@@ -558,6 +558,7 @@ function resize() {
   camera.updateProjectionMatrix();
 }
 addEventListener('resize', resize); resize();
+camPos.copy(HOME.pos); camLook.copy(HOME.look);   // start at the framing for this screen, not the default
 const _n = new THREE.Vector3();
 function pushTarget() {
   // stand square in front of the featured screen so its tube fills most of the view
@@ -576,7 +577,7 @@ drawCats(); layoutAisle(); drawPlate(featured().userData.game);
 const IDLE = { x: 0, y: 0, a: false, b: false, start: false };
 let last = performance.now(), from = null;
 function frame(now) {
-  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  const dt = Math.max(0, Math.min(0.05, (now - last) / 1000)); last = now;   // rAF can stamp a frame before `last`: never step backwards
   const gp = gamepad();
   if (mode === 'aisle') {
     const k = 70, c = 2 * Math.sqrt(k); vel += (k * (target - pos) - c * vel) * dt; pos += vel * dt;   // critically damped slide
@@ -629,7 +630,7 @@ if (EMBED) {
   }
 }
 if (EMBED) setTimeout(() => { const h = document.getElementById('ehint'); if (h) h.style.opacity = '0'; }, 6000);
-window.__junction = { get mode() { return mode; }, get pos() { return pos; }, move, switchCat, play, back, get run() { return active && active.runner; }, slots, CATS };
+window.__junction = { cam: () => ({ p: camera.position.toArray().map((v) => +v.toFixed(2)), l: camLook.toArray().map((v) => +v.toFixed(2)) }), get mode() { return mode; }, get pos() { return pos; }, move, switchCat, play, back, get run() { return active && active.runner; }, slots, CATS };
 </script>
 </body>
 </html>
