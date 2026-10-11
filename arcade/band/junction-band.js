@@ -6,8 +6,8 @@
 //   engine / art / brick: URLs relative to the page (or absolute). Defaults: the copies next to this module's test home.
 //
 // Every screen runs its game's own demo live (THE PATH's cabinet engine, unchanged). Click a cabinet to play it
-// full screen. The DAILY CHALLENGE uses the game's own built-in high-score table; INSERT COIN opens the site's
-// support modal ([data-support-open]) when the page has one.
+// full screen. The DAILY CHALLENGE uses the game's own built-in high-score table; its button plays today's round.
+// The arcade is free: no coin prompts anywhere (Daryll, 2026-10-11).
 const HERE = new URL('.', import.meta.url);
 const DEFAULTS = {
   engine: new URL('../../thepath-site/play/js/cabinet/', HERE).href,
@@ -121,6 +121,7 @@ export async function mountJunctionBand(el, options = {}) {
       row.appendChild(d);
       const runner = new CabinetRunner(cart, { cabinetId: 'junction_' + id, freePlay: true, attractFps: 20 });
       // the band shows the games being played: a short title card, then the demo
+      runner.attract.coinText = 'PRESS START';   // the arcade is free: nothing on screen asks for a coin
       runner.attract.titleSeconds = 0.8; runner.attract.demoSeconds = 60; runner.attract.scoresSeconds = 3;
       const cv = d.querySelector('canvas'), g = cv.getContext('2d');
       const cab = { id, cart, spec, c, el: d, g, runner, img: new ImageData(runner.surface.data, 320, 240) };
@@ -140,21 +141,17 @@ export async function mountJunctionBand(el, options = {}) {
     dc.innerHTML = `<h4>${ICON.cup}DAILY CHALLENGE</h4>
       <div class="gm">${ICON.cup}<div><b>${pick.spec.name}</b><small>TODAY'S ROUND · HIGH SCORE</small></div></div>
       <table><thead><tr><th>#</th><th>INIT</th><th>SCORE</th></tr></thead><tbody>${rowsH}</tbody></table>
-      <button class="jb-coin" type="button" data-support-open>INSERT COIN</button>`;
+      <button class="jb-coin" type="button">PLAY TODAY'S ROUND</button>`;
     dc.querySelector('.gm').style.cursor = 'pointer';
     dc.querySelector('.gm').onclick = () => play(pick, day);
-    const coin = dc.querySelector('.jb-coin');
-    coin.addEventListener('click', (e) => {
-      // the site's support script binds [data-support-open]; with no such script (the local test) open the support page
-      if (!window.__supportBound && !document.querySelector('script[src*="support.js"]')) { e.preventDefault(); window.open('https://bigpicsolutions.com/support/', '_blank', 'noopener'); }
-    });
+    dc.querySelector('.jb-coin').addEventListener('click', () => play(pick, day));
   };
   drawDC();
 
   // ---- playing, full screen ----
   const ov = document.createElement('div'); ov.className = 'jb-play'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
   ov.innerHTML = `<button class="x" aria-label="Back to the arcade">×</button><div class="pm"></div>
-    <div class="big"><canvas width="320" height="240"></canvas><div class="ov"><div class="s"></div><div class="c">INSERT COIN</div><a data-support-open>♡ SUPPORT THE DEV</a></div></div>
+    <div class="big"><canvas width="320" height="240"></canvas><div class="ov"><div class="s"></div><div class="c">PRESS START TO PLAY AGAIN</div></div></div>
     <div class="jb-pad"><div class="jb-joy"><div class="jb-knob"></div></div><div class="jb-keys"><button class="jb-key b" data-k="b">B</button><button class="jb-key a" data-k="a">A</button></div></div>`;
   document.body.appendChild(ov);
   const bg = ov.querySelector('canvas').getContext('2d'), over = ov.querySelector('.ov');
@@ -187,7 +184,7 @@ export async function mountJunctionBand(el, options = {}) {
     if (e.key === 'Escape' || e.key === 'Backspace') { e.preventDefault(); close(); }
     else if (run.phase !== 'playing' && (e.code === 'Enter' || e.code === 'Space' || e.code === 'KeyZ')) wantCoin = true;
   });
-  over.addEventListener('pointerdown', (e) => { if (!e.target.closest('a')) wantCoin = true; });
+  over.addEventListener('pointerdown', () => { wantCoin = true; });
   const touch = { x: 0, y: 0, a: false, b: false, start: false };
   {
     const joy = ov.querySelector('.jb-joy'), knob = ov.querySelector('.jb-knob'); let id = null;

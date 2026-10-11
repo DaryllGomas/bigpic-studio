@@ -41,10 +41,5 @@ export function mountJunctionAisle(el, options = {}) {
   };
   const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); start(); } }, { rootMargin: '300px 0px' });
   io.observe(el);
-  // INSERT COIN inside the aisle asks the page to open its support modal
-  addEventListener('message', (e) => {
-    if (!frame || e.source !== frame.contentWindow || !e.data || e.data.junction !== 'support') return;
-    const b = document.querySelector('[data-support-open]'); if (b) b.click(); else window.open('https://bigpicsolutions.com/support/', '_blank', 'noopener');
-  });
   return { live: true, start };
 }
