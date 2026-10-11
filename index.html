@@ -283,6 +283,148 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
 .modal .x{position:absolute;top:22px;right:26px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);color:var(--gold);font-size:22px;line-height:1}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
+
+/* ---------- now at the studio (hero strip) ---------- */
+.now{display:inline-grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:30px;padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(6,9,16,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);max-width:720px}
+.now-label{grid-column:1/-1;font-family:var(--sans);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--dawn);padding:0 4px}
+.now a{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;border:1px solid rgba(232,184,125,.12);background:rgba(253,246,236,.03);transition:border-color .25s,background .25s}
+.now a:hover{border-color:var(--line-strong);background:rgba(253,246,236,.06)}
+.now i{flex:0 0 8px;height:8px;margin-top:6px;border-radius:50%;background:var(--live);box-shadow:0 0 10px var(--live)}
+.now i.dev{background:var(--dev);box-shadow:0 0 10px var(--dev)}
+.now i.c{background:#7fc8ff;box-shadow:0 0 10px #7fc8ff}
+.now b{display:block;font-family:var(--sans);font-weight:600;font-size:13.5px;color:var(--light)}
+.now small{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* ---------- THE JUNCTION (arcade) ---------- */
+.arcade{position:relative;padding-top:0;margin-top:calc(-1 * clamp(24px,8vw,120px));z-index:3;isolation:isolate}
+.arcade-room{position:relative;max-width:calc(var(--max) + 80px);margin:0 auto;border-radius:22px;overflow:hidden;padding:clamp(28px,4vw,48px);
+  background:
+    radial-gradient(60% 50% at 70% 0%,rgba(255,40,70,.28),transparent 70%),
+    radial-gradient(50% 60% at 0% 100%,rgba(255,60,40,.16),transparent 70%),
+    repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 2px,transparent 2px 34px),
+    repeating-linear-gradient(90deg,rgba(0,0,0,.22) 0 2px,transparent 2px 68px),
+    linear-gradient(180deg,#1d0a10,#0d0509 60%,#07040a);
+  border:1px solid rgba(255,70,90,.28);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 120px rgba(255,30,60,.12)}
+.arcade-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:30px}
+.arcade-head .eyebrow{color:#ff8a8a;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.arcade-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,5.6vw,4.4rem);line-height:1}
+.arcade-head h2 em{color:var(--sunrise);font-style:italic}
+.arcade-facts{margin-top:14px;font-family:var(--sans);font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:#ffd0c4}
+.arcade-facts span+span::before{content:"·";margin:0 12px;opacity:.6}
+.neon{font-family:var(--sans);font-weight:700;text-transform:uppercase;text-align:center;line-height:1;padding:16px 26px 14px;border:3px solid #ff3b4e;border-radius:16px;color:#ffd9dc;
+  text-shadow:0 0 6px #ff3b4e,0 0 18px #ff3b4e,0 0 42px #ff1f3d;box-shadow:0 0 14px #ff3b4e,0 0 40px rgba(255,31,61,.55),inset 0 0 18px rgba(255,59,78,.5);animation:neon 7s infinite}
+.neon b{display:block;font-size:clamp(1.6rem,3vw,2.5rem);letter-spacing:.06em}
+.neon small{display:block;margin-top:6px;font-size:12px;letter-spacing:.42em;color:#ffb8bf}
+@keyframes neon{0%,93%,100%{opacity:1}94%{opacity:.55}95%{opacity:1}97%{opacity:.7}98%{opacity:1}}
+.arcade-floor{display:grid;grid-template-columns:1fr 250px;gap:24px;align-items:start}
+.wall{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px}
+.cab{position:relative;display:flex;flex-direction:column;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,#191320,#0c0910);border:1px solid rgba(255,255,255,.07);box-shadow:0 10px 24px rgba(0,0,0,.55);transition:transform .25s,box-shadow .25s}
+.cab:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.6),0 0 26px var(--glow,rgba(255,80,100,.45))}
+.cab .mq{height:30px;border-radius:7px 7px 0 0;overflow:hidden;display:grid;place-items:center;background:#120d18 center/cover no-repeat;border-bottom:2px solid rgba(0,0,0,.6);
+  font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#fff;text-shadow:0 0 8px var(--glow,#ff4f6b)}
+.cab .mq.img{color:transparent;text-shadow:none}
+.cab .scr{position:relative;margin:8px 7px 0;aspect-ratio:4/3;border-radius:6px/8px;overflow:hidden;background:#000;box-shadow:0 0 0 3px #050407,0 0 18px var(--glow,rgba(255,80,100,.35))}
+.cab .scr img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;animation:scr 4s infinite}
+.cab .scr::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.22) 2px 3px),radial-gradient(ellipse at 50% 50%,transparent 60%,rgba(0,0,0,.5));pointer-events:none}
+@keyframes scr{0%,100%{filter:brightness(1)}50%{filter:brightness(1.08)}}
+.cab .ctl{height:22px;margin:8px 7px 7px;border-radius:4px;background:linear-gradient(180deg,#221a2a,#140f19);position:relative}
+.cab .ctl::before,.cab .ctl::after{content:"";position:absolute;top:7px;width:8px;height:8px;border-radius:50%}
+.cab .ctl::before{left:12px;background:#ff3b4e;box-shadow:12px 0 0 #ffd23b}
+.cab .ctl::after{right:12px;background:#3bc8ff;box-shadow:-12px 0 0 #8cff6b}
+.chal{border-radius:16px;padding:20px;background:rgba(10,6,12,.82);border:1px solid rgba(255,190,90,.3);box-shadow:inset 0 0 30px rgba(255,150,60,.08)}
+.chal .eyebrow{font-size:10.5px;color:#ffcf85}
+.chal h3{font-family:var(--sans);font-size:17px;font-weight:700;margin:10px 0 6px;letter-spacing:.02em}
+.chal p{font-size:14.5px;color:var(--mist);line-height:1.45}
+.chal .soon{display:inline-block;margin-top:14px;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--dev);padding:4px 10px;border-radius:999px;border:1px solid rgba(244,162,97,.35)}
+.coin{display:block;width:100%;margin-top:18px;padding:13px 0;border-radius:12px;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#ffe6b8;
+  border:2px solid #ffb347;background:rgba(255,160,60,.08);text-shadow:0 0 10px #ff9a2e;box-shadow:0 0 16px rgba(255,160,60,.35),inset 0 0 14px rgba(255,160,60,.2);animation:coin 2.2s ease-in-out infinite}
+.coin:hover{background:rgba(255,160,60,.18)}
+@keyframes coin{0%,100%{box-shadow:0 0 12px rgba(255,160,60,.3),inset 0 0 12px rgba(255,160,60,.15)}50%{box-shadow:0 0 26px rgba(255,160,60,.6),inset 0 0 18px rgba(255,160,60,.3)}}
+
+/* ---------- the Atlas Veyr universe ---------- */
+.u-banner{position:relative;border-radius:22px;overflow:hidden;min-height:clamp(340px,44vw,560px);display:flex;align-items:flex-start;border:1px solid var(--line-strong);box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 60px rgba(244,162,97,.08);isolation:isolate}
+.u-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;z-index:-2;transform:scale(1.04);transition:transform 8s ease-out}
+.u-banner:hover img{transform:scale(1)}
+.u-banner::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,6,11,.75) 0%,rgba(4,6,11,.15) 34%,transparent 60%,rgba(4,6,11,.75) 100%),linear-gradient(90deg,rgba(4,6,11,.55),transparent 45%)}
+.u-banner .t{padding:clamp(26px,4vw,48px)}
+.u-banner .eyebrow{display:flex;align-items:center;gap:10px}
+.u-banner h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:1;margin:12px 0 10px;text-shadow:0 2px 30px rgba(0,0,0,.7)}
+.u-banner h2 em{color:var(--sunrise);font-style:italic}
+.u-banner p{font-size:clamp(17px,1.6vw,21px);color:var(--light);text-shadow:0 1px 16px rgba(0,0,0,.85)}
+.u-label{display:flex;align-items:center;gap:12px;margin:40px 0 16px;font-family:var(--sans);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--dawn)}
+.u-label::before{content:"";width:9px;height:9px;border-radius:50%;border:1.5px solid var(--sunrise);box-shadow:0 0 10px rgba(244,162,97,.6)}
+.u-label::after{content:"";flex:0 0 90px;height:1px;background:linear-gradient(90deg,var(--sunrise),transparent)}
+.u-games{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr;align-items:stretch}
+.u-link{position:relative;align-self:center;height:1px;background:linear-gradient(90deg,transparent,var(--sunrise),transparent)}
+.u-link::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;transform:translate(-50%,-50%) rotate(45deg);border:1.5px solid var(--gold);background:#120c06;box-shadow:0 0 14px rgba(255,216,154,.7)}
+.u-game{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:200px;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--glass);transition:border-color .3s,transform .3s}
+.u-game:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+.u-game .tx{position:relative;z-index:2;padding:20px 8px 18px 20px;display:flex;flex-direction:column;gap:8px}
+.u-game .status{white-space:nowrap}
+.u-game .no{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--sans);font-size:12px;letter-spacing:.16em;color:var(--dawn)}
+.u-game h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.3rem,1.9vw,1.7rem);line-height:1.05;letter-spacing:.02em;text-transform:uppercase}
+.u-game p{font-size:14.5px;color:var(--mist);line-height:1.4}
+.u-game .go{margin-top:auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-strong);color:var(--gold)}
+.u-game .go svg{width:14px;height:14px}
+.u-game .im{position:relative}
+.u-game .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s}
+.u-game:hover .im img{transform:scale(1.05)}
+.u-game .im::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(13,18,31,1) 0%,rgba(13,18,31,.2) 45%,transparent 70%)}
+.u-game .like{top:10px;right:10px}
+.u-worlds{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.u-worlds figure{margin:0}
+.u-worlds .pl{aspect-ratio:16/10;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.u-worlds img{width:100%;height:100%;object-fit:cover;transition:transform .8s,filter .5s;filter:saturate(.9) brightness(.92)}
+.u-worlds figure:hover img{transform:scale(1.07);filter:none}
+.u-worlds figcaption{margin-top:9px;text-align:center;font-family:var(--serif);font-size:16px;color:var(--light)}
+.u-worlds figcaption small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.u-meet{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.meet{position:relative;min-height:190px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#070a12;isolation:isolate}
+.meet img{position:absolute;right:0;top:0;height:100%;width:72%;object-fit:cover;z-index:-2;transition:transform 1s}
+.meet:hover img{transform:scale(1.06)}
+.meet::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#070a12 22%,rgba(7,10,18,.55) 52%,transparent 80%)}
+.meet .tx{padding:18px 18px;max-width:58%}
+.meet h4{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.05;text-transform:uppercase;letter-spacing:.03em}
+.meet p{margin-top:8px;font-size:14px;color:var(--mist);line-height:1.4}
+.meet.ora img{width:62%;object-fit:contain;background:#000}
+
+/* more from the studio: four across */
+.g4{grid-template-columns:repeat(4,1fr)}
+.s-soon{color:#9fd8ff;background:rgba(159,216,255,.08);border:1px solid rgba(159,216,255,.32)}
+
+/* lab log: a slim dated strip */
+.log.slim{grid-template-columns:repeat(6,minmax(0,1fr))}
+.log.slim .entry{gap:6px;padding-top:6px}
+.log.slim .entry h4{font-size:14.5px}
+.log.slim .entry p{font-size:13.5px}
+
+@media (max-width:1080px){
+  .wall{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .arcade-floor{grid-template-columns:1fr}
+  .chal{display:grid;grid-template-columns:1fr auto;gap:6px 24px;align-items:center}
+  .chal .coin{margin-top:0;width:auto;padding:13px 22px;grid-row:1/4;grid-column:2}
+  .u-games{grid-template-columns:1fr;gap:14px}
+  .u-link{display:none}
+  .u-worlds{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .u-meet,.g4{grid-template-columns:repeat(2,1fr)}
+  .log.slim{grid-template-columns:repeat(6,minmax(200px,1fr))}
+}
+@media (max-width:820px){
+  .now{grid-template-columns:1fr;display:grid;max-width:none}
+  .arcade{margin-top:-24px;padding-left:12px;padding-right:12px}
+  .arcade-room{padding:26px 16px}
+  .arcade-head{flex-direction:column;align-items:flex-start}
+  .neon{display:none}
+  .wall{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .wall .cab:nth-child(n+13){display:none}
+  .chal{grid-template-columns:1fr}
+  .chal .coin{grid-row:auto;grid-column:auto;width:100%;margin-top:12px}
+  .u-worlds{grid-template-columns:repeat(7,minmax(130px,1fr));overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
+  .u-worlds figure{scroll-snap-align:start}
+  .u-meet,.g4{grid-template-columns:1fr}
+  .u-game{grid-template-columns:1.1fr 1fr}
+}
+
 /* ---------- reveal (only when JS runs) ---------- */
 .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
 .js .reveal.in{opacity:1;transform:none}
@@ -335,8 +477,9 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
     <span><b>BigPic</b> Studios</span>
   </a>
   <div class="nav-links" id="navLinks">
-    <a href="#games">Games</a>
-    <a href="#worlds">Worlds</a>
+    <a href="#arcade">Arcade</a>
+    <a href="#universe">Universe</a>
+    <a href="#worlds">More</a>
     <a href="#log">Lab Log</a>
     <a href="#work">Work With Us</a>
     <a href="https://bigpicsolutions.com/">BigPic Solutions</a>
@@ -361,7 +504,12 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
         <div class="cta-row reveal d4">
           <a class="btn btn-gold" href="https://thepath.bigpicsolutions.com/" target="_blank" rel="noopener">Play The Path, early beta
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a class="btn btn-ghost" href="#games">Explore our work</a>
+        </div>
+        <div class="now reveal d4" role="navigation" aria-label="Now at the studio">
+          <span class="now-label">Now at the studio</span>
+          <a href="https://thepath.bigpicsolutions.com/" target="_blank" rel="noopener" data-track="now-the-path"><i></i><span><b>The Path v0.2.2</b><small>Oct 10, 2026</small></span></a>
+          <a href="the-first-world/" target="_blank" rel="noopener" data-track="now-first-world"><i></i><span><b>The First World v0.5</b><small>Oct 11, 2026</small></span></a>
+          <a href="#universe" data-track="now-beyond"><i class="c"></i><span><b>First scenes beyond the Nexus</b><small>Oct 10, 2026</small></span></a>
         </div>
       </div>
       <div class="hero-side reveal d4" aria-hidden="true"><span>Stories</span><span>Games</span><span>Worlds</span><span>A more curious tomorrow</span></div>
@@ -369,59 +517,71 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
   </header>
 
   <!-- GAMES -->
-  <section id="games">
+  <section id="arcade" class="arcade" aria-label="The Junction arcade">
+    <div class="arcade-room">
+      <div class="arcade-head">
+        <div class="reveal">
+          <span class="eyebrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M8 11v4M6 13h4M15 12h.01M18 14h.01"/></svg>Arcade</span>
+          <h2>The <em>Junction</em></h2>
+          <div class="arcade-facts"><span>26 games</span><span>Free</span><span>One click</span></div>
+        </div>
+        <div class="neon reveal d1" aria-hidden="true"><b>The Junction</b><small>Video arcade</small></div>
+      </div>
+      <div class="arcade-floor">
+        <div class="wall">
+          <div class="cab" style="--glow:#4fd8ff"><div class="mq">Starvector</div><div class="scr"><img src="assets/arcade/scr-starvector.webp" alt="Starvector, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#c34bff"><div class="mq">Grid Cycles</div><div class="scr"><img src="assets/arcade/scr-gridcycles.webp" alt="Grid Cycles, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ffd23b"><div class="mq">Relic Quest</div><div class="scr"><img src="assets/arcade/scr-relicquest.webp" alt="Relic Quest, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ff6a3b"><div class="mq img" style="background-image:url(assets/arcade/mq-castlecrush.webp)">Castle Crush</div><div class="scr"><img src="assets/arcade/scr-castlecrush.webp" alt="Castle Crush, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ff4f6b"><div class="mq img" style="background-image:url(assets/arcade/mq-lancerider.webp)">Lance Rider</div><div class="scr"><img src="assets/arcade/scr-lancerider.webp" alt="Lance Rider, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ff3b4e"><div class="mq img" style="background-image:url(assets/arcade/mq-lasthuman.webp)">Last Human</div><div class="scr"><img src="assets/arcade/scr-lasthuman.webp" alt="Last Human, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ffb347"><div class="mq img" style="background-image:url(assets/arcade/mq-hyperdrift.webp)">Hyper Drift</div><div class="scr"><img src="assets/arcade/scr-hyperdrift.webp" alt="Hyper Drift, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ff4f4f"><div class="mq img" style="background-image:url(assets/arcade/mq-irondojo.webp)">Iron Dojo</div><div class="scr"><img src="assets/arcade/scr-irondojo.webp" alt="Iron Dojo, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#4fb8ff"><div class="mq img" style="background-image:url(assets/arcade/mq-afterglow.webp)">Afterglow</div><div class="scr"><img src="assets/arcade/scr-afterglow.webp" alt="Afterglow, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ff8a3b"><div class="mq img" style="background-image:url(assets/arcade/mq-tunnelrat.webp)">Tunnel Rat</div><div class="scr"><img src="assets/arcade/scr-tunnelrat.webp" alt="Tunnel Rat, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ffd23b"><div class="mq img" style="background-image:url(assets/arcade/mq-lastlight.webp)">Last Light</div><div class="scr"><img src="assets/arcade/scr-lastlight.webp" alt="Last Light, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ff4fd0"><div class="mq img" style="background-image:url(assets/arcade/mq-swarmpatrol.webp)">Swarm Patrol</div><div class="scr"><img src="assets/arcade/scr-swarmpatrol.webp" alt="Swarm Patrol, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#7dff6b"><div class="mq img" style="background-image:url(assets/arcade/mq-route9.webp)">Route 9</div><div class="scr"><img src="assets/arcade/scr-route9.webp" alt="Route 9, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ff6ad5"><div class="mq img" style="background-image:url(assets/arcade/mq-sunsetdrive.webp)">Sunset Drive</div><div class="scr"><img src="assets/arcade/scr-sunsetdrive.webp" alt="Sunset Drive, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ffb347"><div class="mq img" style="background-image:url(assets/arcade/mq-warlordsroad.webp)">Warlord's Road</div><div class="scr"><img src="assets/arcade/scr-warlordsroad.webp" alt="Warlord&rsquo;s Road, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#5bd6ff"><div class="mq img" style="background-image:url(assets/arcade/mq-deepkeep.webp)">The Deep Keep</div><div class="scr"><img src="assets/arcade/scr-deepkeep.webp" alt="The Deep Keep, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#8cff6b"><div class="mq img" style="background-image:url(assets/arcade/mq-lanejumper.webp)">Lane Jumper</div><div class="scr"><img src="assets/arcade/scr-lanejumper.webp" alt="Lane Jumper, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+          <div class="cab" style="--glow:#ffd23b"><div class="mq img" style="background-image:url(assets/arcade/mq-shortorder.webp)">Short Order</div><div class="scr"><img src="assets/arcade/scr-shortorder.webp" alt="Short Order, playing" width="320" height="240" loading="lazy"></div><div class="ctl"></div></div>
+        </div>
+        <aside class="chal reveal d2">
+          <span class="eyebrow">Daily challenge</span>
+          <h3>One seed. Everyone. Every day.</h3>
+          <p>Same game, same start for all. Three letters on the board.</p>
+          <span class="soon">Arcade opening soon</span>
+          <button class="coin" type="button" data-support-open>Insert coin</button>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ATLAS VEYR UNIVERSE -->
+  <section id="universe">
     <div class="wrap">
-      <div class="sec-head">
-        <div class="reveal"><span class="eyebrow">Our work</span><h2 class="sec-title">Now building</h2></div>
-        <p class="sec-desc reveal d1">Our games live in one universe. It starts in 1982 with a ride downtown and ends, for now, at the Nexus.</p>
-      </div>
-      <div class="path-strip reveal" aria-label="The Path universe">
-        <span class="on">The Junction</span><i></i><span>Seven worlds</span><i></i><span>The Nexus</span><i></i><span>What comes next</span>
-      </div>
-
-      <div class="grid g2">
-        <article class="card big reveal" data-project="the-path">
-          <div class="media"><button class="like" data-project="the-path" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-the-path.webp" alt="THE JUNCTION video arcade glowing in red neon on a dark street at night" width="1200" height="750" loading="lazy"></div>
-          <div class="body">
-            <span class="status s-beta">Early beta · Chapter one</span>
-            <h3><a class="stretch" href="https://thepath.bigpicsolutions.com/" target="_blank" rel="noopener" data-track="the-path">The Path</a> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
-            <p>A first-person story game. 1982, the ride downtown, THE JUNCTION arcade and the cabinet with no name. Seven worlds follow, and the path ends at the Nexus. Chapter one is free in your browser as an early beta: we're still building it.</p>
-            <div class="tags"><span>Story game</span><span>First person</span><span>Early beta</span></div>
-            <div class="foot"><span>Updated Sep 27, 2026</span><span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
-          </div>
-        </article>
-        <article class="card big reveal d1" data-project="paper-arena">
-          <div class="media"><button class="like" data-project="paper-arena" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-paper-arena-debrief.webp" alt="Paper Arena mission debrief for a ZEC short: Solid Execution, +0.91R, +$315.24, +80 Discipline XP for process, risk, execution and discipline" width="1200" height="750" loading="lazy"></div>
-          <div class="body">
-            <span class="status s-dev">Early development</span>
-            <h3><a class="stretch" href="https://namkuzu-da-os.github.io/paper-arena/" target="_blank" rel="noopener" data-track="paper-arena">Paper Arena</a> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
-            <p>A paper trading game on live prices, ranked on discipline, not profit. Set a stop, size your risk, keep your word. The market rewards money. Paper Arena rewards behavior.</p>
-            <div class="tags"><span>Trading game</span><span>Free</span><span>Browser</span></div>
-            <div class="foot"><span>Updated Sep 25, 2026</span><span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
-          </div>
-        </article>
-      </div>
-
-      <div class="card wide reveal" data-project="beyond-the-nexus">
-        <div class="media"><button class="like" data-project="beyond-the-nexus" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="lbl">I want this</span><span class="n">0</span></button><img src="assets/card-the-system.webp" alt="THE SYSTEM on a smartwatch: the daily quest list, a level and XP watch face, and a reward chest unlocking" width="1600" height="700" loading="lazy"></div>
-        <div class="body">
-          <span class="status s-dev">In development</span>
-          <h3>Beyond the Nexus: The System</h3>
-          <p>A fitness RPG where your real body levels up your hero. Each morning your watch hands you a quest. Steps and sleep fight the villains, real exercise raises your stats, and good days unlock real rewards.</p>
-          <div class="tags"><span>Fitness RPG</span><span>Wearable</span><span>Working title</span></div>
+      <div class="u-banner reveal">
+        <img src="assets/universe/banner-atlas.webp" alt="Atlas Veyr between a burning dark world, where a hooded shadow reaches for him, and a city of light through a stone arch; a smoking ring in one hand, a glowing carved box in the other" width="1672" height="941" loading="lazy">
+        <div class="t">
+          <span class="eyebrow">Franchise</span>
+          <h2>The Atlas Veyr <em>universe</em></h2>
+          <p>One story, told across every game we make.</p>
         </div>
       </div>
-
-      <article class="card wide reveal" data-project="god-game">
-        <div class="media"><button class="like" data-project="god-game" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-god-game.webp" alt="A green island coast on a deep blue sea: a small village of thatched houses, fields and a totem, with a stone golem standing in the grass beside it" width="1800" height="675" loading="lazy"></div>
-        <div class="body">
-          <span class="status s-beta">Playable · In development · v0.5</span>
-          <h3><a class="stretch" href="the-first-world/" target="_blank" rel="noopener" data-track="god-game">The First World</a> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
-          <p>You're a young god with one island. Villagers pray and you answer with your hands: carry a tree, bring the rain, pluck a lost child out of the woods. Raise a golem that learns from you. Kind or cruel, the island shows who you are.</p>
-          <div class="tags"><span>God game</span><span>Browser</span><span>An Atlas Veyr Worldmaker game</span></div>
-          <div class="foot"><span>Updated Oct 11, 2026</span><span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
-        </div>
-      </article>
+      <div class="u-label">Games in order</div>
+      <div class="u-games">
+          <a class="u-game reveal" href="https://thepath.bigpicsolutions.com/" target="_blank" rel="noopener" data-track="the-path"><div class="tx"><div class="no">01 <span class="status s-beta">Playable · 1982</span></div><h3>The Path</h3><p>A ride downtown, an arcade, and a cabinet with no name.</p><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div><div class="im"><button class="like" data-project="the-path" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-the-path.webp" alt="THE JUNCTION video arcade glowing in red neon on a dark street at night" loading="lazy"></div></a>
+          <i class="u-link" aria-hidden="true"></i>
+          <a class="u-game reveal" href="the-first-world/" target="_blank" rel="noopener" data-track="god-game"><div class="tx"><div class="no">02 <span class="status s-beta">Playable · v0.5</span></div><h3>The First World</h3><p>A god with no body, only a hand.</p><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div><div class="im"><button class="like" data-project="god-game" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-god-game.webp" alt="A green island coast on a deep blue sea with a small village, fields and a totem" loading="lazy"></div></a>
+          <i class="u-link" aria-hidden="true"></i>
+          <div class="u-game reveal"><div class="tx"><div class="no">03 <span class="status s-dev">In development</span></div><h3>Beyond the Nexus</h3><p>Atlas takes a body and walks out into the City. The System is built in, and optional: move in real life to earn Light.</p></div><div class="im"><button class="like" data-project="beyond-the-nexus" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/universe/game-beyond.webp" alt="The City plaza at dusk in a hand-built diorama style: market stalls, palms, banners and a great stair" loading="lazy"></div></div>
+      </div>
+      <div class="u-label">The seven worlds of The Path</div>
+      <div class="u-worlds reveal"><figure><div class="pl"><img src="assets/universe/world-the_80s.webp" alt="1982" loading="lazy"></div><figcaption><small>I</small>1982</figcaption></figure><figure><div class="pl"><img src="assets/universe/world-gobekli_tepe.webp" alt="Göbekli Tepe" loading="lazy"></div><figcaption><small>II</small>G&ouml;bekli Tepe</figcaption></figure><figure><div class="pl"><img src="assets/universe/world-egypt.webp" alt="Egypt" loading="lazy"></div><figcaption><small>III</small>Egypt</figcaption></figure><figure><div class="pl"><img src="assets/universe/world-the_east.webp" alt="The East" loading="lazy"></div><figcaption><small>IV</small>The East</figcaption></figure><figure><div class="pl"><img src="assets/universe/world-the_vale.webp" alt="The Vale" loading="lazy"></div><figcaption><small>V</small>The Vale</figcaption></figure><figure><div class="pl"><img src="assets/universe/world-the_signal.webp" alt="The Signal" loading="lazy"></div><figcaption><small>VI</small>The Signal</figcaption></figure><figure><div class="pl"><img src="assets/universe/world-atlantis.webp" alt="Atlantis" loading="lazy"></div><figcaption><small>VII</small>Atlantis</figcaption></figure></div>
+      <div class="u-label">Who you&rsquo;ll meet</div>
+      <div class="u-meet"><div class="meet reveal"><img src="assets/universe/meet-sloth.webp" alt="A sorrowful ruined stone titan, cracked and glowing blue" loading="lazy"><div class="tx"><h4>Sloth</h4><p>The dormant weight. Inactivity, given form.</p></div></div><div class="meet reveal"><img src="assets/universe/meet-warden.webp" alt="A tall hooded warden with a lantern beneath the moon" loading="lazy"><div class="tx"><h4>The Night Warden</h4><p>Broken sleep, given form.</p></div></div><div class="meet reveal"><img src="assets/universe/meet-drift.webp" alt="A ragged cloaked wanderer over broken paths" loading="lazy"><div class="tx"><h4>The Drift</h4><p>Abandoned intentions, given form.</p></div></div><div class="meet ora reveal"><img src="assets/universe/meet-ora.webp" alt="A round orb of blue-white light wrapped in gold filament rings" loading="lazy"><div class="tx"><h4>Ora</h4><p>The light that finds you.</p></div></div></div>
     </div>
   </section>
 
@@ -429,11 +589,28 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
   <section id="worlds">
     <div class="wrap">
       <div class="sec-head">
-        <div class="reveal"><span class="eyebrow">Also from the studio</span><h2 class="sec-title">Worlds &amp; experiences</h2></div>
-        <p class="sec-desc reveal d1">Places on the web you can walk into. Ancient worlds, future tech, and everything between.</p>
+        <div class="reveal"><span class="eyebrow">Also from the studio</span><h2 class="sec-title">More from the studio</h2></div>
+        <p class="sec-desc reveal d1">Beyond the universe: a trading arena, a walk through history, and places on the web you can step into.</p>
       </div>
-      <div class="grid g3">
-        <article class="card reveal" data-project="bygc">
+      <div class="grid g4">
+        <article class="card reveal" data-project="the-house">
+          <div class="media"><button class="like" data-project="the-house" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/universe/card-the-house.webp" alt="THE HOUSE: a grand trading hall, a live price chart framed in brass and gold" width="1200" height="675" loading="lazy"></div>
+          <div class="body">
+            <span class="status s-soon">Coming soon</span>
+            <h3>The House</h3>
+            <p>A trading arena on live prices, scored on discipline, not profit. Being built now.</p>
+          </div>
+        </article>
+        <article class="card reveal d1" data-project="ancients">
+          <div class="media"><button class="like" data-project="ancients" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-ancients-round.webp" alt="Ancient History: a round golden zodiac dial of eras under a starry sky, with event medallions and a Global Climate card" width="1200" height="750" loading="lazy"></div>
+          <div class="body">
+            <span class="status s-beta">Live · New design</span>
+            <h3><a class="stretch" href="https://daryllgomas.github.io/Ancients/" target="_blank" rel="noopener" data-track="ancients">Ancients</a> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
+            <p>An interactive timeline of human history, from the first monuments to the present.</p>
+            <div class="foot"><span>Updated Oct 7, 2026</span><span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+          </div>
+        </article>
+        <article class="card reveal d2" data-project="bygc">
           <div class="media"><button class="like" data-project="bygc" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-bygc.webp" alt="Breaking Your Genetic Code: gold lettering inside a candlelit ancient temple" width="900" height="600" loading="lazy"></div>
           <div class="body">
             <span class="status s-live">Live</span>
@@ -442,22 +619,13 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
             <div class="foot"><span>Updated Sep 27, 2026</span><span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
           </div>
         </article>
-        <article class="card reveal d1" data-project="the-big-picture">
+        <article class="card reveal d3" data-project="the-big-picture">
           <div class="media"><button class="like" data-project="the-big-picture" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-bigpicture.webp" alt="The Big Picture: a spiral galaxy made of particles beside the name Daryll Gomas" width="900" height="600" loading="lazy"></div>
           <div class="body">
             <span class="status s-live">Live</span>
             <h3><a class="stretch" href="https://daryllgomas.com/" target="_blank" rel="noopener" data-track="the-big-picture">The Big Picture</a> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
             <p>A powers-of-ten zoom from the edge of the universe down to one person.</p>
             <div class="foot"><span>daryllgomas.com</span><span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
-          </div>
-        </article>
-        <article class="card reveal d2" data-project="ancients">
-          <div class="media"><button class="like" data-project="ancients" aria-pressed="false" aria-label="Like this project" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.7 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.5 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg><span class="n">0</span></button><img src="assets/card-ancients-round.webp" alt="Ancient History: a round golden zodiac dial of eras under a starry sky, with event medallions and a Global Climate card" width="1200" height="750" loading="lazy"></div>
-          <div class="body">
-            <span class="status s-beta">Live · New design</span>
-            <h3><a class="stretch" href="https://daryllgomas.github.io/Ancients/" target="_blank" rel="noopener" data-track="ancients">Ancients</a> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></h3>
-            <p>An interactive timeline of human history, from the first monuments to the present.</p>
-            <div class="foot"><span>Updated Oct 7, 2026</span><span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
           </div>
         </article>
       </div>
@@ -471,59 +639,17 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
         <div class="reveal"><span class="eyebrow">Notes from the studio</span><h2 class="sec-title">Lab log</h2></div>
         <p class="sec-desc reveal d1">What shipped, and when. Real dates, real work.</p>
       </div>
-      <div class="log" style="margin-top:40px">
-        <article class="entry reveal">
-          <div class="thumb"><img src="assets/hero-studios.webp" alt="" loading="lazy" width="1920" height="1080"></div>
-          <time datetime="2026-09-28">Sep 28, 2026</time>
-          <h4>BigPic Studios opens</h4>
-          <p>This page goes up: every game and world in one place, with the work shown.</p>
-        </article>
-        <article class="entry reveal d1">
-          <div class="thumb"><img src="assets/log-path.webp" alt="" loading="lazy" width="640" height="400"></div>
-          <time datetime="2026-09-27">Sep 27, 2026</time>
-          <h4>The Path: chapter one, early beta</h4>
-          <p>The ride downtown, THE JUNCTION and the cabinet with no name, free in your browser. An early beta, still being built.</p>
-        </article>
-        <article class="entry reveal d2">
-          <div class="thumb"><img src="assets/card-bygc.webp" alt="" loading="lazy" width="900" height="600"></div>
-          <time datetime="2026-09-27">Sep 27, 2026</time>
-          <h4>Breaking Your Genetic Code moves home</h4>
-          <p>The temple now lives at breakthecode.daryllgomas.com.</p>
-        </article>
-        <article class="entry reveal d3">
-          <div class="thumb"><img src="assets/card-paper-arena.webp" alt="" loading="lazy" width="1200" height="750"></div>
-          <time datetime="2026-09-25">Sep 25, 2026</time>
-          <h4>Paper Arena goes live</h4>
-          <p>Live-priced paper trading, scored on discipline. Version zero.</p>
-        </article>
-        <article class="entry reveal d4" data-trailer role="button" tabindex="0" style="cursor:pointer" aria-label="Watch THE NEXUS trailer">
-          <div class="thumb"><img src="assets/log-nexus.webp" alt="" loading="lazy" width="640" height="400"></div>
-          <time datetime="2026-09-22">Sep 22, 2026</time>
-          <h4>THE NEXUS trailer, final cut</h4>
-          <p>Seventy-nine seconds, from a 1982 basement to the end of the path.</p>
-        </article>
+      <div class="log slim" style="margin-top:22px">
+        <article class="entry reveal"><time datetime="2026-10-11">Oct 11, 2026</time><h4>The First World v0.5</h4><p>The Split: balance, a shadow, and two endings.</p></article>
+        <article class="entry reveal d1"><time datetime="2026-10-10">Oct 10, 2026</time><h4>The Path v0.2.2</h4><p>Two hours of jukebox music, a smoother arcade.</p></article>
+        <article class="entry reveal d2"><time datetime="2026-10-10">Oct 10, 2026</time><h4>First scenes beyond the Nexus</h4><p>The Nexus, the City plaza and the gate road.</p></article>
+        <article class="entry reveal d3"><time datetime="2026-10-07">Oct 7, 2026</time><h4>Ancients redesigned</h4><p>A round golden dial of the ages.</p></article>
+        <article class="entry reveal d4"><time datetime="2026-09-28">Sep 28, 2026</time><h4>BigPic Studios opens</h4><p>Every game and world in one place.</p></article>
+        <article class="entry reveal d4" data-trailer role="button" tabindex="0" style="cursor:pointer" aria-label="Watch THE NEXUS trailer"><time datetime="2026-09-22">Sep 22, 2026</time><h4>THE NEXUS trailer &#9654;</h4><p>Seventy-nine seconds, 1982 to the Nexus.</p></article>
       </div>
     </div>
   </section>
 
-  <!-- MANIFESTO -->
-  <section class="manifesto" id="why">
-    <div class="orbits" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="wrap">
-      <span class="eyebrow reveal">Why we build</span>
-      <h2 class="reveal d1">The end of software as you knew it.<br><b>The beginning of software built for you.</b></h2>
-      <p class="reveal d2">For decades, software was something you were handed: built by someone else, for everyone at once, on their terms. That's changing. One person working with AI can now make the games, worlds and tools that used to take a whole studio. We build ours in the open, and we can build yours.</p>
-      <p class="freedom reveal d3">What you want. How you want. <em>For you.</em></p>
-      <div class="deal">
-        <div class="deal-item reveal"><b>Free to use</b><span>Everything we ship is free to play and try. No wallet, no paywall.</span></div>
-        <div class="deal-item reveal d1"><b>Fair to support</b><span>If it made your day, tip the dev. A fair price, never a squeeze.</span></div>
-        <div class="deal-item reveal d2"><b>You own it</b><span>What we build for you is yours, code and all.</span></div>
-        <div class="deal-item reveal d3"><b>Never cut off</b><span>We won't pull the rug on tools you rely on.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK WITH THE STUDIO -->
   <section id="work">
     <div class="wrap">
       <div class="sec-head">
@@ -573,7 +699,7 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
     </div>
     <div class="foot-links">
       <b>The studio</b>
-      <a href="#games">Games</a><a href="#worlds">Worlds</a><a href="#log">Lab Log</a><a href="#work">Work with us</a>
+      <a href="#arcade">Arcade</a><a href="#universe">Universe</a><a href="#worlds">More</a><a href="#log">Lab Log</a><a href="#work">Work with us</a>
     </div>
     <div class="foot-links">
       <b>BigPic</b>
