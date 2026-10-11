@@ -816,9 +816,9 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
 })();
 </script>
 <script type="module">
-// THE JUNCTION band: bigpic-14's component. PREVIEW path (sibling repo); before push it is copied to arcade/band/ and this path changes.
-import { mountJunctionBand } from '../the-junction-test/band/junction-band.js';
-const el = document.getElementById('junction'); if (el) { el.innerHTML = ''; mountJunctionBand(el, { arcadeUrl: '/arcade/' }); }
+// THE JUNCTION band: bigpic-14's component, copied in at arcade/ (source of truth: ~/Projects/sites/the-junction-test/band/; don't edit arcade/ here)
+import { mountJunctionBand } from './arcade/band/junction-band.js';
+const el = document.getElementById('junction'); if (el) { el.innerHTML = ''; mountJunctionBand(el, { arcadeUrl: '/arcade/', engine: './arcade/cabinet/', art: './arcade/cab/', brick: './arcade/band/brick.jpg' }); }
 </script>
 </body>
 </html>
