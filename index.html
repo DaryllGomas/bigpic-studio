@@ -815,5 +815,10 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
   requestAnimationFrame(draw);
 })();
 </script>
+<script type="module">
+// THE JUNCTION band: bigpic-14's component. PREVIEW path (sibling repo); before push it is copied to arcade/band/ and this path changes.
+import { mountJunctionBand } from '../the-junction-test/band/junction-band.js';
+const el = document.getElementById('junction'); if (el) { el.innerHTML = ''; mountJunctionBand(el, { arcadeUrl: '/arcade/' }); }
+</script>
 </body>
 </html>
