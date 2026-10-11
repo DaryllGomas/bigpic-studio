@@ -1,0 +1,139 @@
+/* THE JUNCTION band: the cabinet wall from the approved studio home mock-up v5 (2026-10-11).
+   One component, owned by the arcade session; the studio home embeds it. Everything is scoped under .jb */
+.jb{--jb-gold:#ffb347;--jb-gold2:#ffd27a;--jb-red:#ff3b2a;--jb-pink:#ff3fa4;--jb-ink:#f6eefe;--jb-mute:#b9adc9;
+  position:relative;width:100%;aspect-ratio:1024/392;min-height:520px;overflow:hidden;isolation:isolate;color:var(--jb-ink);
+  font-family:'Space Grotesk',system-ui,sans-serif;background:#0a0408;container-type:inline-size}
+.jb *{box-sizing:border-box}
+/* ---- the room: brick in red and magenta neon light ---- */
+.jb-room{position:absolute;inset:0;z-index:-3;background:
+  radial-gradient(60% 70% at 66% 18%,rgba(255,50,30,.42),transparent 70%),
+  radial-gradient(30% 60% at 96% 30%,rgba(255,40,80,.35),transparent 70%),
+  radial-gradient(35% 70% at 2% 45%,rgba(255,40,120,.35),transparent 70%),
+  radial-gradient(50% 40% at 40% 0%,rgba(120,40,200,.25),transparent 70%),
+  linear-gradient(180deg,rgba(10,4,8,.2),rgba(10,4,8,.55)),
+  var(--jb-brick) center/16% auto repeat,#1a0807;filter:saturate(1.2) brightness(.5)}
+.jb-room::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,2,6,.0) 40%,rgba(6,2,6,.75) 100%),
+  radial-gradient(120% 90% at 50% 40%,transparent 45%,rgba(0,0,0,.8) 100%),radial-gradient(40% 50% at 66% 20%,rgba(255,30,20,.25),transparent 70%)}
+.jb-haze{position:absolute;inset:0;z-index:-2;pointer-events:none;background:
+  radial-gradient(18% 30% at 40% 22%,rgba(255,80,200,.18),transparent 70%),radial-gradient(14% 26% at 50% 18%,rgba(80,120,255,.14),transparent 70%)}
+/* wall dressing: posters, little neon boxes and the two wall signs */
+.jb-wall{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.jb-box{position:absolute;border-radius:.4cqw;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(0,0,0,.4));box-shadow:0 0 1.6cqw rgba(255,60,140,.5),inset 0 0 0 .15cqw rgba(255,90,170,.6)}
+.jb-ws{position:absolute;padding:.8cqw 1cqw;border-radius:.6cqw;background:rgba(30,6,10,.55);box-shadow:inset 0 0 0 .2cqw rgba(255,60,60,.55),0 0 2.2cqw rgba(255,40,40,.4);
+  font-family:'Anton','Bungee',sans-serif;line-height:.98;letter-spacing:.02em;text-align:center;color:#ffd9d2;
+  text-shadow:0 0 .3cqw #fff,0 0 .9cqw var(--jb-red),0 0 2cqw var(--jb-red),0 0 3.5cqw rgba(255,40,30,.8)}
+/* ---- the header ---- */
+.jb-head{position:absolute;left:4.9cqw;top:1.3cqw;z-index:3}
+.jb-eye{display:flex;align-items:center;gap:1.1cqw;font-size:max(10px,.95cqw);letter-spacing:.32em;color:var(--jb-gold2);text-transform:uppercase}
+.jb-eye svg{width:1.9cqw;height:1.9cqw;min-width:16px;min-height:16px}
+.jb-eye i{display:block;width:3.6cqw;height:1px;background:linear-gradient(90deg,var(--jb-gold2),transparent)}
+.jb-title{margin:.4cqw 0 0;font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:max(30px,4.3cqw);line-height:1;letter-spacing:-.01em;color:#fff6ea;text-shadow:0 .3cqw 2cqw rgba(0,0,0,.6)}
+.jb-title em{font-style:italic;font-weight:500;background:linear-gradient(180deg,#ffe0a8,#ffae4a 60%,#e8812e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.jb-sub{display:flex;align-items:center;gap:1cqw;margin-top:.7cqw;font-size:max(11px,1.05cqw);letter-spacing:.2em;color:#efe4d6;text-transform:uppercase}
+.jb-sub svg{width:1.5cqw;height:1.5cqw;min-width:14px;min-height:14px}
+.jb-sub a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,210,122,.4)}
+/* ---- the neon sign ---- */
+.jb-sign{position:absolute;left:54.6cqw;top:.2cqw;width:21cqw;z-index:1;filter:drop-shadow(0 0 1.4cqw rgba(255,40,20,.55))}
+/* ---- the wall of cabinets ---- */
+.jb-floor{position:absolute;left:1.8cqw;right:15.4cqw;top:10.6cqw;bottom:0;z-index:2}
+.jb-row{position:absolute;left:0;right:0;display:flex;gap:0}
+.jb-row.r1{top:0;padding:0 1.4cqw}
+.jb-row.r2{top:14.9cqw;z-index:2}
+/* one cabinet */
+.jb-cab{--w:1;position:relative;flex:1 1 0;min-width:0;display:flex;flex-direction:column;cursor:pointer;outline:none;
+  filter:drop-shadow(0 1cqw 1.2cqw rgba(0,0,0,.7));transition:transform .3s cubic-bezier(.2,.8,.2,1),filter .3s}
+.jb-cab:hover,.jb-cab:focus-visible{transform:translateY(-.5cqw);filter:drop-shadow(0 1cqw 1.4cqw rgba(0,0,0,.7)) drop-shadow(0 0 1.4cqw var(--c,rgba(255,120,60,.6)))}
+.jb-shell{position:relative;margin:0 .22cqw;border-radius:.5cqw .5cqw 0 0;background:linear-gradient(180deg,#1b1219,#0d080c 40%,#0a0609);
+  box-shadow:inset 0 0 0 .12cqw rgba(255,255,255,.06),inset .35cqw 0 0 rgba(0,0,0,.6),inset -.35cqw 0 0 rgba(0,0,0,.6)}
+/* the side panels: a sliver of the cabinet's own side art each side, turned away */
+.jb-side{position:absolute;top:2.2cqw;bottom:0;width:.75cqw;background-size:cover;background-position:center;filter:brightness(.55) saturate(1.2);z-index:-1}
+.jb-side.l{left:-.45cqw;transform:skewY(-6deg);border-radius:.3cqw 0 0 0}
+.jb-side.r{right:-.45cqw;transform:skewY(6deg);border-radius:0 .3cqw 0 0}
+.jb-mq{position:relative;aspect-ratio:3.3/1;margin:.28cqw .28cqw 0;border-radius:.35cqw .35cqw .15cqw .15cqw;overflow:hidden;background:#140a14;
+  box-shadow:0 0 1.3cqw rgba(255,150,80,.25),inset 0 0 0 .1cqw rgba(255,255,255,.15)}
+.jb-mq img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(1.12) saturate(1.15)}
+.jb-mq::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.22),transparent 45%);mix-blend-mode:screen}
+.jb-mq .nm{position:absolute;inset:0;display:grid;place-items:center;font-family:'Bungee',sans-serif;font-size:max(9px,1.25cqw);letter-spacing:.02em;color:#fff;
+  text-shadow:0 0 .3cqw #fff,0 0 .9cqw var(--c),0 0 1.8cqw var(--c);background:radial-gradient(120% 140% at 50% 0%,rgba(255,255,255,.12),transparent 60%),linear-gradient(180deg,#24103a,#0c0614)}
+.jb-hood{height:.55cqw;margin:0 .28cqw;background:linear-gradient(180deg,#050305,#140c12)}
+.jb-bezel{position:relative;margin:0 .45cqw;padding:.55cqw .62cqw .65cqw;background:linear-gradient(180deg,#070407,#140c12);border-radius:.25cqw;
+  box-shadow:inset 0 0 0 .1cqw #000,inset 0 .5cqw 1cqw rgba(0,0,0,.9)}
+.jb-tube{position:relative;aspect-ratio:4/3;border-radius:.7cqw/.9cqw;overflow:hidden;background:#000;
+  box-shadow:0 0 1.6cqw rgba(120,170,255,.25),0 0 .2cqw rgba(255,255,255,.2)}
+.jb-tube canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;filter:saturate(1.25) brightness(1.08) contrast(1.05)}
+.jb-tube::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px),radial-gradient(130% 110% at 50% 50%,transparent 60%,rgba(0,0,0,.55)),
+  linear-gradient(160deg,rgba(255,255,255,.14),transparent 38%)}
+/* the control panel, in perspective, with its own art */
+.jb-panel{position:relative;height:3.1cqw;margin:0 -.05cqw;perspective:22cqw}
+.jb-deck{position:absolute;inset:0;transform:rotateX(46deg);transform-origin:50% 100%;border-radius:.3cqw .3cqw 0 0;background:#1a1016 center/cover;
+  box-shadow:inset 0 0 0 .1cqw rgba(255,255,255,.08),0 -.2cqw .8cqw rgba(0,0,0,.6)}
+.jb-deck::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.45))}
+.jb-ctl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:.4cqw;padding-top:.6cqw;z-index:1}
+.jb-ctl .stk{width:.95cqw;height:.95cqw;border-radius:50%;margin-right:1.1cqw;background:radial-gradient(circle at 38% 32%,#ff8a8a,#c3131c 60%,#5a0408);box-shadow:0 .25cqw 0 #2a0204,0 .55cqw 0 -.2cqw #999}
+.jb-ctl .bt{width:.62cqw;height:.48cqw;border-radius:50%;box-shadow:0 .14cqw 0 rgba(0,0,0,.7)}
+.jb-lip{height:.55cqw;margin:0 -.05cqw;background:linear-gradient(180deg,#bdbdbd,#555 60%,#222)}
+.jb-body{height:5cqw;margin:0 .1cqw;background:linear-gradient(180deg,#120a0f,#07040a);position:relative;overflow:hidden}
+.jb-body::before{content:"";position:absolute;inset:0;background:var(--side) center 70%/cover;opacity:.55;filter:saturate(1.2)}
+.jb-body i{position:absolute;left:50%;top:1.2cqw;width:2.2cqw;height:2.6cqw;transform:translateX(-50%);border-radius:.2cqw;background:#120d14;box-shadow:inset 0 0 0 .1cqw rgba(255,255,255,.08)}
+.jb-body i::before,.jb-body i::after{content:"";position:absolute;top:.5cqw;width:.35cqw;height:.55cqw;background:#ff3a1c;box-shadow:0 0 .6cqw #ff3a1c;border-radius:.05cqw}
+.jb-body i::before{left:.5cqw}.jb-body i::after{right:.5cqw}
+/* the back row sits a step further away */
+.r1 .jb-cab{transform-origin:50% 0}
+.r1 .jb-body{height:3cqw}
+/* ---- the daily challenge ---- */
+.jb-dc{position:absolute;right:1.7cqw;top:12.4cqw;width:13.4cqw;z-index:3;padding:1.1cqw 1.1cqw 1.2cqw;border-radius:.8cqw;
+  background:linear-gradient(180deg,rgba(18,10,16,.86),rgba(8,5,9,.92));box-shadow:inset 0 0 0 .1cqw rgba(255,190,120,.28),0 1cqw 3cqw rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.jb-dc h4{display:flex;align-items:center;gap:.7cqw;margin:0 0 .9cqw;white-space:nowrap;font-size:max(8px,.7cqw);font-weight:500;letter-spacing:.24em;color:var(--jb-gold2)}
+.jb-dc h4 svg,.jb-dc .gm svg{width:1.4cqw;height:1.4cqw;min-width:14px;min-height:14px}
+.jb-dc .gm{display:flex;align-items:center;gap:.9cqw;margin-bottom:.7cqw}
+.jb-dc .gm b{display:block;white-space:nowrap;font-size:max(11px,1.1cqw);font-weight:500;letter-spacing:.06em}
+.jb-dc .gm small{display:block;white-space:nowrap;font-size:max(7px,.6cqw);letter-spacing:.16em;color:var(--jb-mute)}
+.jb-dc table{width:100%;border-collapse:collapse;font-size:max(9px,.86cqw);letter-spacing:.08em}
+.jb-dc th{font-weight:500;font-size:max(8px,.66cqw);letter-spacing:.2em;color:var(--jb-mute);text-align:left;padding:.4cqw 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.jb-dc td{padding:.42cqw 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.jb-dc th:last-child,.jb-dc td:last-child{text-align:right}
+.jb-dc td:first-child{color:var(--jb-mute);width:2cqw}
+.jb-dc tr.you td{color:var(--jb-gold2)}
+.jb-coin{display:block;width:100%;margin-top:1.1cqw;padding:.8cqw 0;border-radius:.6cqw;border:.15cqw solid var(--jb-gold);background:rgba(255,150,40,.06);color:#ffe2b8;
+  font:500 max(11px,1cqw)/1 'Space Grotesk',sans-serif;letter-spacing:.18em;cursor:pointer;box-shadow:0 0 1.4cqw rgba(255,150,40,.45),inset 0 0 1cqw rgba(255,150,40,.25);transition:.2s}
+.jb-coin:hover{background:rgba(255,150,40,.18);box-shadow:0 0 2.2cqw rgba(255,150,40,.7),inset 0 0 1.2cqw rgba(255,150,40,.35)}
+/* ---- playing: the cabinet fills the screen ---- */
+.jb-play{position:fixed;inset:0;z-index:1000;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  background:radial-gradient(1000px 600px at 50% 40%,rgba(30,12,30,.94),rgba(3,2,6,.98));padding:max(14px,env(safe-area-inset-top)) 14px max(14px,env(safe-area-inset-bottom));font-family:'Space Grotesk',sans-serif;color:#fff}
+.jb-play.open{display:flex}
+.jb-play{--w:min(92vw,calc(100vh - 96px),980px)}
+.jb-play .pm{width:var(--w);aspect-ratio:4/1;border-radius:14px;overflow:hidden;flex:none;box-shadow:0 0 50px -10px var(--c,#ff7a2a)}
+.jb-play .pm img{width:100%;height:100%;object-fit:cover}
+.jb-play .pm .nm{width:100%;height:100%;display:grid;place-items:center;font-family:'Bungee',sans-serif;font-size:clamp(1.4rem,4vw,2.6rem);color:#fff;text-shadow:0 0 8px #fff,0 0 24px var(--c),0 0 48px var(--c);background:#120818}
+.jb-play .big{position:relative;width:var(--w);aspect-ratio:4/3;flex:none;border-radius:22px/28px;overflow:hidden;background:#000;box-shadow:0 0 0 10px #0b0612,0 0 0 12px #000,0 0 80px -10px var(--c,#ff7a2a)}
+.jb-play .big canvas{width:100%;height:100%;image-rendering:pixelated}
+.jb-play .big::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 1px,transparent 1px 3px),radial-gradient(130% 110% at 50% 50%,transparent 62%,rgba(0,0,0,.55))}
+.jb-play .x{position:fixed;top:max(14px,env(safe-area-inset-top));left:14px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(10,6,16,.7);color:#fff;font-size:26px;cursor:pointer}
+.jb-play .ov{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(5,3,10,.6);z-index:2}
+.jb-play .ov.show{display:flex}
+.jb-play .ov .s{font-size:1.2rem;letter-spacing:.16em;color:#7ff3ff}
+.jb-play .ov .c{font-size:1.8rem;letter-spacing:.24em;color:#ffcf5a;animation:jbblink 1.1s steps(2) infinite}
+.jb-play .ov a{font-size:.95rem;letter-spacing:.16em;color:#ff7ab8;border:1px solid rgba(255,63,164,.5);padding:8px 16px;border-radius:999px;text-decoration:none;cursor:pointer}
+@keyframes jbblink{50%{opacity:.2}}
+.jb-pad{display:none;width:100%;max-width:560px;justify-content:space-between;align-items:center;padding:4px 10px;touch-action:none;user-select:none;-webkit-user-select:none}
+.jb-coarse .jb-pad{display:flex}
+.jb-coarse .jb-play{--w:min(94vw,calc((100vh - 250px) * 4 / 3),980px)}
+.jb-coarse .jb-play .pm{display:none}
+.jb-joy{position:relative;width:128px;height:128px;border-radius:50%;background:radial-gradient(circle,#1b1028 55%,#0a0612)}
+.jb-knob{position:absolute;left:50%;top:50%;width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#ff6b6b,#a3131d 70%);box-shadow:0 6px 0 #3a0508}
+.jb-keys{display:flex;gap:16px}
+.jb-key{width:70px;height:70px;border-radius:50%;border:0;font:1.4rem 'Space Grotesk',sans-serif;color:rgba(0,0,0,.6);box-shadow:0 6px 0 rgba(0,0,0,.6)}
+.jb-key.a{background:radial-gradient(circle at 40% 35%,#9ff6ff,#1aa7c4)}.jb-key.b{background:radial-gradient(circle at 40% 35%,#ffe9a6,#d79a18);margin-top:40px}
+.jb-key.down{filter:brightness(1.35)}
+@media (max-width:819px){.jb{aspect-ratio:auto;min-height:0;padding:22px 0 26px}}
+/* ---- phones: the wall scrolls sideways, the challenge goes under it ---- */
+@container (max-width: 819px){
+  .jb-head{position:relative;left:auto;top:auto;padding:0 18px}
+  .jb-sign,.jb-wall{display:none}
+  .jb-floor{position:relative;left:auto;right:auto;top:auto;bottom:auto;margin-top:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 12px 6px}
+  .jb-row{position:relative;top:auto!important;width:max-content;padding:0!important}
+  .jb-cab{flex:none;width:31vw;scroll-snap-align:start}
+  .r1 .jb-body,.jb-body{height:4vw}
+  .jb-dc{position:relative;right:auto;top:auto;width:auto;margin:18px 18px 0;padding:16px}
+}
