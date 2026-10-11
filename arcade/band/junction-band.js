@@ -3,6 +3,7 @@
 //
 //   import { mountJunctionBand } from './band/junction-band.js';
 //   mountJunctionBand(el, { arcadeUrl: '/arcade/', games: 'mock' | 'all', engine, art, brick });
+//   engine / art / brick: URLs relative to the page (or absolute). Defaults: the copies next to this module's test home.
 //
 // Every screen runs its game's own demo live (THE PATH's cabinet engine, unchanged). Click a cabinet to play it
 // full screen. The DAILY CHALLENGE uses the game's own built-in high-score table; INSERT COIN opens the site's
@@ -74,6 +75,8 @@ function loadStyle() {
 
 export async function mountJunctionBand(el, options = {}) {
   const o = { ...DEFAULTS, ...options };
+  // paths passed in are relative to the PAGE (like any URL in its HTML); make them absolute before the module uses them
+  for (const k of ['engine', 'art', 'brick']) o[k] = new URL(o[k], document.baseURI).href;
   loadStyle();
   const [{ CabinetRunner, KeyboardPanel }, { Cartridges }, { RoundResult }] = await Promise.all([
     import(o.engine + 'host.js'), import(o.engine + 'cartridges.js'), import(o.engine + 'sdk/index.js')]);
