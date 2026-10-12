@@ -471,8 +471,8 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
 .sg{width:15px;height:15px;color:var(--sunrise);flex:0 0 auto;filter:drop-shadow(0 0 6px rgba(244,162,97,.6))}
 .eyebrow{display:inline-flex;align-items:center;gap:9px}
 /* hero: a short painted band */
-.hero2{position:relative;min-height:clamp(420px,30vw,560px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;padding:96px var(--pad) 26px;border-bottom:1px solid rgba(232,184,125,.22)}
-.hero2-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 55%;z-index:-2}
+.hero2{position:relative;min-height:clamp(520px,40vw,700px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;padding:96px var(--pad) 26px;border-bottom:1px solid rgba(232,184,125,.22)}
+.hero2-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 62%;z-index:-2}
 .hero2::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,6,11,.82) 0%,rgba(4,6,11,.45) 38%,rgba(4,6,11,0) 62%),linear-gradient(0deg,rgba(4,6,11,.75),transparent 40%),linear-gradient(180deg,rgba(4,6,11,.55),transparent 22%)}
 .hero2-in{width:100%}
 .hero2 h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.8rem,4.6vw,4.6rem);line-height:1;letter-spacing:-.01em;margin:12px 0 6px}
@@ -570,6 +570,8 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
 }
 @media (max-width:820px){
   .hero2{min-height:520px;padding-top:110px}
+  .hero2-bg{object-position:60% 55%}
+  .hero2::before{background:linear-gradient(0deg,rgba(4,6,11,.88) 0%,rgba(4,6,11,.35) 55%,rgba(4,6,11,.15) 100%)}
   .hero2 .now{grid-template-columns:1fr}
   .uni-head{margin-bottom:-56px}
   .uni-banner{aspect-ratio:4/3}
@@ -604,6 +606,25 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
 .u-worlds figure button{all:unset;display:block;cursor:pointer;width:100%}
 .u-worlds figure button:focus-visible .pl,.meet:focus-visible,.u-game:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 @media (max-width:820px){.info-card{grid-template-columns:1fr}.info-gal{min-height:0}.info-tx{padding:22px}}
+
+/* hero: one quiet "What's new" link under Play The Path, opening a small modal */
+.whatsnew{display:block;margin-top:14px;font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(253,246,236,.72);transition:color .2s}
+.whatsnew:hover,.whatsnew:focus-visible{color:var(--gold)}
+.whatsnew span{display:inline-block;margin-left:4px;transition:transform .2s}
+.whatsnew:hover span{transform:translateX(3px)}
+.wn{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(2,3,8,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.wn.open{display:flex;animation:infoIn .25s ease-out}
+.wn-card{position:relative;width:min(460px,100%);border-radius:16px;border:1px solid var(--line-strong);background:linear-gradient(180deg,#0e1322,#070a12);box-shadow:0 30px 90px rgba(0,0,0,.7),0 0 50px rgba(244,162,97,.1);padding:26px 26px 22px}
+.wn-card h3{font-family:var(--serif);font-weight:500;font-size:28px;margin:8px 0 16px}
+.wn-card ol{list-style:none;margin:0;padding:0 0 0 18px;position:relative}
+.wn-card ol::before{content:"";position:absolute;left:3px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--sunrise),rgba(244,162,97,.15))}
+.wn-card li{position:relative;padding:0 0 14px}
+.wn-card li::before{content:"";position:absolute;left:-19px;top:5px;width:8px;height:8px;border-radius:50%;background:var(--sunrise);box-shadow:0 0 10px var(--sunrise)}
+.wn-card time{display:block;font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sunrise)}
+.wn-card b{display:block;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--light);margin-top:2px}
+.wn-card p{font-size:14px;color:var(--mist);line-height:1.4;margin-top:2px}
+.wn-card .wn-all{display:inline-block;margin-top:4px;font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.wn-card .info-x{top:10px;right:10px;width:32px;height:32px;font-size:18px}
 </style>
 </head>
 <body>
@@ -630,18 +651,13 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
 <main>
   <!-- HERO -->
   <header class="hero2" id="top">
-    <img class="hero2-bg" src="assets/hero-dusk.webp" alt="" width="1920" height="700" fetchpriority="high">
+    <img class="hero2-bg" src="assets/hero-studios.webp" alt="" width="2172" height="724" fetchpriority="high">
     <div class="hero2-in">
       <span class="eyebrow reveal"><svg class="sg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></svg> Indie game studio</span>
       <h1 class="reveal d1"><b>BigPic</b> Studios</h1>
       <p class="reveal d2">Games, worlds and interactive experiences.</p>
       <a class="btn btn-gold reveal d2" href="https://thepath.bigpicsolutions.com/" target="_blank" rel="noopener" data-track="hero-the-path"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>Play The Path</a>
-      <div class="now reveal d3" role="navigation" aria-label="Now at the studio">
-        <span class="now-label">Now at the studio</span>
-        <a href="#log" data-track="now-the-path"><i></i><span><b>The Path v0.2.2</b><small>Oct 10, 2026</small></span></a>
-        <a href="the-first-world/" target="_blank" rel="noopener" data-track="now-first-world"><i class="dev"></i><span><b>The First World v0.5</b><small>Oct 11, 2026</small></span></a>
-        <a href="#universe" data-info="beyond" data-track="now-beyond"><i class="c"></i><span><b>First scenes beyond the Nexus</b><small>Oct 10, 2026</small></span></a>
-      </div>
+      <button type="button" class="whatsnew reveal d3" data-whatsnew aria-haspopup="dialog">What&rsquo;s new <span aria-hidden="true">&rsaquo;</span></button>
     </div>
   </header>
 
@@ -872,6 +888,30 @@ const el = document.getElementById('junction'); if (el) { el.innerHTML = ''; mou
   document.addEventListener('click', e => { const t = e.target.closest('[data-info]'); if (t && !e.target.closest('.like')) { e.preventDefault(); show(t.dataset.info, t); } });
   document.addEventListener('keydown', e => { const t = e.target.closest && e.target.closest('[data-info]'); if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); show(t.dataset.info, t); } if (e.key === 'Escape' && m.classList.contains('open')) hide(); });
   m.addEventListener('click', e => { if (e.target === m || e.target.closest('[data-info-close]')) hide(); });
+})();
+</script>
+<div class="wn" id="wnModal" role="dialog" aria-modal="true" aria-labelledby="wnTitle">
+  <div class="wn-card">
+    <button class="info-x" type="button" aria-label="Close" data-wn-close>&times;</button>
+    <span class="eyebrow">From the lab log</span>
+    <h3 id="wnTitle">What&rsquo;s new</h3>
+    <ol>
+      <li><time datetime="2026-10-11">Oct 11, 2026</time><b>The First World v0.5</b><p>The Split: balance, a shadow, and two endings.</p></li>
+      <li><time datetime="2026-10-10">Oct 10, 2026</time><b>The Path v0.2.2</b><p>Two hours of jukebox music and a smoother arcade.</p></li>
+      <li><time datetime="2026-10-10">Oct 10, 2026</time><b>First scenes beyond the Nexus</b><p>The Nexus, the City plaza and the gate road.</p></li>
+    </ol>
+    <a class="wn-all" href="#log" data-wn-close>The full lab log &rsaquo;</a>
+  </div>
+</div>
+<script>
+(() => {
+  const m = document.getElementById('wnModal'); let last = null;
+  const hide = () => { m.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); };
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-whatsnew]')) { last = e.target.closest('[data-whatsnew]'); m.classList.add('open'); document.body.style.overflow = 'hidden'; m.querySelector('.info-x').focus(); return; }
+    if (m.classList.contains('open') && (e.target === m || e.target.closest('[data-wn-close]'))) hide();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && m.classList.contains('open')) hide(); });
 })();
 </script>
 </body>
