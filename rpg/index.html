@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond the Nexus · BigPic Studios</title>
+<meta name="description" content="Beyond the Nexus, the RPG of the Atlas Veyr universe. In development: first scenes from the build.">
+<meta property="og:title" content="Beyond the Nexus · BigPic Studios">
+<meta property="og:description" content="Atlas takes a body and walks out into the City. In development: first scenes from the build.">
+<meta property="og:image" content="https://studio.bigpicsolutions.com/rpg/img/01_dusk_wide.webp">
+<meta property="og:url" content="https://studio.bigpicsolutions.com/rpg/">
+<link rel="canonical" href="https://studio.bigpicsolutions.com/rpg/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%23f4a261' stroke-width='2'%3E%3Ccircle cx='16' cy='16' r='12'/%3E%3Ccircle cx='16' cy='16' r='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/01_dusk_wide.webp" fetchpriority="high">
+<style>
+:root{
+  --void:#04060b; --deep:#0a0f1a; --dawn:#e8b87d; --sunrise:#f4a261; --gold:#ffd89a;
+  --light:#fdf6ec; --mist:#c9d6df; --muted:#8e9bb0;
+  --line:rgba(232,184,125,.16); --line-strong:rgba(232,184,125,.42);
+  --sans:'Space Grotesk',system-ui,sans-serif; --serif:'Newsreader',Georgia,serif;
+  --pad:clamp(16px,3vw,52px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--light);font-family:var(--serif);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--dawn)}
+.eyebrow svg{width:14px;height:14px;color:var(--sunrise);filter:drop-shadow(0 0 6px rgba(244,162,97,.6))}
+
+/* top bar */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px var(--pad);background:linear-gradient(180deg,rgba(4,6,11,.85),rgba(4,6,11,0))}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:19px}
+.brand svg{width:24px;height:24px;color:var(--sunrise)}
+.brand b{font-weight:600;background:linear-gradient(180deg,#ffe7b8,#f4a261);-webkit-background-clip:text;background-clip:text;color:transparent}
+.back{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
+.back:hover{color:var(--gold)}
+
+/* hero */
+.hero{position:relative;min-height:clamp(520px,56vw,760px);display:flex;align-items:flex-end;padding:120px var(--pad) 46px;overflow:hidden;isolation:isolate;border-bottom:1px solid rgba(232,184,125,.22)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;z-index:-2;transform:scale(1.03);animation:drift 22s ease-in-out infinite alternate}
+@keyframes drift{to{transform:scale(1.09) translateY(-1.5%)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,6,11,.85) 0%,rgba(4,6,11,.4) 40%,rgba(4,6,11,0) 70%),linear-gradient(0deg,rgba(4,6,11,.95) 0%,rgba(4,6,11,.2) 45%,transparent 70%)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3rem,7vw,6.2rem);line-height:.95;letter-spacing:-.01em;margin:14px 0 14px;text-shadow:0 2px 30px rgba(0,0,0,.7)}
+.hero h1 em{font-style:italic;color:var(--sunrise)}
+.status{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sunrise);background:rgba(244,162,97,.1);border:1px solid rgba(244,162,97,.35)}
+.status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+.hero p{max-width:620px;margin-top:18px;font-size:clamp(17px,1.5vw,21px);color:var(--light);text-shadow:0 1px 16px rgba(0,0,0,.9)}
+
+/* the build */
+main{padding:34px var(--pad) 30px}
+.lbl{display:flex;align-items:center;gap:10px;margin:8px 0 14px;font-family:var(--sans);font-weight:600;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--dawn)}
+.lbl::after{content:"";flex:0 0 110px;height:1px;background:linear-gradient(90deg,var(--sunrise),transparent)}
+.shots{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(120px,11vw,190px);gap:12px}
+.shot{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(232,184,125,.4);background:#000;padding:0;text-align:left}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform 1s,filter .4s;filter:saturate(.95)}
+.shot:hover img{transform:scale(1.05);filter:none}
+.shot span{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;font-family:var(--sans);font-size:12.5px;color:var(--light);background:linear-gradient(0deg,rgba(4,6,11,.88),transparent)}
+.shot.big{grid-column:span 3;grid-row:span 2}
+.shot.mid{grid-column:span 2;grid-row:span 1}
+.shot.w3{grid-column:span 3}
+.note{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:start;margin-top:34px;padding:26px 0;border-top:1px solid rgba(232,184,125,.22)}
+.note h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,2.8vw,2.6rem);line-height:1.05}
+.note h2 em{font-style:italic;color:var(--sunrise)}
+.note p{color:var(--mist);margin-top:10px}
+.note ul{list-style:none;display:grid;gap:10px}
+.note li{display:flex;gap:12px;align-items:baseline;font-family:var(--sans);font-size:14.5px;color:var(--light)}
+.note li::before{content:"";flex:0 0 8px;height:8px;border-radius:50%;background:var(--sunrise);box-shadow:0 0 10px var(--sunrise);transform:translateY(-1px)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:8px;font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.btn-gold{background:linear-gradient(180deg,#ffd08a,#f4a261);color:#1a0f05;box-shadow:0 8px 30px rgba(244,162,97,.35)}
+.btn-ghost{border:1px solid rgba(253,246,236,.28);color:var(--light)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+footer{padding:18px var(--pad) 26px;font-family:var(--sans);font-size:11.5px;color:var(--muted);border-top:1px solid rgba(232,184,125,.14)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:clamp(10px,3vw,40px);background:rgba(2,3,8,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.lb.open{display:flex}
+.lb figure{max-width:min(1400px,100%);margin:0}
+.lb img{max-height:82vh;width:auto;margin:0 auto;border-radius:12px;border:1px solid var(--line-strong)}
+.lb figcaption{margin-top:12px;text-align:center;font-family:var(--sans);font-size:14px;color:var(--mist)}
+.lb .x,.lb .nav{position:absolute;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(4,6,11,.7);border:1px solid var(--line-strong);color:var(--light);font-size:22px}
+.lb .x{top:16px;right:16px}.lb .prev{left:16px;top:50%}.lb .next{right:16px;top:50%}
+.lb .x:hover,.lb .nav:hover{color:var(--gold)}
+
+@media (max-width:900px){
+  .shots{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:150px}
+  .shot.big,.shot.w3{grid-column:span 2;grid-row:span 1}
+  .shot.big{grid-row:span 2}
+  .shot.mid{grid-column:span 1}
+  .note{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.hero img{animation:none}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a href="/" class="brand" aria-label="BigPic Studios home"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="4"/><line x1="16" y1="4" x2="16" y2="8"/><line x1="16" y1="24" x2="16" y2="28"/><line x1="4" y1="16" x2="8" y2="16"/><line x1="24" y1="16" x2="28" y2="16"/></svg><span><b>BigPic</b> Studios</span></a>
+  <a class="back" href="/#universe">&lsaquo; The universe</a>
+</header>
+
+<section class="hero">
+  <img src="img/01_dusk_wide.webp" alt="The gate road at dusk in a hand-built diorama world: lanterns, banners and a great glyph ring gate" width="1600" height="1000">
+  <div>
+    <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></svg>The Atlas Veyr universe &middot; 03</span>
+    <h1>Beyond the <em>Nexus</em></h1>
+    <span class="status">In development &middot; First scenes built</span>
+    <p>Atlas takes a body and walks out into the City, in a hand-built diorama world. Real-life movement can earn Light, if you want it.</p>
+  </div>
+</section>
+
+<main>
+  <h2 class="lbl">From the build</h2>
+  <div class="shots" id="shots">
+    <button class="shot big" type="button" data-i="0"><img src="img/form_moment.webp" alt="Atlas takes form on the dais inside the Nexus" loading="lazy"><span>Atlas takes form</span></button>
+    <button class="shot w3" type="button" data-i="1"><img src="img/wide_hall.webp" alt="The domed hall of seven gates inside the Nexus" loading="lazy"><span>The Nexus: the hall of seven gates</span></button>
+    <button class="shot w3" type="button" data-i="2"><img src="img/atlas_ora_dais.webp" alt="Atlas with Ora, a round orb of light, at the dais" loading="lazy"><span>Atlas and Ora at the dais</span></button>
+    <button class="shot mid" type="button" data-i="3"><img src="img/recognition.webp" alt="The crowd on the temple steps, seeing Atlas for the first time" loading="lazy"><span>Recognition</span></button>
+    <button class="shot mid" type="button" data-i="4"><img src="img/plaza_wide.webp" alt="The City plaza from above" loading="lazy"><span>The City plaza</span></button>
+    <button class="shot mid" type="button" data-i="5"><img src="img/house_door.webp" alt="The door of THE HOUSE in the plaza" loading="lazy"><span>The House&rsquo;s door</span></button>
+    <button class="shot mid" type="button" data-i="6"><img src="img/02_dusk_gate_colossus.webp" alt="The glyph ring gate and the mourning stone colossus" loading="lazy"><span>The ring gate and the colossus</span></button>
+    <button class="shot mid" type="button" data-i="7"><img src="img/07_close_atlas_ora_dusk.webp" alt="Atlas and Ora on the road at dusk" loading="lazy"><span>Atlas and Ora on the road</span></button>
+    <button class="shot mid" type="button" data-i="8"><img src="img/06_dawn_bridge.webp" alt="The causeway at dawn" loading="lazy"><span>The causeway at dawn</span></button>
+    <button class="shot w3" type="button" data-i="9"><img src="img/stone_circle.webp" alt="The old stone circle with a fire at its heart" loading="lazy"><span>The old stone circle</span></button>
+    <button class="shot w3" type="button" data-i="10"><img src="img/01_dusk_wide.webp" alt="The gate road at dusk, the first scene built" loading="lazy"><span>The gate road at dusk</span></button>
+  </div>
+
+  <section class="note">
+    <div>
+      <h2>Still being <em>built</em></h2>
+      <p>These are real screenshots from the game as it stands today. Atlas has just taken a body at the Nexus. Next comes the road out of the City, where the five forces of the road wait.</p>
+      <div class="cta">
+        <a class="btn btn-gold" href="/the-first-world/">Play The First World</a>
+        <a class="btn btn-ghost" href="/#log">Follow the lab log</a>
+      </div>
+    </div>
+    <ul aria-label="Built so far">
+      <li>The Nexus and &ldquo;Atlas takes form&rdquo;</li>
+      <li>The City plaza, one City for everyone</li>
+      <li>THE HOUSE&rsquo;s door, the trading hall</li>
+      <li>The gate road and the first colossus</li>
+      <li>Optional: real-life movement earns Light</li>
+    </ul>
+  </section>
+</main>
+
+<footer>&copy; 2026 BigPic Solutions &middot; <a href="/">BigPic Studios</a></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot">
+  <button class="x" type="button" aria-label="Close">&times;</button>
+  <button class="nav prev" type="button" aria-label="Previous">&lsaquo;</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="nav next" type="button" aria-label="Next">&rsaquo;</button>
+</div>
+<script>
+(() => {
+  const shots = [...document.querySelectorAll('#shots .shot')], lb = document.getElementById('lb'), im = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  let i = 0, last = null;
+  const show = n => { i = (n + shots.length) % shots.length; const s = shots[i], img = s.querySelector('img'); im.src = img.src; im.alt = img.alt; cap.textContent = s.querySelector('span').textContent; };
+  const open = n => { last = document.activeElement; show(n); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus(); };
+  const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); };
+  shots.forEach((s, n) => s.addEventListener('click', () => open(n)));
+  lb.querySelector('.x').onclick = close; lb.querySelector('.prev').onclick = () => show(i - 1); lb.querySelector('.next').onclick = () => show(i + 1);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
+})();
+</script>
+</body>
+</html>
