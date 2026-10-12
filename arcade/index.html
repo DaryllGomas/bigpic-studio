@@ -133,8 +133,8 @@ renderer.setPixelRatio(DPR);
 renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.2;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x07040a);
-scene.fog = new THREE.Fog(0x07040a, 9, 22);
+scene.background = new THREE.Color(0x0d0604);
+scene.fog = new THREE.Fog(0x120804, 9, 22);
 const pmrem = new THREE.PMREMGenerator(renderer);
 scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 scene.environmentIntensity = 0.28;
@@ -157,11 +157,11 @@ const HOT = (hex, k) => new THREE.Color(hex).multiplyScalar(k);        // colour
 const neon = (g, col, fn, glow = 28) => { for (const [c, b, lw] of [[col, glow, 16], [col, glow / 3, 9], ['#fff2e0', 0, 3]]) { g.save(); g.strokeStyle = c; g.shadowColor = col; g.shadowBlur = b; g.lineWidth = lw; g.lineJoin = g.lineCap = 'round'; fn(); g.restore(); } };
 
 // ------------------------------------------------------------------ the room
-const bulbMat = new THREE.MeshBasicMaterial({ color: HOT(0xffc070, 3.2), toneMapped: false });
+const bulbMat = new THREE.MeshBasicMaterial({ color: HOT(0xffb057, 3.6), toneMapped: false });
 {
   const b = tex('band/brick.jpg'), n = tex('band/brick_nor.jpg', false);
   for (const t of [b, n]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(11, 4.2); }
-  const brick = new THREE.MeshStandardMaterial({ map: b, normalMap: n, normalScale: new THREE.Vector2(1.2, 1.2), color: 0x5e3a2e, roughness: 0.92 });
+  const brick = new THREE.MeshStandardMaterial({ map: b, normalMap: n, normalScale: new THREE.Vector2(1.2, 1.2), color: 0x74422f, roughness: 0.9 });
   const back = new THREE.Mesh(new THREE.PlaneGeometry(26, 10), brick); back.position.set(0, 5, -1.7); scene.add(back);
   const sb = tex('band/brick.jpg'), sn = tex('band/brick_nor.jpg', false); for (const t of [sb, sn]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(5, 4.2); }
   const sideMat = new THREE.MeshStandardMaterial({ map: sb, normalMap: sn, normalScale: new THREE.Vector2(1.2, 1.2), color: 0x6a4436, roughness: 0.92 });
@@ -239,9 +239,10 @@ const bulbMat = new THREE.MeshBasicMaterial({ color: HOT(0xffc070, 3.2), toneMap
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(26, 26), new THREE.MeshStandardMaterial({ map: check, roughness: 0.25, metalness: 0.0, transparent: true, opacity: 0.38 }));
   floor.rotation.x = -Math.PI / 2; floor.position.set(0, 0.002, 5); scene.add(floor);
 }
-scene.add(new THREE.AmbientLight(0xffc89a, 0.32));
+scene.add(new THREE.AmbientLight(0xffb070, 0.42));
+for (const [x, y] of [[-3.4, 4.6], [0, 5.4], [3.4, 4.6]]) { const w = new THREE.PointLight(0xff9a40, 6, 7, 1.6); w.position.set(x, y, -0.6); scene.add(w); }   // warm wash on the brick, as the pitch
 scene.add(new THREE.HemisphereLight(0x3a2850, 0x1a0c08, 0.35));
-const signLight = new THREE.PointLight(0xff3a1a, 12, 6, 1.5); signLight.position.set(0, 2.7, -1.0); scene.add(signLight);
+const signLight = new THREE.PointLight(0xff4a1a, 16, 7, 1.5); signLight.position.set(0, 2.7, -1.0); scene.add(signLight);
 const key = new THREE.SpotLight(0xffc98a, 7, 10, 0.3, 0.85, 1.3); key.position.set(0, 4.8, 2.0); key.target.position.set(0, 1.6, 0.1); scene.add(key, key.target);
 for (const [x, c, i] of [[-2.4, 0xff7a3a, 5], [2.4, 0xff4fa8, 4], [-4.6, 0xffa040, 4], [4.6, 0x8a5cff, 3], [0, 0xffb060, 1.5]]) { const l = new THREE.PointLight(c, i, 6, 1.6); l.position.set(x, 1.6, 2.8); scene.add(l); }
 
@@ -310,20 +311,58 @@ const bezelMat = new THREE.MeshStandardMaterial({ color: 0x030304, roughness: 0.
 const ballMat = new THREE.MeshStandardMaterial({ color: 0xd8141e, roughness: 0.25 });
 const btnMats = [0xd8141e, 0x1e6bff, 0xffc21a].map((c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.3 }));
 
+// cabinet variety: most games stand in an upright; the racers get a driving cab, the motocross game handlebars,
+// one space game a sit-down cockpit. Kick panels come in three styles so the row never repeats itself
+const TYPE = { hyperdrift: 'driver', sunsetdrive: 'driver', mudmetal: 'bike', starvector: 'cockpit' };
+const KICK = ['crest', 'grille', 'neon'];
+const kickStyle = (id) => { let h = 0; for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return KICK[h % 3]; };
+const rubber = new THREE.MeshStandardMaterial({ color: 0x111014, roughness: 0.6 });
+const seatMat = new THREE.MeshStandardMaterial({ color: 0x3a0a0e, roughness: 0.35, metalness: 0.1 });
+const cockTrim = new THREE.MeshBasicMaterial({ color: HOT(0x33e6ff, 1.25), toneMapped: false });
+const COCK = [[-0.45, 0], [1.08, 0], [1.08, 0.3], [0.9, 0.55], [0.55, 1.25], [0.34, 1.95], [-0.45, 1.95]];
+const cockGeo = new THREE.ExtrudeGeometry(new THREE.Shape(COCK.map(([z, y]) => new THREE.Vector2(z, y))), { depth: T, bevelEnabled: true, bevelThickness: 0.006, bevelSize: 0.006, bevelSegments: 2 }); cockGeo.rotateY(-Math.PI / 2);
+const cockTrimGeo = (() => { const path = new THREE.CurvePath(); const P = COCK.slice(1, 6).map(([z, y]) => new THREE.Vector3(0, y, z + 0.004)); for (let i = 0; i < P.length - 1; i++) path.add(new THREE.LineCurve3(P[i], P[i + 1])); return new THREE.TubeGeometry(path, 80, 0.008, 6, false); })();
 function makeSlot() {
   const g = new THREE.Group(), m = {};
   m.sideL = new THREE.Mesh(sideGeo, black); m.sideL.position.x = -W / 2 + T; g.add(m.sideL);
   m.sideR = new THREE.Mesh(sideGeo, black); m.sideR.position.x = W / 2; g.add(m.sideR);
   m.kick = new THREE.Mesh(new THREE.PlaneGeometry(IN, 0.82), black); m.kick.position.set(0, 0.41, 0.322); g.add(m.kick);
-  const door = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.19, 0.02), doorMat); door.position.set(0, 0.38, 0.332); g.add(door);
-  for (const x of [-0.032, 0.032]) { const s = new THREE.Mesh(new THREE.BoxGeometry(0.022, 0.036, 0.01), slotMat); s.position.set(x, 0.43, 0.344); g.add(s); }
+  m.doors = [];
+  for (const dx of [0, -0.12, 0.12]) {                                  // one coin door, or two side by side on a grille kick
+    const dg = new THREE.Group(); dg.position.set(dx, 0.38, 0.332); g.add(dg); m.doors.push(dg);
+    dg.add(new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.19, 0.02), doorMat));
+    for (const x of [-0.032, 0.032]) { const s = new THREE.Mesh(new THREE.BoxGeometry(0.022, 0.036, 0.01), slotMat); s.position.set(x, 0.05, 0.012); dg.add(s); }
+  }
   g.add(placeOn(new THREE.Mesh(new THREE.PlaneGeometry(IN, UND.len), matte), UND));
   const lip = new THREE.Mesh(new THREE.PlaneGeometry(IN, 0.05), chrome); lip.position.set(0, 0.905, 0.47); g.add(lip);
   m.panel = placeOn(new THREE.Mesh(new THREE.PlaneGeometry(IN, PAN.len), black), PAN); g.add(m.panel);
-  const ctl = new THREE.Group(); placeOn(ctl, PAN, 0.002); g.add(ctl);
+  const ctl = new THREE.Group(); placeOn(ctl, PAN, 0.002); g.add(ctl); m.ctl = ctl;
   const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.07), chrome); shaft.rotation.x = Math.PI / 2; shaft.position.set(-0.24, 0, 0.035); ctl.add(shaft);
   const ball = new THREE.Mesh(new THREE.SphereGeometry(0.026, 20, 14), ballMat); ball.position.set(-0.24, 0, 0.075); ctl.add(ball);
   for (let i = 0; i < 6; i++) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.016, 18), btnMats[i % 3]); b.rotation.x = Math.PI / 2; b.position.set(0.0 + (i % 3) * 0.085, i < 3 ? 0.032 : -0.038, 0.008); ctl.add(b); }
+  // the driving cab: a wheel on a column, tipped toward the player, and a shifter
+  m.wheel = new THREE.Group(); placeOn(m.wheel, PAN, 0.002); g.add(m.wheel);
+  { const col = new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.032, 0.18, 12), rubber); col.rotation.x = Math.PI / 2; col.position.set(-0.04, 0.03, 0.09); m.wheel.add(col);
+    const rim = new THREE.Group(); rim.position.set(-0.04, 0.05, 0.17); rim.rotation.x = -0.95; rim.scale.setScalar(1.3); m.wheel.add(rim);
+    rim.add(new THREE.Mesh(new THREE.TorusGeometry(0.15, 0.02, 12, 40), rubber));
+    for (const a of [0, 2.09, 4.19]) { const sp = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.022, 0.012), chrome); sp.rotation.z = a; sp.position.set(Math.cos(a) * 0.075, Math.sin(a) * 0.075, 0); rim.add(sp); }
+    rim.add(new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.02, 16).rotateX(Math.PI / 2), seatMat));
+    const sh = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.1), chrome); sh.rotation.x = Math.PI / 2; sh.position.set(0.25, -0.02, 0.05); m.wheel.add(sh);
+    const knob = new THREE.Mesh(new THREE.SphereGeometry(0.022, 14, 10), rubber); knob.position.set(0.25, -0.02, 0.1); m.wheel.add(knob); }
+  // the motocross cab: handlebars with grips
+  m.bars = new THREE.Group(); placeOn(m.bars, PAN, 0.002); g.add(m.bars);
+  { const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.025, 0.1, 10), chrome); stem.rotation.x = Math.PI / 2; stem.position.set(0, 0.02, 0.05); m.bars.add(stem);
+    const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.011, 0.52, 10), chrome); bar.rotation.z = Math.PI / 2; bar.position.set(0, 0.05, 0.1); m.bars.add(bar);
+    for (const x of [-0.23, 0.23]) { const grip = new THREE.Mesh(new THREE.CylinderGeometry(0.017, 0.017, 0.1, 10), rubber); grip.rotation.z = Math.PI / 2; grip.position.set(x, 0.05, 0.1); m.bars.add(grip); } }
+  // the sit-down cockpit: wings that wrap forward, a seat, a neon edge
+  m.cock = new THREE.Group(); g.add(m.cock);
+  { m.ckL = new THREE.Mesh(cockGeo, black); m.ckL.position.x = -W / 2 + T; m.cock.add(m.ckL);
+    m.ckR = new THREE.Mesh(cockGeo, black); m.ckR.position.x = W / 2; m.cock.add(m.ckR);
+    for (const x of [-W / 2 - 0.004, W / 2 + 0.004]) { const t = new THREE.Mesh(cockTrimGeo, cockTrim); t.position.x = x; m.cock.add(t); }
+    const base = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.36, 0.42), rubber); base.position.set(0, 0.18, 0.82); m.cock.add(base);
+    const cush = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.08, 0.4), seatMat); cush.position.set(0, 0.4, 0.82); m.cock.add(cush);
+    m.seatBack = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.36, 0.07), seatMat); m.seatBack.position.set(0, 0.6, 1.02); m.seatBack.rotation.x = -0.12; m.cock.add(m.seatBack);
+    m.seatLogo = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.105), black); m.seatLogo.position.set(0, 0.64, 1.06); m.seatLogo.rotation.x = -0.12; m.cock.add(m.seatLogo); }
   g.add(placeOn(new THREE.Mesh(new THREE.PlaneGeometry(IN, SCR.len), bezelMat), SCR));
   m.screen = placeOn(new THREE.Mesh(curved, black), SCR, 0.004); g.add(m.screen);
   g.add(placeOn(new THREE.Mesh(curved, scanMat), SCR, 0.006));
@@ -340,6 +379,8 @@ function makeSlot() {
 
 // the art for one game, made once and shared by every slot that shows it
 const SKINS = new Map();
+// each game's most colourful demo moment, measured offline (2026-10-11) in 0.25 s steps with this exact attract set-up
+const BRIGHT = { gridcycles: 39.5, starvector: 39.75, relicquest: 27.5, castlecrush: 45, lancerider: 31.75, lasthuman: 5.25, lanejumper: 44.5, shortorder: 1, spritepop: 41, hyperdrift: 3.5, irondojo: 30.5, ironworks: 21.25, nebularun: 29.25, stackattack: 49.75, tunnelrat: 1, vaultdigger: 20.75, lastlight: 23, sporefield: 1, swarmpatrol: 2.75, afterglow: 30, lunarduty: 1, mudmetal: 3.25, route9: 1, sunsetdrive: 12.25, warlordsroad: 48.25, deepkeep: 6.25 };
 function nameArt(spec, w, h, size) {
   return canvasTex(w, h, (g) => {
     const r = g.createLinearGradient(0, 0, 0, h); r.addColorStop(0, '#1a0c2a'); r.addColorStop(1, '#07030c'); g.fillStyle = r; g.fillRect(0, 0, w, h);
@@ -370,9 +411,22 @@ function skin(game) {
     g.drawImage(img, zL, 0, aw, ah);
     const fade = g.createLinearGradient(0, ah - 90, 0, ah); fade.addColorStop(0, 'rgba(0,0,0,0)'); fade.addColorStop(1, 'rgba(0,0,0,.6)'); g.fillStyle = fade; g.fillRect(zL, ah - 90, aw, 90);
     g = kickC.getContext('2d'); W = kickC.width; H = kickC.height;
-    g.filter = 'blur(16px) brightness(.42) saturate(1.3)'; g.drawImage(img, 0, -H * 0.3, W, W * img.height / img.width); g.filter = 'none';
-    if (mq) { const mw = W * 0.86, mh = mw / 4; g.save(); g.shadowColor = 'rgba(0,0,0,.8)'; g.shadowBlur = 20; g.drawImage(mq, (W - mw) / 2, H * 0.08, mw, mh); g.restore();
-      g.strokeStyle = 'rgba(255,210,150,.55)'; g.lineWidth = 4; g.strokeRect((W - mw) / 2, H * 0.08, mw, mh); }
+    const ks = kickStyle(id);
+    if (ks === 'neon') {                                                   // black kick, the name in neon tube
+      g.fillStyle = '#07050a'; g.fillRect(0, 0, W, H);
+      g.font = '64px Bungee'; g.textAlign = 'center'; g.textBaseline = 'middle'; let f = 64; while (g.measureText(game.spec.name).width > W * 0.86 && f > 30) { f -= 4; g.font = f + 'px Bungee'; }
+      const col = ['#ff3fa4', '#33e6ff', '#ffcf5a'][game.id.length % 3];
+      neon(g, col, () => g.strokeText(game.spec.name, W / 2, H * 0.24), 26); g.fillStyle = '#fff6f0'; g.fillText(game.spec.name, W / 2, H * 0.24);
+      neon(g, col, () => { g.beginPath(); g.moveTo(W * 0.12, H * 0.38); g.lineTo(W * 0.88, H * 0.38); g.stroke(); }, 18);
+    } else {
+      g.filter = 'blur(16px) brightness(.42) saturate(1.3)'; g.drawImage(img, 0, -H * 0.3, W, W * img.height / img.width); g.filter = 'none';
+      if (ks === 'grille') {                                               // a speaker grille under a strip of the marquee
+        g.fillStyle = 'rgba(0,0,0,.55)'; g.fillRect(W * 0.08, H * 0.3, W * 0.84, H * 0.22);
+        g.fillStyle = 'rgba(255,255,255,.08)'; for (let y = H * 0.32; y < H * 0.5; y += 9) g.fillRect(W * 0.1, y, W * 0.8, 3);
+        if (mq) g.drawImage(mq, W * 0.08, H * 0.06, W * 0.84, W * 0.21);
+      } else if (mq) { const mw = W * 0.86, mh = mw / 4; g.save(); g.shadowColor = 'rgba(0,0,0,.8)'; g.shadowBlur = 20; g.drawImage(mq, (W - mw) / 2, H * 0.08, mw, mh); g.restore();
+        g.strokeStyle = 'rgba(255,210,150,.55)'; g.lineWidth = 4; g.strokeRect((W - mw) / 2, H * 0.08, mw, mh); }
+    }
     sideT.needsUpdate = sideFlip.needsUpdate = kickT.needsUpdate = true;
   };
   const il = new THREE.ImageLoader();
@@ -387,7 +441,10 @@ function skin(game) {
   const d = runner.surface.data, px = new Uint8Array(d.buffer, d.byteOffset, d.length);
   const st = new THREE.DataTexture(px, 320, 240, THREE.RGBAFormat); st.flipY = true; st.colorSpace = THREE.SRGBColorSpace;
   st.magFilter = THREE.LinearFilter; st.minFilter = THREE.LinearFilter; st.generateMipmaps = false; st.needsUpdate = true;
-  s.screen = new THREE.MeshBasicMaterial({ map: st, color: HOT(0xffffff, 1.35), toneMapped: false });
+  s.screen = new THREE.MeshBasicMaterial({ map: st, color: HOT(0xffffff, 1.3), toneMapped: false });
+  s.screen.onBeforeCompile = (sh) => { sh.fragmentShader = sh.fragmentShader.replace('#include map_fragment', `#include map_fragment
+    { vec3 c = diffuseColor.rgb; float l = dot(c, vec3(0.299, 0.587, 0.114)); c = mix(vec3(l), c, 1.35); c = (c - 0.5) * 1.08 + 0.5; diffuseColor.rgb = max(c, 0.0); }`); };
+  s.warm = BRIGHT[id] || 0;                                             // seconds into the demo where it is most colourful
   runner.attract.coinText = 'PRESS START';   // the arcade is free: nothing on screen asks for a coin
   runner.attract.titleSeconds = 0.8; runner.attract.demoSeconds = 60; runner.attract.scoresSeconds = 3;
   s.runner = runner; s.screenTex = st; s.game = game;
@@ -397,7 +454,12 @@ function dress(slot, game) {
   if (slot.userData.game === game) return;
   slot.userData.game = game; const m = slot.userData.m, s = skin(game);
   m.marquee.material = s.marquee; m.sideL.material = s.sideL; m.sideR.material = s.sideR;
-  m.kick.material = s.kick; m.panel.material = s.panel; m.screen.material = s.screen;
+  m.kick.material = s.kick; m.panel.material = s.panel; m.screen.material = s.screen; m.seatLogo.material = s.marquee;
+  const type = TYPE[game.id] || 'upright', ks = kickStyle(game.id);
+  m.ctl.visible = type === 'upright' || type === 'cockpit'; m.wheel.visible = type === 'driver'; m.bars.visible = type === 'bike';
+  m.cock.visible = type === 'cockpit'; m.sideL.visible = m.sideR.visible = type !== 'cockpit';
+  m.doors[0].visible = ks !== 'grille'; m.doors[1].visible = m.doors[2].visible = ks === 'grille';
+  slot.userData.type = type;
 }
 
 // ------------------------------------------------------------------ the aisle (Cover Flow)
@@ -584,7 +646,7 @@ function frame(now) {
     if (Math.abs(target - pos) < 0.0005 && Math.abs(vel) < 0.001) { pos = target; vel = 0; }
     layoutAisle();
     const f = featured(); drawPlate(f.userData.game);
-    plate.position.set(f.position.x, 0.2, 0.95 + f.position.z); plate.visible = Math.abs(f.userData.d) < 0.35;
+    plate.position.set(f.position.x, 0.2, (f.userData.type === 'cockpit' ? 1.45 : 0.95) + f.position.z); plate.visible = Math.abs(f.userData.d) < 0.35;
     const e = 1 - Math.pow(0.001, dt); camPos.lerp(HOME.pos, e); camLook.lerp(HOME.look, e);
     bloom.strength += (0.6 - bloom.strength) * Math.min(1, dt * 4);
   } else {
@@ -601,8 +663,15 @@ function frame(now) {
   // the tubes: every cabinet on show runs its own attract mode; the one being played takes the player's input
   const live = new Set(); for (const s of slots) if (Math.abs(s.userData.d) < SLOTS - 1) live.add(s.userData.game.id);
   const playing = active && mode !== 'pull' ? SKINS.get(active.slot.userData.game.id) : null;
+  let warmed = false;
   for (const id of live) {
     const sk = SKINS.get(id);
+    if (sk.warm > 0 && sk !== playing) {
+      // fast-forward the demo to its most colourful moment, a few seconds per frame and one cabinet at a time, in the same
+      // 0.25 s steps it was measured in (the demo is deterministic, so it lands on the same picture)
+      if (!warmed) { warmed = true; for (let i = 0; i < 16 && sk.warm > 0; i++) { sk.runner.step(0.25, IDLE); sk.warm -= 0.25; } sk.screenTex.needsUpdate = true; sk.runner.dirty = false; }
+      continue;
+    }
     if (sk === playing) {
       if (wantCoin && sk.runner.phase !== 'playing') { sk.runner.playerInitials = (ini.value || 'YOU').padEnd(3, ' ').slice(0, 3); sk.runner.insertCoin(); over.classList.remove('show'); }
       wantCoin = false;
