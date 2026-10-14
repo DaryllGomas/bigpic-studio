@@ -16,9 +16,11 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
 .hints{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:center;gap:clamp(18px,4vw,64px);flex-wrap:wrap;
   padding:14px 16px max(14px,env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(6,4,10,.0),rgba(6,4,10,.86) 35%);
   font-size:clamp(.72rem,1.15vw,.95rem);letter-spacing:.22em;font-weight:500;color:#e9e3f0;text-transform:uppercase;user-select:none}
-.hints button{display:inline-flex;align-items:center;gap:12px;background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;cursor:pointer;opacity:.92}
+.hints button{display:inline-flex;align-items:center;gap:12px;background:none;border:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;opacity:.92}
 .hints button:hover{opacity:1}
 .g{display:inline-grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;border:2px solid currentColor;font-weight:700;letter-spacing:0;font-size:.95em}
+.kc{display:inline-grid;place-items:center;min-width:1.9em;height:1.9em;padding:0 .45em;border-radius:.4em;border:2px solid currentColor;font-weight:700;letter-spacing:.04em;font-size:.82em;color:#ffd27a}
+.hints .info{display:inline-flex;align-items:center;gap:12px;opacity:.78}
 .gA{color:#57d977}.gY{color:#f2c94c}.gS{color:#e9e3f0}.gB{color:#ff4d5e}
 .hints .lbl{color:#e9e3f0}
 .top{position:fixed;top:max(14px,env(safe-area-inset-top));right:16px;z-index:6;display:flex;gap:10px}
@@ -73,7 +75,7 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
   <label title="Your initials for the high-score tables">PLAYER <input id="ini" maxlength="3" value="YOU" autocomplete="off" spellcheck="false"></label>
   <a href="grid.html" title="Every cabinet at once">GRID VIEW</a>
 </div>
-<div class="over" id="over"><div class="s" id="score"></div><div class="c">PRESS A TO PLAY AGAIN</div></div>
+<div class="over" id="over"><div class="s" id="score"></div><div class="c" id="again">PRESS A TO PLAY AGAIN</div></div>
 <div class="pad" id="pad">
   <div class="joy" id="joy"><div class="knob" id="knob"></div></div>
   <div class="keys"><button class="key b" data-k="b">B</button><button class="key a" data-k="a">A</button></div>
@@ -112,6 +114,8 @@ if (EMBED) document.documentElement.classList.add('embed');
 const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
 const coarse = matchMedia('(pointer: coarse)').matches;
 if (coarse) document.documentElement.classList.add('coarse');
+let device = coarse ? 'touch' : 'keys';   // which prompts to show: keys | pad | touch (follows the last input)
+const startText = () => device === 'pad' ? 'PRESS START' : device === 'touch' ? 'TAP TO START' : 'PRESS ENTER';
 await Promise.all(['700 80px Cinzel', '900 80px Cinzel', '80px Bungee', '40px VT323'].map((f) => document.fonts.load(f).catch(() => {})));
 
 // ------------------------------------------------------------------ the games and the three categories
@@ -445,7 +449,7 @@ function skin(game) {
   s.screen.onBeforeCompile = (sh) => { sh.fragmentShader = sh.fragmentShader.replace('#include map_fragment', `#include map_fragment
     { vec3 c = diffuseColor.rgb; float l = dot(c, vec3(0.299, 0.587, 0.114)); c = mix(vec3(l), c, 1.35); c = (c - 0.5) * 1.08 + 0.5; diffuseColor.rgb = max(c, 0.0); }`); };
   s.warm = BRIGHT[id] || 0;                                             // seconds into the demo where it is most colourful
-  runner.attract.coinText = 'PRESS START';   // the arcade is free: nothing on screen asks for a coin
+  runner.attract.coinText = startText();   // the arcade is free: nothing on screen asks for a coin
   runner.attract.titleSeconds = 0.8; runner.attract.demoSeconds = 60; runner.attract.scoresSeconds = 3;
   s.runner = runner; s.screenTex = st; s.game = game;
   SKINS.set(id, s); return s;
@@ -536,13 +540,37 @@ function play() {
     scoreEl.textContent = (result === RoundResult.Won ? 'CLEARED · ' : 'GAME OVER · ') + String(info && info.score != null ? info.score : 0).padStart(6, '0');
     setTimeout(() => { if (active && active.runner.phase !== 'playing') over.classList.add('show'); }, 800);
   };
-  mode = 'push'; camT = 0; keys.enabled = true; wantCoin = true; document.documentElement.classList.add('playing');
+  mode = 'push'; camT = 0; keys.enabled = true; wantCoin = true; document.documentElement.classList.add('playing'); renderHints();
 }
 function back() {
   if (mode === 'aisle') return;
   if (active) active.runner.abort();
-  over.classList.remove('show'); mode = 'pull'; camT = 0; keys.enabled = false; document.documentElement.classList.remove('playing');
+  over.classList.remove('show'); mode = 'pull'; camT = 0; keys.enabled = false; document.documentElement.classList.remove('playing'); renderHints();
 }
+// ------------------------------------------------------------------ prompts that match the visitor's controls
+// Keyboard, gamepad and touch all work; the prompts follow whichever was used last (2026-10-13: the bar only ever
+// showed gamepad buttons, so keyboard players had no idea they could play).
+const hintsEl = document.getElementById('hints'), againEl = document.getElementById('again');
+const cap = (t) => `<span class="kc">${t}</span>`, gp = (t, c) => `<span class="g g${c}">${t}</span>`;
+const act = (a, glyph, lbl) => `<button data-act="${a}">${glyph}<span class="lbl">${lbl}</span></button>`;
+const info = (glyph, lbl) => `<span class="info">${glyph}<span class="lbl">${lbl}</span></span>`;
+function renderHints() {
+  const inGame = mode !== 'aisle' && mode !== 'pull';
+  let h;
+  if (device === 'pad') h = inGame ? act('b', gp('B', 'B'), 'Back') : act('a', gp('A', 'A'), 'Play') + act('b', gp('B', 'B'), 'Back');
+  else if (device === 'touch') h = inGame ? act('b', cap('✕'), 'Back') : info(cap('⇆'), 'Swipe') + act('a', cap('TAP'), 'Play');
+  else h = inGame ? info(cap('← → ↑ ↓'), 'Move') + info(cap('SPACE'), 'Action') + info(cap('X'), 'Alt') + act('b', cap('ESC'), 'Back')
+                  : info(cap('← →'), 'Browse') + info(cap('↑ ↓'), 'Shelf') + act('a', cap('ENTER'), 'Play');
+  hintsEl.innerHTML = h;
+  againEl.textContent = device === 'pad' ? 'PRESS A TO PLAY AGAIN' : device === 'touch' ? 'TAP TO PLAY AGAIN' : 'PRESS ENTER TO PLAY AGAIN';
+  for (const sk of SKINS.values()) sk.runner.attract.coinText = startText();
+}
+function useDevice(d) { if (d !== device) { device = d; renderHints(); } }
+addEventListener('keydown', (e) => { if (e.target !== ini) useDevice('keys'); }, true);
+addEventListener('pointerdown', (e) => useDevice(e.pointerType === 'touch' ? 'touch' : 'keys'), true);
+addEventListener('gamepadconnected', () => useDevice('pad'));
+if (navigator.getGamepads && [...navigator.getGamepads()].some(Boolean)) device = 'pad';
+renderHints();
 addEventListener('keydown', (e) => {
   if (e.target === ini) return;
   const k = e.code;
@@ -595,6 +623,7 @@ const touch = { x: 0, y: 0, a: false, b: false, start: false };
 const padPrev = {};
 function gamepad() {
   const gp = navigator.getGamepads ? [...navigator.getGamepads()].find(Boolean) : null; if (!gp) return null;
+  if (gp.buttons.some((x) => x.pressed) || gp.axes.some((v) => Math.abs(v) > 0.5)) useDevice('pad');
   const b = (i) => !!(gp.buttons[i] && gp.buttons[i].pressed), edge = (n, v) => { const was = padPrev[n]; padPrev[n] = v; return v && !was; };
   const x = ((b(15) ? 1 : 0) - (b(14) ? 1 : 0)) || (Math.abs(gp.axes[0]) > 0.5 ? Math.sign(gp.axes[0]) : 0);
   const y = ((b(12) ? 1 : 0) - (b(13) ? 1 : 0)) || (Math.abs(gp.axes[1]) > 0.5 ? -Math.sign(gp.axes[1]) : 0);
