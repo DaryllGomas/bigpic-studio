@@ -97,7 +97,7 @@ export async function mountJunctionBand(el, options = {}) {
     ${signSVG()}
     <div class="jb-floor">${rows.map((r, i) => `<div class="jb-row r${i + 1}"></div>`).join('')}</div>
     <aside class="jb-dc" aria-label="Daily challenge"></aside>`;
-  if (rows.length > 2) { el.style.aspectRatio = '1024/520'; el.querySelector('.r3').style.top = '27.4cqw'; el.querySelector('.r3').style.zIndex = 3; }
+  if (rows.length > 2) { el.classList.add('jb-all'); el.querySelector('.r3').style.top = '27.4cqw'; el.querySelector('.r3').style.zIndex = 3; }   // the shape lives in CSS so phones can override it
 
   // ---- the cabinets ----
   const cabs = []; let n = 0;

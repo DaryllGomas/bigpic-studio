@@ -126,7 +126,8 @@
 .jb-key{width:70px;height:70px;border-radius:50%;border:0;font:1.4rem 'Space Grotesk',sans-serif;color:rgba(0,0,0,.6);box-shadow:0 6px 0 rgba(0,0,0,.6)}
 .jb-key.a{background:radial-gradient(circle at 40% 35%,#9ff6ff,#1aa7c4)}.jb-key.b{background:radial-gradient(circle at 40% 35%,#ffe9a6,#d79a18);margin-top:40px}
 .jb-key.down{filter:brightness(1.35)}
-@media (max-width:819px){.jb{aspect-ratio:auto;min-height:0;padding:22px 0 26px}}
+.jb.jb-all{aspect-ratio:1024/520}   /* all 26 games: three rows (was an inline style, which beat the phone rule) */
+@media (max-width:819px){.jb,.jb.jb-all{aspect-ratio:auto;min-height:0;padding:22px 0 26px}}
 /* ---- phones: the wall scrolls sideways, the challenge goes under it ---- */
 @container (max-width: 819px){
   .jb-head{position:relative;left:auto;top:auto;padding:0 18px}
@@ -136,4 +137,10 @@
   .jb-cab{flex:none;width:31vw;scroll-snap-align:start}
   .r1 .jb-body,.jb-body{height:4vw}
   .jb-dc{position:relative;right:auto;top:auto;width:auto;margin:18px 18px 0;padding:16px}
+}
+/* ---- phones, all-games grid: one two-column grid you scroll down, not three sideways strips ---- */
+@container (max-width: 819px){
+  .jb-all .jb-floor{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;overflow:visible;scroll-snap-type:none;padding:0 14px 6px}
+  .jb-all .jb-row{display:contents}
+  .jb-all .jb-cab{width:auto}
 }
