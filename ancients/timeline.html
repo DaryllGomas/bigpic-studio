@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070605">
+    <title>Ancient History — The Descent</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/redesign/tokens.css">
+    <link rel="stylesheet" href="css/redesign/base.css">
+    <link rel="stylesheet" href="css/redesign/ornament.css">
+    <link rel="stylesheet" href="css/redesign/descent.css">
+    <link rel="preload" as="image" href="images/redesign/strata/modern.webp">
+  </head>
+  <body class="page page--timeline">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-wordmark" href="index.html" aria-label="Ancient History home">ANCIENT HISTORY</a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="index.html">HOME</a></li>
+            <li><a class="site-nav__link" href="timeline.html" aria-current="page">TIMELINE</a></li>
+            <li><a class="site-nav__link" href="artifacts.html">ARTIFACTS</a></li>
+          </ul>
+        </nav>
+        <label class="site-search">
+          <span class="visually-hidden">Search people, places, and events</span>
+          <svg class="site-search__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.75" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="m15.5 15.5 4.25 4.25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+          </svg>
+          <input class="site-search__input" type="search" placeholder="Search people, places, events…" autocomplete="off">
+        </label>
+      </div>
+    </header>
+
+    <main class="descent" aria-labelledby="page-title">
+      <h1 id="page-title" class="visually-hidden">The Descent: a timeline from the present day down to 300,000 BCE</h1>
+
+      <!-- Depth gauge: fixed, decorative mirror of the markers (the markers themselves are the accessible list). -->
+      <div class="depth-gauge" aria-hidden="true">
+        <p class="depth-gauge__heading">Years ago</p>
+        <div class="depth-gauge__window">
+          <div class="depth-gauge__line"></div>
+          <ol class="depth-gauge__track"></ol>
+        </div>
+        <svg class="depth-gauge__arrow" viewBox="0 0 16 12"><path d="M1 1l7 9 7-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+
+      <!-- The strata column: sections are rendered from data/timeline.json by js/redesign/descent.js. -->
+      <div class="descent__column">
+        <svg class="descent__threads" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="thread-gold-body" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#b8651f"/>
+              <stop offset="0.5" stop-color="#ffcf7a"/>
+              <stop offset="1" stop-color="#b8651f"/>
+            </linearGradient>
+            <radialGradient id="thread-drop-gold">
+              <stop offset="0" stop-color="#fff6dc" stop-opacity="1"/>
+              <stop offset="0.35" stop-color="#ffd58a" stop-opacity="0.9"/>
+              <stop offset="1" stop-color="#e6a656" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="thread-drop-blue">
+              <stop offset="0" stop-color="#f1fbff" stop-opacity="1"/>
+              <stop offset="0.35" stop-color="#9fd8ff" stop-opacity="0.9"/>
+              <stop offset="1" stop-color="#4696e2" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <g class="thread thread--gold">
+            <path class="thread__halo"/>
+            <path class="thread__glow"/>
+            <path class="thread__body"/>
+            <path class="thread__core"/>
+          </g>
+          <g class="thread thread--blue">
+            <path class="thread__halo"/>
+            <path class="thread__glow"/>
+            <path class="thread__body"/>
+            <path class="thread__core"/>
+          </g>
+          <g class="thread__drops"></g>
+        </svg>
+        <div class="descent__strata"></div>
+      </div>
+
+      <canvas class="descent__embers" aria-hidden="true"></canvas>
+      <p class="descent__status" role="status" aria-live="polite"></p>
+      <noscript><p class="descent__noscript">The Descent needs JavaScript to draw the timeline.</p></noscript>
+    </main>
+
+    <!-- Event panel (packet 04): a dialog filled from the selected event's own data. -->
+    <div class="event-panel" role="dialog" aria-modal="true" aria-labelledby="event-panel-title" hidden>
+      <div class="event-panel__frame ornament-frame">
+        <button class="event-panel__close" type="button" aria-label="Close event">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <div class="event-panel__scroll" data-lenis-prevent>
+          <figure class="event-panel__art"></figure>
+          <p class="event-panel__era"></p>
+          <p class="event-panel__date"></p>
+          <h2 class="event-panel__title" id="event-panel-title" tabindex="-1"></h2>
+          <p class="event-panel__tag"></p>
+          <p class="event-panel__short"></p>
+          <p class="event-panel__desc"></p>
+          <div class="event-panel__sections"></div>
+        </div>
+        <nav class="event-panel__nav" aria-label="Browse events">
+          <button class="event-panel__step" type="button" data-step="-1">
+            <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M8 1.5L3.5 6 8 10.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Previous</span>
+          </button>
+          <span class="event-panel__count"></span>
+          <button class="event-panel__step" type="button" data-step="1">
+            <span>Next</span>
+            <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 1.5L8.5 6 4 10.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <script type="module" src="js/redesign/data.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+    <script type="module" src="js/redesign/descent.js"></script>
+  </body>
+</html>

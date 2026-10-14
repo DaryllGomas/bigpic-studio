@@ -1,0 +1,22 @@
+:root {
+  --void: #070605;
+  --rock: #1b140e;
+  --rock-edge: #3a2a1b;
+  --gold: #e6a656;
+  --gold-hot: #ffd58a;
+  --parchment: #efe3cc;
+  --ash: #b9a88e;
+  --blue: #4696e2;
+  --blue-hot: #9fd8ff;
+
+  --font-display: "Cinzel", "Times New Roman", serif;
+  --font-body: "Cormorant Garamond", Georgia, serif;
+
+  --shell-max: 1680px;
+  --header-height: 126px;
+  --hairline: color-mix(in srgb, var(--gold) 70%, transparent);
+  --hairline-faint: color-mix(in srgb, var(--gold) 28%, transparent);
+  --panel-surface: color-mix(in srgb, var(--rock) 94%, transparent);
+  --gold-glow: 0 0 8px rgb(230 166 86 / 50%), 0 0 22px rgb(230 166 86 / 22%);
+  --blue-glow: 0 0 8px rgb(70 150 226 / 55%), 0 0 22px rgb(70 150 226 / 24%);
+}

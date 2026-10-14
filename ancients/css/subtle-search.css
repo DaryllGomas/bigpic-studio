@@ -1,0 +1,238 @@
+/* Subtle Search Styling 
+   This overrides the previous search styling with a more compact, subtle approach */
+
+/* Initial state - just a search icon */
+.search-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(36, 26, 16, 0.7);
+    border: 1px solid #ba9b37;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 100;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The search icon */
+.search-icon {
+    font-size: 1.5rem;
+    color: #ba9b37;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Expanded state */
+.search-container.expanded {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+    .search-container.expanded {
+        width: 500px;
+    }
+}
+
+/* Hide search content initially */
+.search-content {
+    display: none;
+    width: 100%;
+}
+
+.search-container.expanded .search-content {
+    display: block;
+}
+
+.search-container.expanded .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 1.2rem;
+}
+
+/* Simplified Search Box */
+.search-box {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+#timeline-search {
+    flex: 1;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ba9b37;
+    background-color: rgba(36, 26, 16, 0.6);
+    color: #d4af37;
+    border-radius: 4px 0 0 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+}
+
+#search-button {
+    padding: 0.6rem 1rem;
+    background-color: rgba(186, 155, 55, 0.3);
+    color: #d4af37;
+    border: 1px solid #ba9b37;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+#search-button:hover {
+    background-color: rgba(186, 155, 55, 0.5);
+}
+
+/* Hide tabs for simplicity */
+.search-tabs {
+    display: none;
+}
+
+/* More compact advanced toggle */
+.advanced-toggle {
+    font-size: 0.8rem;
+    color: #a08a53;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.advanced-toggle:hover {
+    color: #d4af37;
+}
+
+/* Hiding advanced filters by default */
+.advanced-filters {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin 0.4s ease;
+    margin-top: 0;
+}
+
+.advanced-filters.expanded {
+    max-height: 300px;
+    margin-top: 0.5rem;
+}
+
+/* More compact filter layout */
+.filter-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 180px;
+}
+
+.filter-label {
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+}
+
+.filter-select {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+}
+
+/* Compact range slider */
+.range-container {
+    margin-bottom: 0.8rem;
+}
+
+.range-header {
+    margin-bottom: 0.3rem;
+}
+
+.range-values {
+    font-size: 0.8rem;
+}
+
+/* Smaller action buttons */
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.filter-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+/* More subtle search results */
+.search-results {
+    background-color: rgba(36, 26, 16, 0.5);
+    border: 1px solid rgba(186, 155, 55, 0.3);
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.result-summary {
+    font-size: 0.85rem;
+}
+
+.result-tags {
+    gap: 0.3rem;
+    margin-top: 0.3rem;
+}
+
+.result-tag {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+/* Related searches */
+.related-searches {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.related-title {
+    font-size: 0.8rem;
+}
+
+.related-items {
+    gap: 0.3rem;
+}
+
+.related-item {
+    font-size: 0.75rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .search-container {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .search-container.expanded {
+        width: 95%;
+        top: 10px;
+        right: 2.5%;
+    }
+}

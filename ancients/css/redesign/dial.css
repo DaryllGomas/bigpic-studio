@@ -1,0 +1,842 @@
+/* The Dial (packet 06). Page-scoped only: reads tokens/base/ornament, never edits them. */
+
+body.page--dial {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* The ring rises up behind the header, exactly as in frame 1: the header goes transparent
+   here and the sky/ring painting shows straight through it. */
+.page--dial .site-header {
+  position: relative;
+  z-index: 5;
+  background: linear-gradient(180deg, rgb(7 6 5 / 46%), transparent 85%);
+  box-shadow: none;
+  border-bottom-color: transparent;
+}
+
+.dial-stage {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  min-height: 0;
+  padding: 0;
+  background: none;
+  cursor: grab;
+  /* Reserved bands so the rail/panel (top) and fact/teaser (bottom) never fight for the
+     same pixels on short viewports -- sized off height, not guessed fixed pixels. */
+  --top-band: clamp(118px, 13vh, 150px);
+  --bottom-band: clamp(150px, 23vh, 215px);
+  /* The ring's diameter. QA fix: on short windows (1280x800, 1440x900, 1672x941) the ring's bottom medallions and
+     their captions ran under the era scrubber, hiding their titles. The last term keeps ring + medallion
+     captions (about 44px below the ring) clear of the scrubber (about 75px from the bottom). */
+  --ring-d: min(74vh, 58vw, 760px, calc(94vh - 245px));
+  /* Width and edge offset of the bottom-corner panels (Did You Know, Artifacts): the scrubber is fitted between them. */
+  --side-w: clamp(260px, 21vw, 350px);
+  --side-x: clamp(18px, 2.4vw, 44px);
+}
+
+.dial-stage:active {
+  cursor: grabbing;
+}
+
+.dial-stage::after {
+  content: none;
+}
+
+.dial-stage:focus-visible {
+  outline: none;
+}
+
+/* ---------------------------------------------------------------- sky + FX */
+
+.dial-sky {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #04030a url("../../images/redesign/dial/sky.webp") center 30% / cover no-repeat;
+}
+
+.dial-sky::before {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  background: radial-gradient(ellipse 70% 60% at 50% 100%, rgb(255 140 50 / 14%), transparent 70%),
+    radial-gradient(ellipse at 50% -10%, rgb(0 0 0 / 0%), rgb(0 0 0 / 55%) 100%),
+    linear-gradient(180deg, rgb(7 6 5 / 15%) 0%, transparent 18%, transparent 78%, rgb(7 6 5 / 55%) 100%);
+}
+
+.dial-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* ------------------------------------------------------------------ rail */
+
+.dial-rail {
+  position: absolute;
+  top: var(--top-band);
+  bottom: var(--bottom-band);
+  left: clamp(18px, 2.6vw, 44px);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  width: clamp(140px, 12.5vw, 205px);
+}
+
+.dial-rail__list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.4rem, 1.6vh, 0.95rem);
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  list-style: none;
+  border-left: 1px solid var(--hairline-faint);
+  scrollbar-width: none;
+  max-height: 100%;
+}
+
+.dial-rail__list::-webkit-scrollbar {
+  display: none;
+}
+
+.dial-rail__button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 2px 0 2px 16px;
+  margin-left: -1px;
+  color: var(--ash);
+  border: 0;
+  border-left: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  letter-spacing: 0.145em;
+  text-align: left;
+  text-shadow: 0 2px 6px rgb(0 0 0 / 70%);
+  transition: color 180ms ease;
+}
+
+.dial-rail__dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: rgb(7 6 5 / 80%);
+  transition: background 180ms ease, box-shadow 180ms ease;
+}
+
+.dial-rail__button:hover,
+.dial-rail__button:focus-visible {
+  color: var(--gold-hot);
+}
+
+.dial-rail__button[aria-current="true"] {
+  color: var(--gold-hot);
+  border-left-color: var(--gold);
+}
+
+.dial-rail__button[aria-current="true"] .dial-rail__dot {
+  background: var(--gold-hot);
+  box-shadow: var(--gold-glow);
+}
+
+/* -------------------------------------------------------------- the ring */
+
+.dial-ring-wrap {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  z-index: 2;
+  width: var(--ring-d);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+}
+
+.dial-ring {
+  position: absolute;
+  inset: 0;
+  /* a true circle, face-on (Daryll 2026-10-06: the squashed 0.8 tilt read as an oval) */
+  transform-origin: center;
+}
+
+.dial-ring__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 32px rgb(230 166 86 / 18%));
+  will-change: transform;
+}
+
+.dial-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 49.5%;
+  height: 49.5%;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3px rgb(7 6 5 / 65%), inset 0 0 44px 10px rgb(0 0 0 / 55%), 0 0 40px 6px rgb(230 166 86 / 12%);
+  transform: translate(-50%, -50%);
+}
+
+.dial-window::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  background: radial-gradient(circle at 50% 42%, transparent 55%, rgb(7 6 5 / 55%) 100%);
+}
+
+.dial-window__plate,
+.dial-window__ghost {
+  position: absolute;
+  inset: -3%;
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: 38%;
+  background-size: 230% auto;
+}
+
+.dial-window__ghost {
+  z-index: 1;
+  opacity: 0;
+  transition: none;
+}
+
+.dial-window__plate {
+  z-index: 0;
+}
+
+/* -------------------------------------------------------------- orbit */
+
+/* Nested inside .dial-ring-wrap so it always shares its exact box, at every breakpoint. */
+.dial-orbit {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.dial-orbit__thread {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+
+.dial-orbit__gold,
+.dial-orbit__blue {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 3.5;
+}
+
+.dial-orbit__gold {
+  stroke: var(--gold);
+  filter: drop-shadow(var(--gold-glow));
+}
+
+.dial-orbit__blue {
+  stroke: var(--blue);
+  filter: drop-shadow(var(--blue-glow));
+}
+
+.dial-orbit__medallions {
+  position: absolute;
+  inset: 0;
+}
+
+.dial-medallion {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(72px, 9.2vw, 112px);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transform: translate(-50%, -50%);
+}
+
+.event-art--medallion {
+  display: block;
+  width: clamp(58px, 7.4vw, 92px);
+  aspect-ratio: 1;
+  border: 3px double var(--gold);
+  border-radius: 50%;
+  outline: 1px solid rgb(7 6 5 / 70%);
+  outline-offset: -4px;
+  box-shadow: var(--gold-glow), 0 6px 16px rgb(0 0 0 / 55%);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.dial-medallion:hover .event-art--medallion,
+.dial-medallion:focus-visible .event-art--medallion {
+  transform: scale(1.08);
+}
+
+.dial-medallion[aria-pressed="true"] .event-art--medallion {
+  box-shadow: 0 0 0 3px var(--gold-hot), var(--gold-glow), 0 6px 20px rgb(0 0 0 / 55%);
+}
+
+.dial-medallion.is-theoretical .event-art--medallion {
+  border-color: var(--blue);
+  box-shadow: var(--blue-glow), 0 6px 16px rgb(0 0 0 / 55%);
+}
+
+.dial-medallion.is-theoretical[aria-pressed="true"] .event-art--medallion {
+  box-shadow: 0 0 0 3px var(--blue-hot), var(--blue-glow), 0 6px 20px rgb(0 0 0 / 55%);
+}
+
+.dial-medallion__caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6px;
+  color: var(--parchment);
+  text-align: center;
+  text-shadow: 0 2px 6px rgb(0 0 0 / 85%), 0 0 10px rgb(0 0 0 / 70%);
+}
+
+.dial-medallion__year {
+  font-family: var(--font-display);
+  font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+  color: var(--gold-hot);
+  letter-spacing: 0.04em;
+}
+
+.dial-medallion.is-theoretical .dial-medallion__year {
+  color: var(--blue-hot);
+}
+
+.dial-medallion__title {
+  max-width: 12ch;
+  font-family: var(--font-body);
+  font-size: clamp(0.62rem, 0.95vw, 0.78rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* ---------------------------------------------------------- event-art (shared) */
+
+.event-art {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--plate) var(--crop-x, 50%) 42% / 260% auto no-repeat, var(--rock);
+}
+
+.event-art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.event-art.has-image img {
+  opacity: 1;
+}
+
+/* -------------------------------------------------------------- event panel */
+
+.dial-event {
+  position: absolute;
+  top: var(--top-band);
+  right: clamp(20px, 2.4vw, 46px);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  width: clamp(280px, 22.5vw, 372px);
+  max-height: calc(100vh - var(--top-band) - var(--bottom-band));
+  padding: 1.1rem 1.25rem 1.3rem;
+}
+
+.dial-event__scroll {
+  min-height: 0;
+  margin-bottom: 0.85rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+
+.dial-event__scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dial-event__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dial-event__scroll::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--rock-edge);
+}
+
+.dial-event__scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+.dial-event__figure {
+  margin: 0 0 0.75rem;
+}
+
+.event-art--panel {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--hairline-faint);
+  border-radius: 3px;
+}
+
+.dial-event__date {
+  margin: 0 0 0.15rem;
+  color: var(--gold-hot);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+}
+
+.dial-event.is-theoretical .dial-event__date {
+  color: var(--blue-hot);
+}
+
+.dial-event__title {
+  margin: 0 0 0.55rem;
+  color: var(--parchment);
+  font-family: var(--font-display);
+  font-size: 1.28rem;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+}
+
+.dial-event__tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 0.7rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--gold-hot);
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+}
+
+.dial-event.is-theoretical .dial-event__tag {
+  border-color: var(--blue);
+  color: var(--blue-hot);
+}
+
+.dial-event__desc,
+.dial-event__details {
+  margin: 0 0 0.75rem;
+  color: var(--parchment);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.dial-event__details {
+  color: var(--ash);
+  font-style: italic;
+}
+
+.dial-event__cta {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.dial-event.is-theoretical .dial-event__cta {
+  border-color: var(--blue);
+  color: var(--blue-hot);
+}
+
+/* -------------------------------------------------------------- did you know */
+
+.dial-fact {
+  position: absolute;
+  bottom: clamp(20px, 3.4vh, 40px);
+  left: var(--side-x);
+  z-index: 6;
+  display: flex;
+  width: var(--side-w);
+  max-height: calc(var(--bottom-band) - 14px);
+  flex-direction: column;
+  padding: 0.85rem 1.1rem 1rem;
+}
+
+.dial-fact__title {
+  margin: 0 0 0.4rem;
+  color: var(--gold-hot);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+}
+
+.dial-fact__body {
+  min-height: 0;
+  margin: 0 0 0.65rem;
+  /* QA fix: the whole card used to scroll (scrollbar hidden), so a long fact on a short window pushed the
+     "Another fact" button out of sight. Now only the fact scrolls; the title and the button always stay in view. */
+  overflow-y: auto;
+  scrollbar-color: var(--gold) transparent;
+  scrollbar-width: thin;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.dial-fact__refresh {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  min-height: 0;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.64rem;
+}
+
+/* -------------------------------------------------------------- artifacts teaser */
+
+.dial-teaser {
+  position: absolute;
+  right: var(--side-x);
+  bottom: clamp(20px, 3.4vh, 40px);
+  z-index: 6;
+  width: var(--side-w);
+  max-height: calc(var(--bottom-band) - 14px);
+  padding: 0.75rem 1rem;
+  overflow: hidden;
+}
+
+.dial-teaser__link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.dial-teaser__thumbs {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.dial-teaser__thumb {
+  width: 40px;
+  height: 40px;
+  margin-left: -10px;
+  border: 2px solid var(--void);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 55%);
+}
+
+.dial-teaser__thumb:first-child {
+  margin-left: 0;
+}
+
+.dial-teaser__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.dial-teaser__title {
+  color: var(--gold-hot);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+}
+
+.dial-teaser__sub {
+  color: var(--ash);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+/* -------------------------------------------------------------- scrubber */
+
+.dial-scrubber {
+  position: absolute;
+  bottom: clamp(10px, 1.6vh, 18px);
+  left: 50%;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.8rem, 2vw, 1.6rem);
+  padding: 0.5rem clamp(1rem, 2.4vw, 1.8rem);
+  /* QA fix: a long era name ("Iron Age & Classical Period (1,200 BCE - 500 CE)") made the scrubber wider than the
+     gap between the two bottom panels, so it sat on top of both at 1070px. Fit it between them; the label wraps. */
+  max-width: calc(100vw - 2 * (var(--side-w) + var(--side-x) + 12px));
+  transform: translateX(-50%);
+}
+
+.dial-scrubber__prev,
+.dial-scrubber__next {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--gold-hot);
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  background: rgb(7 6 5 / 60%);
+  cursor: pointer;
+}
+
+.dial-scrubber__prev svg,
+.dial-scrubber__next svg {
+  width: 16px;
+  height: 16px;
+}
+
+.dial-scrubber__prev:hover,
+.dial-scrubber__next:hover,
+.dial-scrubber__prev:focus-visible,
+.dial-scrubber__next:focus-visible {
+  box-shadow: var(--gold-glow);
+}
+
+.dial-scrubber__label-wrap {
+  min-width: min(clamp(220px, 24vw, 340px), calc(100vw - 2 * (var(--side-w) + var(--side-x) + 12px) - 150px));
+  text-align: center;
+}
+
+.dial-scrubber__hint {
+  margin: 0 0 2px;
+  color: var(--ash);
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+}
+
+.dial-scrubber__current {
+  margin: 0;
+  color: var(--gold-hot);
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+}
+
+.dial-scrubber__range {
+  color: var(--ash);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+}
+
+/* -------------------------------------------------------------- mobile strip */
+
+.dial-strip {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 6;
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem;
+}
+
+.dial-strip__track {
+  display: flex;
+  flex: 1;
+  gap: 0.55rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.dial-strip__track::-webkit-scrollbar {
+  display: none;
+}
+
+.dial-strip__card {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 108px;
+  padding: 0.45rem;
+  border: 1px solid var(--hairline-faint);
+  background: rgb(7 6 5 / 66%);
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+
+.dial-strip__card.is-current {
+  border-color: var(--gold);
+  box-shadow: var(--gold-glow);
+}
+
+.dial-strip__art {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 0.3rem;
+  border-radius: 2px;
+}
+
+.dial-strip__name {
+  color: var(--gold-hot);
+  font-family: var(--font-display);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+}
+
+.dial-strip__range {
+  color: var(--ash);
+  font-size: 0.6rem;
+}
+
+.dial-strip__prev,
+.dial-strip__next {
+  display: flex;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--gold-hot);
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  background: rgb(7 6 5 / 60%);
+}
+
+/* -------------------------------------------------------------- responsive */
+
+@media (max-width: 1180px) {
+  .dial-event {
+    width: clamp(250px, 26vw, 320px);
+  }
+}
+
+/* QA fix: on a tall, narrow window the ring sits below the right-hand event panel, but a long event made the panel
+   grow down over the ring's top-right bezel (up to 23px at 1070x1741). Stop it at the ring's top edge plus 12% of its diameter
+   (the circle curves away under the panel's corner); the panel's own scroll takes the rest. */
+@media (min-width: 761px) and (max-width: 1180px) and (max-aspect-ratio: 1/1) {
+  .dial-event {
+    max-height: calc(53vh - 0.38 * var(--ring-d) - var(--top-band));
+  }
+}
+
+/* QA fix: on a landscape window narrower than 1180px the ring (58vw wide, dead centre) ran under the right-hand
+   event panel, hiding the right-hand medallions (1024x768: five of the eight eras). Fit the ring into the gap between
+   the era rail and the event panel instead: centre it there and cap its diameter by that gap, less ~54px each side for
+   the medallions that overhang the ring. The panel and rail widths below mirror their own rules. */
+@media (min-width: 761px) and (max-width: 1180px) and (min-aspect-ratio: 1/1) {
+  .dial-stage {
+    --rail-r: calc(clamp(18px, 2.6vw, 44px) + clamp(140px, 12.5vw, 205px));
+    --panel-l: calc(100vw - clamp(250px, 26vw, 320px) - clamp(20px, 2.4vw, 46px));
+    --ring-d: min(74vh, calc(var(--panel-l) - var(--rail-r) - 108px), calc(94vh - 245px));
+  }
+
+  .dial-ring-wrap {
+    left: calc((var(--rail-r) + var(--panel-l)) / 2);
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1000px) and (min-aspect-ratio: 1/1) {
+  .dial-stage {
+    --rail-r: calc(clamp(18px, 2.6vw, 44px) + 118px);
+    --panel-l: calc(100vw - 230px - clamp(20px, 2.4vw, 46px));
+  }
+}
+
+@media (max-width: 1000px) {
+  .dial-stage {
+    --side-w: 230px;
+  }
+
+  .dial-rail {
+    width: 118px;
+  }
+
+  .dial-event,
+  .dial-fact,
+  .dial-teaser {
+    width: 230px;
+    font-size: 0.92em;
+  }
+}
+
+@media (max-width: 760px) {
+  body.page--dial {
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .dial-stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100svh - var(--header-height));
+    padding-bottom: 20px;
+    cursor: default;
+  }
+
+  .dial-sky {
+    position: absolute;
+    height: min(100vh, 780px);
+  }
+
+  .dial-rail,
+  .dial-fact,
+  .dial-teaser,
+  .dial-scrubber {
+    display: none;
+  }
+
+  .dial-ring-wrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(92vw, 520px);
+    margin: 14px auto 8px;
+    transform: none;
+  }
+
+  .dial-event {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    z-index: 4;
+    width: min(92vw, 520px);
+    margin: 6px auto 0;
+  }
+
+  .dial-event__scroll {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .dial-strip {
+    position: relative;
+    display: flex;
+    width: min(92vw, 520px);
+    margin: 14px auto 0;
+    padding: 0;
+  }
+}

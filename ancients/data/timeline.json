@@ -1,0 +1,1129 @@
+{
+  "periods": [
+    {
+      "title": "PREHISTORIC PERIOD (300,000 - 10,000 BCE)",
+      "id": "prehistoric",
+      "theoretical": false,
+      "events": [
+        {
+          "year": "300,000 BCE",
+          "shortDesc": "Origin of Homo sapiens",
+          "title": "EMERGENCE OF HUMANS",
+          "description": "Homo sapiens appear in Africa",
+          "theoretical": false,
+          "details": {
+            "year": "300,000 BCE",
+            "shortDesc": "Origin of Homo sapiens",
+            "title": "Emergence of Humans",
+            "description": "Homo sapiens appear in Africa",
+            "details": "Fossil evidence suggests that Homo sapiens evolved in Africa around 300,000 years ago. The oldest known fossils were discovered in Jebel Irhoud, Morocco.",
+            "keyFigures": [
+              "Early Homo sapiens"
+            ],
+            "culturalContext": "Early humans lived in small nomadic groups, using simple stone tools and developing early forms of communication.",
+            "locations": [
+              "Africa",
+              "Morocco"
+            ],
+            "artifacts": [
+              "Stone tools",
+              "Early human fossils"
+            ],
+            "imageFolder": "prehistoric"
+          }
+        },
+        {
+          "year": "70,000 BCE",
+          "shortDesc": "Human migration",
+          "title": "OUT OF AFRICA",
+          "description": "First major wave of human migration from Africa to Asia and beyond",
+          "theoretical": false
+        },
+        {
+          "year": "50,000 BCE",
+          "shortDesc": "Upper Paleolithic begins",
+          "title": "CULTURAL REVOLUTION",
+          "description": "Period of advanced stone tool industries, cave art, and expanded social networks",
+          "theoretical": false
+        },
+        {
+          "year": "45,000 BCE",
+          "shortDesc": "Early symbolic thought",
+          "title": "EARLY HUMAN ART",
+          "description": "Earliest evidence of symbolic thought and artistic expression",
+          "theoretical": false,
+          "details": {
+            "year": "70,000 BCE",
+            "shortDesc": "Early symbolic thought",
+            "title": "Early Human Art",
+            "description": "Earliest evidence of symbolic thought and artistic expression",
+            "details": "Archaeological evidence from sites like Blombos Cave in South Africa shows early humans creating geometric engravings and using ochre for symbolic purposes.",
+            "keyFigures": [],
+            "culturalContext": "The development of symbolic thinking represents a major cognitive advancement in human evolution, possibly connected to language development.",
+            "locations": [
+              "South Africa",
+              "Blombos Cave"
+            ],
+            "artifacts": [
+              "Ochre engravings",
+              "Shell beads"
+            ],
+            "imageFolder": "prehistoric"
+          }
+        },
+        {
+          "year": "40,000 BCE",
+          "shortDesc": "Cave art flourishes",
+          "title": "CAVE PAINTINGS",
+          "description": "Remarkable cave paintings appear in Europe (Lascaux, Chauvet)",
+          "theoretical": false,
+          "details": {
+            "year": "40,000 BCE",
+            "shortDesc": "Cave art flourishes",
+            "title": "Cave Paintings",
+            "description": "Remarkable cave paintings appear in Europe (Lascaux, Chauvet)",
+            "details": "The caves of Lascaux in France and Chauvet contain some of the most well-preserved prehistoric paintings, depicting animals, human figures, and abstract symbols.",
+            "keyFigures": [
+              "Cro-Magnon artists"
+            ],
+            "culturalContext": "These paintings likely had ritual or spiritual significance, possibly related to hunting magic or shamanic practices.",
+            "locations": [
+              "France",
+              "Lascaux",
+              "Chauvet"
+            ],
+            "artifacts": [
+              "Cave paintings",
+              "Pigments",
+              "Hand stencils"
+            ],
+            "imageFolder": "prehistoric/cave_paintings"
+          }
+        },
+        {
+          "year": "24,000 BCE",
+          "shortDesc": "Ice Age peak",
+          "title": "LAST GLACIAL MAXIMUM",
+          "description": "Period of maximum extent of ice sheets, with sea levels 120 meters lower than present day",
+          "theoretical": false
+        },
+        {
+          "year": "~18,000 BCE",
+          "shortDesc": "Magdalenian Culture",
+          "title": "EUROPE",
+          "description": "Flourishing of the Magdalenian culture in Western Europe, known for sophisticated bone/antler tools and renowned cave art (e.g., Lascaux, Altamira).",
+          "theoretical": false,
+          "details": {
+            "year": "~18,000 BCE",
+            "shortDesc": "Magdalenian Culture",
+            "title": "EUROPE",
+            "description": "Flourishing of the Magdalenian culture in Western Europe, known for sophisticated bone/antler tools and renowned cave art (e.g., Lascaux, Altamira).",
+            "details": "Placeholder: More details about Magdalenian culture, tools, and art.",
+            "keyFigures": [],
+            "culturalContext": "Placeholder: Cultural context of Magdalenian period.",
+            "locations": [
+              "Western Europe",
+              "France",
+              "Spain"
+            ],
+            "artifacts": [
+              "Sophisticated bone tools",
+              "Antler tools",
+              "Cave paintings"
+            ],
+            "imageFolder": "prehistoric"
+          }
+        },
+        {
+          "year": "~12,700 BCE",
+          "shortDesc": "Bølling-Allerød Warming",
+          "title": "GLOBAL CLIMATE",
+          "description": "A significant warming period begins after the Last Glacial Maximum, leading to ice sheet retreat and ecosystem changes.",
+          "theoretical": false,
+          "details": {
+            "year": "~12,700 BCE",
+            "shortDesc": "Bølling-Allerød Warming",
+            "title": "GLOBAL CLIMATE",
+            "description": "A relatively warm and moist interstadial period during the final stages of the Last Glacial Period.",
+            "details": "Placeholder: More details about the Bølling-Allerød warming period and its effects.",
+            "keyFigures": [],
+            "culturalContext": "Placeholder: Impact on human populations and environments.",
+            "locations": [
+              "Global"
+            ],
+            "artifacts": [],
+            "imageFolder": "prehistoric"
+          }
+        },
+        {
+          "year": "~10,900 BCE",
+          "shortDesc": "Younger Dryas Begins",
+          "title": "GLOBAL CLIMATE",
+          "description": "An abrupt return to near-glacial conditions interrupts the post-glacial warming trend, lasting over a millennium.",
+          "theoretical": false,
+          "details": {
+            "year": "~12,700 BCE",
+            "shortDesc": "Bølling-Allerød Warming",
+            "title": "GLOBAL CLIMATE",
+            "description": "A relatively warm and moist interstadial period during the final stages of the Last Glacial Period.",
+            "details": "Placeholder: More details about the Bølling-Allerød warming period and its effects.",
+            "keyFigures": [],
+            "culturalContext": "Placeholder: Impact on human populations and environments.",
+            "locations": [
+              "Global"
+            ],
+            "artifacts": [],
+            "imageFolder": "prehistoric"
+          }
+        },
+        {
+          "year": "~10,900 BCE",
+          "shortDesc": "Impact Event (Theoretical)",
+          "title": "NORTH AMERICA [THEORETICAL]",
+          "description": "Hypothesized comet/asteroid impact or airburst event proposed as a trigger for the Younger Dryas cooling and associated environmental changes.",
+          "theoretical": true,
+          "details": {
+            "year": "~10,900 BCE",
+            "shortDesc": "Impact Event (Theoretical)",
+            "title": "NORTH AMERICA [THEORETICAL]",
+            "description": "Hypothesized comet/asteroid impact or airburst event proposed as a trigger for the Younger Dryas cooling and associated environmental changes.",
+            "details": "Placeholder: More details about the Younger Dryas impact hypothesis, evidence, and controversies.",
+            "keyFigures": [],
+            "culturalContext": "Placeholder: Potential catastrophic effects on North American megafauna and Paleo-Indian cultures like Clovis.",
+            "locations": [
+              "North America (epicenter debated)"
+            ],
+            "artifacts": [
+              "Nanodiamonds",
+              "Spherules",
+              "Platinum anomalies (debated)"
+            ],
+            "imageFolder": "prehistoric"
+          }
+        },
+        {
+          "year": "~10,800 BCE",
+          "shortDesc": "Megafauna/Clovis Changes",
+          "title": "NORTH AMERICA",
+          "description": "Accelerated extinction of large mammals (mammoths, mastodons) and significant transformation/decline of the Clovis Paleo-Indian culture coincides with Younger Dryas onset.",
+          "theoretical": false,
+          "details": {
+            "year": "~10,800 BCE",
+            "shortDesc": "Megafauna/Clovis Changes",
+            "title": "NORTH AMERICA",
+            "description": "Major extinction event for large mammals (megafauna) and significant changes or decline in the Clovis paleo-Indian culture.",
+            "details": "Placeholder: More details on the megafauna extinction and the cultural shifts observed in the archaeological record around this time.",
+            "keyFigures": [],
+            "culturalContext": "Placeholder: Debate on causes - climate change, human hunting (overkill hypothesis), impact event, or combination.",
+            "locations": [
+              "North America"
+            ],
+            "artifacts": [
+              "Clovis points",
+              "Megafauna fossils"
+            ],
+            "imageFolder": "prehistoric"
+          }
+        },
+        {
+          "year": "~9,700 BCE",
+          "shortDesc": "End of Younger Dryas",
+          "title": "GLOBAL CLIMATE",
+          "description": "Rapid warming resumes, marking the end of the last major cold period of the Pleistocene and the beginning of the Holocene epoch.",
+          "theoretical": false,
+          "details": {
+            "year": "~12,700 BCE",
+            "shortDesc": "Bølling-Allerød Warming",
+            "title": "GLOBAL CLIMATE",
+            "description": "A relatively warm and moist interstadial period during the final stages of the Last Glacial Period.",
+            "details": "Placeholder: More details about the Bølling-Allerød warming period and its effects.",
+            "keyFigures": [],
+            "culturalContext": "Placeholder: Impact on human populations and environments.",
+            "locations": [
+              "Global"
+            ],
+            "artifacts": [],
+            "imageFolder": "prehistoric"
+          }
+        }
+      ],
+      "didYouKnow": "prehistoric"
+    },
+    {
+      "title": "EARLY NEOLITHIC REVOLUTION (10,000 - 5,000 BCE)",
+      "id": "earlyNeolithic",
+      "theoretical": false,
+      "events": [
+        {
+          "year": "9,600 BCE",
+          "shortDesc": "World's oldest temple",
+          "title": "GÖBEKLI TEPE",
+          "description": "Construction of massive stone pillars arranged in circles with carved animals and symbols in modern-day Turkey",
+          "theoretical": false,
+          "details": {
+            "year": "9500 BCE",
+            "shortDesc": "World's oldest temple",
+            "title": "Göbekli Tepe",
+            "description": "Construction of massive stone pillars arranged in circles with carved animals and symbols in modern-day Turkey",
+            "details": "Göbekli Tepe consists of massive stone pillars arranged in circles, many decorated with carvings of animals and abstract symbols. The site predates pottery, metallurgy, writing, and even farming.",
+            "keyFigures": [],
+            "culturalContext": "The construction of Göbekli Tepe suggests complex social organization and religious practices before the development of agriculture, challenging previous theories about the development of civilization.",
+            "locations": [
+              "Turkey",
+              "Anatolia"
+            ],
+            "artifacts": [
+              "T-shaped pillars",
+              "Stone carvings",
+              "Animal reliefs"
+            ],
+            "imageFolder": "neolithic/gobekli_tepe"
+          }
+        },
+        {
+          "year": "9,500 BCE",
+          "shortDesc": "Agricultural innovations",
+          "title": "EARLY CULTIVATION",
+          "description": "First evidence of intentional plant management and early farming techniques developing across fertile regions",
+          "theoretical": false
+        },
+        {
+          "year": "9,000 BCE",
+          "shortDesc": "Agricultural beginnings",
+          "title": "FERTILE CRESCENT",
+          "description": "First evidence of deliberate cultivation of wild grains like wheat and barley in the Middle East",
+          "theoretical": false,
+          "details": {
+            "year": "9000 BCE",
+            "shortDesc": "Agricultural beginnings",
+            "title": "Fertile Crescent",
+            "description": "First evidence of deliberate cultivation of wild grains like wheat and barley in the Middle East",
+            "details": "Early farmers in the Fertile Crescent began cultivating wild grains like wheat and barley, and domesticating animals such as goats and sheep, leading to the first settled agricultural communities.",
+            "keyFigures": [],
+            "culturalContext": "The shift to agriculture fundamentally changed human society, allowing for permanent settlements, population growth, food surpluses, and eventually social stratification.",
+            "locations": [
+              "Middle East",
+              "Mesopotamia",
+              "Levant"
+            ],
+            "artifacts": [
+              "Early sickles",
+              "Grinding stones",
+              "Storage containers"
+            ],
+            "imageFolder": "neolithic"
+          }
+        },
+        {
+          "year": "9,000 BCE",
+          "shortDesc": "Mehrgarh Settlement",
+          "title": "SOUTH ASIA",
+          "description": "Early agricultural settlement in the Indus Valley region, precursor to the Indus Valley Civilization",
+          "theoretical": false
+        },
+        {
+          "year": "8,500 BCE",
+          "shortDesc": "Early settlement",
+          "title": "JERICHO",
+          "description": "Development of one of the world's oldest continuously inhabited settlements with protective walls and a tower",
+          "theoretical": false,
+          "details": {
+            "year": "8500 BCE",
+            "shortDesc": "Early settlement",
+            "title": "Jericho",
+            "description": "Development of one of the world's oldest continuously inhabited settlements with protective walls and a tower",
+            "details": "Archaeological evidence shows that Jericho (Tell es-Sultan) was a fortified settlement with a stone tower and walls by 8500 BCE, making it one of the earliest examples of monumental defensive architecture.",
+            "keyFigures": [],
+            "culturalContext": "The massive fortifications at Jericho suggest organized defense and communal labor on a scale previously unseen, indicating emerging social complexity and possibly hierarchy.",
+            "locations": [
+              "Levant",
+              "Palestine",
+              "Jordan Valley"
+            ],
+            "artifacts": [
+              "Stone tower",
+              "Defensive walls",
+              "Round houses"
+            ],
+            "imageFolder": "neolithic"
+          }
+        },
+        {
+          "year": "8,000 BCE",
+          "shortDesc": "Domestication of Cattle",
+          "title": "NEAR EAST",
+          "description": "Domestication of cattle for meat, milk, and labor in the Near East region",
+          "theoretical": false,
+          "details": {
+            "year": "8000 BCE",
+            "shortDesc": "Domestication of Cattle",
+            "title": "NEAR EAST",
+            "description": "Domestication of cattle for meat, milk, and labor in the Near East region",
+            "details": "By 8000 BCE, there is clear evidence of morphological changes indicating cattle domestication. These animals provided reliable sources of meat, milk, and labor.",
+            "keyFigures": [],
+            "culturalContext": "Animal domestication created a more secure food supply and provided new resources, fundamentally altering human relationships with the environment.",
+            "locations": [
+              "Near East",
+              "Anatolia"
+            ],
+            "artifacts": [
+              "Animal remains",
+              "Corrals",
+              "Bone tools"
+            ],
+            "imageFolder": "neolithic"
+          }
+        },
+        {
+          "year": "8,000 BCE",
+          "shortDesc": "Göbekli Tepe Buried",
+          "title": "ANATOLIA",
+          "description": "The monumental structures at Göbekli Tepe are intentionally buried under layers of earth, preserving the site.",
+          "theoretical": false,
+          "details": {
+            "year": "8000 BCE",
+            "shortDesc": "Göbekli Tepe Buried",
+            "title": "ANATOLIA",
+            "description": "The monumental structures at Göbekli Tepe were deliberately and carefully buried.",
+            "details": "Placeholder: Details about the intentional backfilling of Göbekli Tepe, methods, and possible reasons.",
+            "keyFigures": [],
+            "culturalContext": "Placeholder: The burial itself is a significant cultural act, suggesting changing beliefs or the end of a specific ritual period.",
+            "locations": [
+              "Turkey",
+              "Anatolia",
+              "Göbekli Tepe"
+            ],
+            "artifacts": [
+              "Backfill material",
+              "Analysis of burial layers"
+            ],
+            "imageFolder": "neolithic/gobekli_tepe"
+          }
+        },
+        {
+          "year": "8,000 BCE",
+          "shortDesc": "Animal domestication",
+          "title": "SOUTHWEST ASIA",
+          "description": "Evidence of early domestication of sheep, goats, and other animals for food, materials, and labor",
+          "theoretical": false,
+          "details": {
+            "year": "8000 BCE",
+            "shortDesc": "Animal domestication",
+            "title": "Southwest Asia",
+            "description": "Evidence of early domestication of sheep, goats, and other animals for food, materials, and labor",
+            "details": "By 8000 BCE, there is clear evidence of morphological changes in sheep and goats indicating domestication. These animals provided reliable sources of meat, milk, wool, and labor.",
+            "keyFigures": [],
+            "culturalContext": "Animal domestication created a more secure food supply and provided new resources for clothing, tools, and transportation, fundamentally altering human relationships with the environment.",
+            "locations": [
+              "Southwest Asia",
+              "Zagros Mountains",
+              "Anatolia"
+            ],
+            "artifacts": [
+              "Animal remains",
+              "Corrals",
+              "Bone tools"
+            ],
+            "imageFolder": "neolithic"
+          }
+        },
+        {
+          "year": "7,000 BCE",
+          "shortDesc": "Vinča Culture",
+          "title": "EUROPE",
+          "description": "Advanced Neolithic culture in Southeast Europe known for sophisticated pottery and early copper metallurgy",
+          "theoretical": false
+        },
+        {
+          "year": "7,000 BCE",
+          "shortDesc": "Large settlement",
+          "title": "ÇATALHÖYÜK",
+          "description": "Large Neolithic settlement in Anatolia with houses built adjacent to each other and entered through roofs",
+          "theoretical": false,
+          "details": {
+            "year": "7000 BCE",
+            "shortDesc": "Large settlement",
+            "title": "Çatalhöyük",
+            "description": "Large Neolithic settlement in Anatolia with houses built adjacent to each other and entered through roofs",
+            "details": "Çatalhöyük was a large Neolithic settlement in southern Anatolia, with houses built directly adjacent to each other with no streets or pathways between them. Residents entered their homes through holes in the roof.",
+            "keyFigures": [],
+            "culturalContext": "The site provides insights into early urban living, with evidence of complex religious practices, art, and craft specialization.",
+            "locations": [
+              "Turkey",
+              "Anatolia"
+            ],
+            "artifacts": [
+              "Wall paintings",
+              "Female figurines",
+              "Obsidian tools"
+            ],
+            "imageFolder": "neolithic/settlements"
+          }
+        },
+        {
+          "year": "6,600 BCE",
+          "shortDesc": "Jiahu Symbols",
+          "title": "CHINA",
+          "description": "Early symbolic markings found on pottery in Jiahu, China, possibly representing an early form of proto-writing",
+          "theoretical": false
+        },
+        {
+          "year": "6,500 BCE",
+          "shortDesc": "Ceramic technology",
+          "title": "POTTERY INNOVATION",
+          "description": "Widespread adoption of fired pottery for storage, cooking, and artistic expression across the Near East",
+          "theoretical": false,
+          "details": {
+            "year": "6500 BCE",
+            "shortDesc": "Ceramic technology",
+            "title": "Pottery Innovation",
+            "description": "Widespread adoption of fired pottery for storage, cooking, and artistic expression across the Near East",
+            "details": "The invention of pottery allowed for better food storage and new cooking methods. Early pottery was often decorated with geometric patterns and later with representations of animals and humans.",
+            "keyFigures": [],
+            "culturalContext": "Pottery production represents an important technological advancement that facilitated the storage of agricultural surpluses and the cooking of new types of food.",
+            "locations": [
+              "Middle East",
+              "East Asia",
+              "Africa"
+            ],
+            "artifacts": [
+              "Storage jars",
+              "Cooking vessels",
+              "Decorated bowls"
+            ],
+            "imageFolder": "neolithic/pottery"
+          }
+        },
+        {
+          "year": "6,200 BCE",
+          "shortDesc": "Farming spread",
+          "title": "EUROPEAN EXPANSION",
+          "description": "Agricultural techniques and domesticated crops spread into Europe through the Balkans and along the Mediterranean",
+          "theoretical": false,
+          "details": {
+            "year": "6200 BCE",
+            "shortDesc": "Farming spread",
+            "title": "European Expansion",
+            "description": "Agricultural techniques and domesticated crops spread into Europe through the Balkans and along the Mediterranean",
+            "details": "The Neolithic way of life spread into Europe from Anatolia and the Near East, bringing domesticated plants, animals, and the knowledge of pottery making and settled agriculture.",
+            "keyFigures": [],
+            "culturalContext": "The spread of agriculture into Europe represents one of the most significant demographic and cultural transformations in human history, eventually replacing hunting and gathering as the dominant lifestyle.",
+            "locations": [
+              "Balkans",
+              "Greece",
+              "Mediterranean",
+              "Europe"
+            ],
+            "artifacts": [
+              "Farming tools",
+              "Settlement remains",
+              "Early European pottery"
+            ],
+            "imageFolder": "neolithic"
+          }
+        },
+        {
+          "year": "5,900 BCE",
+          "shortDesc": "Proto-cities emerge",
+          "title": "SOCIAL STRATIFICATION",
+          "description": "Larger settlements show evidence of specialized crafts, social hierarchies, and organized public spaces",
+          "theoretical": false,
+          "details": {
+            "year": "5900 BCE",
+            "shortDesc": "Proto-cities emerge",
+            "title": "Social Stratification",
+            "description": "Larger settlements show evidence of specialized crafts, social hierarchies, and organized public spaces",
+            "details": "As settlements grew in size and complexity, evidence emerges of specialized craft production, trade networks, and social differentiation indicated by variations in burial goods and housing quality.",
+            "keyFigures": [],
+            "culturalContext": "These early forms of social complexity laid the groundwork for the subsequent development of more formalized hierarchies and eventually state-level societies in the following millennia.",
+            "locations": [
+              "Near East",
+              "Mesopotamia",
+              "Balkans"
+            ],
+            "artifacts": [
+              "Luxury goods",
+              "Workshop areas",
+              "Differential burial goods"
+            ],
+            "imageFolder": "neolithic"
+          }
+        }
+      ],
+      "didYouKnow": null
+    },
+    {
+      "title": "EARLY URBAN CIVILIZATIONS (5,000 - 3,000 BCE)",
+      "id": "earlyUrban",
+      "theoretical": false,
+      "events": [
+        {
+          "year": "5,500 BCE",
+          "shortDesc": "Early metallurgy",
+          "title": "COPPER WORKING",
+          "description": "First evidence of copper smelting in the Balkans and Middle East, marking the beginning of human metalworking",
+          "theoretical": false
+        },
+        {
+          "year": "5,000 BCE",
+          "shortDesc": "Irrigation agriculture",
+          "title": "MESOPOTAMIA",
+          "description": "Development of sophisticated irrigation systems in Mesopotamia, enabling large-scale agriculture in arid regions",
+          "theoretical": false,
+          "details": {
+            "year": "5000 BCE",
+            "shortDesc": "Early irrigation systems",
+            "title": "Mesopotamia",
+            "description": "Development of irrigation in the Tigris-Euphrates valley",
+            "details": "Early Mesopotamians developed sophisticated irrigation systems, digging canals to bring water from rivers to fields, allowing for intensive agriculture in an otherwise arid region.",
+            "keyFigures": [],
+            "culturalContext": "Control of water resources became central to political power in early Mesopotamia, with irrigation projects requiring coordinated labor and centralized authority.",
+            "locations": [
+              "Mesopotamia",
+              "Iraq",
+              "Syria"
+            ],
+            "artifacts": [
+              "Canal remains",
+              "Water control devices"
+            ],
+            "imageFolder": "bronze_age"
+          }
+        },
+        {
+          "year": "4,500 BCE",
+          "shortDesc": "Long-distance trade",
+          "title": "TRADE NETWORKS",
+          "description": "Extensive trade networks develop across the Near East, exchanging raw materials, finished goods, and ideas",
+          "theoretical": false
+        },
+        {
+          "year": "4,000 BCE",
+          "shortDesc": "Uruk Period begins",
+          "title": "FIRST SUMERIAN CITIES",
+          "description": "Rise of the first true cities in southern Mesopotamia, with Uruk becoming the world's largest urban center",
+          "theoretical": false
+        },
+        {
+          "year": "4,000 BCE",
+          "shortDesc": "Proto-writing",
+          "title": "ADMINISTRATIVE TOKENS",
+          "description": "Development of clay tokens, seals, and counting devices for record keeping in Mesopotamia",
+          "theoretical": false
+        },
+        {
+          "year": "3,500 BCE",
+          "shortDesc": "Wheel invention",
+          "title": "MESOPOTAMIAN INNOVATION",
+          "description": "The wheel is invented, first for pottery making (potter's wheel) and later adapted for transportation",
+          "theoretical": false,
+          "details": {
+            "year": "3500 BCE",
+            "shortDesc": "Invention of the wheel",
+            "title": "Mesopotamian Innovation",
+            "description": "Wheel technology transforms transportation and pottery production",
+            "details": "The wheel was first used for pottery making (potter's wheel) before being adapted for transportation. Early wheels were solid wooden discs attached to axles.",
+            "keyFigures": [],
+            "culturalContext": "The wheel revolutionized transportation, trade, and warfare, allowing for the movement of heavier loads over longer distances and contributing to the expansion of early states.",
+            "locations": [
+              "Mesopotamia",
+              "Eurasia"
+            ],
+            "artifacts": [
+              "Early wheeled vehicles",
+              "Potter's wheels"
+            ],
+            "imageFolder": "bronze_age"
+          }
+        },
+        {
+          "year": "3,500 BCE",
+          "shortDesc": "Early Dynastic Egypt",
+          "title": "PREDYNASTIC DEVELOPMENTS",
+          "description": "Formation of early Egyptian states in the Nile Valley prior to unification",
+          "theoretical": false
+        },
+        {
+          "year": "3,300 BCE",
+          "shortDesc": "First writing system",
+          "title": "SUMERIAN CUNEIFORM",
+          "description": "Development of cuneiform writing in Mesopotamia, the world's earliest known writing system",
+          "theoretical": false,
+          "details": {
+            "year": "3300 BCE",
+            "shortDesc": "First writing system",
+            "title": "Sumerian Cuneiform",
+            "description": "Development of writing in Sumer (cuneiform) revolutionizes record keeping",
+            "details": "Cuneiform began as pictographs pressed into clay tablets with a reed stylus, primarily for recording economic transactions. It evolved into a more abstract system that could express complex ideas and narratives.",
+            "keyFigures": [
+              "Sumerian scribes"
+            ],
+            "culturalContext": "Writing allowed for more complex administration, the preservation of knowledge, literature, and religious texts, fundamentally transforming how societies functioned and remembered their past.",
+            "locations": [
+              "Sumer",
+              "Uruk",
+              "Southern Mesopotamia"
+            ],
+            "artifacts": [
+              "Clay tablets",
+              "Cylinder seals"
+            ],
+            "imageFolder": "bronze_age/hieroglyphics"
+          }
+        },
+        {
+          "year": "3,100 BCE",
+          "shortDesc": "Egyptian unification",
+          "title": "NARMER'S CONQUEST",
+          "description": "Unification of Upper and Lower Egypt under King Narmer (Menes), founding the First Dynasty",
+          "theoretical": false
+        },
+        {
+          "year": "2,900 BCE",
+          "shortDesc": "Sumerian city-states",
+          "title": "URBAN CENTERS",
+          "description": "Development of major city-states like Ur, Uruk, and Lagash in Mesopotamia",
+          "theoretical": false
+        }
+      ],
+      "didYouKnow": null
+    },
+    {
+      "title": "BRONZE AGE CIVILIZATIONS (3,000 - 1,200 BCE)",
+      "id": "bronzeAge",
+      "theoretical": false,
+      "events": [
+        {
+          "year": "2,700 BCE",
+          "shortDesc": "Egyptian Old Kingdom",
+          "title": "PYRAMID AGE",
+          "description": "Beginning of the Old Kingdom period in Egypt, known for monumental architecture including the Step Pyramid and Great Pyramids",
+          "theoretical": false,
+          "details": {
+            "year": "2700 BCE",
+            "shortDesc": "Egyptian Old Kingdom",
+            "title": "Pyramid Age",
+            "description": "Construction of the Great Pyramids of Giza begins",
+            "details": "The Great Pyramid of Giza, built for Pharaoh Khufu, was the tallest human-made structure in the world for over 3,800 years. The pyramids demonstrate the extraordinary organizational capacity and engineering skills of ancient Egyptians.",
+            "keyFigures": [
+              "Pharaoh Khufu",
+              "Pharaoh Khafre",
+              "Pharaoh Menkaure",
+              "Imhotep"
+            ],
+            "culturalContext": "The pyramids were part of elaborate funerary complexes designed to ensure the pharaoh's successful journey to the afterlife, reflecting Egyptian religious beliefs about death and immortality.",
+            "locations": [
+              "Egypt",
+              "Giza",
+              "Nile Valley"
+            ],
+            "artifacts": [
+              "Pyramids",
+              "Funerary objects",
+              "Hieroglyphic inscriptions"
+            ],
+            "imageFolder": "bronze_age/pyramids"
+          }
+        },
+        {
+          "year": "2,600 BCE",
+          "shortDesc": "Great Pyramid of Giza",
+          "title": "KHUFU'S MONUMENT",
+          "description": "Construction of the Great Pyramid of Giza, the largest of the Egyptian pyramids and one of the Seven Wonders of the Ancient World",
+          "theoretical": false
+        },
+        {
+          "year": "2500 BCE",
+          "shortDesc": "Indus Valley Civilization",
+          "title": "HARAPPAN CULTURE",
+          "description": "Urban civilization in South Asia with sophisticated city planning, drainage systems, and standardized weights and measures",
+          "theoretical": false,
+          "details": {
+            "year": "2500 BCE",
+            "shortDesc": "Indus Valley Civilization",
+            "title": "Harappan Culture",
+            "description": "Advanced urban centers at Mohenjo-daro and Harappa flourish",
+            "details": "The Indus Valley Civilization featured remarkably well-planned cities with grid layouts, sophisticated drainage systems, standardized weights and measures, and a still-undeciphered writing system.",
+            "keyFigures": [],
+            "culturalContext": "Despite its sophistication, much about Harappan society remains mysterious, including its governance structure, religious practices, and the reasons for its eventual decline.",
+            "locations": [
+              "Pakistan",
+              "India",
+              "Mohenjo-daro",
+              "Harappa"
+            ],
+            "artifacts": [
+              "Seals with script",
+              "Standardized weights",
+              "Terracotta figurines"
+            ],
+            "imageFolder": "bronze_age/artifacts"
+          }
+        },
+        {
+          "year": "2500 BCE",
+          "shortDesc": "Epic of Gilgamesh",
+          "title": "SUMERIAN LITERATURE",
+          "description": "Composition of one of the earliest known literary works, telling the story of the king of Uruk and his quest for immortality",
+          "theoretical": false
+        },
+        {
+          "year": "2334 BCE",
+          "shortDesc": "Akkadian Empire",
+          "title": "SARGON'S CONQUEST",
+          "description": "Sargon of Akkad creates the world's first multi-ethnic empire, uniting Mesopotamia under a single ruler",
+          "theoretical": false
+        },
+        {
+          "year": "2,000 BCE",
+          "shortDesc": "Minoan Civilization",
+          "title": "CRETE",
+          "description": "First advanced European civilization develops on Crete",
+          "theoretical": false,
+          "details": {
+            "year": "2000 BCE",
+            "shortDesc": "Minoan Civilization",
+            "title": "Crete",
+            "description": "First advanced European civilization develops on Crete",
+            "details": "The Minoans built elaborate palace complexes, most famously at Knossos, developed a writing system (Linear A), and created sophisticated art and architecture. They were a major maritime trading power in the Mediterranean.",
+            "keyFigures": [
+              "King Minos (legendary)"
+            ],
+            "culturalContext": "Minoan culture appears to have emphasized female deities, bull imagery, and maritime trade. Their society seems to have been relatively peaceful and prosperous.",
+            "locations": [
+              "Crete",
+              "Aegean Sea",
+              "Knossos"
+            ],
+            "artifacts": [
+              "Palace of Knossos",
+              "Bull-leaping frescoes",
+              "Linear A tablets"
+            ],
+            "imageFolder": "bronze_age"
+          }
+        }
+      ],
+      "didYouKnow": "bronzeAge"
+    },
+    {
+      "title": "IRON AGE & CLASSICAL PERIOD (1,200 BCE - 500 CE)",
+      "id": "classical",
+      "theoretical": false,
+      "events": [
+        {
+          "year": "1,050 BCE",
+          "shortDesc": "Phoenician Alphabet",
+          "title": "WRITING INNOVATION",
+          "description": "Development of the first widely used consonantal alphabet, ancestor of many modern scripts",
+          "theoretical": false
+        },
+        {
+          "year": "1,000 BCE",
+          "shortDesc": "Phoenician city-states",
+          "title": "MARITIME TRADE",
+          "description": "Phoenicians expand Mediterranean trade networks",
+          "theoretical": false,
+          "details": {
+            "year": "1000 BCE",
+            "shortDesc": "Phoenician city-states",
+            "title": "Maritime Trade",
+            "description": "Phoenicians expand Mediterranean trade networks",
+            "details": "The Phoenicians established a network of colonies and trading posts throughout the Mediterranean, spreading their alphabet (the basis for many modern writing systems) and connecting diverse cultures through commerce.",
+            "keyFigures": [],
+            "culturalContext": "As skilled seafarers and merchants, the Phoenicians facilitated cultural exchange between Egypt, Mesopotamia, and the emerging societies of Europe.",
+            "locations": [
+              "Lebanon",
+              "Mediterranean Basin",
+              "Carthage",
+              "Tyre",
+              "Sidon"
+            ],
+            "artifacts": [
+              "Purple dye",
+              "Glassware",
+              "Ivory carvings"
+            ],
+            "imageFolder": "classical"
+          }
+        },
+        {
+          "year": "753 BCE",
+          "shortDesc": "Founding of Rome",
+          "title": "ROMAN BEGINNINGS",
+          "description": "Traditional date for the founding of Rome",
+          "theoretical": false,
+          "details": {
+            "year": "753 BCE",
+            "shortDesc": "Founding of Rome",
+            "title": "Roman Beginnings",
+            "description": "Traditional date for the founding of Rome",
+            "details": "According to legend, Rome was founded by Romulus, who with his twin brother Remus was raised by a she-wolf. Archaeological evidence shows early settlements on the Palatine Hill dating to this approximate period.",
+            "keyFigures": [
+              "Romulus (legendary)"
+            ],
+            "culturalContext": "The founding myths of Rome were important to Roman identity and were elaborated over centuries to connect Rome with divine origins and destiny.",
+            "locations": [
+              "Italy",
+              "Tiber River",
+              "Seven Hills of Rome"
+            ],
+            "artifacts": [
+              "Early Roman pottery",
+              "Architectural remains"
+            ],
+            "imageFolder": "classical"
+          }
+        },
+        {
+          "year": "500 BCE",
+          "shortDesc": "Classical Age",
+          "title": "GOLDEN AGE OF GREECE",
+          "description": "Advances in philosophy, art, and science in Athens",
+          "theoretical": false,
+          "details": {
+            "year": "500 BCE",
+            "shortDesc": "Classical Age",
+            "title": "Golden Age of Greece",
+            "description": "Advances in philosophy, art, and science in Athens",
+            "details": "The Classical period in Athens saw the development of democracy under Pericles, the philosophical work of Socrates, Plato, and Aristotle, and architectural marvels like the Parthenon.",
+            "keyFigures": [
+              "Pericles",
+              "Socrates",
+              "Plato",
+              "Aristotle",
+              "Phidias"
+            ],
+            "culturalContext": "Athenian democracy, though limited to free adult males, represented a revolutionary political system that has influenced governments throughout history.",
+            "locations": [
+              "Greece",
+              "Athens",
+              "Acropolis"
+            ],
+            "artifacts": [
+              "Parthenon",
+              "Athenian pottery",
+              "Philosophical texts"
+            ],
+            "imageFolder": "classical/parthenon"
+          }
+        },
+        {
+          "year": "221 BCE",
+          "shortDesc": "Unification of China",
+          "title": "QIN DYNASTY",
+          "description": "Qin Shi Huang unifies China and begins the Great Wall",
+          "theoretical": false,
+          "details": {
+            "year": "221 BCE",
+            "shortDesc": "Unification of China",
+            "title": "Qin Dynasty",
+            "description": "Qin Shi Huang unifies China and begins the Great Wall",
+            "details": "Qin Shi Huang conquered the warring states of China, standardized weights, measures, and writing, built road networks, and began construction of the Great Wall to protect against northern invaders.",
+            "keyFigures": [
+              "Qin Shi Huang",
+              "Li Si"
+            ],
+            "culturalContext": "The Qin Dynasty established the centralized imperial system that would govern China for over two millennia, though the harsh Legalist policies of Qin Shi Huang led to the dynasty's quick collapse after his death.",
+            "locations": [
+              "China",
+              "Xianyang",
+              "Great Wall"
+            ],
+            "artifacts": [
+              "Terracotta Army",
+              "Standardized coins",
+              "Early Great Wall sections"
+            ],
+            "imageFolder": "classical"
+          }
+        },
+        {
+          "year": "27 BCE",
+          "shortDesc": "Roman Empire",
+          "title": "AUGUSTUS",
+          "description": "Roman Republic transitions to the Roman Empire",
+          "theoretical": false,
+          "details": {
+            "year": "27 BCE",
+            "shortDesc": "Roman Empire",
+            "title": "Augustus",
+            "description": "Roman Republic transitions to the Roman Empire",
+            "details": "After defeating Mark Antony and Cleopatra, Octavian became Augustus, the first Roman Emperor, establishing the Pax Romana (Roman Peace), a period of relative stability that lasted about 200 years.",
+            "keyFigures": [
+              "Augustus (Octavian)",
+              "Julius Caesar",
+              "Mark Antony",
+              "Cleopatra"
+            ],
+            "culturalContext": "Augustus maintained the facade of republican government while centralizing power, creating a model of imperial rule that balanced military power, legal authority, and public approval.",
+            "locations": [
+              "Rome",
+              "Italy",
+              "Mediterranean Basin"
+            ],
+            "artifacts": [
+              "Augustan architecture",
+              "Imperial portraits",
+              "Coinage"
+            ],
+            "imageFolder": "classical/colosseum"
+          }
+        },
+        {
+          "year": "476 CE",
+          "shortDesc": "Fall of Rome",
+          "title": "END OF WESTERN ROMAN EMPIRE",
+          "description": "Romulus Augustulus is deposed, marking the fall of the Western Roman Empire",
+          "theoretical": false,
+          "details": {
+            "year": "476 CE",
+            "shortDesc": "Fall of Rome",
+            "title": "End of Western Roman Empire",
+            "description": "Romulus Augustulus is deposed, marking the fall of the Western Roman Empire",
+            "details": "The Germanic commander Odoacer deposed the last Western Roman Emperor, Romulus Augustulus, sending the imperial regalia to the Eastern Emperor Zeno and ruling Italy as a king rather than an emperor.",
+            "keyFigures": [
+              "Romulus Augustulus",
+              "Odoacer",
+              "Emperor Zeno"
+            ],
+            "culturalContext": "While traditionally seen as the 'fall' of Rome, this event was part of a gradual transformation rather than a sudden collapse, with many Roman institutions continuing under Germanic rule.",
+            "locations": [
+              "Italy",
+              "Ravenna",
+              "Rome"
+            ],
+            "artifacts": [
+              "Late Roman military equipment",
+              "Germanic artifacts"
+            ],
+            "imageFolder": "classical"
+          }
+        }
+      ],
+      "didYouKnow": "classical"
+    },
+    {
+      "title": "POST-CLASSICAL PERIOD (500 - 1500 CE)",
+      "id": "postClassical",
+      "theoretical": false,
+      "events": [
+        {
+          "year": "632 CE",
+          "shortDesc": "Islamic Expansion",
+          "title": "RISE OF ISLAM",
+          "description": "Beginning of Islamic expansion across the Middle East and North Africa",
+          "theoretical": false
+        },
+        {
+          "year": "800 CE",
+          "shortDesc": "Holy Roman Empire",
+          "title": "CHARLEMAGNE",
+          "description": "Charlemagne crowned as Holy Roman Emperor",
+          "theoretical": false
+        },
+        {
+          "year": "1200 CE",
+          "shortDesc": "Angkor Empire",
+          "title": "SOUTHEAST ASIAN POWER",
+          "description": "Angkor Empire reaches its peak in Southeast Asia",
+          "theoretical": false
+        }
+      ],
+      "didYouKnow": "postClassical"
+    },
+    {
+      "title": "EARLY MODERN PERIOD (1500 - 1800 CE)",
+      "id": "earlyModern",
+      "theoretical": false,
+      "events": [
+        {
+          "year": "1492 CE",
+          "shortDesc": "Age of Exploration",
+          "title": "COLUMBUS",
+          "description": "Columbus reaches the Americas, beginning European colonization",
+          "theoretical": false
+        },
+        {
+          "year": "1600 CE",
+          "shortDesc": "Scientific Revolution",
+          "title": "MODERN SCIENCE",
+          "description": "Scientific method and empirical research transform knowledge",
+          "theoretical": false
+        }
+      ],
+      "didYouKnow": "earlyModern"
+    },
+    {
+      "title": "MODERN ERA (1800 - PRESENT)",
+      "id": "modern",
+      "theoretical": false,
+      "events": [
+        {
+          "year": "1804 CE",
+          "shortDesc": "Napoleonic Era",
+          "title": "NAPOLEON",
+          "description": "Napoleon Bonaparte crowned Emperor of France",
+          "theoretical": false
+        },
+        {
+          "year": "1914 CE",
+          "shortDesc": "World War I",
+          "title": "GLOBAL CONFLICT",
+          "description": "First worldwide industrial war begins",
+          "theoretical": false
+        },
+        {
+          "year": "1991 CE",
+          "shortDesc": "End of Cold War",
+          "title": "MODERN WORLD",
+          "description": "Soviet Union dissolves, ending the Cold War",
+          "theoretical": false
+        },
+        {
+          "year": "2001 CE",
+          "shortDesc": "September 11 Attacks",
+          "title": "WAR ON TERROR",
+          "description": "Terrorist attacks in the United States lead to global conflicts and security changes",
+          "theoretical": false
+        },
+        {
+          "year": "2008 CE",
+          "shortDesc": "Global Financial Crisis",
+          "title": "ECONOMIC RECESSION",
+          "description": "Worldwide economic downturn triggered by the collapse of the housing market",
+          "theoretical": false
+        },
+        {
+          "year": "2011 CE",
+          "shortDesc": "Arab Spring",
+          "title": "MIDDLE EAST REVOLUTIONS",
+          "description": "Wave of pro-democracy protests and uprisings across the Arab world",
+          "theoretical": false
+        },
+        {
+          "year": "2019 CE",
+          "shortDesc": "Global Pandemic",
+          "title": "COVID-19",
+          "description": "Worldwide health crisis that transformed global society and economies",
+          "theoretical": false
+        },
+        {
+          "year": "2022 CE",
+          "shortDesc": "European Conflict",
+          "title": "RUSSIA-UKRAINE WAR",
+          "description": "Largest conventional military conflict in Europe since World War II",
+          "theoretical": false
+        },
+        {
+          "year": "2023 CE",
+          "shortDesc": "AI Revolution",
+          "title": "ARTIFICIAL INTELLIGENCE",
+          "description": "Rapid advances in AI technology transform industries and raise new ethical questions",
+          "theoretical": false
+        }
+      ],
+      "didYouKnow": "modern"
+    }
+  ]
+}

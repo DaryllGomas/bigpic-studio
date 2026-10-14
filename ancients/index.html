@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070605">
+    <title>Ancient History — The Dial</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/redesign/tokens.css">
+    <link rel="stylesheet" href="css/redesign/base.css">
+    <link rel="stylesheet" href="css/redesign/ornament.css">
+    <link rel="stylesheet" href="css/redesign/dial.css">
+    <link rel="preload" as="image" href="images/redesign/dial/sky.webp">
+    <link rel="preload" as="image" href="images/redesign/dial/ring.webp">
+  </head>
+  <body class="page page--dial">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-wordmark" href="index.html" aria-label="Ancient History home">ANCIENT HISTORY</a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="index.html" aria-current="page">HOME</a></li>
+            <li><a class="site-nav__link" href="timeline.html">TIMELINE</a></li>
+            <li><a class="site-nav__link" href="artifacts.html">ARTIFACTS</a></li>
+          </ul>
+        </nav>
+        <label class="site-search">
+          <span class="visually-hidden">Search people, places, and events</span>
+          <svg class="site-search__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.75" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="m15.5 15.5 4.25 4.25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+          </svg>
+          <input class="site-search__input" type="search" placeholder="Search people, places, events…" autocomplete="off">
+        </label>
+      </div>
+    </header>
+
+    <main class="page-stage dial-stage" aria-labelledby="page-title">
+      <h1 id="page-title" class="visually-hidden">The Dial: turn the precession wheel to choose an era of ancient history</h1>
+
+      <!-- Full-viewport night sky over ruined megaliths. Code-drawn star twinkle + ember FX on top. -->
+      <div class="dial-sky" aria-hidden="true">
+        <canvas class="dial-fx"></canvas>
+      </div>
+
+      <nav class="dial-rail" aria-label="Choose an era">
+        <ol class="dial-rail__list"></ol>
+      </nav>
+
+      <div class="dial-ring-wrap">
+        <div class="dial-ring">
+          <img class="dial-ring__art" src="images/redesign/dial/ring.webp" alt="" aria-hidden="true">
+          <div class="dial-window">
+            <div class="dial-window__ghost" aria-hidden="true"></div>
+            <div class="dial-window__plate" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="dial-orbit" role="group" aria-label="Headline events for the selected era"></div>
+      </div>
+
+      <aside class="dial-event ornament-frame" data-slot="event-panel" aria-label="Focused event"></aside>
+      <aside class="dial-fact ornament-frame" data-slot="did-you-know" aria-label="Did you know" hidden></aside>
+      <aside class="dial-teaser ornament-frame" data-slot="artifacts-teaser" aria-label="Artifacts teaser"></aside>
+
+      <div class="dial-scrubber ornament-strip" data-slot="timeline-scrubber">
+        <button class="dial-scrubber__prev" type="button" aria-label="Previous era">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="dial-scrubber__label-wrap">
+          <p class="dial-scrubber__hint">TURN THE DIAL TO CHOOSE AN ERA</p>
+          <p class="dial-scrubber__current"><span class="dial-scrubber__label"></span> <span class="dial-scrubber__range"></span></p>
+        </div>
+        <button class="dial-scrubber__next" type="button" aria-label="Next era">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <nav class="dial-strip" aria-label="Choose an era">
+        <button class="dial-strip__prev" type="button" aria-label="Previous era">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="dial-strip__track"></div>
+        <button class="dial-strip__next" type="button" aria-label="Next era">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </nav>
+    </main>
+
+    <script type="module" src="js/redesign/data.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script type="module" src="js/redesign/dial.js"></script>
+  </body>
+</html>

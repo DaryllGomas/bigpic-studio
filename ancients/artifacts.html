@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070605">
+    <title>Ancient History — The Artifact Vault</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/redesign/tokens.css">
+    <link rel="stylesheet" href="css/redesign/base.css">
+    <link rel="stylesheet" href="css/redesign/ornament.css">
+    <link rel="stylesheet" href="css/redesign/vault.css">
+  </head>
+  <body class="page page--artifacts">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-wordmark" href="index.html" aria-label="Ancient History home">ANCIENT HISTORY</a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="index.html">HOME</a></li>
+            <li><a class="site-nav__link" href="timeline.html">TIMELINE</a></li>
+            <li><a class="site-nav__link" href="artifacts.html" aria-current="page">ARTIFACTS</a></li>
+          </ul>
+        </nav>
+        <label class="site-search">
+          <span class="visually-hidden">Search people, places, and events</span>
+          <svg class="site-search__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.75" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="m15.5 15.5 4.25 4.25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+          </svg>
+          <input class="site-search__input" type="search" placeholder="Search people, places, events…" autocomplete="off">
+        </label>
+      </div>
+    </header>
+
+    <main class="page-stage vault-stage" aria-labelledby="page-title">
+      <h1 id="page-title" class="visually-hidden">The Artifact Vault</h1>
+
+      <!-- The painted vault wall IS the page background: full-bleed, scaled like object-fit: cover by vault.js, which
+           sets --wx/--wy/--ww/--wh on <html> so the wall image, the niche hotspots and the embers share one geometry. -->
+      <div class="vault-scene" aria-hidden="true">
+        <img class="vault-scene__wall" data-wall="wide" src="images/redesign/vault/wall-wide.webp" alt="" decoding="async" width="1672" height="941">
+        <img class="vault-scene__wall" data-wall="tall" src="images/redesign/vault/wall-tall.webp" alt="" decoding="async" width="1024" height="1536" hidden>
+        <div class="vault-scene__shade"></div>
+        <canvas class="vault-scene__embers"></canvas>
+      </div>
+
+      <nav class="vault-stage__filters vault-filters" data-slot="artifact-filters" aria-label="Filter artifacts"></nav>
+
+      <section class="vault-stage__niches vault-hall" data-slot="artifact-niches" aria-label="Artifacts in the vault">
+        <div class="vault-wallbox">
+          <p class="vault-hall__status" role="status">Lighting the vault…</p>
+        </div>
+      </section>
+
+      <div class="vault-scrim" hidden></div>
+      <aside class="vault-stage__panel vault-panel ornament-frame" data-slot="artifact-panel" aria-labelledby="vault-panel-title" tabindex="-1">
+        <div class="vault-panel__grip" aria-hidden="true"></div>
+        <button class="vault-panel__close" type="button" aria-label="Close artifact details">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 18 18 M18 6 6 18" /></svg>
+        </button>
+        <div class="vault-panel__body">
+          <div class="vault-gallery" aria-roledescription="carousel" aria-label="Artifact images">
+            <figure class="vault-gallery__stage">
+              <div class="vault-gallery__backdrop"></div>
+              <img class="vault-gallery__image" alt="" decoding="async">
+              <button class="vault-gallery__arrow vault-gallery__arrow--prev" type="button" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6" /></svg>
+              </button>
+              <button class="vault-gallery__arrow vault-gallery__arrow--next" type="button" aria-label="Next image">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6" /></svg>
+              </button>
+              <figcaption class="vault-gallery__count visually-hidden" aria-live="polite"></figcaption>
+            </figure>
+            <div class="vault-gallery__thumbs" role="group" aria-label="Choose an image"></div>
+            <div class="vault-gallery__dots" aria-hidden="true"></div>
+          </div>
+
+          <div class="vault-panel__text">
+            <h2 id="vault-panel-title" class="vault-panel__title"></h2>
+            <div class="vault-panel__tags"></div>
+            <p class="vault-panel__era"><span class="vault-panel__era-place"></span><span class="vault-panel__era-dates"></span></p>
+            <div class="vault-panel__sections"></div>
+          </div>
+        </div>
+        <div class="vault-panel__footer">
+          <button class="vault-panel__explore ornament-pill" type="button" aria-expanded="false">
+            <span class="vault-panel__explore-label">Explore artifact</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15 M13 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+      </aside>
+    </main>
+
+    <script type="module" src="js/redesign/data.js"></script>
+    <script type="module" src="js/redesign/vault.js"></script>
+  </body>
+</html>

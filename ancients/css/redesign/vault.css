@@ -1,0 +1,1136 @@
+/* ==========================================================================
+   The Artifact Vault (frame 3)
+   The page background is a painted vault wall (wall-wide / wall-tall) with five empty lit niches.
+   vault.js scales the wall like object-fit: cover and publishes its box as --wx/--wy/--ww/--wh (px)
+   and --u (screen px per wall-image px) on <html>; the wall image, the niche hotspots and the
+   embers all use that one box, so the artifacts sit in their niches at every window size.
+   Everything here is scoped to .page--artifacts / .vault-*; shared tokens, header and ornament live
+   in tokens.css, base.css and ornament.css and are not edited.
+   ========================================================================== */
+
+.page--artifacts {
+  --vault-torch: 255 178 92;
+  --vault-torch-hot: 255 222 160;
+  --vault-azure: 70 150 226;
+  --vault-azure-hot: 159 216 255;
+  --vault-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* The header floats over the cave on this page, as in the frame. */
+.page--artifacts .site-header {
+  border-bottom-color: transparent;
+  background: linear-gradient(180deg, rgb(7 6 5 / 74%), rgb(7 6 5 / 34%) 72%, transparent);
+  box-shadow: none;
+}
+
+/* --------------------------------------------------------------------------
+   Stage layout: filters over the wall, side panel on the right (landscape desktop)
+   -------------------------------------------------------------------------- */
+
+.page--artifacts .vault-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(330px, 25.6vw, 430px);
+  grid-template-rows: 48px minmax(0, 1fr);
+  gap: 16px 26px;
+  height: calc(100svh - var(--header-height));
+  min-height: 0;
+  padding: 14px 24px 18px;
+  overflow: clip;
+  background: none;
+}
+
+.page--artifacts .vault-stage::after {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   The painted wall (fixed, full-bleed, cover-scaled by vault.js)
+   -------------------------------------------------------------------------- */
+
+.vault-scene {
+  position: fixed;
+  z-index: -2;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #0a0705;
+}
+
+.vault-scene__wall {
+  position: absolute;
+  top: var(--wy, 0);
+  left: var(--wx, 0);
+  display: block;
+  width: var(--ww, 100%);
+  max-width: none;
+  height: var(--wh, 100%);
+  user-select: none;
+}
+
+.vault-scene__wall[hidden] {
+  display: none;
+}
+
+.vault-scene__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(5 4 3 / 55%), transparent 22%),
+    radial-gradient(ellipse 90% 85% at 42% 52%, transparent 60%, rgb(5 4 3 / 55%));
+}
+
+.vault-scene__embers {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Filters sit centred above the wall (the wall's centre is --fx)
+   -------------------------------------------------------------------------- */
+
+.page--artifacts .vault-filters {
+  position: fixed;
+  top: calc(var(--header-height) + 14px);
+  left: var(--fx, 50%);
+  margin: 0;
+  translate: -50% 0;
+}
+
+/* --------------------------------------------------------------------------
+   Niches: hotspots laid on the painted niches, in % of the wall image
+   -------------------------------------------------------------------------- */
+
+/* The stage (isolation: isolate in base.css) holds both the fixed wall and the niche layer, so the wall paints
+   behind the niches inside one stacking context. */
+.vault-hall {
+  display: contents;
+}
+
+.vault-wallbox {
+  position: absolute;
+  top: var(--by, 0);
+  left: var(--bx, 0);
+  width: var(--ww, 100%);
+  height: var(--wh, 100%);
+  pointer-events: none;
+}
+
+.vault-hall__status {
+  position: absolute;
+  top: 45%;
+  left: 40%;
+  margin: 0;
+  color: var(--ash);
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+}
+
+.niche {
+  --n-light: var(--vault-torch);
+  --n-hot: var(--vault-torch-hot);
+  --n-line: 230 166 86;
+  --n-line-hot: 255 213 138;
+  position: absolute;
+  top: var(--ny);
+  left: var(--nx);
+  width: var(--nw);
+  height: var(--nh);
+  padding: 0;
+  border: 0;
+  border-radius: 38% 38% 0 0 / 15% 15% 0 0;
+  color: var(--parchment);
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  pointer-events: auto;
+  text-align: center;
+}
+
+.niche.is-mysterious {
+  --n-light: var(--vault-azure);
+  --n-hot: var(--vault-azure-hot);
+  --n-line: 70 150 226;
+  --n-line-hot: 159 216 255;
+}
+
+/* Light poured into the niche: warm for gold, blue for the mysterious handbags. */
+.niche__light {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse 62% 22% at 50% 4%, rgb(var(--n-hot) / 34%), transparent 70%),
+    radial-gradient(ellipse 70% 52% at 50% 78%, rgb(var(--n-light) / 26%), transparent 72%);
+  mix-blend-mode: screen;
+  opacity: 0.8;
+  pointer-events: none;
+  transition: opacity 400ms ease, filter 300ms ease;
+  animation: vault-glow var(--flick, 3.2s) ease-in-out infinite alternate;
+}
+
+.niche.is-mysterious .niche__light {
+  background:
+    radial-gradient(ellipse 62% 22% at 50% 4%, rgb(var(--n-hot) / 40%), transparent 70%),
+    radial-gradient(ellipse 84% 66% at 50% 70%, rgb(var(--n-light) / 85%), transparent 76%),
+    radial-gradient(ellipse 120% 100% at 50% 60%, rgb(var(--n-light) / 38%), transparent 78%);
+  opacity: 1;
+}
+
+/* The handbags niche is lit blue (mysterious): tint the painted amber interior blue, then add the glow on top. */
+.niche.is-mysterious::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  content: "";
+  background: radial-gradient(ellipse 90% 85% at 50% 58%, rgb(46 128 235 / 85%), rgb(28 84 205 / 60%) 70%);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
+.niche.is-mysterious.is-dimmed::before {
+  opacity: 0;
+}
+
+/* The render: a lit museum object, keyed from its black ground into a cut-out (see cutout() in vault.js),
+   standing on the empty plinth in the painted niche. */
+.niche__object {
+  position: absolute;
+  bottom: -3.2%;
+  left: 50%;
+  width: auto;
+  max-width: none;
+  height: 88%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  pointer-events: none;
+  translate: -50% 0;
+  transition: translate 500ms var(--vault-ease), filter 600ms ease, opacity 700ms ease;
+}
+
+/* Fallback only if keying fails: drop the black with a screen blend. */
+.niche__object.is-screen {
+  mix-blend-mode: screen;
+}
+
+.niche__object.is-pending {
+  visibility: hidden;
+}
+
+.niche__object.is-photo {
+  bottom: 4%;
+  width: 82%;
+  height: 74%;
+  object-fit: cover;
+  border-radius: 40% 40% 2px 2px / 20% 20% 2px 2px;
+}
+
+.niche__object.is-missing {
+  visibility: hidden;
+}
+
+/* Filtered out: the niche goes dark. */
+.niche__veil {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: rgb(6 4 3 / 80%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+
+/* Gold (or blue) hairline that follows the arch: appears on hover, focus and selection. */
+.niche__rim {
+  position: absolute;
+  inset: -3px -3px 0;
+  border: 1px solid rgb(var(--n-line-hot) / 0);
+  border-bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color 250ms ease, box-shadow 250ms ease;
+}
+
+.niche:hover .niche__rim,
+.niche:focus-visible .niche__rim {
+  border-color: rgb(var(--n-hot) / 85%);
+  box-shadow: 0 0 14px rgb(var(--n-light) / 55%), inset 0 0 22px rgb(var(--n-light) / 22%);
+}
+
+.niche[aria-pressed="true"] .niche__rim {
+  border-color: rgb(var(--n-hot) / 70%);
+  box-shadow: 0 0 20px rgb(var(--n-light) / 45%), inset 0 0 26px rgb(var(--n-light) / 20%);
+}
+
+.niche:hover .niche__light,
+.niche:focus-visible .niche__light {
+  opacity: 1;
+  filter: brightness(1.5);
+}
+
+.niche:hover .niche__object,
+.niche:focus-visible .niche__object {
+  translate: -50% -3px;
+  filter: brightness(1.12);
+}
+
+.niche:focus-visible {
+  outline: none;
+}
+
+.niche:focus-visible .niche__plaque {
+  outline: 1px solid rgb(var(--n-hot));
+  outline-offset: 4px;
+}
+
+.niche.is-dimmed {
+  cursor: default;
+}
+
+.niche.is-dimmed .niche__veil {
+  opacity: 1;
+}
+
+.niche.is-dimmed .niche__light {
+  opacity: 0;
+}
+
+.niche.is-dimmed .niche__object {
+  filter: brightness(0.5) grayscale(0.5);
+}
+
+.niche.is-dimmed .niche__plaque {
+  opacity: 0.4;
+}
+
+/* Small framed plaque on the dark plinth block under each niche, as in frame 3. Sized in wall-image px (x --u). */
+.niche__plaque {
+  position: absolute;
+  top: calc(100% + var(--pdy, 30) * var(--u, 1) * 1px);
+  left: 50%;
+  display: flex;
+  width: calc(100% + 14px * var(--u, 1));
+  min-height: calc(var(--pdh, 40) * var(--u, 1) * 1px);
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border: 1px solid rgb(var(--n-light) / 55%);
+  background: linear-gradient(180deg, rgb(58 42 27 / 40%), rgb(7 6 5 / 94%)), #0d0906;
+  box-shadow: inset 0 0 0 2px rgb(7 6 5 / 90%), inset 0 0 0 3px rgb(var(--n-light) / 16%), 0 6px 14px rgb(0 0 0 / 70%);
+  translate: -50% 0;
+  transition: box-shadow 300ms ease, border-color 300ms ease, opacity 600ms ease;
+}
+
+.niche__plaque::before,
+.niche__plaque::after {
+  position: absolute;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgb(var(--n-hot));
+  content: "";
+  background: #0d0906;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.niche__plaque::before {
+  top: -4.5px;
+}
+
+.niche__plaque::after {
+  bottom: -4.5px;
+}
+
+.niche__title {
+  display: block;
+  color: var(--parchment);
+  font-family: var(--font-display);
+  font-size: max(0.62rem, calc(var(--u, 1) * 0.8rem));
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 2px #000;
+  text-transform: uppercase;
+  transition: color 250ms ease, text-shadow 250ms ease;
+}
+
+.niche.is-mysterious .niche__title {
+  color: var(--blue-hot);
+  text-shadow: 0 0 10px rgb(var(--vault-azure) / 60%);
+}
+
+.niche:hover .niche__title {
+  color: var(--gold-hot);
+}
+
+.niche.is-mysterious:hover .niche__title {
+  color: #fff;
+}
+
+.niche[aria-pressed="true"] .niche__plaque {
+  border-color: rgb(var(--n-hot) / 90%);
+  box-shadow: inset 0 0 0 2px rgb(7 6 5 / 90%), inset 0 0 0 3px rgb(var(--n-light) / 30%), 0 0 16px rgb(var(--n-light) / 40%), 0 6px 14px rgb(0 0 0 / 70%);
+}
+
+.niche[aria-pressed="true"] .niche__title {
+  color: rgb(var(--n-hot));
+  text-shadow: 0 0 10px rgb(var(--n-light) / 70%);
+}
+
+/* The orchestrated entrance: the objects come up into their lit niches one after another. */
+.vault-stage:not(.is-lit) .niche__object {
+  opacity: 0;
+  translate: -50% 14px;
+}
+
+.vault-stage.is-lit .niche__object {
+  transition: translate 700ms var(--vault-ease) calc(var(--i, 0) * 110ms + 100ms), opacity 700ms ease calc(var(--i, 0) * 110ms + 100ms), filter 600ms ease;
+}
+
+.vault-stage.is-lit .niche:hover .niche__object,
+.vault-stage.is-lit .niche:focus-visible .niche__object {
+  transition: translate 300ms var(--vault-ease), filter 300ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   Filter strip
+   -------------------------------------------------------------------------- */
+
+.vault-filters {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  width: min(100%, 700px);
+  height: 46px;
+  align-items: center;
+  justify-self: center;
+  gap: 0;
+  padding: 5px;
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  background:
+    linear-gradient(180deg, rgb(58 42 27 / 22%), transparent),
+    rgb(9 7 5 / 90%);
+  box-shadow:
+    inset 0 0 0 4px rgb(7 6 5 / 90%),
+    inset 0 0 0 5px var(--hairline-faint),
+    0 10px 28px rgb(0 0 0 / 60%),
+    0 0 26px rgb(var(--vault-torch) / 10%);
+}
+
+.vault-filters::before,
+.vault-filters::after {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--gold);
+  content: "";
+  background: var(--rock);
+  transform: translateY(-50%) rotate(45deg);
+  box-shadow: var(--gold-glow);
+}
+
+.vault-filters::before {
+  left: -5px;
+}
+
+.vault-filters::after {
+  right: -5px;
+}
+
+.vault-filter {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--parchment);
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.vault-filter + .vault-filter::before {
+  position: absolute;
+  top: 22%;
+  bottom: 22%;
+  left: -1px;
+  width: 1px;
+  content: "";
+  background: linear-gradient(180deg, transparent, var(--gold), transparent);
+}
+
+.vault-filter[aria-pressed="true"] + .vault-filter::before,
+.vault-filter[aria-pressed="true"]::before {
+  opacity: 0;
+}
+
+.vault-filter:hover {
+  color: var(--gold-hot);
+}
+
+.vault-filter[aria-pressed="true"] {
+  border-color: var(--gold-hot);
+  color: var(--gold-hot);
+  background:
+    radial-gradient(ellipse at 50% 120%, rgb(var(--vault-torch) / 36%), transparent 70%),
+    linear-gradient(180deg, rgb(58 42 27 / 70%), rgb(20 14 9 / 90%));
+  box-shadow: inset 0 0 12px rgb(var(--vault-torch) / 26%), var(--gold-glow);
+  text-shadow: 0 0 10px rgb(255 213 138 / 60%);
+}
+
+.vault-filter[data-filter="mysterious"][aria-pressed="true"] {
+  border-color: var(--blue-hot);
+  color: var(--blue-hot);
+  background:
+    radial-gradient(ellipse at 50% 120%, rgb(var(--vault-azure) / 40%), transparent 70%),
+    linear-gradient(180deg, rgb(14 28 48 / 80%), rgb(6 10 18 / 92%));
+  box-shadow: inset 0 0 12px rgb(var(--vault-azure) / 30%), var(--blue-glow);
+  text-shadow: 0 0 10px rgb(159 216 255 / 60%);
+}
+
+.vault-filter:focus-visible {
+  outline: 1px solid var(--gold-hot);
+  outline-offset: 3px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Detail panel
+   -------------------------------------------------------------------------- */
+
+.page--artifacts .vault-panel {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  min-height: 0;
+  max-height: 100%;
+  flex-direction: column;
+  grid-column: 2;
+  grid-row: 1 / -1;
+  margin-top: -8px;
+  overflow: hidden;
+  background:
+    linear-gradient(var(--gold), var(--gold)) left 7px top 7px / 20px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) left 7px top 7px / 1px 20px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) right 7px top 7px / 20px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) right 7px top 7px / 1px 20px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) left 7px bottom 7px / 20px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) left 7px bottom 7px / 1px 20px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) right 7px bottom 7px / 20px 1px no-repeat,
+    linear-gradient(var(--gold), var(--gold)) right 7px bottom 7px / 1px 20px no-repeat,
+    linear-gradient(180deg, rgb(20 16 14 / 96%), rgb(9 8 8 / 97%));
+  transition: border-color 400ms ease, box-shadow 400ms ease;
+}
+
+.vault-panel__grip {
+  display: none;
+}
+
+.vault-panel__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 4;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  color: var(--gold-hot);
+  background: rgb(7 6 5 / 80%);
+  cursor: pointer;
+}
+
+.vault-panel__close svg,
+.vault-gallery__arrow svg,
+.vault-panel__explore svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.vault-panel__close:focus-visible,
+.vault-gallery__arrow:focus-visible,
+.vault-gallery__thumb:focus-visible,
+.vault-panel__explore:focus-visible {
+  outline: 1px solid var(--gold-hot);
+  outline-offset: 3px;
+}
+
+.vault-panel__body {
+  min-height: 0;
+  flex: 1 1 auto;
+  padding: 22px 22px 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--hairline) transparent;
+  scrollbar-width: thin;
+}
+
+.vault-panel:focus {
+  outline: none;
+}
+
+/* Gallery */
+.vault-gallery__stage {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--hairline);
+  background: #050404;
+  box-shadow: inset 0 0 0 3px rgb(7 6 5 / 80%), 0 0 22px rgb(var(--vault-torch) / 10%);
+}
+
+.vault-panel.is-mysterious .vault-gallery__stage {
+  box-shadow: inset 0 0 0 3px rgb(7 6 5 / 80%), 0 0 22px rgb(var(--vault-azure) / 26%);
+}
+
+.vault-gallery__backdrop {
+  position: absolute;
+  inset: -20px;
+  background-position: center;
+  background-size: cover;
+  filter: blur(18px) brightness(0.42) saturate(1.1);
+  transition: background-image 300ms ease;
+}
+
+.vault-gallery__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 1;
+  transition: opacity 280ms ease, transform 500ms var(--vault-ease);
+}
+
+.vault-gallery__image.is-swapping {
+  opacity: 0;
+  transform: scale(1.02);
+}
+
+.vault-gallery__image.is-missing {
+  visibility: hidden;
+}
+
+.vault-gallery__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  color: var(--gold-hot);
+  background: rgb(7 6 5 / 72%);
+  box-shadow: inset 0 0 0 3px rgb(7 6 5 / 80%), inset 0 0 0 4px var(--hairline-faint), 0 0 12px rgb(0 0 0 / 60%);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: box-shadow 200ms ease, background-color 200ms ease;
+}
+
+.vault-gallery__arrow:hover {
+  background: rgb(30 22 14 / 90%);
+  box-shadow: inset 0 0 0 3px rgb(7 6 5 / 80%), inset 0 0 0 4px var(--hairline-faint), var(--gold-glow);
+}
+
+.vault-gallery__arrow--prev {
+  left: 10px;
+}
+
+.vault-gallery__arrow--next {
+  right: 10px;
+}
+
+.vault-gallery__thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.vault-gallery__thumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--hairline-faint);
+  background: #050404;
+  cursor: pointer;
+  opacity: 0.72;
+  transition: opacity 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.vault-gallery__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vault-gallery__thumb:hover {
+  opacity: 1;
+}
+
+.vault-gallery__thumb[aria-current="true"] {
+  border-color: var(--gold-hot);
+  opacity: 1;
+  box-shadow: var(--gold-glow);
+}
+
+.vault-gallery__dots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.vault-gallery__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(185 168 142 / 40%);
+}
+
+.vault-gallery__dot.is-active {
+  background: var(--gold-hot);
+  box-shadow: var(--gold-glow);
+}
+
+.vault-gallery.is-single :is(.vault-gallery__arrow, .vault-gallery__thumbs, .vault-gallery__dots) {
+  display: none;
+}
+
+.vault-gallery.is-single .vault-gallery__stage {
+  aspect-ratio: 4 / 3;
+}
+
+/* Text */
+.vault-panel__text {
+  padding-top: 18px;
+}
+
+.vault-panel__title {
+  margin: 0;
+  color: var(--gold-hot);
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 1.85vw, 2rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 14px rgb(var(--vault-torch) / 45%), 0 2px 2px #000;
+}
+
+.vault-panel.is-mysterious .vault-panel__title {
+  text-shadow: 0 0 16px rgb(var(--vault-azure) / 70%), 0 2px 2px #000;
+}
+
+.vault-panel__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.vault-panel__tag {
+  display: inline-flex;
+  min-height: 0;
+  align-items: center;
+  padding: 0.3rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+}
+
+.vault-panel__era {
+  display: grid;
+  gap: 3px;
+  margin: 16px 0 0;
+  font-family: var(--font-display);
+}
+
+.vault-panel__era-place {
+  color: var(--parchment);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.vault-panel__era-dates {
+  color: var(--gold);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+}
+
+.vault-panel__era-dates:empty {
+  display: none;
+}
+
+.vault-panel__section {
+  margin-top: 16px;
+}
+
+.vault-panel__section h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 6px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.vault-panel__section h3::after {
+  height: 1px;
+  flex: 1;
+  content: "";
+  background: linear-gradient(90deg, var(--hairline), transparent);
+}
+
+.vault-panel__section p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--parchment);
+  font-size: 1.06rem;
+  line-height: 1.55;
+}
+
+.vault-panel__footer {
+  flex: 0 0 auto;
+  padding: 12px 22px 22px;
+  background: linear-gradient(180deg, transparent, rgb(9 8 8 / 90%) 30%);
+}
+
+.vault-panel__explore {
+  display: flex;
+  width: 100%;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  cursor: pointer;
+  font-size: 0.86rem;
+  letter-spacing: 0.2em;
+  box-shadow: inset 0 0 16px rgb(var(--vault-torch) / 14%), 0 0 16px rgb(var(--vault-torch) / 16%);
+  transition: box-shadow 200ms ease, background-color 200ms ease;
+}
+
+.vault-panel.is-mysterious .vault-panel__explore {
+  box-shadow: inset 0 0 16px rgb(var(--vault-azure) / 20%), 0 0 18px rgb(var(--vault-azure) / 30%);
+}
+
+.vault-panel__explore:hover {
+  background: rgb(26 20 14 / 90%);
+}
+
+.vault-panel.is-mysterious .vault-panel__explore:hover {
+  background: rgb(10 22 38 / 90%);
+}
+
+.vault-panel__explore svg {
+  transition: transform 250ms ease;
+}
+
+.vault-panel__explore:hover svg {
+  transform: translateX(3px);
+}
+
+.vault-stage.is-folio .vault-panel__explore svg {
+  transform: rotate(180deg);
+}
+
+/* Folio: the record opened wide over the vault */
+.vault-scrim {
+  position: fixed;
+  z-index: 4;
+  inset: 0;
+  background: rgb(5 4 3 / 70%);
+  backdrop-filter: blur(3px);
+}
+
+/* Fixed, not absolute: an absolute grid item is boxed into its own grid column, which left
+   the "opened wide" folio stuck at the side panel's 406px (squashed title, sideways scroll). */
+.vault-stage.is-folio .vault-panel {
+  position: fixed;
+  z-index: 30;
+  top: 112px;
+  bottom: 20px;
+  left: max(24px, calc(50vw - 600px));
+  right: max(24px, calc(50vw - 600px));
+  width: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+}
+
+.vault-stage.is-folio .vault-panel__body {
+  overflow-x: hidden;
+}
+
+.vault-stage.is-folio .vault-panel__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 34px;
+  padding: 30px 34px 10px;
+}
+
+.vault-stage.is-folio .vault-gallery {
+  position: sticky;
+  top: 0;
+  align-self: start;
+}
+
+.vault-stage.is-folio .vault-panel__text {
+  padding-top: 0;
+}
+
+.vault-stage.is-folio .vault-panel__title {
+  font-size: clamp(1.9rem, 2.4vw, 2.6rem);
+  /* QA fix: in the two-column folio the text column runs under the close button (top-right), so a long title's
+     first line ("Mysterious Handbag Symbols" at 1672px) ran into it. Keep the title clear of the 34px button. */
+  padding-right: 44px;
+}
+
+.vault-stage.is-folio .vault-panel__section p {
+  font-size: 1.14rem;
+}
+
+.vault-stage.is-folio .vault-panel__footer {
+  width: min(100%, 520px);
+  align-self: flex-end;
+}
+
+.vault-stage.is-panel-closed:not(.is-sheet) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.vault-stage.is-panel-closed:not(.is-sheet) .vault-panel {
+  display: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   Motion
+   -------------------------------------------------------------------------- */
+
+@keyframes vault-glow {
+  0% { opacity: 1; }
+  18% { opacity: 0.84; }
+  33% { opacity: 0.97; }
+  52% { opacity: 0.8; }
+  70% { opacity: 1; }
+  100% { opacity: 0.9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .niche__light {
+    animation: none !important;
+  }
+
+  .niche__object,
+  .niche__rim,
+  .niche__veil,
+  .vault-gallery__image,
+  .vault-panel {
+    transition: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet and phone: the panel becomes a bottom sheet
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1300px), (max-aspect-ratio: 1/1) {
+  .page--artifacts .vault-stage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page--artifacts .vault-stage__filters,
+  .page--artifacts .vault-stage__niches {
+    grid-column: 1;
+  }
+
+  .page--artifacts .vault-panel {
+    position: fixed;
+    z-index: 60;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    width: min(100%, 720px);
+    max-height: min(86svh, 940px);
+    margin: 0 auto;
+    transform: translateY(104%);
+    visibility: hidden;
+    transition: transform 420ms var(--vault-ease), visibility 0s linear 420ms;
+  }
+
+  .page--artifacts .vault-stage.is-sheet-open .vault-panel {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform 420ms var(--vault-ease), visibility 0s;
+  }
+
+  .vault-panel__grip {
+    display: block;
+    width: 44px;
+    height: 4px;
+    flex: 0 0 auto;
+    margin: 10px auto 0;
+    border-radius: 2px;
+    background: var(--hairline);
+  }
+
+  .vault-scrim {
+    z-index: 55;
+  }
+
+  .vault-stage.is-folio .vault-panel {
+    position: fixed;
+    /* QA fix: the desktop folio rule above sets z-index 30 and, being more specific than the sheet's z-index 60,
+       won, which put the opened record UNDER the scrim (z 55): dimmed, blurred, and every click on it (Return to
+       the vault, gallery arrows, close) landed on the scrim, which closed the whole sheet. Seen at 1070x1741,
+       1280x800 and 390x844; the side-panel layout (z 30, scrim 4) was never affected. */
+    z-index: 60;
+    inset: auto 0 0;
+    /* ... and 94svh let its top edge (and the close button) slide up under the header at 1280x800 and on phones;
+       stop below it, like the plain sheet does. */
+    max-height: calc(100svh - var(--header-height) - 8px);
+  }
+
+  .vault-stage.is-folio .vault-panel__body {
+    display: block;
+    padding: 18px 20px 8px;
+  }
+
+  .vault-stage.is-folio .vault-gallery {
+    position: static;
+  }
+
+  .vault-stage.is-folio .vault-panel__text {
+    padding-top: 18px;
+  }
+
+  .vault-stage.is-folio .vault-panel__footer {
+    width: auto;
+    align-self: stretch;
+  }
+}
+
+
+@media (max-width: 760px) {
+  /* The phone header is tall: keep the sheet below it so it never runs under the search field. */
+  .page--artifacts .vault-panel {
+    max-height: calc(100svh - 176px);
+  }
+
+  /* Phones: the painted wall stays as the (dimmed) backdrop and the five niches stack as lit arch cards. */
+  .page--artifacts .vault-stage {
+    display: block;
+    height: auto;
+    min-height: calc(100svh - var(--header-height));
+    padding: 14px 16px 40px;
+  }
+
+  .vault-scene__shade {
+    background: linear-gradient(180deg, rgb(5 4 3 / 70%), rgb(5 4 3 / 58%));
+  }
+
+  .page--artifacts .vault-filters {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: grid;
+    width: 100%;
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 30px;
+    translate: none;
+    padding: 6px;
+  }
+
+  .vault-filter {
+    min-height: 36px;
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+
+  .vault-filter + .vault-filter::before {
+    display: none;
+  }
+
+  .vault-hall {
+    pointer-events: auto;
+  }
+
+  .vault-wallbox {
+    position: static;
+    display: flex;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+    gap: 84px;
+    padding: 0 6px 76px;
+    pointer-events: auto;
+  }
+
+  .vault-hall__status {
+    position: static;
+  }
+
+  .niche {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: 300px;
+    border: 1px solid rgb(var(--n-line) / 70%);
+    border-radius: 172px 172px 4px 4px / 150px 150px 4px 4px;
+    background:
+      linear-gradient(0deg, #4a2f18 0, #2a190c 5%, transparent 5.2%),
+      radial-gradient(ellipse 60% 22% at 50% 3%, rgb(var(--n-hot) / 50%), transparent 70%),
+      radial-gradient(ellipse 90% 60% at 50% 100%, rgb(var(--n-light) / 30%), transparent 70%),
+      linear-gradient(180deg, #2c1b0d, #130b05);
+    box-shadow: 0 0 34px rgb(var(--n-light) / 26%), inset 0 0 44px rgb(0 0 0 / 60%);
+  }
+
+  .niche__plaque {
+    top: calc(100% + 16px);
+    width: min(100%, 300px);
+    min-height: 46px;
+  }
+
+  .niche__title {
+    font-size: 0.8rem;
+  }
+
+  .niche.is-dimmed {
+    display: none;
+  }
+}

@@ -1,0 +1,92 @@
+/* "Did You Know" Feature Styles */
+.did-you-know-container {
+    background-color: rgba(36, 26, 16, 0.7);
+    border-left: 3px solid #d4af37;
+    margin: 1rem auto 2rem;
+    padding: 1rem;
+    max-width: 90%;
+    position: relative;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.did-you-know-container:hover {
+    background-color: rgba(36, 26, 16, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.dyk-title {
+    font-family: 'Cinzel', serif;
+    color: #d4af37;
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.dyk-title::before {
+    content: '✦';
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.dyk-content {
+    font-family: 'Cormorant Garamond', serif;
+    color: #d4af37;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.dyk-refresh {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #ba9b37;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.dyk-refresh:hover {
+    transform: rotate(180deg);
+    color: #d4af37;
+    opacity: 1;
+    background-color: rgba(186, 155, 55, 0.1);
+}
+
+/* Theoretical section styling */
+.timeline-section.theoretical .did-you-know-container {
+    border-left-style: dashed;
+    background-color: rgba(36, 26, 16, 0.5);
+}
+
+.timeline-section.theoretical .did-you-know-container:hover {
+    background-color: rgba(36, 26, 16, 0.8);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .did-you-know-container {
+        max-width: 100%;
+        margin: 1rem 0 1.5rem;
+    }
+    
+    .dyk-title {
+        font-size: 1rem;
+        padding-right: 24px; /* Make room for refresh button */
+    }
+    
+    .dyk-content {
+        font-size: 1rem;
+    }
+}

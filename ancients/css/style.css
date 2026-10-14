@@ -1,0 +1,356 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Main Theme */
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: #241a10;
+    color: #d4af37; /* Gold text */
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+}
+
+/* Typography */
+h1, h2, h3, nav {
+    font-family: 'Cinzel', serif;
+    color: #d4af37; /* Gold text */
+}
+
+h1 {
+    font-size: 4rem;
+    text-align: center;
+    padding: 2rem 0;
+    letter-spacing: 0.1em;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-shadow: 0 0 10px rgba(186, 155, 55, 0.3);
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 3px;
+    background-color: #d4af37;
+    bottom: 1.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+/* Layout */
+header {
+    padding: 1rem 0;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+nav {
+    width: 100%;
+    max-width: 1200px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 3rem;
+    padding: 1rem 0;
+    margin: 0 auto;
+}
+
+nav a {
+    text-decoration: none;
+    color: #d4af37; /* Gold text */
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #f5d76e; /* Lighter gold on hover */
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Image Container for Centering egypt.png */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Timeline */
+.timeline-container {
+    position: relative;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: #ba9b37;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-section {
+    text-align: center;
+    padding: 2rem 0 1rem;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.timeline-section:hover {
+    transform: scale(1.05);
+}
+
+.timeline-section::after {
+    content: '−'; /* Minus sign */
+    font-size: 1.5rem;
+    color: #d4af37;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.timeline-section.collapsed::after {
+    content: '+';
+}
+
+.period-title {
+    display: inline-block;
+    background-color: #241a10;
+    padding: 0.5rem 2rem;
+    border: 2px solid #ba9b37;
+    border-radius: 30px;
+    font-size: 1.3rem;
+    color: #d4af37;
+    margin-bottom: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.timeline-section:hover .period-title {
+    box-shadow: 0 0 15px rgba(186, 155, 55, 0.5);
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.date {
+    width: 45%;
+    padding: 1rem;
+    background-color: #a08a53;
+    color: #241a10;
+    border-radius: 5px;
+    text-align: right;
+    margin-right: 5%;
+}
+
+.date h3, .date p {
+    color: #241a10;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #d4af37;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.content {
+    width: 45%;
+    padding: 1rem;
+    background-color: #a08a53;
+    color: #241a10;
+    border-radius: 5px;
+    margin-left: 5%;
+}
+
+.content h3, .content p {
+    color: #241a10;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+        padding: 1.5rem 0;
+    }
+    
+    h1::after {
+        width: 80px;
+        bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .timeline-container::after {
+        left: 40px;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .date, .content {
+        width: calc(100% - 80px);
+        margin-left: 80px;
+        text-align: left;
+    }
+    
+    .timeline-dot {
+        left: 40px;
+    }
+}
+
+/* Animation for timeline items and sections */
+.timeline-item, .timeline-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease, margin 0.5s ease, padding 0.5s ease;
+}
+
+.timeline-item.visible, .timeline-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Timeline items can be transitioned for collapsing sections */
+.timeline-item {
+    transition: all 0.5s ease, max-height 0.5s ease, opacity 0.5s ease, margin 0.5s ease, padding 0.5s ease;
+}
+
+/* Add a subtle hover effect to timeline items */
+.timeline-item:hover .date,
+.timeline-item:hover .content {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(186, 155, 55, 0.3);
+}
+
+.date, .content {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theoretical Timeline Styling */
+.timeline-section.theoretical .period-title {
+    background-color: #241a10;
+    border: 2px solid #ba9b37;
+}
+
+.timeline-item.theoretical .date,
+.timeline-item.theoretical .content {
+    background-color: #a08a53;
+    border: 1px solid #241a10;
+    box-shadow: 0 0 10px rgba(186, 155, 55, 0.3);
+}
+
+.theory-tag {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #241a10;
+    color: #d4af37;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #d4af37;
+}
+
+/* Special hover effects for theoretical items */
+.timeline-item.theoretical:hover .date,
+.timeline-item.theoretical:hover .content {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* Special dot styling for theoretical timeline */
+.timeline-item.theoretical .timeline-dot {
+    background-color: #d4af37;
+    border: none;
+}
+
+/* Responsive adjustments for theoretical elements */
+@media (max-width: 768px) {
+    .theory-tag {
+        position: static;
+        display: block;
+        margin: 5px auto;
+        width: fit-content;
+        transform: none;
+    }
+    
+    .timeline-section.theoretical .period-title {
+        padding-right: 2rem;
+    }
+}
