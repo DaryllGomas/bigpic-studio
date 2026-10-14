@@ -10,11 +10,12 @@
 <style>
 html,body{margin:0;background:#07030a;color:#fff;font-family:'Space Grotesk',sans-serif}
 .bar{position:fixed;top:14px;right:16px;z-index:50;display:flex;gap:10px}
-.bar a{padding:7px 14px;border-radius:999px;border:1px solid rgba(255,207,90,.4);background:rgba(10,6,16,.6);color:#ffcf5a;text-decoration:none;font-size:13px;letter-spacing:.16em;backdrop-filter:blur(8px)}
+@media (max-width:560px){.bar{top:auto;right:auto;left:50%;transform:translateX(-50%);bottom:max(14px,env(safe-area-inset-bottom))}.bar a{font-size:12px;padding:7px 12px;letter-spacing:.12em}}
+.bar a{white-space:nowrap;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,207,90,.4);background:rgba(10,6,16,.6);color:#ffcf5a;text-decoration:none;font-size:13px;letter-spacing:.16em;backdrop-filter:blur(8px)}
 </style>
 </head>
 <body>
-<nav class="bar"><a href="./">AISLE VIEW</a></nav>
+<nav class="bar"><a href="/" title="Back to BigPic Studio">← STUDIO</a><a href="./">AISLE VIEW</a></nav>
 <section id="junction"></section>
 <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }</script>
 <script type="module">
