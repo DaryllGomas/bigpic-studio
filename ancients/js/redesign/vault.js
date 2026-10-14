@@ -272,6 +272,15 @@ function embers() {
 loadAncientsData().then(({ artifacts }) => {
   build(artifacts); wire(); applyFilter("all");
   select(entries.find(([k]) => k === "mysterious-handbags")?.[0] ?? entries[0][0], false);
+  // Deep link: artifacts.html#<artifactId> opens that artifact (header search lands here).
+  const fromHash = () => {
+    const id = decodeURIComponent(location.hash.replace(/^#/, ""));
+    if (!entries.some(([k]) => k === id)) return;
+    applyFilter("all");
+    select(id, true, document.querySelector(`.niche[data-key="${CSS.escape(id)}"]`));
+  };
+  fromHash();
+  addEventListener("hashchange", fromHash);
   embers();
   addEventListener("resize", layout);
   phoneQuery.addEventListener("change", layout);
