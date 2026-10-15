@@ -1,115 +1,255 @@
 {
-  "game": "the-first-world",
-  "title": "THE FIRST WORLD",
-  "version": "v0.7",
-  "updated": "2026-10-15",
-  "now": [
-    "Pacing the road to the Ascension, so every village feels earned without the middle dragging.",
-    "Making Ora's guidance clear at a glance: one goal, one soft light, never a wall of words.",
-    "Vexahl's moves: easy to read, fair to counter, and a little unsettling.",
-    "Villages joining family by family: making each home's moment feel like something.",
-    "Smoother frames on laptops and older machines."
-  ],
-  "ask": [
-    { "q": "How long did the road to the Ascension feel? Too quick, about right, or did it drag somewhere?", "hint": "Tell us which village you were on when it slowed down." },
-    { "q": "Did you always know what Ora wanted you to do next?", "hint": "If you got stuck, what were you looking at?" },
-    { "q": "When Vexahl made a move, could you tell what he did and how to answer it?" },
-    { "q": "Did you notice villages joining you home by home? Did it feel good?" },
-    { "q": "How does it run on your machine?", "hint": "Smooth, a little choppy, or rough? What kind of computer or phone?" }
-  ],
-  "releases": [
+ "game": "the-first-world",
+ "title": "THE FIRST WORLD",
+ "version": "v0.8",
+ "updated": "2026-10-15",
+ "now": [
+  "Tuning when Vexahl offers the ring, so it lands at the moments that tempt you most.",
+  "The final battle, which we're building alongside Beyond the Nexus.",
+  "Pacing the road to the Ascension, so every village feels earned without the middle dragging.",
+  "Smoother frames on laptops and older machines."
+ ],
+ "ask": [
+  {
+   "q": "Did you take Vexahl's ring? What made you take it, or turn it down?"
+  },
+  {
+   "q": "When his isle rose from the sea, how did that feel?"
+  },
+  {
+   "q": "Did you always know what Ora wanted you to do next?"
+  },
+  {
+   "q": "How do the new voices for Lumi, Fizz and Vexahl sound to you?"
+  },
+  {
+   "q": "How long did the road to the Ascension feel? Too quick, about right, or did it drag somewhere?"
+  }
+ ],
+ "releases": [
+  {
+   "version": "v0.8",
+   "date": "2026-10-15",
+   "title": "Light and shadow rise together",
+   "summary": "Vexahl now hides beneath the sea until your first pyramid, then rises and grows with every age you raise. New voices, a ring you should probably refuse, and a lot of polish from your first playtests.",
+   "items": [
     {
-      "version": "v0.7",
-      "date": "2026-10-14",
-      "title": "The road to the Ascension",
-      "summary": "The island has a story now. Ora walks you from your first village to the last, one goal at a time, and the neighbours wait for you to come to them.",
-      "items": [
-        { "h": "Story mode", "t": "A new island starts in story mode. Ora names one goal at a time on the road to the Ascension, nudges you gently if you're stuck, and a soft light marks the spot." },
-        { "h": "Free play", "t": "Finish the story and free play opens up: no guidance, no clock, and you ascend when you choose." },
-        { "h": "Villages join family by family", "t": "A neighbour comes to believe one home at a time. Each family that joins lights its windows gold and dances for you, and the village is yours once most of its homes believe." },
-        { "h": "Your light grows as you tend", "t": "Every answered prayer, gift and finished dream pushes your light a little further out, and it leans along the road toward the next village." },
-        { "h": "Neighbours wait for you", "t": "A village beyond your light dreams of nothing yet. Once your light reaches it, it starts to ask, and its temple only rises with your hand." },
-        { "h": "Vexahl enters the story", "t": "His isle sits small and hazy at the sea's edge from the very first moment. Partway along the road he notices you, then makes one move against each village you're winning. Every move can be answered." },
-        { "h": "A real closing day", "t": "When the last temple stands, the Ascension waits one full day while the island stays in tune. A quiet last stretch to enjoy what you built." },
-        { "h": "Voices", "t": "Vexahl speaks his lines aloud, and Lumi and Fizz voice their new story lines. Ora answers with the deep hum of a singing bowl." },
-        { "h": "Easier to follow", "t": "Dialogue sits at the top centre of the screen, one voice at a time, and the world's glow is a touch softer." }
-      ]
+     "h": "Vexahl rises with you",
+     "t": "His isle stays hidden under the sea until you raise your first pyramid. Then it rises. From there, every age you raise, his citadel grows too: light and shadow, step for step."
     },
     {
-      "version": "v0.6",
-      "date": "2026-10-11",
-      "title": "The lived-in island",
-      "summary": "The island got its look: warm golden-hour light, cottages with smoking chimneys, roads between the villages, and a coast worth staring at.",
-      "items": [
-        { "h": "Golden hour", "t": "Warmer light, deeper greens and a soft diorama focus, so the whole island looks like a little world on a table." },
-        { "h": "Cottages", "t": "Stone footings, timber frames and steep shingled roofs. Lived-in homes glow at dusk and send up chimney smoke." },
-        { "h": "Roads and paths", "t": "Worn paths link each village's houses, fields and prayer place, and roads run between the villages." },
-        { "h": "The coast", "t": "Sea cliffs, waterfalls, rocky islets, a little jetty and two sailboats bobbing offshore." },
-        { "h": "Small things", "t": "Barrels, crates, fences and lanterns; stumps where trees fell; gulls circling; cloud shadows drifting over the hills." },
-        { "h": "Give your people jobs", "t": "Set a villager down at a forest, a field, a building site, the shore or the prayer place, and they take up that work." },
-        { "h": "Lumi and Fizz speak", "t": "They float beside your hand and argue out loud over every tempting bit of mischief." },
-        { "h": "The intro, with sound", "t": "The opening film plays with its soundtrack and dissolves straight into your island." }
-      ]
+     "h": "The ring",
+     "t": "Now and then, when things are slow or you've been harsh, Vexahl offers you his ring. Take it and a village kneels at once, out of fear. Turn it down and he fades. Every gift from him is a little more of him."
     },
     {
-      "version": "v0.5",
-      "date": "2026-10-11",
-      "title": "The Split",
-      "summary": "Balance, a shadow across the sea, and two very different endings.",
-      "items": [
-        { "h": "The balance of the world", "t": "Tend the island and it stays in tune: full colour, birdsong, two rings of gold light in the sky. Ruin it and the colour drains and the music slips out of key. Nothing on screen names it; the island shows you." },
-        { "h": "Vexahl is there from day one", "t": "A dark spire far out at sea. As the world tips out of balance it drifts closer. As you mend it, it backs away." },
-        { "h": "Ora, the voice of balance", "t": "A round orb of light that speaks at the big moments only. It asks, it warns once, it notices. It never tells you what to do." },
-        { "h": "The prayer place grows", "t": "Totem, then a ring of standing stones, then a pyramid, then a temple, each one rising where your people dance." },
-        { "h": "Signs in the sky", "t": "Answer a village's prayers and a white star with a long gold tail may cross its sky." },
-        { "h": "Villagers have names", "t": "And the island remembers them: the lost child you carried home, the family you saved from a fire." },
-        { "h": "Two endings", "t": "In one, the world falls quiet and begins again, remembering. The other we won't spoil." },
-        { "h": "No words to read while you play", "t": "Prayers are pictures now, and the game teaches through play." },
-        { "h": "Arriving from THE PATH", "t": "Finish THE PATH and your initials are waiting in the god-name box." }
-      ]
+     "h": "A darker rival",
+     "t": "Vexahl is a hooded shadow of smoke and embers now, with a black citadel lit from within. Who he really is waits until the very end."
     },
     {
-      "version": "v0.4",
-      "date": "2026-10-10",
-      "title": "THE FIRST WORLD",
-      "summary": "The game got its name and its mark, and your island can follow you to any device.",
-      "items": [
-        { "h": "Island codes", "t": "Leave a god name and get a code like AMBER-OTTER-4821. It brings your island back on any device, any time." },
-        { "h": "A list of prayers", "t": "New prayers fly into a tidy list at the side; click one to fly to that village." },
-        { "h": "A friendlier hand", "t": "Grabbing is more forgiving, a soft gold ring shows what you're pointing at, and a glowing mark shows where things will land." },
-        "The golem no longer gets stuck walking into houses."
-      ]
+     "h": "New voices",
+     "t": "Lumi has a warm new voice, Fizz is more of a mocking little menace than ever, and Vexahl speaks like something patient that has all the time in the world. Ora still has no voice; you'll hear a deep singing bowl when it speaks."
     },
     {
-      "version": "v0.3",
-      "date": "2026-10-01",
-      "title": "The living island",
-      "items": [
-        "Villages pray for timber, food, rain, a sign or a lost child brought home. Answer them and their faith grows.",
-        "Two little advisors arrive: Lumi, a kind spirit, and Fizz, a cheeky imp.",
-        "Four seasons, each with its own weather: spring blossom, a summer dry spell, an autumn storm, a winter cold snap.",
-        "A rival god across the sea, with schemes you can always see coming and always counter.",
-        "Your island saves itself, so you can pick up where you left off.",
-        "Sixteen kinds of tree, a painted landscape, and a brand-new hand."
-      ]
+     "h": "Every voice at the top",
+     "t": "Lumi, Fizz, Vexahl and Ora all speak from the top of the screen now, so nothing covers your hand."
     },
     {
-      "version": "v0.2",
-      "date": "2026-10-01",
-      "title": "The golem and the soundscape",
-      "items": [
-        "A stone golem to raise. Stroke it, pat it or scold it, and it grows into whoever you taught it to be.",
-        "A soundscape where every chime, splash and footstep is in the same key as the music."
-      ]
+     "h": "Clearer guidance",
+     "t": "Ora's first words tell you exactly what Ashford needs, its lines stay up longer, and a small Ora light at the top repeats the current goal if you hover or click it."
     },
     {
-      "version": "v0.1",
-      "date": "2026-09-29",
-      "title": "The first island",
-      "items": [
-        "An island, a sea, a sky that turns from day to night, and a hand that can pick up almost anything.",
-        "Villagers who farm, build, raise families and pray. Miracles of water, food and fire."
-      ]
+     "h": "Your villages show their age",
+     "t": "Your own villages count their prayer place from Totem to Temple (1 of 4 to 4 of 4). Villages you're still winning count their families."
+    },
+    {
+     "h": "A gentler start",
+     "t": "The first light now answers your cursor and, if you just watch it, slowly calls you closer. The intro has a visible skip, and the welcome screen is just your name and Begin."
+    },
+    {
+     "h": "Fixes from your playtests",
+     "t": "Choosing a miracle while holding something just works, the camera no longer lurches on quick clicks, there's a Home button next to the speeds, nights are easier to see, and storehouses label themselves when you bring them gifts."
     }
-  ]
+   ]
+  },
+  {
+   "version": "v0.7",
+   "date": "2026-10-14",
+   "title": "The road to the Ascension",
+   "summary": "The island has a story now. Ora walks you from your first village to the last, one goal at a time, and the neighbours wait for you to come to them.",
+   "items": [
+    {
+     "h": "Story mode",
+     "t": "A new island starts in story mode. Ora names one goal at a time on the road to the Ascension, nudges you gently if you're stuck, and a soft light marks the spot."
+    },
+    {
+     "h": "Free play",
+     "t": "Finish the story and free play opens up: no guidance, no clock, and you ascend when you choose."
+    },
+    {
+     "h": "Villages join family by family",
+     "t": "A neighbour comes to believe one home at a time. Each family that joins lights its windows gold and dances for you, and the village is yours once most of its homes believe."
+    },
+    {
+     "h": "Your light grows as you tend",
+     "t": "Every answered prayer, gift and finished dream pushes your light a little further out, and it leans along the road toward the next village."
+    },
+    {
+     "h": "Neighbours wait for you",
+     "t": "A village beyond your light dreams of nothing yet. Once your light reaches it, it starts to ask, and its temple only rises with your hand."
+    },
+    {
+     "h": "Vexahl enters the story",
+     "t": "His isle sits small and hazy at the sea's edge from the very first moment. Partway along the road he notices you, then makes one move against each village you're winning. Every move can be answered."
+    },
+    {
+     "h": "A real closing day",
+     "t": "When the last temple stands, the Ascension waits one full day while the island stays in tune. A quiet last stretch to enjoy what you built."
+    },
+    {
+     "h": "Voices",
+     "t": "Vexahl speaks his lines aloud, and Lumi and Fizz voice their new story lines. Ora answers with the deep hum of a singing bowl."
+    },
+    {
+     "h": "Easier to follow",
+     "t": "Dialogue sits at the top centre of the screen, one voice at a time, and the world's glow is a touch softer."
+    }
+   ]
+  },
+  {
+   "version": "v0.6",
+   "date": "2026-10-11",
+   "title": "The lived-in island",
+   "summary": "The island got its look: warm golden-hour light, cottages with smoking chimneys, roads between the villages, and a coast worth staring at.",
+   "items": [
+    {
+     "h": "Golden hour",
+     "t": "Warmer light, deeper greens and a soft diorama focus, so the whole island looks like a little world on a table."
+    },
+    {
+     "h": "Cottages",
+     "t": "Stone footings, timber frames and steep shingled roofs. Lived-in homes glow at dusk and send up chimney smoke."
+    },
+    {
+     "h": "Roads and paths",
+     "t": "Worn paths link each village's houses, fields and prayer place, and roads run between the villages."
+    },
+    {
+     "h": "The coast",
+     "t": "Sea cliffs, waterfalls, rocky islets, a little jetty and two sailboats bobbing offshore."
+    },
+    {
+     "h": "Small things",
+     "t": "Barrels, crates, fences and lanterns; stumps where trees fell; gulls circling; cloud shadows drifting over the hills."
+    },
+    {
+     "h": "Give your people jobs",
+     "t": "Set a villager down at a forest, a field, a building site, the shore or the prayer place, and they take up that work."
+    },
+    {
+     "h": "Lumi and Fizz speak",
+     "t": "They float beside your hand and argue out loud over every tempting bit of mischief."
+    },
+    {
+     "h": "The intro, with sound",
+     "t": "The opening film plays with its soundtrack and dissolves straight into your island."
+    }
+   ]
+  },
+  {
+   "version": "v0.5",
+   "date": "2026-10-11",
+   "title": "The Split",
+   "summary": "Balance, a shadow across the sea, and two very different endings.",
+   "items": [
+    {
+     "h": "The balance of the world",
+     "t": "Tend the island and it stays in tune: full colour, birdsong, two rings of gold light in the sky. Ruin it and the colour drains and the music slips out of key. Nothing on screen names it; the island shows you."
+    },
+    {
+     "h": "Vexahl is there from day one",
+     "t": "A dark spire far out at sea. As the world tips out of balance it drifts closer. As you mend it, it backs away."
+    },
+    {
+     "h": "Ora, the voice of balance",
+     "t": "A round orb of light that speaks at the big moments only. It asks, it warns once, it notices. It never tells you what to do."
+    },
+    {
+     "h": "The prayer place grows",
+     "t": "Totem, then a ring of standing stones, then a pyramid, then a temple, each one rising where your people dance."
+    },
+    {
+     "h": "Signs in the sky",
+     "t": "Answer a village's prayers and a white star with a long gold tail may cross its sky."
+    },
+    {
+     "h": "Villagers have names",
+     "t": "And the island remembers them: the lost child you carried home, the family you saved from a fire."
+    },
+    {
+     "h": "Two endings",
+     "t": "In one, the world falls quiet and begins again, remembering. The other we won't spoil."
+    },
+    {
+     "h": "No words to read while you play",
+     "t": "Prayers are pictures now, and the game teaches through play."
+    },
+    {
+     "h": "Arriving from THE PATH",
+     "t": "Finish THE PATH and your initials are waiting in the god-name box."
+    }
+   ]
+  },
+  {
+   "version": "v0.4",
+   "date": "2026-10-10",
+   "title": "THE FIRST WORLD",
+   "summary": "The game got its name and its mark, and your island can follow you to any device.",
+   "items": [
+    {
+     "h": "Island codes",
+     "t": "Leave a god name and get a code like AMBER-OTTER-4821. It brings your island back on any device, any time."
+    },
+    {
+     "h": "A list of prayers",
+     "t": "New prayers fly into a tidy list at the side; click one to fly to that village."
+    },
+    {
+     "h": "A friendlier hand",
+     "t": "Grabbing is more forgiving, a soft gold ring shows what you're pointing at, and a glowing mark shows where things will land."
+    },
+    "The golem no longer gets stuck walking into houses."
+   ]
+  },
+  {
+   "version": "v0.3",
+   "date": "2026-10-01",
+   "title": "The living island",
+   "items": [
+    "Villages pray for timber, food, rain, a sign or a lost child brought home. Answer them and their faith grows.",
+    "Two little advisors arrive: Lumi, a kind spirit, and Fizz, a cheeky imp.",
+    "Four seasons, each with its own weather: spring blossom, a summer dry spell, an autumn storm, a winter cold snap.",
+    "A rival god across the sea, with schemes you can always see coming and always counter.",
+    "Your island saves itself, so you can pick up where you left off.",
+    "Sixteen kinds of tree, a painted landscape, and a brand-new hand."
+   ]
+  },
+  {
+   "version": "v0.2",
+   "date": "2026-10-01",
+   "title": "The golem and the soundscape",
+   "items": [
+    "A stone golem to raise. Stroke it, pat it or scold it, and it grows into whoever you taught it to be.",
+    "A soundscape where every chime, splash and footstep is in the same key as the music."
+   ]
+  },
+  {
+   "version": "v0.1",
+   "date": "2026-09-29",
+   "title": "The first island",
+   "items": [
+    "An island, a sea, a sky that turns from day to night, and a hand that can pick up almost anything.",
+    "Villagers who farm, build, raise families and pray. Miracles of water, food and fire."
+   ]
+  }
+ ]
 }
