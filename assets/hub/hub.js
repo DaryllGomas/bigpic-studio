@@ -14,6 +14,7 @@
  *   data-version  the build players are on (sent with each report). Falls back to the devlog's "version".
  *   data-title    optional heading for the block (default "Built in the open").
  *   data-level    optional heading level for the block title, 2 (default) to 4; sub-headings go one below.
+ *   data-ask-intro optional line under "Help us test" (default "Play a while, then tell us. One line helps.").
  *
  * Theme: set these custom properties on the page (or on .game-hub) to make the block look native.
  *   --hub-accent, --hub-accent-2, --hub-ink, --hub-ink-soft, --hub-ink-dim, --hub-line, --hub-surface,
@@ -31,9 +32,10 @@
  *     "releases": [                                           // newest first
  *       { "version": "v0.7", "date": "2026-10-14", "title": "Name of the update",
  *         "summary": "optional one or two sentences",
- *         "items": ["plain line", { "h": "short lead", "t": "the detail" }, ...] }
+ *         "items": ["plain line", { "h": "short lead", "t": "the detail" }, { "group": "A sub-heading" }, ...] }
  *     ]
  *   }
+ *   An item { "group": "..." } starts a small sub-heading inside a release (for big updates with several parts).
  *
  * Safety: every string from the devlog or the form is inserted with textContent; nothing is ever parsed as
  * HTML. The only network calls are the same-origin devlog and the public Pulse endpoint below.
@@ -145,7 +147,8 @@
         const ul = h('ul', 'hub-items');
         items.forEach((it) => {
           const li2 = h('li');
-          if (typeof it === 'string') li2.textContent = str(it);
+          if (it && typeof it === 'object' && str(it.group, 120)) { li2.className = 'hub-group'; li2.textContent = str(it.group, 120); }
+          else if (typeof it === 'string') li2.textContent = str(it);
           else if (it && typeof it === 'object') {
             if (str(it.h, 120)) li2.appendChild(h('strong', null, str(it.h, 120)));
             if (str(it.t)) li2.appendChild(h('span', null, str(it.t)));
@@ -176,11 +179,11 @@
     return card;
   };
 
-  const renderAsk = (asks, lvl, onAnswer) => {
+  const renderAsk = (asks, lvl, onAnswer, intro) => {
     const card = h('div', 'hub-card hub-ask');
     const head = h('div', 'hub-col-head');
     head.appendChild(h(`h${lvl}`, 'hub-h', 'Help us test'));
-    head.appendChild(h('p', 'hub-col-sub', 'Play a while, then tell us. One line helps.'));
+    head.appendChild(h('p', 'hub-col-sub', intro || 'Play a while, then tell us. One line helps.'));
     card.appendChild(head);
     const ol = h('ol', 'hub-asks');
     asks.forEach((a, i) => {
@@ -454,7 +457,7 @@
     const now = log && Array.isArray(log.now) ? log.now.filter((t) => typeof t === 'string' && t.trim()).slice(0, 8) : [];
     const asks = log && Array.isArray(log.ask) ? log.ask.filter((a) => a && typeof a.q === 'string').slice(0, 8) : [];
     if (now.length) side.appendChild(renderNow(now, sub));
-    if (asks.length) side.appendChild(renderAsk(asks, sub, form.prefill));
+    if (asks.length) side.appendChild(renderAsk(asks, sub, form.prefill, str(root.dataset.askIntro, 160)));
     if (side.childNodes.length) grid.appendChild(side);
     else grid.classList.add('is-single');
     root.appendChild(grid);
