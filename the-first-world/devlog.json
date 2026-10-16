@@ -1,8 +1,8 @@
 {
  "game": "the-first-world",
  "title": "THE FIRST WORLD",
- "version": "v0.8",
- "updated": "2026-10-15",
+ "version": "v0.8.1",
+ "updated": "2026-10-16",
  "now": [
   "Tuning when Vexahl offers the ring, so it lands at the moments that tempt you most.",
   "The final battle, which we're building alongside Beyond the Nexus.",
@@ -27,6 +27,22 @@
   }
  ],
  "releases": [
+  {
+   "version": "v0.8.1",
+   "date": "2026-10-16",
+   "title": "Play it from the couch",
+   "summary": "THE FIRST WORLD now plays with a game controller. Move a glowing hand with the stick, pick up trees and rocks with A, and set them down wherever you like.",
+   "items": [
+    {
+     "h": "Controller support",
+     "t": "The left stick moves your hand, A picks things up and puts them down, B puts them back, and the right stick moves the view. Menus, the intro and the rival's choices all work with the controller too."
+    },
+    {
+     "h": "Mouse and keyboard still work",
+     "t": "Nothing changes if you play with a mouse. Pick up a controller any time and the hand appears."
+    }
+   ]
+  },
   {
    "version": "v0.8",
    "date": "2026-10-15",
