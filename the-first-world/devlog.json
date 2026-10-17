@@ -1,15 +1,18 @@
 {
  "game": "the-first-world",
  "title": "THE FIRST WORLD",
- "version": "v0.8.1",
- "updated": "2026-10-16",
+ "version": "v0.9",
+ "updated": "2026-10-17",
  "now": [
+  "One last age: after Vexahl, the three villages come together and build something new at the heart of the island.",
   "Tuning when Vexahl offers the ring, so it lands at the moments that tempt you most.",
-  "The final battle, which we're building alongside Beyond the Nexus.",
-  "Pacing the road to the Ascension, so every village feels earned without the middle dragging.",
+  "A fuller story script for the whole island.",
   "Smoother frames on laptops and older machines."
  ],
  "ask": [
+  {
+   "q": "What do you think of Lumi's and Fizz's new faces?"
+  },
   {
    "q": "Did you take Vexahl's ring? What made you take it, or turn it down?"
   },
@@ -27,6 +30,30 @@
   }
  ],
  "releases": [
+  {
+   "version": "v0.9",
+   "date": "2026-10-17",
+   "title": "Faces, and a village worth living in",
+   "summary": "Lumi and Fizz have painted faces now, the villages are full of life, and the island glows warmer by day.",
+   "items": [
+    {
+     "h": "Lumi and Fizz, painted",
+     "t": "Both advisors have real painted portraits that change with the moment. Lumi smiles, cheers, peeks when something is wrong, and sheds a tear of light if you are cruel. Fizz smirks, cackles, schemes and peeks round a rock. Their faces, and Vexahl's, are bigger on the speech cards."
+    },
+    {
+     "h": "Villages that look lived in",
+     "t": "Villagers look like little people now, homes are bigger cottages in three styles, and each village has market stalls, a well, a barn, a forge, carts and fenced fields. The prayer places stand taller and glow gold as they grow."
+    },
+    {
+     "h": "A warmer island",
+     "t": "Golden daylight, deeper greens, brown earth paths and yards, and mixed woods with the odd autumn tree. Nights stay as bright as before."
+    },
+    {
+     "h": "Fixes",
+     "t": "Vexahl's glances out to sea always bring the camera back. The ending no longer starts inside a barn wall. Fizz has two new lines when a temple is finished."
+    }
+   ]
+  },
   {
    "version": "v0.8.1",
    "date": "2026-10-16",
