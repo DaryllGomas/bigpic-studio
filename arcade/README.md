@@ -20,3 +20,9 @@ Mount: `mountJunctionBand(el, { arcadeUrl: '/arcade/', engine: '/arcade/cabinet/
 - Embed mode (`?embed=1`): no page chrome; the title "The Junction · 26 games · free · one click" top left and the DAILY CHALLENGE top right; drag or arrow keys spin; clicking the centre cabinet opens `/arcade/?game=<id>`; the page keeps its wheel scroll. No coin prompts anywhere (Daryll, 2026-10-11: they read as gated). The daily challenge's button plays today's round; game over offers play again. Support lives only in the site nav.
 - `/arcade/?game=<id>` starts the aisle on that cabinet.
 - `band/aisle-poster.jpg`: the still (a render of embed mode at 1600×612). Re-render it when the aisle changes.
+
+## LOG: news and feedback (added 2026-10-15)
+- The **LOG** button (top right, next to GRID VIEW) opens a slide-over with the studio game hub: What's new, Now building, Help us test, and a Bug / Idea / Feedback form that posts to BigPic Pulse as project `the-junction`.
+- Self-contained: `hub-panel.js` + `hub-panel.css` (the panel), `devlog.json` (the text), and five lines in `index.html` (two stylesheet links, the `#jxLog` button, two deferred scripts: `hub-panel.js` before `../assets/hub/hub.js`). **If `index.html` is ever re-copied from `the-junction-test`, carry those five lines over.**
+- Keys: closed, the panel listens to nothing. Open, it keeps every key inside the panel (the aisle doesn't move while you type), Tab stays in it, Escape or the scrim closes it, and focus is dropped on close so the arcade has the keys back. A gamepad still drives the aisle while it's open.
+- `devlog.json` is public: run `node tools/hub/check-devlog.mjs arcade/devlog.json` (from the repo root) before every publish. localStorage: `junction.logSeen` (hides the button's pink light once this version's log has been opened).

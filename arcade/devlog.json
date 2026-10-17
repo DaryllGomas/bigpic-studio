@@ -1,0 +1,63 @@
+{
+ "game": "the-junction",
+ "title": "THE JUNCTION",
+ "version": "v1.2",
+ "updated": "2026-10-15",
+ "now": [
+  "Tuning the aisle from your first plays: which games you pick, where it feels slow, what’s hard to find.",
+  "Keeping every game free and one click away. No coins, no sign-up."
+ ],
+ "ask": [
+  {
+   "q": "Which cabinet did you play the longest? Which one did you skip?"
+  },
+  {
+   "q": "Could you tell how to play right away?",
+   "hint": "On a keyboard, a gamepad, or a phone."
+  },
+  {
+   "q": "How does the aisle run on your device?",
+   "hint": "Any stutter while you browse or step up to a cabinet?"
+  },
+  {
+   "q": "What game should we put in the next cabinet?"
+  }
+ ],
+ "releases": [
+  {
+   "version": "v1.2",
+   "date": "2026-10-13",
+   "title": "Plays your way",
+   "items": [
+    { "h": "The right buttons on screen", "t": "The hints at the bottom follow whatever you play with: keyboard keys, gamepad buttons, or taps on a phone." },
+    { "h": "A way back", "t": "The aisle and the cabinet wall both have a button back to the Studio." },
+    { "h": "The cabinet wall on phones", "t": "Grid view now fits and works on a phone." }
+   ]
+  },
+  {
+   "version": "v1.1",
+   "date": "2026-10-11",
+   "title": "A warmer room, and no coins",
+   "items": [
+    { "h": "Every cabinet its own shape", "t": "Driving cabinets with wheels, motocross bars, a sit-down cockpit, and three styles of kick panel." },
+    { "h": "Screens at their best", "t": "Every screen opens on its game’s most colourful demo moment, a little brighter than before." },
+    { "h": "A warmer room", "t": "Warmer light across the brick and the floor." },
+    { "h": "Free means free", "t": "No INSERT COIN anywhere. Every game plays the moment you pick it." },
+    { "h": "The daily challenge", "t": "One game a day on the Studio’s home page, with its own high-score table. The button plays today’s round." }
+   ]
+  },
+  {
+   "version": "v1.0",
+   "date": "2026-10-11",
+   "title": "THE JUNCTION opens",
+   "summary": "The arcade from THE PATH, open to everyone: 26 games, free, one click.",
+   "items": [
+    { "h": "The aisle", "t": "A row of real 3D cabinets, each running its own demo on the screen. Slide along with the arrow keys, a drag or the mouse wheel, and switch shelves with up and down: Classics, New Arrivals and Indie Gems." },
+    { "h": "Step up and play", "t": "Press Enter or click the cabinet in front of you and the view glides in until the game fills the screen. Escape steps you back." },
+    { "h": "Your initials", "t": "Set them at the top under PLAYER and they go on the high-score tables." },
+    { "h": "The cabinet wall", "t": "GRID VIEW shows every cabinet at once." },
+    { "h": "On phones", "t": "Swipe the aisle, tap to play, and a touch stick and buttons come up while you play." }
+   ]
+  }
+ ]
+}

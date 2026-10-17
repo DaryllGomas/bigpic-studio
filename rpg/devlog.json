@@ -1,0 +1,55 @@
+{
+ "game": "beyond-the-nexus",
+ "title": "Beyond the Nexus",
+ "version": "",
+ "updated": "2026-10-15",
+ "now": [
+  "The battle system. We’ve built a rough first version and we’re choosing between a few styles before building the real one.",
+  "The road out of the City, where the five forces of the road wait.",
+  "The moment the Nexus forms, when the seven marks come together.",
+  "Light and atmosphere for every new place, until each one feels as good as the gate road at dusk."
+ ],
+ "ask": [
+  {
+   "q": "Which of these scenes would you most want to walk around in first?"
+  },
+  {
+   "q": "What kind of battles do you enjoy most in an RPG?",
+   "hint": "Turn by turn, timing-based, real-time action, or something else?"
+  },
+  {
+   "q": "Real-life movement can earn Light, if you want it. Would you use that? What would make it worth it?"
+  },
+  {
+   "q": "Did you play The First World? What would you love to see carry over?"
+  }
+ ],
+ "releases": [
+  {
+   "version": "Log 02",
+   "date": "2026-10-11",
+   "title": "The first quest, and a world beyond the walls",
+   "summary": "Not playable yet. Here’s what grew in the build this week.",
+   "items": [
+    { "h": "The first quest", "t": "The Lamps on the Gate Road: an elder of the City asks Atlas to relight the lanterns on the gate road, and the beacon burns brighter for it." },
+    { "h": "The Green", "t": "A valley of fields, a quiet pond with lilies and reeds, blossom trees, cottages and a glasshouse, with the City’s spires far off through the haze." },
+    { "h": "The open road", "t": "Heather and wind-bent trees under a dusk sky, lanterns and fireflies, and a stone bridge where Sloth lies sleeping." },
+    { "h": "The plaza comes alive", "t": "A musician, doves, kids at play, a sweeper, people sitting in the sun and a cat, with warm light in every window." },
+    { "h": "A first try at battle", "t": "Atlas and Ora against Sloth, the first force of the road. It’s rough, and it’s how we’re learning what the real battles should feel like." }
+   ]
+  },
+  {
+   "version": "Log 01",
+   "date": "2026-10-10",
+   "title": "First scenes beyond the Nexus",
+   "summary": "The first scenes of the build, all in a hand-built diorama world.",
+   "items": [
+    { "h": "The Nexus", "t": "The domed hall of seven gates, and “Atlas takes form”: the marks wake, light gathers on the dais, Atlas takes a body and Ora comes to his hand." },
+    { "h": "Recognition", "t": "The crowd on the temple steps, seeing Atlas for the first time." },
+    { "h": "The City plaza", "t": "One City for everyone, with the old stone circle and the fire at its heart, markets and pools." },
+    { "h": "THE HOUSE’s door", "t": "The trading hall has a door in the plaza." },
+    { "h": "The gate road", "t": "A wet causeway at dusk, the glyph ring gate, and the mourning stone colossus." }
+   ]
+  }
+ ]
+}

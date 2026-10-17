@@ -24,7 +24,10 @@ export const RULES = [
   ['source file name', /\b[\w-]+\.(?:md|sh|py|ts|mjs|cjs|tsx|jsx|env|yml|yaml|toml|ini|log)\b/i],
   // machines, hosts and internal services
   ['host or machine name', /\b(?:thor|loki|sentinel|hermes|knox|scanner|spicymeatball|odin)\b/i],
-  ['machine name (atlas; "Atlas Veyr" is fine)', /\batlas\b(?!\s+veyr)/i],
+  // Atlas is the hero's name (and Atlas Veyr the universe), so capitalised "Atlas" is allowed; the render box is caught by
+  // the lowercase name and by the ways people talk about a machine.
+  ['machine name (atlas, lowercase)', /\batlas\b(?!\s+veyr)/],
+  ['machine name (Atlas the box; Atlas the hero is fine)', /\batlas[-_](?:run|shot)\b|\batlas\s+(?:box|gpu|machine|server|render\w*|host|pc)\b|\b(?:on|from|via|ssh)\s+atlas\b(?!\s+veyr)/i],
   ['internal service', /pulse\.bigpicsolutions|life\.bigpicsolutions|markets\.bigpicsolutions/i],
   ['.local hostname', /\.local\b/i],
   ['NAS', /\bNAS\b|\bKNOX-NAS\b|cold data/i],
@@ -37,7 +40,7 @@ export const RULES = [
   ['agent or session talk', /\b(?:agent|agents|subagent|session|prompt|lane|swarm)\b/i],
   // personal topics
   ['personal: lease / rent', /\b(?:lease|rent|rental|landlord|mortgage)\b/i],
-  ['personal: health', /\b(?:health|disability|disabled|medical|therapy|therapist|doctor|hospital|diagnos\w*|medication|surgery)\b/i],
+  ['personal: health', /\bhealth\b(?!\s+bars?\b)|\b(?:disability|disabled|medical|therapy|therapist|doctor|hospital|diagnos\w*|medication|surgery)\b/i],
   ['personal: money', /\b(?:salary|debt|loan|income|paycheck|runway|broke)\b/i],
   ['money amount', /[$€£]\s?\d|\b\d+(?:\.\d+)?\s?(?:USD|dollars|bucks)\b/i],
   ['personal name (surname)', /\bgomas\b/i],
@@ -69,8 +72,8 @@ const shape = (d) => {
   (d.releases || []).forEach((r, i) => {
     need(r && typeof r.version === 'string' && typeof r.title === 'string', `releases[${i}] needs "version" and "title"`);
     need(r && typeof r.date === 'string' && ISO.test(r.date), `releases[${i}].date must be YYYY-MM-DD`);
-    need(r && Array.isArray(r.items) && r.items.every((it) => typeof it === 'string' || (it && typeof it === 'object' && (typeof it.h === 'string' || typeof it.t === 'string'))),
-      `releases[${i}].items must be strings or {h, t}`);
+    need(r && Array.isArray(r.items) && r.items.every((it) => typeof it === 'string' || (it && typeof it === 'object' && (typeof it.h === 'string' || typeof it.t === 'string' || typeof it.group === 'string'))),
+      `releases[${i}].items must be strings, {h, t} or {group}`);
   });
   const dates = (d.releases || []).map((r) => r && r.date).filter(Boolean);
   need(dates.every((x, i) => i === 0 || x <= dates[i - 1]), '"releases" must be newest first');

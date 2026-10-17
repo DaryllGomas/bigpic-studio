@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/01_dusk_wide.webp" fetchpriority="high">
+<link rel="stylesheet" href="../assets/hub/hub.css">
 <style>
 :root{
   --void:#04060b; --deep:#0a0f1a; --dawn:#e8b87d; --sunrise:#f4a261; --gold:#ffd89a;
@@ -76,6 +77,27 @@ main{padding:34px var(--pad) 30px}
 .btn-gold{background:linear-gradient(180deg,#ffd08a,#f4a261);color:#1a0f05;box-shadow:0 8px 30px rgba(244,162,97,.35)}
 .btn-ghost{border:1px solid rgba(253,246,236,.28);color:var(--light)}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+/* the devlog + feedback: the shared game hub (../assets/hub), in this page's dusk gold */
+.hubsec{position:relative;margin-top:10px;padding:clamp(40px,5vw,64px) 0 clamp(20px,3vw,34px);border-top:1px solid rgba(232,184,125,.22);scroll-margin-top:70px}
+.hubsec::before{content:"";position:absolute;inset:0 calc(var(--pad) * -1);z-index:-1;pointer-events:none;
+  background:radial-gradient(50% 36% at 50% 0%,rgba(244,162,97,.09),transparent 70%),radial-gradient(40% 40% at 8% 80%,rgba(255,216,154,.05),transparent 70%)}
+.hubsec .game-hub{max-width:1240px;margin:0 auto;
+  --hub-accent:var(--gold);--hub-accent-2:var(--sunrise);--hub-ink:var(--light);--hub-ink-soft:var(--mist);--hub-ink-dim:var(--muted);
+  --hub-line:var(--line);--hub-page:var(--void);--hub-surface:rgba(10,15,26,.66);
+  --hub-font-display:var(--serif);--hub-font-ui:var(--sans);--hub-font-body:var(--serif);--hub-radius:12px;font-size:17px}
+.hubsec .hub-eyebrow{color:var(--dawn);letter-spacing:.26em}
+.hubsec .hub-eyebrow .hub-star{color:var(--sunrise);filter:drop-shadow(0 0 6px rgba(244,162,97,.6))}
+.hubsec .hub-title{font-size:clamp(2rem,3.6vw,3.2rem);letter-spacing:-.005em;background:linear-gradient(180deg,#fdf6ec 35%,#f4c27e);-webkit-background-clip:text;background-clip:text}
+.hubsec .hub-h{font-size:11.5px;letter-spacing:.26em;color:var(--dawn)}
+.hubsec .hub-col-sub,.hubsec .hub-hint{font-family:var(--sans);font-size:13.5px}
+.hubsec .hub-ver{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sunrise);background:rgba(244,162,97,.1);border-color:rgba(244,162,97,.35);border-radius:999px;padding:3px 10px}
+.hubsec .hub-rel-title{font-size:clamp(20px,1.8vw,25px)}
+.hubsec .hub-rel-title,.hubsec .hub-form-h,.hubsec .hub-done-h{font-weight:500}
+.hubsec .hub-items li{font-size:16.5px}
+.hubsec .hub-items strong{font-family:var(--sans);font-size:14px;letter-spacing:.02em}
+.hubsec .hub-items li::before{background:var(--sunrise);box-shadow:0 0 10px var(--sunrise);border-radius:50%;transform:none;width:7px;height:7px;top:18px}
+.hubsec .hub-now-list li,.hubsec .hub-q{font-size:16px}
+.hubsec .hub-input{font-family:var(--sans);font-size:16px}
 footer{padding:18px var(--pad) 26px;font-family:var(--sans);font-size:11.5px;color:var(--muted);border-top:1px solid rgba(232,184,125,.14)}
 
 /* lightbox */
@@ -137,6 +159,7 @@ footer{padding:18px var(--pad) 26px;font-family:var(--sans);font-size:11.5px;col
       <div class="cta">
         <a class="btn btn-gold" href="/the-first-world/">Play The First World</a>
         <a class="btn btn-ghost" href="/#log">Follow the lab log</a>
+        <a class="btn btn-ghost" href="#devlog-feedback">Tell us what you think</a>
       </div>
     </div>
     <ul aria-label="Built so far">
@@ -146,6 +169,10 @@ footer{padding:18px var(--pad) 26px;font-family:var(--sans);font-size:11.5px;col
       <li>The gate road and the first colossus</li>
       <li>Optional: real-life movement earns Light</li>
     </ul>
+  </section>
+
+  <section class="hubsec" aria-label="Devlog and feedback">
+    <section class="game-hub" id="devlog" data-game="beyond-the-nexus" data-src="devlog.json" data-title="Built in the open" data-ask-intro="It isn’t playable yet, so these are about what you’d love to play. One line helps."></section>
   </section>
 </main>
 
@@ -170,5 +197,6 @@ footer{padding:18px var(--pad) 26px;font-family:var(--sans);font-size:11.5px;col
   document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
 })();
 </script>
+<script src="../assets/hub/hub.js" defer></script>
 </body>
 </html>
