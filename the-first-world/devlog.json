@@ -1,15 +1,18 @@
 {
  "game": "the-first-world",
  "title": "THE FIRST WORLD",
- "version": "v0.9",
+ "version": "v0.10",
  "updated": "2026-10-17",
  "now": [
-  "One last age: after Vexahl, the three villages come together and build something new at the heart of the island.",
+  "The next game picks up where this one ends.",
   "Tuning when Vexahl offers the ring, so it lands at the moments that tempt you most.",
   "A fuller story script for the whole island.",
   "Smoother frames on laptops and older machines."
  ],
  "ask": [
+  {
+   "q": "How did the last age feel? Did the city grow the way you hoped?"
+  },
   {
    "q": "What do you think of Lumi's and Fizz's new faces?"
   },
@@ -30,6 +33,30 @@
   }
  ],
  "releases": [
+  {
+   "version": "v0.10",
+   "date": "2026-10-17",
+   "title": "The last age",
+   "summary": "Story mode doesn't end with Vexahl any more. After him, the three villages come together for one last age, and the island finally has its true ending.",
+   "items": [
+    {
+     "h": "One last age",
+     "t": "Once Vexahl is whole again, the three villages become one. Together they raise a ring of seven standing stones, each carrying a mark, on the lowland between them. You help as you always have: carry stone, answer prayers, bring gifts, and every village's devotion flows to the ring."
+    },
+    {
+     "h": "A city grows",
+     "t": "When the ring stands, there's no temple this time. A city builds itself around it in steps: paved roads, a plaza with fountains and a market, rings of houses, halls and towers, avenues out to the old villages, then walls and gates. At dusk the lamps come on and the people dance around the stones."
+    },
+    {
+     "h": "The true ending",
+     "t": "When the city is finished, the ring lights up, and the people look up at it. Nobody kneels. Then you're asked whether you'd like to go on to the next game, or stay on your island and keep playing."
+    },
+    {
+     "h": "New voices",
+     "t": "Lumi and Fizz have new spoken lines for the whole last age."
+    }
+   ]
+  },
   {
    "version": "v0.9",
    "date": "2026-10-17",
