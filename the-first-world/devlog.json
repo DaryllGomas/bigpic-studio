@@ -1,12 +1,11 @@
 {
  "game": "the-first-world",
  "title": "THE FIRST WORLD",
- "version": "v0.10",
- "updated": "2026-10-17",
+ "version": "v0.11",
+ "updated": "2026-10-18",
  "now": [
   "The next game picks up where this one ends.",
   "Tuning when Vexahl offers the ring, so it lands at the moments that tempt you most.",
-  "A fuller story script for the whole island.",
   "Smoother frames on laptops and older machines."
  ],
  "ask": [
@@ -33,6 +32,26 @@
   }
  ],
  "releases": [
+  {
+   "version": "v0.11",
+   "date": "2026-10-18",
+   "title": "Not away. Back.",
+   "summary": "The ending has more to say. Before the hood falls, your rival makes his case, and the people closest to you answer him.",
+   "items": [
+    {
+     "h": "The confrontation",
+     "t": "There's no fight at the end: the island was the struggle. Instead, as Vexahl's spire comes close, he tells you why he did what he did, and Lumi, Fizz and Ora answer him. What he says depends on whether you ever took his ring."
+    },
+    {
+     "h": "The last word",
+     "t": "After the two hands meet, Lumi and Fizz each have one more thing to say."
+    },
+    {
+     "h": "Voiced",
+     "t": "Every new line is spoken in the characters' own voices."
+    }
+   ]
+  },
   {
    "version": "v0.10",
    "date": "2026-10-17",
