@@ -49,6 +49,10 @@
     {
      "h": "Voiced",
      "t": "Every new line is spoken in the characters' own voices."
+    },
+    {
+     "h": "Controllers fixed for two pads",
+     "t": "With more than one controller connected, the hand follows the pad in your hands and no longer creeps across the screen on its own."
     }
    ]
   },
