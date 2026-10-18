@@ -53,6 +53,10 @@
     {
      "h": "Controllers fixed for two pads",
      "t": "With more than one controller connected, the hand follows the pad in your hands and no longer creeps across the screen on its own."
+    },
+    {
+     "h": "The villages hold together",
+     "t": "In the last age, while the three villages build the city, none of them can lose faith in you. If you stay on your island after the ending, looking after them is the game again."
     }
    ]
   },
