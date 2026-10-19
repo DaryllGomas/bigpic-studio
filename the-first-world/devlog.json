@@ -1,7 +1,7 @@
 {
  "game": "the-first-world",
  "title": "THE FIRST WORLD",
- "version": "v0.11",
+ "version": "v0.12",
  "updated": "2026-10-18",
  "now": [
   "The next game picks up where this one ends.",
@@ -32,6 +32,30 @@
   }
  ],
  "releases": [
+  {
+   "version": "v0.12",
+   "date": "2026-10-18",
+   "title": "After the ending",
+   "summary": "Stay on your island after the true ending and Telor keeps living: a festival every season, newcomers arriving by boat, and a city that grows while you look after it.",
+   "items": [
+    {
+     "h": "Telor's seasons",
+     "t": "Each season the city holds a celebration and asks you for one thing: rain for Blossom Day, food for the Harvest Feast, timber for Lantern Night, a spark of fire for Midwinter. Give it, and the whole city turns out: lanterns, music, dancing round the stones. Midwinter has fireworks. Fizz was right after all."
+    },
+    {
+     "h": "A city that keeps growing",
+     "t": "Now and then a boat of newcomers comes in to the shore. Look after the island and Telor builds them a home, then a new street, a garden, another house past the walls. Leave it be and it simply waits. Nobody leaves and nothing is lost."
+    },
+    {
+     "h": "Lumi speaks up when a village is hungry",
+     "t": "She tells you which village is going hungry, once, without nagging. Fizz has opinions too."
+    },
+    {
+     "h": "Small fixes",
+     "t": "Village names stay on screen and readable over a glowing temple, and the prayer line says why nobody is dancing (resting for the night, gathering to pray) instead of \"no worshippers\"."
+    }
+   ]
+  },
   {
    "version": "v0.11",
    "date": "2026-10-18",
