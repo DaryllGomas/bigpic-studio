@@ -1,10 +1,10 @@
 {
  "game": "the-junction",
  "title": "THE JUNCTION",
- "version": "v1.3",
+ "version": "v1.4",
  "updated": "2026-10-18",
  "now": [
-  "Tuning the aisle from your first plays: which games you pick, where it feels slow, what’s hard to find.",
+  "Tuning the aisle from your first plays: which games you pick, where it feels slow, what\u2019s hard to find.",
   "Keeping every game free and one click away. No coins, no sign-up."
  ],
  "ask": [
@@ -25,6 +25,21 @@
  ],
  "releases": [
   {
+   "version": "v1.4",
+   "date": "2026-10-18",
+   "title": "One arcade, two shelves",
+   "items": [
+    {
+     "h": "STUDIO and ARCADE",
+     "t": "The aisle now has two shelves, the same on the big screen and the web: our games first, then all 26 cabinets in one row."
+    },
+    {
+     "h": "The home aisle shows it spins",
+     "t": "Glowing arrows sit on both edges, the aisle gives a little nudge when it arrives, and you can drag it or swipe sideways. Click a cabinet to bring it to the front; click it again to step in and play."
+    }
+   ]
+  },
+  {
    "version": "v1.3",
    "date": "2026-10-18",
    "title": "Our games first",
@@ -40,9 +55,18 @@
    "date": "2026-10-13",
    "title": "Plays your way",
    "items": [
-    { "h": "The right buttons on screen", "t": "The hints at the bottom follow whatever you play with: keyboard keys, gamepad buttons, or taps on a phone." },
-    { "h": "A way back", "t": "The aisle and the cabinet wall both have a button back to the Studio." },
-    { "h": "The cabinet wall on phones", "t": "Grid view now fits and works on a phone." }
+    {
+     "h": "The right buttons on screen",
+     "t": "The hints at the bottom follow whatever you play with: keyboard keys, gamepad buttons, or taps on a phone."
+    },
+    {
+     "h": "A way back",
+     "t": "The aisle and the cabinet wall both have a button back to the Studio."
+    },
+    {
+     "h": "The cabinet wall on phones",
+     "t": "Grid view now fits and works on a phone."
+    }
    ]
   },
   {
@@ -50,11 +74,26 @@
    "date": "2026-10-11",
    "title": "A warmer room, and no coins",
    "items": [
-    { "h": "Every cabinet its own shape", "t": "Driving cabinets with wheels, motocross bars, a sit-down cockpit, and three styles of kick panel." },
-    { "h": "Screens at their best", "t": "Every screen opens on its game’s most colourful demo moment, a little brighter than before." },
-    { "h": "A warmer room", "t": "Warmer light across the brick and the floor." },
-    { "h": "Free means free", "t": "No INSERT COIN anywhere. Every game plays the moment you pick it." },
-    { "h": "The daily challenge", "t": "One game a day on the Studio’s home page, with its own high-score table. The button plays today’s round." }
+    {
+     "h": "Every cabinet its own shape",
+     "t": "Driving cabinets with wheels, motocross bars, a sit-down cockpit, and three styles of kick panel."
+    },
+    {
+     "h": "Screens at their best",
+     "t": "Every screen opens on its game\u2019s most colourful demo moment, a little brighter than before."
+    },
+    {
+     "h": "A warmer room",
+     "t": "Warmer light across the brick and the floor."
+    },
+    {
+     "h": "Free means free",
+     "t": "No INSERT COIN anywhere. Every game plays the moment you pick it."
+    },
+    {
+     "h": "The daily challenge",
+     "t": "One game a day on the Studio\u2019s home page, with its own high-score table. The button plays today\u2019s round."
+    }
    ]
   },
   {
@@ -63,11 +102,26 @@
    "title": "THE JUNCTION opens",
    "summary": "The arcade from THE PATH, open to everyone: 26 games, free, one click.",
    "items": [
-    { "h": "The aisle", "t": "A row of real 3D cabinets, each running its own demo on the screen. Slide along with the arrow keys, a drag or the mouse wheel, and switch shelves with up and down: Classics, New Arrivals and Indie Gems." },
-    { "h": "Step up and play", "t": "Press Enter or click the cabinet in front of you and the view glides in until the game fills the screen. Escape steps you back." },
-    { "h": "Your initials", "t": "Set them at the top under PLAYER and they go on the high-score tables." },
-    { "h": "The cabinet wall", "t": "GRID VIEW shows every cabinet at once." },
-    { "h": "On phones", "t": "Swipe the aisle, tap to play, and a touch stick and buttons come up while you play." }
+    {
+     "h": "The aisle",
+     "t": "A row of real 3D cabinets, each running its own demo on the screen. Slide along with the arrow keys, a drag or the mouse wheel, and switch shelves with up and down: Classics, New Arrivals and Indie Gems."
+    },
+    {
+     "h": "Step up and play",
+     "t": "Press Enter or click the cabinet in front of you and the view glides in until the game fills the screen. Escape steps you back."
+    },
+    {
+     "h": "Your initials",
+     "t": "Set them at the top under PLAYER and they go on the high-score tables."
+    },
+    {
+     "h": "The cabinet wall",
+     "t": "GRID VIEW shows every cabinet at once."
+    },
+    {
+     "h": "On phones",
+     "t": "Swipe the aisle, tap to play, and a touch stick and buttons come up while you play."
+    }
    ]
   }
  ]

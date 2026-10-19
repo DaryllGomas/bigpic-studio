@@ -49,6 +49,21 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
 .key.down{filter:brightness(1.35);transform:translateY(4px)}
 /* embedded on the studio home: no chrome, a quiet hint, the page keeps its scroll */
 .embed .top,.embed .hints{display:none}
+/* the home band spins without a word of instruction: glowing chevrons on both edges, a grab cursor, a nudge on arrival */
+.embed canvas#gl{cursor:grab;touch-action:pan-y}
+.embed canvas#gl.grabbing{cursor:grabbing}
+.chev{display:none;position:fixed;top:50%;z-index:7;width:max(46px,4.4vw);height:max(46px,4.4vw);margin-top:calc(max(46px,4.4vw) / -2);padding:0;border-radius:50%;cursor:pointer;color:#ffd27a;
+  border:1.5px solid rgba(255,196,110,.55);background:radial-gradient(circle at 50% 50%,rgba(255,170,70,.22),rgba(14,8,14,.62) 70%);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  box-shadow:0 0 22px rgba(255,150,40,.45),inset 0 0 14px rgba(255,190,110,.25);transition:transform .25s,box-shadow .25s,opacity .4s;animation:chevPulse 3.2s ease-in-out infinite}
+.chev svg{width:46%;height:46%;display:block;margin:auto;filter:drop-shadow(0 0 6px rgba(255,190,100,.9))}
+.chev:hover,.chev:focus-visible{transform:scale(1.14);box-shadow:0 0 36px rgba(255,170,60,.85),inset 0 0 18px rgba(255,210,140,.45);outline:none}
+.chev:active{transform:scale(.94)}
+.chev.l{left:max(10px,1.6vw)}.chev.r{right:max(10px,1.6vw)}
+.embed .chev{display:block}
+.playing .chev{display:none!important}
+@media (min-width:820px){.embed .chev.r{right:calc(max(190px,13vw) + 3.2vw)}}
+@keyframes chevPulse{0%,100%{opacity:.78}50%{opacity:1;box-shadow:0 0 34px rgba(255,160,50,.75),inset 0 0 16px rgba(255,200,120,.35)}}
+@media (prefers-reduced-motion:reduce){.chev{animation:none}}
 .ehint{display:none;position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:6;padding:7px 16px;border-radius:999px;background:rgba(10,6,16,.6);border:1px solid rgba(255,207,90,.35);
   font-family:'VT323',monospace;font-size:1.15rem;letter-spacing:.18em;color:#ffcf5a;pointer-events:none;transition:opacity .6s}
 .embed .ehint{display:block}
@@ -67,6 +82,7 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
 .edc td{padding:.32vw 0;border-bottom:1px solid rgba(255,255,255,.06)}.edc td:last-child{text-align:right}.edc td:first-child{color:#b9adc9;width:1.6vw}
 .edc button{display:block;width:100%;margin-top:.9vw;padding:.7vw 0;border-radius:.6vw;border:2px solid #ffb347;background:rgba(255,150,40,.06);color:#ffe2b8;font:500 max(11px,.92vw)/1 'Space Grotesk',sans-serif;letter-spacing:.18em;cursor:pointer;box-shadow:0 0 1.4vw rgba(255,150,40,.45)}
 @media (max-width:819px){.edc{display:none!important}}
+@media (max-width:560px){.embed .ehead .sb{display:none}}
 </style>
 </head>
 <body>
@@ -74,10 +90,11 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
 <div class="load" id="load">POWERING UP THE JUNCTION</div>
 <div class="ehead"><div class="ey">✕ Arcade</div><h2>The <em>Junction</em></h2><div class="sb">▷ 26 games · free · one click</div></div>
 <aside class="edc" id="edc"></aside>
-<div class="ehint" id="ehint">◀ ▶ SPIN · CLICK THE CABINET TO PLAY</div>
+<button type="button" class="chev l" id="chevL" aria-label="Previous cabinet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4 7 12l8 8"/></svg></button>
+<button type="button" class="chev r" id="chevR" aria-label="Next cabinet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4l8 8-8 8"/></svg></button>
 <div class="top">
   <a href="/" title="Back to BigPic Studio">← STUDIO</a>
-  <button type="button" class="jx-open" id="jxLog" data-version="v1.3" title="What's new, what we're building, and feedback"><span class="jx-word">LOG</span></button>
+  <button type="button" class="jx-open" id="jxLog" data-version="v1.4" title="What's new, what we're building, and feedback"><span class="jx-word">LOG</span></button>
   <label title="Your initials for the high-score tables">PLAYER <input id="ini" maxlength="3" value="YOU" autocomplete="off" spellcheck="false"></label>
   <a href="grid.html" title="Every cabinet at once">GRID VIEW</a>
 </div>
@@ -132,7 +149,7 @@ let device = coarse ? 'touch' : 'keys';   // which prompts to show: keys | pad |
 const startText = () => device === 'pad' ? 'PRESS START' : device === 'touch' ? 'TAP TO START' : 'PRESS ENTER';
 await Promise.all(['700 80px Cinzel', '900 80px Cinzel', '80px Bungee', '40px VT323'].map((f) => document.fonts.load(f).catch(() => {})));
 
-// ------------------------------------------------------------------ the games and the three categories
+// ------------------------------------------------------------------ the games and the two rows
 const GAMES = Cartridges.all.map((c, i) => ({ id: c.id, cart: c, spec: c.spec, order: i }));
 // MEDIA-CENTER PATCH 2026-10-16 (Daryll): a STUDIO aisle above CLASSICS: BigPic Studios' own games. They are not
 // cabinet carts: their card art fills the tube. The TV launches locally; the web opens verified public pages.
@@ -151,14 +168,13 @@ const STUDIO = [
   ['seven-tunnel', 'THE TUNNEL', 'seven-tunnel.png'], ['seven-constellation', 'THE CONSTELLATION', 'seven-constellation.png'],
 ].map(([id, name, art], i) => ({ id: 'studio:' + id, studio: id, art: 'assets/studio/' + art, cart: null,
   url: PUBLIC_STUDIO[id], spec: { name, publisher: 'BigPic Studios', year: 2026 }, order: 1000 + i })).filter((g) => TV || g.url);
+// Two rows, the same on the TV and the web (2026-10-18, Daryll: "a mirror"): STUDIO (our games first) and ARCADE
+// (all 26 cabinets). A genre split is tabled for later (see arcade/README.md, "Later").
 const CATS = [
   { name: 'STUDIO', list: STUDIO },
-  { name: 'CLASSICS', list: GAMES.filter((g) => g.spec.year <= 1982) },
-  { name: 'NEW ARRIVALS', list: GAMES.slice(-8) },                       // the last eight added to THE JUNCTION
-  { name: 'INDIE GEMS', list: GAMES.filter((g) => g.spec.year >= 1983) },
+  { name: 'ARCADE', list: GAMES },
 ];
-let cat = TV ? 1 : 0;   // Keep the couch default; public visitors meet our games first.
-const NA = () => CATS.findIndex((C) => C.name === 'NEW ARRIVALS');
+let cat = 0;   // STUDIO first on both.
 const HAS_ART = new Set('afterglow castlecrush deepkeep hyperdrift irondojo ironworks lancerider lanejumper lasthuman lastlight lunarduty mudmetal nebularun route9 shortorder sporefield spritepop stackattack sunsetdrive swarmpatrol tunnelrat vaultdigger warlordsroad'.split(' '));
 const SIDE_FALLBACK = { starvector: ART + 'tex/t41_sv_side.jpg', gridcycles: ART + 'tex/t20_poster_gridcycles.jpg' };
 
@@ -587,7 +603,7 @@ function play() {
       body: JSON.stringify({ action: 'play', id: g.studio }) }).catch(() => {});
     return;
   }
-  if (EMBED) { const g = featured().userData.game; (window.top || window).location.href = ARCADE + '?game=' + encodeURIComponent(g.id); return; }
+  if (EMBED) { const g = featured().userData.game; (window.top || window).location.href = ARCADE + '?game=' + encodeURIComponent(g.id) + '&play=1'; return; }
   if (mode !== 'aisle') { if (active && active.runner.phase !== 'playing') wantCoin = true; return; }
   target = Math.round(target); pos = target; vel = 0; layoutAisle();
   const s = featured(), sk = SKINS.get(s.userData.game.id);
@@ -652,7 +668,8 @@ document.getElementById('hints').addEventListener('click', (e) => {
 const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
 let drag = null, wheelT = 0;
 canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, p: target, moved: false }; });
-canvas.addEventListener('pointermove', (e) => { if (!drag || mode !== 'aisle') return; const dx = e.clientX - drag.x; if (Math.abs(dx) > 8) drag.moved = true; if (drag.moved) target = drag.p - dx / (innerWidth * 0.12); });
+const endGrab = () => canvas.classList.remove('grabbing'); addEventListener('pointerup', endGrab); addEventListener('pointercancel', () => { endGrab(); drag = null; });
+canvas.addEventListener('pointermove', (e) => { if (!drag || mode !== 'aisle') return; const dx = e.clientX - drag.x; if (Math.abs(dx) > 8) { drag.moved = true; canvas.classList.add('grabbing'); } if (drag.moved) target = drag.p - dx / (innerWidth * 0.12); });
 canvas.addEventListener('pointerup', (e) => {
   const d = drag; drag = null; if (!d) return;
   if (d.moved) { target = Math.round(target); return; }
@@ -663,7 +680,10 @@ canvas.addEventListener('pointerup', (e) => {
   if (!o) return; const dd = Math.round(o.userData.d);
   if (dd === 0) play(); else target = Math.round(target) + dd;
 });
-canvas.addEventListener('wheel', (e) => { if (mode !== 'aisle' || EMBED) return; e.preventDefault(); const v = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY; const now = performance.now(); if (Math.abs(v) > 4 && now - wheelT > 160) { wheelT = now; move(Math.sign(v)); } }, { passive: false });
+canvas.addEventListener('wheel', (e) => { if (mode !== 'aisle') return;
+  // on the home band only a sideways swipe (trackpad, shift+wheel) spins; the page keeps its up/down wheel scroll
+  if (EMBED && !(e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY))) return;
+  e.preventDefault(); const v = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.deltaY || e.deltaX); const now = performance.now(); if (Math.abs(v) > 4 && now - wheelT > 160) { wheelT = now; move(Math.sign(v)); } }, { passive: false });
 // the touch pad while playing
 const touch = { x: 0, y: 0, a: false, b: false, start: false };
 {
@@ -725,7 +745,7 @@ function pushTarget() {
 const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
 // ------------------------------------------------------------------ the loop
-{ const want = Q.get('game') || (TV && !Q.get('home') ? 'warlordsroad' : null); let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (CATS[NA()].list.some((g) => g.id === want)) c = NA(); if (c >= 0) { cat = c; pos = target = CATS[c].list.findIndex((g) => g.id === want); } }
+{ const want = Q.get('game') || (TV && !Q.get('home') ? 'warlordsroad' : null); let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (c >= 0) { cat = c; pos = target = CATS[c].list.findIndex((g) => g.id === want); } }
 drawCats(); layoutAisle(); drawPlate(featured().userData.game);
 const IDLE = { x: 0, y: 0, a: false, b: false, start: false };
 let last = performance.now(), from = null;
@@ -780,7 +800,7 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 // JUNCTION-LAUNCHER PATCH (loki copy only): ?game=<id> focuses that cabinet, &play=1 walks up to it
-{ const want = Q.get("game"); if (want) { let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (CATS[NA()].list.some((g) => g.id === want)) c = NA(); if (c >= 0) { cat = c; drawCats(); pos = target = CATS[c].list.findIndex((g) => g.id === want); layoutAisle(); if (Q.has("play")) setTimeout(play, 1200); } } }
+{ const want = Q.get("game"); if (want) { let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (c >= 0) { cat = c; drawCats(); pos = target = CATS[c].list.findIndex((g) => g.id === want); layoutAisle(); if (Q.has("play")) setTimeout(play, 1200); } } }
 requestAnimationFrame(frame);
 setTimeout(() => document.getElementById('load').classList.add('done'), 600);
 if (EMBED) {
@@ -792,11 +812,22 @@ if (EMBED) {
     const tbl = skin(g).runner.table.entries.slice(0, 5);
     const dc = document.getElementById('edc');
     dc.innerHTML = `<h4>🏆 DAILY CHALLENGE</h4><b>${g.spec.name}</b><small>TODAY'S ROUND · HIGH SCORE</small><table>${tbl.map((e, i) => `<tr><td>${i + 1}</td><td>${e.blank ? '---' : e.initials}</td><td>${e.blank ? '' : String(e.score).padStart(6, '0')}</td></tr>`).join('')}</table><button type="button">PLAY TODAY'S ROUND</button>`;
-    dc.querySelector('button').onclick = () => { (window.top || window).location.href = ARCADE + '?game=' + g.id; };
-    dc.querySelector('b').style.cursor = 'pointer'; dc.querySelector('b').onclick = () => { (window.top || window).location.href = ARCADE + '?game=' + g.id; };
+    dc.querySelector('button').onclick = () => { (window.top || window).location.href = ARCADE + '?game=' + g.id + '&play=1'; };
+    dc.querySelector('b').style.cursor = 'pointer'; dc.querySelector('b').onclick = () => { (window.top || window).location.href = ARCADE + '?game=' + g.id + '&play=1'; };
   }
 }
-if (EMBED) setTimeout(() => { const h = document.getElementById('ehint'); if (h) h.style.opacity = '0'; }, 6000);
+if (EMBED) {
+  // chevrons spin one cabinet; a nudge on arrival (and on the first hover) shows that it moves
+  document.getElementById('chevL').addEventListener('click', () => { move(-1); nudged = true; });
+  document.getElementById('chevR').addEventListener('click', () => { move(1); nudged = true; });
+  const nudge = () => { if (mode !== 'aisle' || drag || Math.abs(target - Math.round(target)) > 0.01) return; const t0 = Math.round(target); target = t0 + 0.55; setTimeout(() => { if (!drag && mode === 'aisle' && Math.abs(target - (t0 + 0.55)) < 0.01) target = t0; }, 650); };
+  let nudged = false;
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    new IntersectionObserver((es) => { if (!nudged && es.some((e) => e.isIntersecting && e.intersectionRatio > 0.5)) { nudged = true; setTimeout(nudge, 1700); } }, { threshold: [0.5] }).observe(canvas);
+  }
+  canvas.addEventListener('pointerenter', () => { if (!nudged) { nudged = true; nudge(); } });
+  window.__nudge = nudge;
+}
 window.__junction = { sound: AS, cam: () => ({ p: camera.position.toArray().map((v) => +v.toFixed(2)), l: camLook.toArray().map((v) => +v.toFixed(2)) }), get category() { return CATS[cat].name; }, get selected() { return featured().userData.game.id; }, TV, get mode() { return mode; }, get pos() { return pos; }, move, switchCat, play, back, get run() { return active && active.runner; }, slots, CATS };
 </script>
 <script src="hub-panel.js" defer></script>

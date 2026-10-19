@@ -1,0 +1,8 @@
+{
+  "_note": "Studio-level lab log items that are not a game release. build-news.mjs merges these by date. Keep it short; game updates come from each game's own devlog.json.",
+  "items": [
+    { "date": "2026-10-07", "title": "Ancients redesigned", "href": "ancients/" },
+    { "date": "2026-09-28", "title": "BigPic Studios opens" },
+    { "date": "2026-09-22", "title": "THE NEXUS trailer ▶", "trailer": true }
+  ]
+}

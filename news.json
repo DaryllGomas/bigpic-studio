@@ -1,0 +1,227 @@
+{
+  "newest": "2026-10-18",
+  "modal": [
+    {
+      "game": "beyond-the-nexus",
+      "gameName": "Beyond the Nexus",
+      "version": "Log 03",
+      "date": "2026-10-18",
+      "title": "Sloth wakes, and the river finds its way home",
+      "href": "rpg/",
+      "text": "Two bosses, a longer road, and a build made for the couch. Not playable on the web yet.",
+      "label": "Beyond the Nexus Log 03: Sloth wakes, and the river finds its way home",
+      "short": "Beyond the Nexus Log 03"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.12",
+      "date": "2026-10-18",
+      "title": "After the ending",
+      "href": "the-first-world/",
+      "text": "Stay on your island after the true ending and Telor keeps living: a festival every season, newcomers arriving by boat, and a city that grows while you look after it.",
+      "label": "The First World v0.12: After the ending",
+      "short": "The First World v0.12"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.11",
+      "date": "2026-10-18",
+      "title": "Not away. Back.",
+      "href": "the-first-world/",
+      "text": "The ending has more to say. Before the hood falls, your rival makes his case, and the people closest to you answer him.",
+      "label": "The First World v0.11: Not away. Back.",
+      "short": "The First World v0.11"
+    },
+    {
+      "game": "the-junction",
+      "gameName": "The Junction",
+      "version": "v1.4",
+      "date": "2026-10-18",
+      "title": "One arcade, two shelves",
+      "href": "arcade/",
+      "text": "The aisle now has two shelves, the same on the big screen and the web: our games first, then all 26 cabinets in one row.",
+      "label": "The Junction v1.4: One arcade, two shelves",
+      "short": "The Junction v1.4"
+    },
+    {
+      "game": "the-junction",
+      "gameName": "The Junction",
+      "version": "v1.3",
+      "date": "2026-10-18",
+      "title": "Our games first",
+      "href": "arcade/",
+      "text": "The arcade opens on our games, with larger card art on the tube. Pick one to visit its public game or development page; all 26 cabinets are still a shelf away.",
+      "label": "The Junction v1.3: Our games first",
+      "short": "The Junction v1.3"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.10",
+      "date": "2026-10-17",
+      "title": "The last age",
+      "href": "the-first-world/",
+      "text": "Story mode doesn't end with Vexahl any more. After him, the three villages come together for one last age, and the island finally has its true ending.",
+      "label": "The First World v0.10: The last age",
+      "short": "The First World v0.10"
+    },
+    {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.3",
+      "date": "2026-10-17",
+      "title": "Play it from the couch",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "Plug in or wake an Xbox, PlayStation, 8BitDo or Switch pad and play the whole chapter from the couch. The left stick walks (gently to creep, hard to hurry), the right stick looks, A uses, B steps…",
+      "label": "The Path v0.3: Play it from the couch",
+      "short": "The Path v0.3"
+    },
+    {
+      "game": "the-junction",
+      "gameName": "The Junction",
+      "version": "v1.2",
+      "date": "2026-10-13",
+      "title": "Plays your way",
+      "href": "arcade/",
+      "text": "The hints at the bottom follow whatever you play with: keyboard keys, gamepad buttons, or taps on a phone.",
+      "label": "The Junction v1.2: Plays your way",
+      "short": "The Junction v1.2"
+    }
+  ],
+  "log": [
+    {
+      "game": "beyond-the-nexus",
+      "gameName": "Beyond the Nexus",
+      "version": "Log 03",
+      "date": "2026-10-18",
+      "title": "Sloth wakes, and the river finds its way home",
+      "href": "rpg/",
+      "text": "Two bosses, a longer road, and a build made for the couch. Not playable on the web yet.",
+      "label": "Beyond the Nexus Log 03: Sloth wakes, and the river finds its way home",
+      "short": "Beyond the Nexus Log 03"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.12",
+      "date": "2026-10-18",
+      "title": "After the ending",
+      "href": "the-first-world/",
+      "text": "Stay on your island after the true ending and Telor keeps living: a festival every season, newcomers arriving by boat, and a city that grows while you look after it.",
+      "label": "The First World v0.12: After the ending",
+      "short": "The First World v0.12"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.11",
+      "date": "2026-10-18",
+      "title": "Not away. Back.",
+      "href": "the-first-world/",
+      "text": "The ending has more to say. Before the hood falls, your rival makes his case, and the people closest to you answer him.",
+      "label": "The First World v0.11: Not away. Back.",
+      "short": "The First World v0.11"
+    },
+    {
+      "game": "the-junction",
+      "gameName": "The Junction",
+      "version": "v1.4",
+      "date": "2026-10-18",
+      "title": "One arcade, two shelves",
+      "href": "arcade/",
+      "text": "The aisle now has two shelves, the same on the big screen and the web: our games first, then all 26 cabinets in one row.",
+      "label": "The Junction v1.4: One arcade, two shelves",
+      "short": "The Junction v1.4"
+    },
+    {
+      "game": "the-junction",
+      "gameName": "The Junction",
+      "version": "v1.3",
+      "date": "2026-10-18",
+      "title": "Our games first",
+      "href": "arcade/",
+      "text": "The arcade opens on our games, with larger card art on the tube. Pick one to visit its public game or development page; all 26 cabinets are still a shelf away.",
+      "label": "The Junction v1.3: Our games first",
+      "short": "The Junction v1.3"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.10",
+      "date": "2026-10-17",
+      "title": "The last age",
+      "href": "the-first-world/",
+      "text": "Story mode doesn't end with Vexahl any more. After him, the three villages come together for one last age, and the island finally has its true ending.",
+      "label": "The First World v0.10: The last age",
+      "short": "The First World v0.10"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.9",
+      "date": "2026-10-17",
+      "title": "Faces, and a village worth living in",
+      "href": "the-first-world/",
+      "text": "Lumi and Fizz have painted faces now, the villages are full of life, and the island glows warmer by day.",
+      "label": "The First World v0.9: Faces, and a village worth living in",
+      "short": "The First World v0.9"
+    },
+    {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.3",
+      "date": "2026-10-17",
+      "title": "Play it from the couch",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "Plug in or wake an Xbox, PlayStation, 8BitDo or Switch pad and play the whole chapter from the couch. The left stick walks (gently to creep, hard to hurry), the right stick looks, A uses, B steps…",
+      "label": "The Path v0.3: Play it from the couch",
+      "short": "The Path v0.3"
+    },
+    {
+      "game": "the-junction",
+      "gameName": "The Junction",
+      "version": "v1.2",
+      "date": "2026-10-13",
+      "title": "Plays your way",
+      "href": "arcade/",
+      "text": "The hints at the bottom follow whatever you play with: keyboard keys, gamepad buttons, or taps on a phone.",
+      "label": "The Junction v1.2: Plays your way",
+      "short": "The Junction v1.2"
+    },
+    {
+      "game": "beyond-the-nexus",
+      "gameName": "Beyond the Nexus",
+      "version": "Log 02",
+      "date": "2026-10-11",
+      "title": "The first quest, and a world beyond the walls",
+      "href": "rpg/",
+      "text": "Not playable yet. Here’s what grew in the build this week.",
+      "label": "Beyond the Nexus Log 02: The first quest, and a world beyond the walls",
+      "short": "Beyond the Nexus Log 02"
+    },
+    {
+      "game": "the-junction",
+      "gameName": "The Junction",
+      "version": "v1.1",
+      "date": "2026-10-11",
+      "title": "A warmer room, and no coins",
+      "href": "arcade/",
+      "text": "Driving cabinets with wheels, motocross bars, a sit-down cockpit, and three styles of kick panel.",
+      "label": "The Junction v1.1: A warmer room, and no coins",
+      "short": "The Junction v1.1"
+    },
+    {
+      "game": "beyond-the-nexus",
+      "gameName": "Beyond the Nexus",
+      "version": "Log 01",
+      "date": "2026-10-10",
+      "title": "First scenes beyond the Nexus",
+      "href": "rpg/",
+      "text": "The first scenes of the build, all in a hand-built diorama world.",
+      "label": "Beyond the Nexus Log 01: First scenes beyond the Nexus",
+      "short": "Beyond the Nexus Log 01"
+    }
+  ]
+}
