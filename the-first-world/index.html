@@ -217,12 +217,13 @@
   .pillar p { margin: 0; font-size: 18.5px; line-height: 1.5; color: var(--ink-soft); }
 
   /* ---------- screenshots ---------- */
-  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto auto; gap: clamp(12px, 1.6vw, 18px); margin-top: clamp(30px, 4vw, 48px);
-    grid-template-areas: "a a b" "a a c" "d e e"; }
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto auto auto; gap: clamp(12px, 1.6vw, 18px); margin-top: clamp(30px, 4vw, 48px);
+    grid-template-areas: "a a b" "a a c" "d e e" "f g h"; }
   .shot { all: unset; box-sizing: border-box; position: relative; display: block; cursor: zoom-in; border-radius: 16px; overflow: hidden; background: #000; border: 1px solid var(--line-soft);
     box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.9); transition: border-color 0.3s, box-shadow 0.3s; }
   .shot:nth-child(1) { grid-area: a; } .shot:nth-child(2) { grid-area: b; } .shot:nth-child(3) { grid-area: c; } .shot:nth-child(4) { grid-area: d; } .shot:nth-child(5) { grid-area: e; }
   .shot img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 9; transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.4s; }
+  .shot:nth-child(6) { grid-area: f; } .shot:nth-child(7) { grid-area: g; } .shot:nth-child(8) { grid-area: h; }
   .shot:nth-child(1) img { aspect-ratio: auto; min-height: 100%; }
   .shot:nth-child(5) img { aspect-ratio: 2.2 / 1; }
   .shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 45%, rgba(4, 5, 9, 0.88) 100%); pointer-events: none; }
@@ -360,7 +361,7 @@
     .play .small { font-size: 11.5px; }
     .play .go { width: 42px; height: 42px; }
     .film { margin-top: -10svh; }
-    .gallery { grid-template-columns: 1fr; grid-template-areas: "a" "b" "c" "d" "e"; }
+    .gallery { grid-template-columns: 1fr; grid-template-areas: "a" "b" "c" "d" "e" "f" "g" "h"; }
     .shot:nth-child(1) img, .shot:nth-child(5) img { aspect-ratio: 16 / 10; }
     .split { grid-template-columns: 1fr; }
     .split::before { display: none; }
@@ -448,7 +449,7 @@
     <div class="hero-art" aria-hidden="true">
       <picture>
         <source media="(max-width: 700px)" srcset="media/hero-900.webp">
-        <img src="media/hero.webp" width="1672" height="941" alt="" fetchpriority="high">
+        <img src="media/hero.webp" width="1672" height="941" alt="Telor’s warm streets and windows around the Nexus at night" fetchpriority="high">
       </picture>
     </div>
     <div class="ora" aria-hidden="true"><img src="media/ora.webp" width="440" height="440" alt=""></div>
@@ -460,11 +461,11 @@
       <p class="tagline">One small island. A hand of light. A world in your care.</p>
       <div class="cta">
         <a class="play" href="play/" data-track="play-hero">
-          <span class="lbl"><span class="big">PLAY THE FIRST WORLD</span><span class="small">Free in your browser · Early beta · v0.8</span></span>
+          <span class="lbl"><span class="big">PLAY THE FIRST WORLD</span><span class="small">Free in your browser · Early beta · v0.12</span></span>
           <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5v17L20 12z" fill="currentColor"/></svg></span>
         </a>
         <div class="sub-cta">
-          <a class="newpill" href="#devlog"><b>NEW</b><span>v0.8 · Light and shadow rise together</span></a>
+          <a class="newpill" href="#devlog"><b>NEW</b><span>v0.12 · Telor, lanterns and a life after the ending</span></a>
           <a class="pill pill-ghost" href="#intro" data-intro-play><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 8.5v7l6-3.5z" fill="currentColor"/></svg>Watch the intro</a>
         </div>
       </div>
@@ -481,7 +482,7 @@
             <source src="play/intro/intro.mp4" type="video/mp4">
           </video>
           <button class="cover" id="cover" type="button" aria-label="Play the intro film, 36 seconds, with sound">
-            <img src="media/poster.webp" width="1280" height="720" alt="" loading="lazy">
+            <img src="media/poster.webp" width="1280" height="720" alt="Lantern Night above Telor and the seven stones of the Nexus" loading="lazy">
             <span class="btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3.5v17L20 12z"/></svg></span>
             <span class="cap" aria-hidden="true"><b>THE INTRO</b><span>0:36 · sound on</span></span>
           </button>
@@ -498,9 +499,10 @@
       <div class="lead rv">
         <p class="kicker"><svg aria-hidden="true"><use href="#s-star"/></svg>What it is</p>
         <h2 class="sec-h" id="world-h">A god game where <em>the island remembers.</em></h2>
-        <p>You're a young god with no body, only a hand. One small island, a few villages that don't know you yet, and all the time in the world.</p>
+        <p>You're a young god with no body, only a hand. One small island, a few villages that don't know you yet, and all the time in the world. Lumi and Fizz keep you company along the way.</p>
         <p>Answer their prayers. Carry the lost child home. Drop a boulder where they're dreaming of a temple. Look after the place and it sings back to you. Get careless, and something out at the edge of the sea starts paying attention.</p>
-        <p>It's calm first and beautiful first. The stakes are real, but they move at your pace.</p>
+        <p>In the last age, the three villages raise the Nexus: seven marked standing stones. Telor grows around them, with warm windows and streets full of people.</p>
+        <p>Stay on the island and the seasons bring festivals, lanterns, dancing and Midwinter fireworks. Boats bring new families. Keep caring for Telor and it grows. There is no rush.</p>
       </div>
       <ul class="pillars">
         <li class="pillar rv">
@@ -532,25 +534,37 @@
         <h2 class="sec-h" id="screens-h">A little world on a table</h2>
       </div>
       <div class="gallery">
-        <button class="shot rv" type="button" data-full="media/shot-temple-hand.webp" data-cap="YOUR HAND · Over your village, the temple at its heart">
-          <picture><source media="(max-width: 760px)" srcset="media/shot-temple-hand-800.webp"><img src="media/shot-temple-hand.webp" width="1600" height="900" loading="lazy" decoding="async" alt="The glowing hand of light hovering over a village of cottages, with a temple of columns and a beam of gold light at its heart"></picture>
-          <span class="fc"><span class="num">01</span><span class="t"><span class="name">YOUR HAND</span><span class="sub">Everything you touch remembers.</span></span></span>
+        <button class="shot rv" type="button" data-full="media/shot-temple-hand.webp" data-cap="YOUR PEOPLE · A little village, full of life.">
+          <picture><source media="(max-width: 760px)" srcset="media/shot-temple-hand-800.webp"><img src="media/shot-temple-hand.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Villagers and striped market stalls beside a round granary, cottages and a glowing prayer place"></picture>
+          <span class="fc"><span class="num">01</span><span class="t"><span class="name">YOUR PEOPLE</span><span class="sub">A little village, full of life.</span></span></span>
         </button>
-        <button class="shot rv" type="button" data-full="media/shot-temple-gold-low.webp" data-cap="YOUR PEOPLE · Cottages, fields and the temple at golden hour">
-          <picture><source media="(max-width: 760px)" srcset="media/shot-temple-gold-low-800.webp"><img src="media/shot-temple-gold-low.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Timber cottages and crop fields beside a ring of temple columns, in low golden light"></picture>
-          <span class="fc"><span class="num">02</span><span class="t"><span class="name">YOUR PEOPLE</span><span class="sub">They build where they dance.</span></span></span>
+        <button class="shot rv" type="button" data-full="media/shot-temple-gold-low.webp" data-cap="GOLDEN HOUR · They build where they dance.">
+          <picture><source media="(max-width: 760px)" srcset="media/shot-temple-gold-low-800.webp"><img src="media/shot-temple-gold-low.webp" width="1600" height="900" loading="lazy" decoding="async" alt="A white columned temple and rings of gold light among cottages, trees and fields in golden evening light"></picture>
+          <span class="fc"><span class="num">02</span><span class="t"><span class="name">GOLDEN HOUR</span><span class="sub">They build where they dance.</span></span></span>
         </button>
-        <button class="shot rv" type="button" data-full="media/shot-vexahl.webp" data-cap="SOMEONE IS WATCHING · Vexahl's citadel, risen from the sea">
-          <picture><source media="(max-width: 760px)" srcset="media/shot-vexahl-800.webp"><img src="media/shot-vexahl.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Far out at sea at dusk, Vexahl's black citadel of spires with ember windows, a dark cloud crown above and a red glow on the water"></picture>
+        <button class="shot rv" type="button" data-full="media/shot-vexahl.webp" data-cap="ON THE HORIZON · Someone is watching.">
+          <picture><source media="(max-width: 760px)" srcset="media/shot-vexahl-800.webp"><img src="media/shot-vexahl.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Vexahl’s black and ember spires rise from the sea beyond a turquoise island coast"></picture>
           <span class="fc"><span class="num">03</span><span class="t"><span class="name">ON THE HORIZON</span><span class="sub">Someone is watching.</span></span></span>
         </button>
-        <button class="shot rv" type="button" data-full="media/shot-village.webp" data-cap="THE ISLAND · Your village from above, sea stacks offshore">
-          <picture><source media="(max-width: 760px)" srcset="media/shot-village-800.webp"><img src="media/shot-village.webp" width="1600" height="900" loading="lazy" decoding="async" alt="A village from above: glowing gold rings around its prayer place, paths, fields and woods, a turquoise coast and rocky sea stacks"></picture>
-          <span class="fc"><span class="num">04</span><span class="t"><span class="name">THE ISLAND</span><span class="sub">Yours to tend.</span></span></span>
+        <button class="shot rv" type="button" data-full="media/shot-village.webp" data-cap="THE LAST AGE · Seven marks. One meeting place.">
+          <picture><source media="(max-width: 760px)" srcset="media/shot-village-800.webp"><img src="media/shot-village.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Seven marked standing stones form the Nexus, glowing at dusk in the heart of the island"></picture>
+          <span class="fc"><span class="num">04</span><span class="t"><span class="name">THE LAST AGE</span><span class="sub">Seven marks. One meeting place.</span></span></span>
         </button>
-        <button class="shot rv" type="button" data-full="media/shot-ascension.webp" data-cap="WHERE THE ROAD LEADS">
-          <picture><source media="(max-width: 760px)" srcset="media/shot-ascension-800.webp"><img src="media/shot-ascension.webp" width="1600" height="900" loading="lazy" decoding="async" alt="A village at dusk lit with floating lanterns, a pillar of light rising from a ring of stones toward the sky"></picture>
-          <span class="fc"><span class="num">05</span><span class="t"><span class="name">WHERE THE ROAD LEADS</span><span class="sub">We won't say more.</span></span></span>
+        <button class="shot rv" type="button" data-full="media/shot-ascension.webp" data-cap="TELOR · A city grows around the Nexus.">
+          <picture><source media="(max-width: 760px)" srcset="media/shot-ascension-800.webp"><img src="media/shot-ascension.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Telor seen from above at night, its warm windows and street lamps surrounding the seven stones"></picture>
+          <span class="fc"><span class="num">05</span><span class="t"><span class="name">TELOR</span><span class="sub">A city grows around the Nexus.</span></span></span>
+        </button>
+        <button class="shot rv" type="button" data-full="media/shot-lantern-night.webp" data-cap="LANTERN NIGHT · A season worth celebrating.">
+          <picture><source media="(max-width: 760px)" srcset="media/shot-lantern-night-800.webp"><img src="media/shot-lantern-night.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Lanterns float above Telor as its people celebrate around the glowing Nexus"></picture>
+          <span class="fc"><span class="num">06</span><span class="t"><span class="name">LANTERN NIGHT</span><span class="sub">A season worth celebrating.</span></span></span>
+        </button>
+        <button class="shot rv" type="button" data-full="media/shot-midwinter.webp" data-cap="MIDWINTER · A little light in the cold.">
+          <picture><source media="(max-width: 760px)" srcset="media/shot-midwinter-800.webp"><img src="media/shot-midwinter.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Fireworks rise above the snowy roofs and glowing streets of Telor at Midwinter"></picture>
+          <span class="fc"><span class="num">07</span><span class="t"><span class="name">MIDWINTER</span><span class="sub">A little light in the cold.</span></span></span>
+        </button>
+        <button class="shot rv" type="button" data-full="media/shot-lumi.webp" data-cap="A FRIEND AT YOUR SIDE · Lumi has a word.">
+          <picture><source media="(max-width: 760px)" srcset="media/shot-lumi-800.webp"><img src="media/shot-lumi.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Lumi’s painted blue-eyed spirit portrait on a speech card over a village in play"></picture>
+          <span class="fc"><span class="num">08</span><span class="t"><span class="name">A FRIEND AT YOUR SIDE</span><span class="sub">Lumi has a word.</span></span></span>
         </button>
       </div>
     </div>
@@ -579,7 +593,7 @@
           <img src="media/vexahl-shadow.webp" width="640" height="640" loading="lazy" alt="A hooded shadow of black smoke and embers, two ember eyes in the dark" style="object-fit:cover">
           <p class="who">The rival across the sea</p>
           <h3>VEXAHL</h3>
-          <p>A shadow of smoke and embers who rises as you rise. Now and then he offers you his ring. Take it, and they kneel. Who he really is, you'll find out at the very end.</p>
+          <p>A shadow of smoke and embers who rises as you rise. Now and then he offers you his ring. Take it, and they kneel. Before the last age, he has something to say. The island is the struggle; this is a story about healing.</p>
         </article>
       </div>
       <p class="split-foot rv">Lean too far either way and the island feels it. The road is about balance.</p>
@@ -588,7 +602,7 @@
 
   <section class="sec devlog" id="devlog-wrap" aria-label="Devlog and feedback">
     <div class="wrap">
-      <section class="game-hub" id="devlog" data-game="the-first-world" data-src="devlog.json" data-version="v0.8" data-title="Built in the open"></section>
+      <section class="game-hub" id="devlog" data-game="the-first-world" data-src="devlog.json" data-version="v0.12" data-title="Built in the open"></section>
     </div>
   </section>
 
@@ -605,7 +619,7 @@
           <span class="n">01</span><h3>THE PATH</h3><p>1982, a ride downtown, and an arcade cabinet with no name. Where the road begins.</p>
         </a>
         <div class="u cur rv" aria-current="page">
-          <img src="media/hero-900.webp" loading="lazy" alt="">
+          <img src="media/hero-900.webp" loading="lazy" alt="Telor glowing around the Nexus at night">
           <span class="st here">You are here</span>
           <span class="n">02</span><h3>THE FIRST WORLD</h3><p>No body, only a hand. The island you tend before you take a form.</p>
         </div>
