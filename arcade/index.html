@@ -183,7 +183,7 @@ const canvas = document.getElementById('gl');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
 const DPR = Math.min(devicePixelRatio, coarse ? 1.5 : 1.75);
 renderer.setPixelRatio(DPR);
-renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.2;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x0d0604);
@@ -196,7 +196,7 @@ const HOME = { pos: new THREE.Vector3(0, 1.95, 7.0), look: new THREE.Vector3(0, 
 const camPos = HOME.pos.clone(), camLook = HOME.look.clone();
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.6, 0.45, 0.86);
+const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.45, 0.45, 0.86);
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
@@ -443,12 +443,12 @@ function nameArt(spec, w, h, size) {
 }
 function studioSkin(game) {
   const s = {}, art = tex(game.art);
-  s.marquee = new THREE.MeshBasicMaterial({ map: nameArt(game.spec, 1024, 256), color: HOT(0xffffff, 1.1), toneMapped: false });
+  s.marquee = new THREE.MeshBasicMaterial({ map: nameArt(game.spec, 1024, 256), color: HOT(0xffffff, 0.82), toneMapped: false });
   s.sideL = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
   s.sideR = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
-  s.kick = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 40), roughness: 0.5 });
+  s.kick = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 40), roughness: 0.5, color: 0x9a9a9a });
   s.panel = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 44), roughness: 0.45 });
-  s.screen = new THREE.MeshBasicMaterial({ map: art, color: HOT(0xffffff, 1.05), toneMapped: false });
+  s.screen = new THREE.MeshBasicMaterial({ map: art, color: HOT(0xffffff, 0.92), toneMapped: false });
   s.warm = 0; s.screenTex = art; s.game = game;
   s.runner = { phase: 'attract', dirty: false, step() {}, abort() {}, insertCoin() {}, table: { entries: [] }, attract: {} };
   SKINS.set(game.id, s); return s;
@@ -763,7 +763,7 @@ function frame(now) {
     const f = featured(); drawPlate(f.userData.game);
     plate.position.set(f.position.x, 0.2, (f.userData.type === 'cockpit' ? 1.45 : 0.95) + f.position.z); plate.visible = Math.abs(f.userData.d) < 0.35;
     const e = 1 - Math.pow(0.001, dt); camPos.lerp(HOME.pos, e); camLook.lerp(HOME.look, e);
-    bloom.strength += (0.6 - bloom.strength) * Math.min(1, dt * 4);
+    bloom.strength += (0.45 - bloom.strength) * Math.min(1, dt * 4);
   } else {
     const tgt = pushTarget();
     if (mode === 'push' || mode === 'pull') {
@@ -772,7 +772,7 @@ function frame(now) {
       camPos.copy(from.pos).lerp(to.pos, e); camLook.copy(from.look).lerp(to.look, e);
       if (camT >= 1) { if (mode === 'pull') { mode = 'aisle'; active = null; } else mode = 'play'; }
     } else { camPos.copy(tgt.pos); camLook.copy(tgt.look); }
-    bloom.strength += ((mode === 'play' ? 0.28 : 0.6) - bloom.strength) * Math.min(1, dt * 4);
+    bloom.strength += ((mode === 'play' ? 0.25 : 0.45) - bloom.strength) * Math.min(1, dt * 4);
   }
   camera.position.copy(camPos); camera.lookAt(camLook);
   // the tubes: every cabinet on show runs its own attract mode; the one being played takes the player's input
