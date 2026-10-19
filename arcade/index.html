@@ -49,6 +49,21 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
 .key.down{filter:brightness(1.35);transform:translateY(4px)}
 /* embedded on the studio home: no chrome, a quiet hint, the page keeps its scroll */
 .embed .top,.embed .hints{display:none}
+/* the home band spins without a word of instruction: glowing chevrons on both edges, a grab cursor, a nudge on arrival */
+.embed canvas#gl{cursor:grab;touch-action:pan-y}
+.embed canvas#gl.grabbing{cursor:grabbing}
+.chev{display:none;position:fixed;top:50%;z-index:7;width:max(46px,4.4vw);height:max(46px,4.4vw);margin-top:calc(max(46px,4.4vw) / -2);padding:0;border-radius:50%;cursor:pointer;color:#ffd27a;
+  border:1.5px solid rgba(255,196,110,.55);background:radial-gradient(circle at 50% 50%,rgba(255,170,70,.22),rgba(14,8,14,.62) 70%);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  box-shadow:0 0 22px rgba(255,150,40,.45),inset 0 0 14px rgba(255,190,110,.25);transition:transform .25s,box-shadow .25s,opacity .4s;animation:chevPulse 3.2s ease-in-out infinite}
+.chev svg{width:46%;height:46%;display:block;margin:auto;filter:drop-shadow(0 0 6px rgba(255,190,100,.9))}
+.chev:hover,.chev:focus-visible{transform:scale(1.14);box-shadow:0 0 36px rgba(255,170,60,.85),inset 0 0 18px rgba(255,210,140,.45);outline:none}
+.chev:active{transform:scale(.94)}
+.chev.l{left:max(10px,1.6vw)}.chev.r{right:max(10px,1.6vw)}
+.embed .chev{display:block}
+.playing .chev{display:none!important}
+@media (min-width:820px){.embed .chev.r{right:calc(max(190px,13vw) + 3.2vw)}}
+@keyframes chevPulse{0%,100%{opacity:.78}50%{opacity:1;box-shadow:0 0 34px rgba(255,160,50,.75),inset 0 0 16px rgba(255,200,120,.35)}}
+@media (prefers-reduced-motion:reduce){.chev{animation:none}}
 .ehint{display:none;position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:6;padding:7px 16px;border-radius:999px;background:rgba(10,6,16,.6);border:1px solid rgba(255,207,90,.35);
   font-family:'VT323',monospace;font-size:1.15rem;letter-spacing:.18em;color:#ffcf5a;pointer-events:none;transition:opacity .6s}
 .embed .ehint{display:block}
@@ -67,6 +82,7 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
 .edc td{padding:.32vw 0;border-bottom:1px solid rgba(255,255,255,.06)}.edc td:last-child{text-align:right}.edc td:first-child{color:#b9adc9;width:1.6vw}
 .edc button{display:block;width:100%;margin-top:.9vw;padding:.7vw 0;border-radius:.6vw;border:2px solid #ffb347;background:rgba(255,150,40,.06);color:#ffe2b8;font:500 max(11px,.92vw)/1 'Space Grotesk',sans-serif;letter-spacing:.18em;cursor:pointer;box-shadow:0 0 1.4vw rgba(255,150,40,.45)}
 @media (max-width:819px){.edc{display:none!important}}
+@media (max-width:560px){.embed .ehead .sb{display:none}}
 </style>
 </head>
 <body>
@@ -74,10 +90,11 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
 <div class="load" id="load">POWERING UP THE JUNCTION</div>
 <div class="ehead"><div class="ey">✕ Arcade</div><h2>The <em>Junction</em></h2><div class="sb">▷ 26 games · free · one click</div></div>
 <aside class="edc" id="edc"></aside>
-<div class="ehint" id="ehint">◀ ▶ SPIN · CLICK THE CABINET TO PLAY</div>
+<button type="button" class="chev l" id="chevL" aria-label="Previous cabinet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4 7 12l8 8"/></svg></button>
+<button type="button" class="chev r" id="chevR" aria-label="Next cabinet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4l8 8-8 8"/></svg></button>
 <div class="top">
   <a href="/" title="Back to BigPic Studio">← STUDIO</a>
-  <button type="button" class="jx-open" id="jxLog" data-version="v1.3" title="What's new, what we're building, and feedback"><span class="jx-word">LOG</span></button>
+  <button type="button" class="jx-open" id="jxLog" data-version="v1.4" title="What's new, what we're building, and feedback"><span class="jx-word">LOG</span></button>
   <label title="Your initials for the high-score tables">PLAYER <input id="ini" maxlength="3" value="YOU" autocomplete="off" spellcheck="false"></label>
   <a href="grid.html" title="Every cabinet at once">GRID VIEW</a>
 </div>
@@ -116,7 +133,8 @@ const { Cartridges } = await import(ENGINE + 'cartridges.js');
 const { RoundResult } = await import(ENGINE + 'sdk/index.js');
 // SOUND (sound.js: THE PATH's chip modules). Loads beside the page; if it can't, the aisle simply stays silent.
 let AS = null;
-import('./sound.js').then((m) => m.createAisleSound()).then((a) => { AS = a; if (window.__junction) window.__junction.sound = a; }).catch((e) => console.warn('[junction] no sound:', e && e.message));
+// embedded on the studio home (?embed): no sound at all, no hum, no ticks. A click goes to the full /arcade/, which has its own.
+if (!new URLSearchParams(location.search).has('embed')) import('./sound.js').then((m) => m.createAisleSound()).then((a) => { AS = a; if (window.__junction) window.__junction.sound = a; }).catch((e) => console.warn('[junction] no sound:', e && e.message));
 
 const Q = new URLSearchParams(location.search), EMBED = Q.has('embed'), ARCADE = Q.get('arcade') || '/arcade/';
 // The couch opens this exact localhost alias; ordinary localhost previews remain web pages.
@@ -132,7 +150,7 @@ let device = coarse ? 'touch' : 'keys';   // which prompts to show: keys | pad |
 const startText = () => device === 'pad' ? 'PRESS START' : device === 'touch' ? 'TAP TO START' : 'PRESS ENTER';
 await Promise.all(['700 80px Cinzel', '900 80px Cinzel', '80px Bungee', '40px VT323'].map((f) => document.fonts.load(f).catch(() => {})));
 
-// ------------------------------------------------------------------ the games and the three categories
+// ------------------------------------------------------------------ the games and the two rows
 const GAMES = Cartridges.all.map((c, i) => ({ id: c.id, cart: c, spec: c.spec, order: i }));
 // MEDIA-CENTER PATCH 2026-10-16 (Daryll): a STUDIO aisle above CLASSICS: BigPic Studios' own games. They are not
 // cabinet carts: their card art fills the tube. The TV launches locally; the web opens verified public pages.
@@ -151,23 +169,22 @@ const STUDIO = [
   ['seven-tunnel', 'THE TUNNEL', 'seven-tunnel.png'], ['seven-constellation', 'THE CONSTELLATION', 'seven-constellation.png'],
 ].map(([id, name, art], i) => ({ id: 'studio:' + id, studio: id, art: 'assets/studio/' + art, cart: null,
   url: PUBLIC_STUDIO[id], spec: { name, publisher: 'BigPic Studios', year: 2026 }, order: 1000 + i })).filter((g) => TV || g.url);
+// Two rows, the same on the TV and the web (2026-10-18, Daryll: "a mirror"): STUDIO (our games first) and ARCADE
+// (all 26 cabinets). A genre split is tabled for later (see arcade/README.md, "Later").
 const CATS = [
   { name: 'STUDIO', list: STUDIO },
-  { name: 'CLASSICS', list: GAMES.filter((g) => g.spec.year <= 1982) },
-  { name: 'NEW ARRIVALS', list: GAMES.slice(-8) },                       // the last eight added to THE JUNCTION
-  { name: 'INDIE GEMS', list: GAMES.filter((g) => g.spec.year >= 1983) },
+  { name: 'ARCADE', list: GAMES },
 ];
-let cat = TV ? 1 : 0;   // Keep the couch default; public visitors meet our games first.
-const NA = () => CATS.findIndex((C) => C.name === 'NEW ARRIVALS');
+let cat = 0;   // STUDIO first on both.
 const HAS_ART = new Set('afterglow castlecrush deepkeep hyperdrift irondojo ironworks lancerider lanejumper lasthuman lastlight lunarduty mudmetal nebularun route9 shortorder sporefield spritepop stackattack sunsetdrive swarmpatrol tunnelrat vaultdigger warlordsroad'.split(' '));
 const SIDE_FALLBACK = { starvector: ART + 'tex/t41_sv_side.jpg', gridcycles: ART + 'tex/t20_poster_gridcycles.jpg' };
 
 // ------------------------------------------------------------------ renderer, camera, post
 const canvas = document.getElementById('gl');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
-const DPR = Math.min(devicePixelRatio, coarse ? 1.5 : 1.75);
+const DPR = Math.min(devicePixelRatio, coarse ? 1.5 : 2);
 renderer.setPixelRatio(DPR);
-renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.2;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x0d0604);
@@ -178,17 +195,18 @@ scene.environmentIntensity = 0.28;
 const camera = new THREE.PerspectiveCamera(33, 1, 0.05, 60);
 const HOME = { pos: new THREE.Vector3(0, 1.95, 7.0), look: new THREE.Vector3(0, 1.62, 0) };
 const camPos = HOME.pos.clone(), camLook = HOME.look.clone();
-const composer = new EffectComposer(renderer);
+const composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4 }));   // MSAA through the post chain: without it the antialias above is lost and edges and signs go soft
 composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.6, 0.45, 0.86);
+const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.45, 0.45, 0.86);
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
 const loader = new THREE.TextureLoader();
-const tex = (url, srgb = true) => { const t = loader.load(url); if (srgb) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t; };
+const ANISO = renderer.capabilities.getMaxAnisotropy();   // signs seen at an angle stay sharp
+const tex = (url, srgb = true) => { const t = loader.load(url); if (srgb) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO; return t; };
 function canvasTex(w, h, draw) {
   const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
-  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO; return t;
 }
 const HOT = (hex, k) => new THREE.Color(hex).multiplyScalar(k);        // colours above 1 bloom
 const neon = (g, col, fn, glow = 28) => { for (const [c, b, lw] of [[col, glow, 16], [col, glow / 3, 9], ['#fff2e0', 0, 3]]) { g.save(); g.strokeStyle = c; g.shadowColor = col; g.shadowBlur = b; g.lineWidth = lw; g.lineJoin = g.lineCap = 'round'; fn(); g.restore(); } };
@@ -352,7 +370,8 @@ const btnMats = [0xd8141e, 0x1e6bff, 0xffc21a].map((c) => new THREE.MeshStandard
 // one space game a sit-down cockpit. Kick panels come in three styles so the row never repeats itself
 const TYPE = { hyperdrift: 'driver', sunsetdrive: 'driver', mudmetal: 'bike', starvector: 'cockpit' };
 const KICK = ['crest', 'grille', 'neon'];
-const kickStyle = (id) => { let h = 0; for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return KICK[h % 3]; };
+const kickStyle = (id) => { if (id.startsWith('studio:')) return 'crest'; let h = 0;  // studio cabinets: their marquee framed on the kick, like the painted arcade ones
+  for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return KICK[h % 3]; };
 const rubber = new THREE.MeshStandardMaterial({ color: 0x111014, roughness: 0.6 });
 const seatMat = new THREE.MeshStandardMaterial({ color: 0x3a0a0e, roughness: 0.35, metalness: 0.1 });
 const cockTrim = new THREE.MeshBasicMaterial({ color: HOT(0x33e6ff, 1.25), toneMapped: false });
@@ -418,40 +437,32 @@ function makeSlot() {
 const SKINS = new Map();
 // each game's most colourful demo moment, measured offline (2026-10-11) in 0.25 s steps with this exact attract set-up
 const BRIGHT = { gridcycles: 39.5, starvector: 39.75, relicquest: 27.5, castlecrush: 45, lancerider: 31.75, lasthuman: 5.25, lanejumper: 44.5, shortorder: 1, spritepop: 41, hyperdrift: 3.5, irondojo: 30.5, ironworks: 21.25, nebularun: 29.25, stackattack: 49.75, tunnelrat: 1, vaultdigger: 20.75, lastlight: 23, sporefield: 1, swarmpatrol: 2.75, afterglow: 30, lunarduty: 1, mudmetal: 3.25, route9: 1, sunsetdrive: 12.25, warlordsroad: 48.25, deepkeep: 6.25 };
-function nameArt(spec, w, h, size) {
-  return canvasTex(w, h, (g) => {
-    const r = g.createLinearGradient(0, 0, 0, h); r.addColorStop(0, '#1a0c2a'); r.addColorStop(1, '#07030c'); g.fillStyle = r; g.fillRect(0, 0, w, h);
-    g.font = (size || Math.round(h * 0.42)) + 'px Bungee'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    neon(g, '#33e6ff', () => g.strokeText(spec.name, w / 2, h / 2), 24); g.fillStyle = '#e8fbff'; g.fillText(spec.name, w / 2, h / 2);
+function nameArt(spec, w, h, size, y = 0.5) {   // drawn at 2x, shrunk to fit, a soft halo behind a crisp face (Daryll, 2026-10-18: "they still look blurry")
+  return canvasTex(w * 2, h * 2, (g, W, H) => {
+    const r = g.createLinearGradient(0, 0, 0, H); r.addColorStop(0, '#1a0c2a'); r.addColorStop(1, '#07030c'); g.fillStyle = r; g.fillRect(0, 0, W, H);
+    let px = (size || Math.round(h * 0.42)) * 2; g.font = px + 'px Bungee'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    const fit = g.measureText(spec.name).width; if (fit > W * 0.88) { px = Math.floor(px * W * 0.88 / fit); g.font = px + 'px Bungee'; }
+    g.save(); g.shadowColor = '#33e6ff'; g.shadowBlur = px * 0.4; g.fillStyle = '#33e6ff'; g.fillText(spec.name, W / 2, H * y); g.restore();
+    g.lineWidth = Math.max(2, px * 0.06); g.lineJoin = 'round'; g.strokeStyle = '#0b4a5c'; g.strokeText(spec.name, W / 2, H * y);
+    g.fillStyle = '#eafcff'; g.fillText(spec.name, W / 2, H * y);
   });
-}
-function studioSkin(game) {
-  const s = {}, art = tex(game.art);
-  s.marquee = new THREE.MeshBasicMaterial({ map: nameArt(game.spec, 1024, 256), color: HOT(0xffffff, 1.1), toneMapped: false });
-  s.sideL = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
-  s.sideR = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
-  s.kick = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 40), roughness: 0.5 });
-  s.panel = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 44), roughness: 0.45 });
-  s.screen = new THREE.MeshBasicMaterial({ map: art, color: HOT(0xffffff, 1.05), toneMapped: false });
-  s.warm = 0; s.screenTex = art; s.game = game;
-  s.runner = { phase: 'attract', dirty: false, step() {}, abort() {}, insertCoin() {}, table: { entries: [] }, attract: {} };
-  SKINS.set(game.id, s); return s;
 }
 function skin(game) {
   if (SKINS.has(game.id)) return SKINS.get(game.id);
-  if (game.studio) return studioSkin(game);
   const id = game.id, s = {};
-  const mq = HAS_ART.has(id) ? tex(ART + 'cab/' + id + '_marquee.jpg') : nameArt(game.spec, 1024, 256);
+  // studio cabinets wear painted art the same way (arcade/cab/studio-<id>_*.jpg, built by tools/cabinets/build.mjs)
+  const aid = game.studio ? 'studio-' + game.studio : id, hasArt = !!game.studio || HAS_ART.has(id);
+  const mq = hasArt ? tex(ART + 'cab/' + aid + '_marquee.jpg') : nameArt(game.spec, 1024, 256);
   mq.repeat.set(0.75, 1); mq.offset.set(0.125, 0);
   s.marquee = new THREE.MeshBasicMaterial({ map: mq, color: HOT(0xffffff, 1.18), toneMapped: false });
-  const sideUrl = HAS_ART.has(id) ? ART + 'cab/' + id + '_side.jpg' : SIDE_FALLBACK[id];
-  const mqUrl = HAS_ART.has(id) ? ART + 'cab/' + id + '_marquee.jpg' : null;
+  const sideUrl = hasArt ? ART + 'cab/' + aid + '_side.jpg' : SIDE_FALLBACK[id];
+  const mqUrl = hasArt ? ART + 'cab/' + aid + '_marquee.jpg' : null;
   // the side canvas covers the whole profile's box (z -0.45..0.47, y 0..1.95); the art sits inside the part of the
   // panel that is full depth, top-aligned, over a blurred wash of itself, so the cabinet's outline never slices a figure
   const sideC = document.createElement('canvas'); sideC.width = 512; sideC.height = 1086;
   const kickC = document.createElement('canvas'); kickC.width = 512; kickC.height = 526;
   const sideT = new THREE.CanvasTexture(sideC), kickT = new THREE.CanvasTexture(kickC);
-  for (const t of [sideT, kickT]) { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; }
+  for (const t of [sideT, kickT]) { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO; }
   sideT.repeat.set(1 / 0.92, 1 / 1.95); sideT.offset.set(0.45 / 0.92, 0);
   const sideFlip = sideT.clone(); sideFlip.repeat.set(-1 / 0.92, 1 / 1.95); sideFlip.offset.set(1 - 0.45 / 0.92, 0);
   const paint = (img, mq) => {
@@ -485,7 +496,14 @@ function skin(game) {
   s.sideL = [new THREE.MeshStandardMaterial({ map: sideT, roughness: 0.42, metalness: 0.05 }), black];
   s.sideR = [new THREE.MeshStandardMaterial({ map: sideFlip, roughness: 0.42, metalness: 0.05 }), black];
   s.kick = new THREE.MeshStandardMaterial({ map: kickT, roughness: 0.5 });
-  s.panel = new THREE.MeshStandardMaterial({ map: HAS_ART.has(id) ? tex(ART + 'cab/' + id + '_panel.jpg') : nameArt(game.spec, 512, 256, 44), roughness: 0.45 });
+  s.panel = new THREE.MeshStandardMaterial({ map: hasArt ? tex(ART + 'cab/' + aid + '_panel.jpg') : nameArt(game.spec, 512, 256, 44), roughness: 0.45 });
+  if (game.studio) {                                                    // the tube keeps the game's own art; there is no engine behind it
+    const art = tex(game.art);
+    s.screen = new THREE.MeshBasicMaterial({ map: art, color: HOT(0xffffff, 0.92), toneMapped: false });
+    s.warm = 0; s.screenTex = art; s.game = game;
+    s.runner = { phase: 'attract', dirty: false, step() {}, abort() {}, insertCoin() {}, table: { entries: [] }, attract: {} };
+    SKINS.set(game.id, s); return s;
+  }
   // the live tube: the game's own pixels, straight from THE PATH's engine
   const runner = new CabinetRunner(game.cart, { cabinetId: 'junction_' + id, freePlay: true, attractFps: 24 });
   const d = runner.surface.data, px = new Uint8Array(d.buffer, d.byteOffset, d.length);
@@ -587,7 +605,7 @@ function play() {
       body: JSON.stringify({ action: 'play', id: g.studio }) }).catch(() => {});
     return;
   }
-  if (EMBED) { const g = featured().userData.game; (window.top || window).location.href = ARCADE + '?game=' + encodeURIComponent(g.id); return; }
+  if (EMBED) { const g = featured().userData.game; (window.top || window).location.href = ARCADE + '?game=' + encodeURIComponent(g.id) + '&play=1'; return; }
   if (mode !== 'aisle') { if (active && active.runner.phase !== 'playing') wantCoin = true; return; }
   target = Math.round(target); pos = target; vel = 0; layoutAisle();
   const s = featured(), sk = SKINS.get(s.userData.game.id);
@@ -652,7 +670,8 @@ document.getElementById('hints').addEventListener('click', (e) => {
 const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
 let drag = null, wheelT = 0;
 canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, p: target, moved: false }; });
-canvas.addEventListener('pointermove', (e) => { if (!drag || mode !== 'aisle') return; const dx = e.clientX - drag.x; if (Math.abs(dx) > 8) drag.moved = true; if (drag.moved) target = drag.p - dx / (innerWidth * 0.12); });
+const endGrab = () => canvas.classList.remove('grabbing'); addEventListener('pointerup', endGrab); addEventListener('pointercancel', () => { endGrab(); drag = null; });
+canvas.addEventListener('pointermove', (e) => { if (!drag || mode !== 'aisle') return; const dx = e.clientX - drag.x; if (Math.abs(dx) > 8) { drag.moved = true; canvas.classList.add('grabbing'); } if (drag.moved) target = drag.p - dx / (innerWidth * 0.12); });
 canvas.addEventListener('pointerup', (e) => {
   const d = drag; drag = null; if (!d) return;
   if (d.moved) { target = Math.round(target); return; }
@@ -663,7 +682,10 @@ canvas.addEventListener('pointerup', (e) => {
   if (!o) return; const dd = Math.round(o.userData.d);
   if (dd === 0) play(); else target = Math.round(target) + dd;
 });
-canvas.addEventListener('wheel', (e) => { if (mode !== 'aisle' || EMBED) return; e.preventDefault(); const v = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY; const now = performance.now(); if (Math.abs(v) > 4 && now - wheelT > 160) { wheelT = now; move(Math.sign(v)); } }, { passive: false });
+canvas.addEventListener('wheel', (e) => { if (mode !== 'aisle') return;
+  // on the home band only a sideways swipe (trackpad, shift+wheel) spins; the page keeps its up/down wheel scroll
+  if (EMBED && !(e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY))) return;
+  e.preventDefault(); const v = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.deltaY || e.deltaX); const now = performance.now(); if (Math.abs(v) > 4 && now - wheelT > 160) { wheelT = now; move(Math.sign(v)); } }, { passive: false });
 // the touch pad while playing
 const touch = { x: 0, y: 0, a: false, b: false, start: false };
 {
@@ -725,7 +747,7 @@ function pushTarget() {
 const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
 // ------------------------------------------------------------------ the loop
-{ const want = Q.get('game') || (TV && !Q.get('home') ? 'warlordsroad' : null); let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (CATS[NA()].list.some((g) => g.id === want)) c = NA(); if (c >= 0) { cat = c; pos = target = CATS[c].list.findIndex((g) => g.id === want); } }
+{ const want = Q.get('game') || (TV && !Q.get('home') ? 'warlordsroad' : null); let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (c >= 0) { cat = c; pos = target = CATS[c].list.findIndex((g) => g.id === want); } }
 drawCats(); layoutAisle(); drawPlate(featured().userData.game);
 const IDLE = { x: 0, y: 0, a: false, b: false, start: false };
 let last = performance.now(), from = null;
@@ -743,7 +765,7 @@ function frame(now) {
     const f = featured(); drawPlate(f.userData.game);
     plate.position.set(f.position.x, 0.2, (f.userData.type === 'cockpit' ? 1.45 : 0.95) + f.position.z); plate.visible = Math.abs(f.userData.d) < 0.35;
     const e = 1 - Math.pow(0.001, dt); camPos.lerp(HOME.pos, e); camLook.lerp(HOME.look, e);
-    bloom.strength += (0.6 - bloom.strength) * Math.min(1, dt * 4);
+    bloom.strength += (0.45 - bloom.strength) * Math.min(1, dt * 4);
   } else {
     const tgt = pushTarget();
     if (mode === 'push' || mode === 'pull') {
@@ -752,7 +774,7 @@ function frame(now) {
       camPos.copy(from.pos).lerp(to.pos, e); camLook.copy(from.look).lerp(to.look, e);
       if (camT >= 1) { if (mode === 'pull') { mode = 'aisle'; active = null; } else mode = 'play'; }
     } else { camPos.copy(tgt.pos); camLook.copy(tgt.look); }
-    bloom.strength += ((mode === 'play' ? 0.28 : 0.6) - bloom.strength) * Math.min(1, dt * 4);
+    bloom.strength += ((mode === 'play' ? 0.25 : 0.45) - bloom.strength) * Math.min(1, dt * 4);
   }
   camera.position.copy(camPos); camera.lookAt(camLook);
   // the tubes: every cabinet on show runs its own attract mode; the one being played takes the player's input
@@ -780,7 +802,7 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 // JUNCTION-LAUNCHER PATCH (loki copy only): ?game=<id> focuses that cabinet, &play=1 walks up to it
-{ const want = Q.get("game"); if (want) { let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (CATS[NA()].list.some((g) => g.id === want)) c = NA(); if (c >= 0) { cat = c; drawCats(); pos = target = CATS[c].list.findIndex((g) => g.id === want); layoutAisle(); if (Q.has("play")) setTimeout(play, 1200); } } }
+{ const want = Q.get("game"); if (want) { let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (c >= 0) { cat = c; drawCats(); pos = target = CATS[c].list.findIndex((g) => g.id === want); layoutAisle(); if (Q.has("play")) setTimeout(play, 1200); } } }
 requestAnimationFrame(frame);
 setTimeout(() => document.getElementById('load').classList.add('done'), 600);
 if (EMBED) {
@@ -792,11 +814,22 @@ if (EMBED) {
     const tbl = skin(g).runner.table.entries.slice(0, 5);
     const dc = document.getElementById('edc');
     dc.innerHTML = `<h4>🏆 DAILY CHALLENGE</h4><b>${g.spec.name}</b><small>TODAY'S ROUND · HIGH SCORE</small><table>${tbl.map((e, i) => `<tr><td>${i + 1}</td><td>${e.blank ? '---' : e.initials}</td><td>${e.blank ? '' : String(e.score).padStart(6, '0')}</td></tr>`).join('')}</table><button type="button">PLAY TODAY'S ROUND</button>`;
-    dc.querySelector('button').onclick = () => { (window.top || window).location.href = ARCADE + '?game=' + g.id; };
-    dc.querySelector('b').style.cursor = 'pointer'; dc.querySelector('b').onclick = () => { (window.top || window).location.href = ARCADE + '?game=' + g.id; };
+    dc.querySelector('button').onclick = () => { (window.top || window).location.href = ARCADE + '?game=' + g.id + '&play=1'; };
+    dc.querySelector('b').style.cursor = 'pointer'; dc.querySelector('b').onclick = () => { (window.top || window).location.href = ARCADE + '?game=' + g.id + '&play=1'; };
   }
 }
-if (EMBED) setTimeout(() => { const h = document.getElementById('ehint'); if (h) h.style.opacity = '0'; }, 6000);
+if (EMBED) {
+  // chevrons spin one cabinet; a nudge on arrival (and on the first hover) shows that it moves
+  document.getElementById('chevL').addEventListener('click', () => { move(-1); nudged = true; });
+  document.getElementById('chevR').addEventListener('click', () => { move(1); nudged = true; });
+  const nudge = () => { if (mode !== 'aisle' || drag || Math.abs(target - Math.round(target)) > 0.01) return; const t0 = Math.round(target); target = t0 + 0.55; setTimeout(() => { if (!drag && mode === 'aisle' && Math.abs(target - (t0 + 0.55)) < 0.01) target = t0; }, 650); };
+  let nudged = false;
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    new IntersectionObserver((es) => { if (!nudged && es.some((e) => e.isIntersecting && e.intersectionRatio > 0.5)) { nudged = true; setTimeout(nudge, 1700); } }, { threshold: [0.5] }).observe(canvas);
+  }
+  canvas.addEventListener('pointerenter', () => { if (!nudged) { nudged = true; nudge(); } });
+  window.__nudge = nudge;
+}
 window.__junction = { sound: AS, cam: () => ({ p: camera.position.toArray().map((v) => +v.toFixed(2)), l: camLook.toArray().map((v) => +v.toFixed(2)) }), get category() { return CATS[cat].name; }, get selected() { return featured().userData.game.id; }, TV, get mode() { return mode; }, get pos() { return pos; }, move, switchCat, play, back, get run() { return active && active.runner; }, slots, CATS };
 </script>
 <script src="hub-panel.js" defer></script>
