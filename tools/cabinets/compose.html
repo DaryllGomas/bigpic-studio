@@ -63,6 +63,9 @@ function paintText(g, style, t, x, y, px, pal) {
     for (const [b, w] of [[px * 0.55, 0.16], [px * 0.25, 0.12], [px * 0.1, 0.08]]) { g.shadowColor = c; g.shadowBlur = b; g.lineWidth = px * w; g.strokeStyle = c; g.strokeText(t, x, y); }
     g.shadowColor = 'transparent'; g.lineWidth = px * 0.075; g.strokeStyle = c2; g.strokeText(t, x, y);
     const gr = g.createLinearGradient(0, y - px * 0.5, 0, y + px * 0.5); gr.addColorStop(0, '#ffffff'); gr.addColorStop(1, pal.core || '#ffe9f2'); g.fillStyle = gr; g.fillText(t, x, y);
+  } else if (style === 'ink' && PAINTED) {   // dark ink vanishes on a painted night scene: cream paper letters, red misprint, a soft shadow
+    g.shadowColor = 'rgba(0,0,0,.85)'; g.shadowBlur = px * 0.25; g.fillStyle = pal.misreg || '#b8321f'; g.fillText(t, x + px * 0.045, y + px * 0.045);
+    g.shadowBlur = 0; g.fillStyle = '#f3e4c4'; g.fillText(t, x, y);
   } else if (style === 'ink') {
     g.fillStyle = pal.misreg || '#b8321f'; g.fillText(t, x + px * 0.045, y + px * 0.045);
     g.fillStyle = pal.ink || '#17110c'; g.fillText(t, x, y);
@@ -254,13 +257,20 @@ for (const id of Object.keys(MINI)) {
   };
 }
 
+let PAINTED = false;
+function letteringOnly(g) {   // the recipe draws as usual, but its backdrop (images, fills, strokes) is dropped: text and frames remain
+  const skip = new Set(['drawImage', 'fillRect', 'fill', 'stroke', 'putImageData']);
+  return new Proxy(g, { get: (t, k) => skip.has(k) ? () => {} : (typeof t[k] === 'function' ? t[k].bind(t) : t[k]), set: (t, k, v) => { t[k] = v; return true; } });
+}
 window.compose = async function (id, kind, over = {}) {
   await Promise.all(['100px Bungee', '900 100px Cinzel', '700 100px Cinzel', '700 20px "Space Grotesk"', '100px VT323', '500 20px Newsreader'].map((f) => document.fonts.load(f).catch(() => {})));
   const [w, h] = SIZE[kind], out = document.createElement('canvas'); out.width = w; out.height = h;
   const big = document.createElement('canvas'); big.width = w * SS; big.height = h * SS;
-  if (over[kind]) { const im = await load(over[kind]); cover(out.getContext('2d'), im, 0, 0, w, h); return out.toDataURL('image/jpeg', 0.93); }
   const g = big.getContext('2d'); g.scale(SS, SS); g.imageSmoothingQuality = 'high';
-  await R[id](g, w, h, kind, over);
+  if (over[kind]) {   // a painting: it fills the piece, then only the recipe's lettering and frame go on top (the marquee still needs its name);
+    cover(g, await load(over[kind]), 0, 0, w, h);   // side paintings stay pure art
+    if (kind !== 'side') { PAINTED = true; try { await R[id](letteringOnly(g), w, h, kind, over); } finally { PAINTED = false; } }
+  } else await R[id](g, w, h, kind, over);
   const o = out.getContext('2d'); o.imageSmoothingQuality = 'high'; o.drawImage(big, 0, 0, w, h);
   return out.toDataURL('image/jpeg', 0.93);
 };
