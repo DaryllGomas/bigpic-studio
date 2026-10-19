@@ -58,3 +58,15 @@ Verification: `atlas-run . tests/whats-new.mjs shots/whats-new` passed at all fo
 Hero screenshots: [1920](shots/whats-new/1920-hero.png), [1366](shots/whats-new/1366-hero.png), [820](shots/whats-new/820-hero.png), [390](shots/whats-new/390-hero.png). Modal screenshots use the same widths and `-modal.png` filenames. Desktop and phone hero shots and the phone modal were visually inspected. `git diff --check` passed. Committed on `meet-faces`; no push or publication, no changes to `main` or `arcade/`, and no project files deleted.
 
 Limitation: unread state has the same day-level granularity as the source, so multiple releases on an already-read date do not light the dot again.
+
+## Beyond the Nexus page — 2026-10-18
+
+Updated the RPG page and home card to the current private build: the Nexus → City → lamps → Green → Sloth journey, THE BEAT's one-button painted battles, Dueling Dragons, the River road and Mill Landing, Tobin, The Current and The Pearl, and the river's recovery. Added Log 03 (October 18), refreshed the next-work list and feedback questions, and stated that the game is not playable on the web yet. Existing page buttons remain. Removed the home character card's misleading “playable” wording for The Current.
+
+Sources: read-only atlas-hd2d git history since October 11, README, HANDOFF, river/battle/finisher and related reports, CREDITS, October 12–18 changelogs, and the first-island storyboard's next-boss table. Future bosses are plans, not finished fights. Sloth's private placeholder song remains outside this site; no game code or audio was copied or published.
+
+Four real river screenshots recovered from the retained Atlas river verification run `run-1792373271-933843/out`: fork, mill approach, Current before and after. Converted to 1600-pixel-wide WebP (1600×900, preserving the source aspect ratio) in `rpg/img/`; existing screenshots retained. No generated artwork.
+
+Validation: `node tools/hub/check-devlog.mjs rpg/devlog.json` passes all 36 rules; `git diff --check` passes. Atlas `tests/rpg-page.mjs` passes at 1920×1080 and 390×1080: Log 03 rendered, 15 images loaded, no horizontal overflow, lightbox open/Escape close, existing play destination intact, zero page or console errors. Visually reviewed both full-page captures and the river images within the gallery. Artifacts: `shots/rpg-page/check/`.
+
+Used `/tmp/atlas-run-rpg-page`, the installed atlas-run with rsync deletion and remote cleanup omitted to obey the brief's no-deletion rule. Remote artifacts retained. No atlas-hd2d writes, main/arcade edits, push or publication.
