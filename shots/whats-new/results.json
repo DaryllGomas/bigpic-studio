@@ -1,0 +1,170 @@
+[
+  {
+    "width": 1920,
+    "play": {
+      "x": 52,
+      "y": 629,
+      "width": 182.09375,
+      "height": 44
+    },
+    "news": {
+      "x": 246.09375,
+      "y": 629,
+      "width": 233.484375,
+      "height": 44
+    },
+    "errors": [],
+    "consoleErrors": [
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=64e0c791-705f-491e-9613-1183c30511e4' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=64e0c791-705f-491e-9613-1183c30511e4' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=6008e48a-c466-4d16-8a47-22cc62018f64' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ]
+  },
+  {
+    "width": 1366,
+    "play": {
+      "x": 40.96875,
+      "y": 475.390625,
+      "width": 182.09375,
+      "height": 44
+    },
+    "news": {
+      "x": 235.0625,
+      "y": 475.390625,
+      "width": 233.484375,
+      "height": 44
+    },
+    "errors": [],
+    "consoleErrors": [
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=0a76c054-98ce-486b-8588-c35ac99aaa22' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=0a76c054-98ce-486b-8588-c35ac99aaa22' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=b7c28534-49f8-4e90-824c-5a60af9d6415' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ]
+  },
+  {
+    "width": 820,
+    "play": {
+      "x": 24.59375,
+      "y": 449,
+      "width": 182.09375,
+      "height": 44
+    },
+    "news": {
+      "x": 218.6875,
+      "y": 449,
+      "width": 233.484375,
+      "height": 44
+    },
+    "errors": [],
+    "consoleErrors": [
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=973e665e-8ea2-4ebd-a6e7-95899b579dd0' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=973e665e-8ea2-4ebd-a6e7-95899b579dd0' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=59ef4a16-6361-45f4-8e26-7c6b69319013' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ]
+  },
+  {
+    "width": 390,
+    "play": {
+      "x": 16,
+      "y": 393,
+      "width": 182.09375,
+      "height": 44
+    },
+    "news": {
+      "x": 16,
+      "y": 449,
+      "width": 233.484375,
+      "height": 44
+    },
+    "errors": [],
+    "consoleErrors": [
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=3cb87fca-4f2b-4869-b553-d357b95245de' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=3cb87fca-4f2b-4869-b553-d357b95245de' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=e2664ef4-9e34-4d06-9d64-ffceaa3ddf15' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:44357' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ]
+  }
+]
