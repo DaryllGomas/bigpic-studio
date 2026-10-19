@@ -1,0 +1,268 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>studio cabinet art composer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,500&family=Cinzel:wght@600;700;900&family=Space+Grotesk:wght@500;700&family=VT323&display=swap" rel="stylesheet">
+<body style="margin:0;background:#111">
+<script>
+// Composes marquee (1024x256), side (512x1024) and panel (512x256) art for the studio cabinets.
+// Driven by tools/cabinets/build.mjs: window.compose(id, kind, over) -> JPEG data URL.
+// `over` = { <kind>: url } painted art from art-in/<id>/ (used as-is for that kind), and
+// { src: url } an optional replacement hero image for the backdrop.
+const SS = 2;                       // drawn at 2x, shrunk to the exact size: crisp type
+const SIZE = { marquee: [1024, 256], side: [512, 1024], panel: [512, 256] };
+const A = 'arcade/assets/studio/', U = 'assets/universe/', FW = 'the-first-world/media/', RPG = 'rpg/img/';
+const cache = {};
+const load = (u) => cache[u] || (cache[u] = new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('load ' + u)); i.src = '/' + u.replace(/^\//, ''); }));
+
+// ---------- helpers
+function cover(g, img, dx, dy, dw, dh, fx = 0.5, fy = 0.5, zoom = 1) {
+  const sc = Math.max(dw / img.width, dh / img.height) * zoom, sw = dw / sc, sh = dh / sc;
+  g.drawImage(img, (img.width - sw) * fx, (img.height - sh) * fy, sw, sh, dx, dy, dw, dh);
+}
+function coverSub(g, img, r, dx, dy, dw, dh) { const sc = Math.max(dw / r[2], dh / r[3]), sw = dw / sc, sh = dh / sc; g.save(); g.beginPath(); g.rect(dx, dy, dw, dh); g.clip(); g.drawImage(img, r[0] + (r[2] - sw) / 2, r[1] + (r[3] - sh) / 2, sw, sh, dx, dy, dw, dh); g.restore(); }
+function crop(g, img, sx, sy, sw, sh, dx, dy, dw, dh) { g.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh); }
+function vgrad(g, x, y, w, h, stops) { const r = g.createLinearGradient(0, y, 0, y + h); stops.forEach(([o, c]) => r.addColorStop(o, c)); g.fillStyle = r; g.fillRect(x, y, w, h); }
+function radial(g, cx, cy, r0, r1, stops, w, h) { const r = g.createRadialGradient(cx, cy, r0, cx, cy, r1); stops.forEach(([o, c]) => r.addColorStop(o, c)); g.fillStyle = r; g.fillRect(0, 0, w, h); }
+function vignette(g, W, H, a = 0.6) { radial(g, W / 2, H / 2, Math.min(W, H) * 0.25, Math.hypot(W, H) * 0.55, [[0, 'rgba(0,0,0,0)'], [1, `rgba(0,0,0,${a})`]], W, H); }
+function rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+function grain(g, W, H, n, a, seed = 7) { const r = rng(seed); for (let i = 0; i < n; i++) { g.fillStyle = `rgba(${r() < 0.5 ? '255,255,255' : '0,0,0'},${a * r()})`; g.fillRect(r() * W, r() * H, 1 + r() * 2, 1 + r() * 2); } }
+function scan(g, W, H, step, a) { g.fillStyle = `rgba(0,0,0,${a})`; for (let y = 0; y < H; y += step) g.fillRect(0, y, W, step / 2); }
+
+// Title: lines = [[text, relativeSize], ...]; fits the box, returns the drawn bounds
+function layoutTitle(g, lines, font, maxW, maxH, maxPx = 999, gap = 1.04, track = 0) {
+  g.font = '100px ' + font; if (g.letterSpacing !== undefined) g.letterSpacing = track + 'px';
+  let k = maxPx / 100, tot = 0;
+  for (const [t, s] of lines) k = Math.min(k, maxW / (g.measureText(t).width * s));
+  for (const [, s] of lines) tot += 100 * s * gap; k = Math.min(k, maxH / tot);
+  return { k, lines: lines.map(([t, s]) => ({ t, px: Math.round(100 * k * s) })), h: tot * k };
+}
+function drawTitle(g, lines, o) {
+  const { cx, cy, maxW, maxH, font, style, pal, maxPx, track = 0, gap = 1.04 } = o;
+  const L = layoutTitle(g, lines, font, maxW, maxH, maxPx, gap, track);
+  let y = cy - L.h / 2;
+  for (const l of L.lines) {
+    const ly = y + l.px * gap * 0.5;
+    g.font = l.px + 'px ' + font; g.textAlign = 'center'; g.textBaseline = 'middle'; if (g.letterSpacing !== undefined) g.letterSpacing = track + 'px';
+    paintText(g, style, l.t, cx, ly, l.px, pal, o.font); y += l.px * gap;
+  }
+  if (g.letterSpacing !== undefined) g.letterSpacing = '0px';
+  return L;
+}
+function paintText(g, style, t, x, y, px, pal) {
+  g.save(); g.lineJoin = 'round'; g.miterLimit = 2;
+  if (style === 'gold') {
+    g.shadowColor = pal.glow || 'rgba(255,200,90,.55)'; g.shadowBlur = px * 0.35; g.fillStyle = '#7a4a10'; g.fillText(t, x, y); g.shadowBlur = 0;
+    g.shadowColor = 'rgba(0,0,0,.75)'; g.shadowBlur = px * 0.12; g.shadowOffsetY = px * 0.07; g.lineWidth = px * 0.14; g.strokeStyle = pal.edge || '#2a1604'; g.strokeText(t, x, y);
+    g.shadowColor = 'transparent'; g.shadowOffsetY = 0;
+    const gr = g.createLinearGradient(0, y - px * 0.5, 0, y + px * 0.5); (pal.fill || [[0, '#fff6cf'], [0.45, '#f6cd62'], [0.55, '#e0a63a'], [1, '#9c5f16']]).forEach(([o, c]) => gr.addColorStop(o, c));
+    g.fillStyle = gr; g.fillText(t, x, y);
+    g.lineWidth = Math.max(1, px * 0.018); g.strokeStyle = 'rgba(255,248,220,.55)'; g.strokeText(t, x, y);
+  } else if (style === 'neon') {
+    const c = pal.a, c2 = pal.b || pal.a;
+    for (const [b, w] of [[px * 0.55, 0.16], [px * 0.25, 0.12], [px * 0.1, 0.08]]) { g.shadowColor = c; g.shadowBlur = b; g.lineWidth = px * w; g.strokeStyle = c; g.strokeText(t, x, y); }
+    g.shadowColor = 'transparent'; g.lineWidth = px * 0.075; g.strokeStyle = c2; g.strokeText(t, x, y);
+    const gr = g.createLinearGradient(0, y - px * 0.5, 0, y + px * 0.5); gr.addColorStop(0, '#ffffff'); gr.addColorStop(1, pal.core || '#ffe9f2'); g.fillStyle = gr; g.fillText(t, x, y);
+  } else if (style === 'ink') {
+    g.fillStyle = pal.misreg || '#b8321f'; g.fillText(t, x + px * 0.045, y + px * 0.045);
+    g.fillStyle = pal.ink || '#17110c'; g.fillText(t, x, y);
+  } else if (style === 'vector') {
+    const c = pal.a;
+    g.shadowColor = c; g.shadowBlur = px * 0.45; g.lineWidth = px * 0.06; g.strokeStyle = c; g.strokeText(t, x, y); g.strokeText(t, x, y);
+    g.shadowBlur = 0; g.fillStyle = pal.fillDark || 'rgba(0,0,0,.65)'; g.fillText(t, x, y);
+    g.lineWidth = px * 0.028; g.strokeStyle = pal.core || '#ffffff'; g.strokeText(t, x, y);
+  }
+  g.restore();
+}
+function studioTag(g, W, H, o) {   // "BIGPIC STUDIOS", small, inside the visible part of the marquee
+  g.save(); g.font = `700 ${o.px}px "Space Grotesk"`; g.textAlign = o.align || 'right'; g.textBaseline = 'alphabetic'; if (g.letterSpacing !== undefined) g.letterSpacing = o.px * 0.22 + 'px';
+  g.shadowColor = 'rgba(0,0,0,.8)'; g.shadowBlur = o.px * 0.5; g.fillStyle = o.color; g.fillText('BIGPIC STUDIOS', o.x, o.y); g.restore();
+}
+function frame(g, x, y, w, h, color, lw, inset = 0, glow = 0) {
+  g.save(); g.strokeStyle = color; g.lineWidth = lw; if (glow) { g.shadowColor = color; g.shadowBlur = glow; } g.strokeRect(x + inset, y + inset, w - 2 * inset, h - 2 * inset); g.restore();
+}
+function sRibbon(g, W, H, color, lw, alpha = 1, yc = 0.5, amp = 0.38) {   // the Path's S-curve
+  g.save(); g.globalAlpha = alpha; g.lineCap = 'round'; g.strokeStyle = color; g.shadowColor = color; g.shadowBlur = lw * 3;
+  g.lineWidth = lw; g.beginPath(); g.moveTo(-20, H * (yc + amp)); g.bezierCurveTo(W * 0.3, H * (yc + amp), W * 0.28, H * (yc - amp), W * 0.5, H * yc); g.bezierCurveTo(W * 0.72, H * (yc + amp), W * 0.72, H * (yc - amp), W + 20, H * (yc - amp)); g.stroke(); g.restore();
+}
+function rings(g, cols, bg) {      // the control panel's stick + six buttons, in line with the 3D parts (IN = 0.8 m over 512 px)
+  const spots = [[102, 128, 32], [256, 109, 9], [310, 109, 9], [365, 109, 9], [256, 151, 9], [310, 151, 9], [365, 151, 9]];
+  for (const [x, y, r] of spots) {
+    g.save(); g.beginPath(); g.arc(x, y, r + 5, 0, 7); g.fillStyle = 'rgba(0,0,0,.6)'; g.fill();
+    g.lineWidth = 4; g.strokeStyle = cols[0]; g.shadowColor = cols[0]; g.shadowBlur = 10; g.beginPath(); g.arc(x, y, r + 3, 0, 7); g.stroke();
+    g.shadowBlur = 0; g.lineWidth = 2; g.strokeStyle = cols[1]; g.beginPath(); g.arc(x, y, r + 8, 0, 7); g.stroke(); g.restore();
+  }
+}
+
+// ---------- per-game recipes. Each returns drawing functions for the three kinds.
+const MINI = {
+  'seven-hearth':        { lines: [['HEARTH', 1]], col: '#ff7a2a', hi: '#ffd2a6', crops: [[200, 30, 200, 520], [890, 30, 190, 520]] },
+  'seven-beacon':        { lines: [['THE', 0.5], ['BEACON', 1]], col: '#3d8bff', hi: '#cfe3ff', crops: [[430, 40, 520, 120], [440, 540, 500, 90]] },
+  'seven-labyrinth':     { lines: [['THE', 0.5], ['LABYRINTH', 1]], col: '#35f08a', hi: '#d2ffe6', crops: [[285, 45, 260, 150], [745, 45, 260, 150]] },
+  'seven-resonance':     { lines: [['THE', 0.5], ['RESONANCE', 1]], col: '#a583ff', hi: '#e4dcff', crops: [[290, 5, 380, 100], [670, 5, 380, 100]] },
+  'seven-ascent':        { lines: [['THE', 0.5], ['ASCENT', 1]], col: '#ffd23f', hi: '#fff3c0', crops: [[225, 505, 260, 140], [880, 520, 180, 120]] },
+  'seven-tunnel':        { lines: [['THE', 0.5], ['TUNNEL', 1]], col: '#35e0ff', hi: '#d6f8ff', crops: [[380, 45, 540, 85], [330, 548, 620, 95]] },
+  'seven-constellation': { lines: [['THE', 0.5], ['CONSTELLATION', 1]], col: '#ff5fa8', hi: '#ffd6ea', crops: [[205, 525, 420, 90], [640, 525, 420, 90]] },
+};
+
+async function miniBg(g, W, H, id, kind, over) {
+  const m = MINI[id], img = await load(over.src || (A + id + '.png'));
+  g.fillStyle = '#020308'; g.fillRect(0, 0, W, H);
+  // the game's own vector screen: a heavy blur as a colour wash, plus text-free crops kept sharp
+  g.save(); g.filter = `blur(${Math.round(W / 11)}px) brightness(1.1) saturate(1.6)`; cover(g, img, -40, -40, W + 80, H + 80); g.restore();
+  g.save(); g.globalCompositeOperation = 'lighter';
+  const [a, b] = m.crops;
+  g.filter = 'brightness(1.5) saturate(1.3)';
+  if (kind === 'marquee') { coverSub(g, img, a, 0, 0, 420, H); coverSub(g, img, b, W - 420, 0, 420, H); }
+  else if (kind === 'side') { coverSub(g, img, a, 0, 120, W, 290); coverSub(g, img, b, 0, 430, W, 290); }
+  else coverSub(g, img, a, 0, 0, W, H);
+  g.restore();
+}
+
+const R = {
+  async 'the-path'(g, W, H, kind, over) {
+    const pal = { a: '#ff7a3d', b: '#ff3fa4', core: '#fff0e0' }, worlds = ['the_80s', 'egypt', 'atlantis', 'the_signal', 'gobekli_tepe', 'the_east', 'the_vale'];
+    const imgs = await Promise.all(worlds.map((w) => load(U + 'world-' + w + '.webp')));
+    g.fillStyle = '#07040f'; g.fillRect(0, 0, W, H);
+    if (kind === 'marquee') {
+      const n = 7, sw = W / n, sk = 34;
+      imgs.forEach((im, i) => { g.save(); g.beginPath(); const x = i * sw; g.moveTo(x + sk, 0); g.lineTo(x + sw + sk, 0); g.lineTo(x + sw, H); g.lineTo(x, H); g.closePath(); g.clip(); g.filter = 'saturate(1.35) brightness(.85)'; cover(g, im, x - sk, 0, sw + sk * 2, H, 0.5, 0.5, 1.05); g.restore();
+        g.strokeStyle = i % 2 ? '#ff3fa4' : '#ffb347'; g.lineWidth = 3; g.shadowColor = g.strokeStyle; g.shadowBlur = 14; g.beginPath(); g.moveTo(x + sk, 0); g.lineTo(x, H); g.stroke(); g.shadowBlur = 0; });
+      radial(g, W / 2, H / 2, 40, W * 0.42, [[0, 'rgba(8,3,16,.8)'], [0.55, 'rgba(8,3,16,.35)'], [1, 'rgba(8,3,16,0)']], W, H);
+      sRibbon(g, W, H, '#ff3fa4', 12, 0.9, 0.52, 0.34); sRibbon(g, W, H, '#ffe3a0', 3, 1, 0.52, 0.34);
+      vignette(g, W, H, 0.55);
+      drawTitle(g, [['THE PATH', 1]], { cx: W / 2, cy: H * 0.47, maxW: 700, maxH: 150, font: 'Bungee', style: 'neon', pal, maxPx: 150 });
+      g.fillStyle = '#ff3fa4'; g.fillRect(0, 0, W, 6); g.fillRect(0, H - 6, W, 6);
+      studioTag(g, W, H, { x: 880, y: 232, px: 17, color: '#ffd9b0' });
+    } else if (kind === 'side') {
+      vgrad(g, 0, 0, W, H, [[0, '#1a0830'], [0.5, '#2c0a3a'], [1, '#07040f']]);
+      const wins = [[imgs[1], 0.5], [imgs[2], 0.5], [imgs[0], 0.5]];
+      wins.forEach(([im, fx], i) => { const x = 66, w = 380, y = 270 + i * 235, h = 205;
+        g.save(); g.beginPath(); g.moveTo(x, y + h); g.lineTo(x, y + 70); g.quadraticCurveTo(x, y, x + 70, y); g.lineTo(x + w - 70, y); g.quadraticCurveTo(x + w, y, x + w, y + 70); g.lineTo(x + w, y + h); g.closePath(); g.clip();
+        g.filter = 'saturate(1.3)'; cover(g, im, x, y, w, h, fx, 0.5, 1.1); g.restore();
+        g.save(); g.strokeStyle = i % 2 ? '#ffb347' : '#ff3fa4'; g.lineWidth = 6; g.shadowColor = g.strokeStyle; g.shadowBlur = 16; g.beginPath(); g.moveTo(x, y + h); g.lineTo(x, y + 70); g.quadraticCurveTo(x, y, x + 70, y); g.lineTo(x + w - 70, y); g.quadraticCurveTo(x + w, y, x + w, y + 70); g.lineTo(x + w, y + h); g.closePath(); g.stroke(); g.restore(); });
+      g.save(); g.translate(W, 0); g.rotate(Math.PI / 2); sRibbon(g, H, W, '#ff3fa4', 10, 0.55, 0.5, 0.3); g.restore();
+      drawTitle(g, [['THE', 0.5], ['PATH', 1]], { cx: W / 2, cy: 135, maxW: 440, maxH: 215, font: 'Bungee', style: 'neon', pal });
+      frame(g, 0, 0, W, H, '#ff7a3d', 8, 10, 12); studioTag(g, W, H, { x: W / 2, y: 1000, px: 20, align: 'center', color: '#ffd9b0' });
+    } else {
+      vgrad(g, 0, 0, W, H, [[0, '#1a0830'], [1, '#07040f']]); g.save(); g.globalAlpha = 0.55; g.filter = 'saturate(1.4) blur(2px)'; cover(g, imgs[2], 0, 0, W, H, 0.5, 0.5, 1.2); g.restore();
+      sRibbon(g, W, H, '#ff3fa4', 14, 0.5, 0.55, 0.4);
+      drawTitle(g, [['THE PATH', 1]], { cx: W / 2, cy: 46, maxW: 330, maxH: 62, font: 'Bungee', style: 'neon', pal });
+      rings(g, ['#ff7a3d', '#ff3fa4']); frame(g, 0, 0, W, H, '#ff3fa4', 6, 4, 10);
+    }
+  },
+
+  async 'the-first-world'(g, W, H, kind, over) {
+    const pal = { glow: 'rgba(255,214,120,.7)' }, poster = await load(over.src || FW + 'poster.webp'), hero = await load(FW + 'hero.webp'), ora = await load(FW + 'ora.webp'), mid = await load(FW + 'shot-midwinter.webp'), temple = await load(FW + 'shot-temple-hand.webp');
+    const orb = (cx, cy, r, a = 1) => { g.save(); g.globalCompositeOperation = 'lighter'; g.globalAlpha = a; radial(g, cx, cy, 0, r * 1.7, [[0, 'rgba(160,200,255,.55)'], [1, 'rgba(120,160,255,0)']], W, H); g.drawImage(ora, cx - r, cy - r, r * 2, r * 2); g.restore(); };
+    if (kind === 'marquee') {
+      cover(g, poster, 0, 0, W, H, 0.7, 0.42, 1.55); g.save(); g.globalAlpha = 0.5; g.filter = 'saturate(1.3)'; cover(g, hero, 0, 0, W, H, 0.3, 0.5, 1.4); g.globalCompositeOperation = 'source-over'; g.restore();
+      radial(g, W / 2, H / 2, 30, W * 0.46, [[0, 'rgba(10,8,30,.82)'], [0.55, 'rgba(10,8,30,.55)'], [1, 'rgba(10,8,30,.08)']], W, H);
+      g.save(); g.globalCompositeOperation = 'lighter'; const r = rng(3); for (let i = 0; i < 70; i++) { g.fillStyle = `rgba(255,225,150,${0.25 + 0.5 * r()})`; g.beginPath(); g.arc(r() * W, r() * H, 0.8 + r() * 2.2, 0, 7); g.fill(); } g.restore();
+      orb(176, H / 2, 66); orb(W - 176, H / 2, 66, 0.9);
+      vignette(g, W, H, 0.5);
+      drawTitle(g, [['THE', 0.42], ['FIRST WORLD', 1]], { cx: W / 2, cy: H * 0.47, maxW: 700, maxH: 200, font: 'Cinzel', style: 'gold', pal, track: 2, maxPx: 130 });
+      frame(g, 0, 0, W, H, '#f0c35a', 4, 6, 10); studioTag(g, W, H, { x: W / 2, y: 240, px: 16, align: 'center', color: '#ffe6a8' });
+    } else if (kind === 'side') {
+      cover(g, poster, 0, 0, W, H, 0.74, 0.5, 1.25); vgrad(g, 0, 0, W, 330, [[0, 'rgba(8,6,26,.92)'], [1, 'rgba(8,6,26,0)']]); vgrad(g, 0, H - 380, W, 380, [[0, 'rgba(8,6,26,0)'], [1, 'rgba(8,6,26,.9)']]);
+      g.save(); g.globalCompositeOperation = 'lighter'; const r = rng(5); for (let i = 0; i < 90; i++) { g.fillStyle = `rgba(255,225,150,${0.2 + 0.5 * r()})`; g.beginPath(); g.arc(r() * W, r() * H, 0.8 + r() * 2.4, 0, 7); g.fill(); } g.restore();
+      orb(W / 2, 820, 118);
+      drawTitle(g, [['THE', 0.5], ['FIRST', 1], ['WORLD', 1]], { cx: W / 2, cy: 160, maxW: 430, maxH: 290, font: 'Cinzel', style: 'gold', pal, track: 2 });
+      frame(g, 0, 0, W, H, '#f0c35a', 6, 12, 12); studioTag(g, W, H, { x: W / 2, y: 990, px: 20, align: 'center', color: '#ffe6a8' });
+    } else {
+      cover(g, hero, 0, 0, W, H, 0.5, 0.5, 1.6); g.fillStyle = 'rgba(10,8,30,.55)'; g.fillRect(0, 0, W, H);
+      orb(60 + 28, 128, 54, 0.9);
+      g.save(); g.beginPath(); g.arc(W - 90, 150, 70, 0, 7); g.clip(); cover(g, temple, W - 160, 80, 140, 140, 0.5, 0.45, 1.2); g.restore(); g.strokeStyle = '#f0c35a'; g.lineWidth = 5; g.beginPath(); g.arc(W - 90, 150, 72, 0, 7); g.stroke();
+      drawTitle(g, [['THE FIRST WORLD', 1]], { cx: W / 2, cy: 44, maxW: 380, maxH: 56, font: 'Cinzel', style: 'gold', pal, track: 1 });
+      rings(g, ['#f0c35a', '#fff0c0']); frame(g, 0, 0, W, H, '#f0c35a', 6, 4, 10);
+    }
+  },
+
+  async 'the-house'(g, W, H, kind, over) {
+    const pal = { ink: '#17110c', misreg: '#b8321f' }, a = await load(over.src || RPG + 'house_door.webp'), b = await load(RPG + 'wide_hall.webp'), c = await load(U + 'game-beyond.webp');
+    const paper = () => { g.fillStyle = '#eadfc4'; g.fillRect(0, 0, W, H); radial(g, W / 2, H / 2, 20, Math.hypot(W, H) * 0.6, [[0, 'rgba(255,248,225,.5)'], [1, 'rgba(120,85,40,.35)']], W, H); grain(g, W, H, W * H / 90, 0.12, 9); };
+    const plate = (im, x, y, w, h, fx, fy, z) => { g.save(); g.fillStyle = '#f4ead0'; g.fillRect(x - 8, y - 8, w + 16, h + 16); g.beginPath(); g.rect(x, y, w, h); g.clip(); g.filter = 'grayscale(1) contrast(1.55) brightness(1.05) sepia(.55)'; cover(g, im, x, y, w, h, fx, fy, z); g.globalCompositeOperation = 'multiply'; g.fillStyle = '#e9d9b4'; g.fillRect(x, y, w, h); g.restore();
+      g.strokeStyle = pal.ink; g.lineWidth = 4; g.strokeRect(x - 8, y - 8, w + 16, h + 16); g.lineWidth = 1.5; g.strokeRect(x - 14, y - 14, w + 28, h + 28); };
+    paper();
+    if (kind === 'marquee') {
+      plate(a, 40, 36, 210, 184, 0.35, 0.5, 1.05); plate(b, W - 250, 36, 210, 184, 0.5, 0.55, 1.05);
+      g.fillStyle = pal.ink; g.fillRect(0, 0, W, 10); g.fillRect(0, H - 10, W, 10); g.fillStyle = pal.misreg; g.fillRect(0, 14, W, 3); g.fillRect(0, H - 17, W, 3);
+      drawTitle(g, [['THE', 0.42], ['HOUSE', 1]], { cx: W / 2, cy: H * 0.5, maxW: 480, maxH: 200, font: 'Cinzel', style: 'ink', pal, track: 3, maxPx: 120 });
+      studioTag(g, W, H, { x: W / 2, y: 238, px: 16, align: 'center', color: '#5a3a1a' });
+    } else if (kind === 'side') {
+      plate(a, 56, 300, 400, 560, 0.3, 0.5, 1.0);
+      g.fillStyle = pal.ink; g.fillRect(0, 0, W, 12); g.fillRect(0, H - 12, W, 12); g.fillStyle = pal.misreg; g.fillRect(0, 17, W, 3); g.fillRect(0, H - 20, W, 3);
+      drawTitle(g, [['THE', 0.5], ['HOUSE', 1]], { cx: W / 2, cy: 150, maxW: 420, maxH: 200, font: 'Cinzel', style: 'ink', pal, track: 3 });
+      plate(b, 56, 892, 400, 90, 0.5, 0.6, 1); studioTag(g, W, H, { x: W / 2, y: 262, px: 18, align: 'center', color: '#5a3a1a' });
+    } else {
+      plate(c, 24, 100, 140, 120, 0.5, 0.4, 1.4);
+      drawTitle(g, [['THE HOUSE', 1]], { cx: W / 2, cy: 52, maxW: 330, maxH: 62, font: 'Cinzel', style: 'ink', pal, track: 3 });
+      g.fillStyle = pal.ink; g.fillRect(0, 0, W, 6); g.fillRect(0, H - 6, W, 6);
+      rings(g, ['#17110c', '#b8321f']);
+    }
+  },
+
+  async 'beyond-the-nexus'(g, W, H, kind, over) {
+    const pal = { glow: 'rgba(255,190,90,.7)', fill: [[0, '#fff2c8'], [0.45, '#f0b95a'], [0.55, '#d9892e'], [1, '#8a4a14']], edge: '#0b0e2a' };
+    const wide = await load(over.src || RPG + '01_dusk_wide.webp'), gate = await load(RPG + '02_dusk_gate_colossus.webp'), atlas = await load(RPG + '07_close_atlas_ora_dusk.webp'), hall = await load(RPG + 'wide_hall.webp'), ban = await load(U + 'banner-atlas.webp');
+    const stars = (n, seed) => { g.save(); g.globalCompositeOperation = 'lighter'; const r = rng(seed); for (let i = 0; i < n; i++) { g.fillStyle = `rgba(255,226,160,${0.2 + 0.6 * r()})`; g.beginPath(); g.arc(r() * W, r() * H, 0.7 + r() * 1.8, 0, 7); g.fill(); } g.restore(); };
+    if (kind === 'marquee') {
+      cover(g, wide, 0, 0, W, H, 0.5, 0.42, 1.0); g.fillStyle = 'rgba(8,10,40,.35)'; g.fillRect(0, 0, W, H);
+      radial(g, W / 2, H / 2, 30, W * 0.46, [[0, 'rgba(6,8,34,.85)'], [0.6, 'rgba(6,8,34,.5)'], [1, 'rgba(6,8,34,.05)']], W, H);
+      stars(60, 2); vignette(g, W, H, 0.55);
+      drawTitle(g, [['BEYOND', 0.5], ['THE NEXUS', 1]], { cx: W / 2, cy: H * 0.47, maxW: 700, maxH: 200, font: 'Cinzel', style: 'gold', pal, track: 2, maxPx: 130 });
+      frame(g, 0, 0, W, H, '#e8b659', 4, 6, 8); frame(g, 0, 0, W, H, 'rgba(232,182,89,.5)', 1.5, 13);
+      studioTag(g, W, H, { x: W / 2, y: 242, px: 15, align: 'center', color: '#ffdca0' });
+    } else if (kind === 'side') {
+      cover(g, gate, 0, 0, W, H, 0.5, 0.45, 1.5); vgrad(g, 0, 0, W, 330, [[0, 'rgba(6,8,34,.93)'], [1, 'rgba(6,8,34,0)']]); vgrad(g, 0, H - 330, W, 330, [[0, 'rgba(6,8,34,0)'], [1, 'rgba(6,8,34,.92)']]);
+      stars(80, 4);
+      g.save(); g.beginPath(); g.arc(W / 2, 830, 118, 0, 7); g.clip(); cover(g, atlas, W / 2 - 118, 712, 236, 236, 0.5, 0.52, 2.1); g.restore();
+      g.strokeStyle = '#e8b659'; g.lineWidth = 6; g.shadowColor = '#e8b659'; g.shadowBlur = 14; g.beginPath(); g.arc(W / 2, 830, 122, 0, 7); g.stroke(); g.shadowBlur = 0; g.lineWidth = 2; g.beginPath(); g.arc(W / 2, 830, 134, 0, 7); g.stroke();
+      drawTitle(g, [['BEYOND', 0.5], ['THE', 0.5], ['NEXUS', 1]], { cx: W / 2, cy: 160, maxW: 430, maxH: 290, font: 'Cinzel', style: 'gold', pal, track: 2 });
+      frame(g, 0, 0, W, H, '#e8b659', 6, 12, 10); studioTag(g, W, H, { x: W / 2, y: 1000, px: 20, align: 'center', color: '#ffdca0' });
+    } else {
+      cover(g, hall, 0, 0, W, H, 0.5, 0.5, 1.3); g.fillStyle = 'rgba(6,8,34,.5)'; g.fillRect(0, 0, W, H);
+      g.save(); g.beginPath(); g.rect(W - 170, 78, 140, 150); g.clip(); cover(g, ban, W - 170, 78, 140, 150, 0.62, 0.35, 1.3); g.restore(); frame(g, W - 170, 78, 140, 150, '#e8b659', 4);
+      g.save(); g.beginPath(); g.rect(30, 78, 140, 150); g.clip(); cover(g, atlas, 30, 78, 140, 150, 0.5, 0.5, 1.5); g.restore(); frame(g, 30, 78, 140, 150, '#e8b659', 4);
+      drawTitle(g, [['BEYOND THE NEXUS', 1]], { cx: W / 2, cy: 44, maxW: 410, maxH: 56, font: 'Cinzel', style: 'gold', pal, track: 1 });
+      rings(g, ['#e8b659', '#fff0c0']); frame(g, 0, 0, W, H, '#e8b659', 6, 4, 10);
+    }
+  },
+};
+
+for (const id of Object.keys(MINI)) {
+  R[id] = async (g, W, H, kind, over) => {
+    const m = MINI[id], pal = { a: m.col, core: m.hi };
+    await miniBg(g, W, H, id, kind, over);
+    if (kind === 'marquee') {
+      radial(g, W / 2, H / 2, 40, W * 0.4, [[0, 'rgba(0,2,10,.92)'], [0.6, 'rgba(0,2,10,.6)'], [1, 'rgba(0,2,10,0)']], W, H); vignette(g, W, H, 0.55); scan(g, W, H, 4, 0.18);
+      drawTitle(g, m.lines, { cx: W / 2, cy: H * 0.47, maxW: 700, maxH: 190, font: 'Bungee', style: 'vector', pal, maxPx: 130 });
+      g.fillStyle = m.col; g.shadowColor = m.col; g.shadowBlur = 14; g.fillRect(0, 0, W, 5); g.fillRect(0, H - 5, W, 5); g.shadowBlur = 0;
+      frame(g, 0, 0, W, H, m.col, 2, 12, 8); studioTag(g, W, H, { x: W / 2, y: 238, px: 16, align: 'center', color: m.hi });
+    } else if (kind === 'side') {
+      vgrad(g, 0, 0, W, H, [[0, 'rgba(0,2,10,.95)'], [0.3, 'rgba(0,2,10,.35)'], [0.75, 'rgba(0,2,10,.3)'], [1, 'rgba(0,2,10,.95)']]);
+      g.save(); g.strokeStyle = m.col; g.shadowColor = m.col; g.shadowBlur = 10; g.lineWidth = 2;   // a vector horizon grid
+      for (let i = 0; i < 9; i++) { const y = 700 + Math.pow(i / 8, 2) * 300; g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
+      for (let i = -6; i <= 6; i++) { g.beginPath(); g.moveTo(W / 2 + i * 14, 700); g.lineTo(W / 2 + i * 120, H); g.stroke(); } g.restore();
+      drawTitle(g, m.lines, { cx: W / 2, cy: 150, maxW: 440, maxH: 230, font: 'Bungee', style: 'vector', pal });
+      scan(g, W, H, 6, 0.14); frame(g, 0, 0, W, H, m.col, 5, 12, 12); studioTag(g, W, H, { x: W / 2, y: 990, px: 20, align: 'center', color: m.hi });
+    } else {
+      g.fillStyle = 'rgba(0,2,10,.55)'; g.fillRect(0, 0, W, H); vignette(g, W, H, 0.4);
+      drawTitle(g, [[m.lines.map((l) => l[0]).join(' '), 1]], { cx: W / 2, cy: 46, maxW: 400, maxH: 58, font: 'Bungee', style: 'vector', pal });
+      rings(g, [m.col, m.hi]); frame(g, 0, 0, W, H, m.col, 5, 4, 10);
+    }
+  };
+}
+
+window.compose = async function (id, kind, over = {}) {
+  await Promise.all(['100px Bungee', '900 100px Cinzel', '700 100px Cinzel', '700 20px "Space Grotesk"', '100px VT323', '500 20px Newsreader'].map((f) => document.fonts.load(f).catch(() => {})));
+  const [w, h] = SIZE[kind], out = document.createElement('canvas'); out.width = w; out.height = h;
+  const big = document.createElement('canvas'); big.width = w * SS; big.height = h * SS;
+  if (over[kind]) { const im = await load(over[kind]); cover(out.getContext('2d'), im, 0, 0, w, h); return out.toDataURL('image/jpeg', 0.93); }
+  const g = big.getContext('2d'); g.scale(SS, SS); g.imageSmoothingQuality = 'high';
+  await R[id](g, w, h, kind, over);
+  const o = out.getContext('2d'); o.imageSmoothingQuality = 'high'; o.drawImage(big, 0, 0, w, h);
+  return out.toDataURL('image/jpeg', 0.93);
+};
+window.ready = true;
+</script>

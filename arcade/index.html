@@ -369,7 +369,8 @@ const btnMats = [0xd8141e, 0x1e6bff, 0xffc21a].map((c) => new THREE.MeshStandard
 // one space game a sit-down cockpit. Kick panels come in three styles so the row never repeats itself
 const TYPE = { hyperdrift: 'driver', sunsetdrive: 'driver', mudmetal: 'bike', starvector: 'cockpit' };
 const KICK = ['crest', 'grille', 'neon'];
-const kickStyle = (id) => { let h = 0; for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return KICK[h % 3]; };
+const kickStyle = (id) => { if (id.startsWith('studio:')) return 'crest'; let h = 0;  // studio cabinets: their marquee framed on the kick, like the painted arcade ones
+  for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return KICK[h % 3]; };
 const rubber = new THREE.MeshStandardMaterial({ color: 0x111014, roughness: 0.6 });
 const seatMat = new THREE.MeshStandardMaterial({ color: 0x3a0a0e, roughness: 0.35, metalness: 0.1 });
 const cockTrim = new THREE.MeshBasicMaterial({ color: HOT(0x33e6ff, 1.25), toneMapped: false });
@@ -445,27 +446,16 @@ function nameArt(spec, w, h, size, y = 0.5) {   // drawn at 2x, shrunk to fit, a
     g.fillStyle = '#eafcff'; g.fillText(spec.name, W / 2, H * y);
   });
 }
-function studioSkin(game) {
-  const s = {}, art = tex(game.art);
-  s.marquee = new THREE.MeshBasicMaterial({ map: nameArt(game.spec, 1024, 256), color: HOT(0xffffff, 0.82), toneMapped: false });
-  s.sideL = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
-  s.sideR = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
-  s.kick = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 40, 0.24), roughness: 0.5, color: 0xd8d8d8 });   // name above the coin door
-  s.panel = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 44), roughness: 0.45 });
-  s.screen = new THREE.MeshBasicMaterial({ map: art, color: HOT(0xffffff, 0.92), toneMapped: false });
-  s.warm = 0; s.screenTex = art; s.game = game;
-  s.runner = { phase: 'attract', dirty: false, step() {}, abort() {}, insertCoin() {}, table: { entries: [] }, attract: {} };
-  SKINS.set(game.id, s); return s;
-}
 function skin(game) {
   if (SKINS.has(game.id)) return SKINS.get(game.id);
-  if (game.studio) return studioSkin(game);
   const id = game.id, s = {};
-  const mq = HAS_ART.has(id) ? tex(ART + 'cab/' + id + '_marquee.jpg') : nameArt(game.spec, 1024, 256);
+  // studio cabinets wear painted art the same way (arcade/cab/studio-<id>_*.jpg, built by tools/cabinets/build.mjs)
+  const aid = game.studio ? 'studio-' + game.studio : id, hasArt = !!game.studio || HAS_ART.has(id);
+  const mq = hasArt ? tex(ART + 'cab/' + aid + '_marquee.jpg') : nameArt(game.spec, 1024, 256);
   mq.repeat.set(0.75, 1); mq.offset.set(0.125, 0);
   s.marquee = new THREE.MeshBasicMaterial({ map: mq, color: HOT(0xffffff, 1.18), toneMapped: false });
-  const sideUrl = HAS_ART.has(id) ? ART + 'cab/' + id + '_side.jpg' : SIDE_FALLBACK[id];
-  const mqUrl = HAS_ART.has(id) ? ART + 'cab/' + id + '_marquee.jpg' : null;
+  const sideUrl = hasArt ? ART + 'cab/' + aid + '_side.jpg' : SIDE_FALLBACK[id];
+  const mqUrl = hasArt ? ART + 'cab/' + aid + '_marquee.jpg' : null;
   // the side canvas covers the whole profile's box (z -0.45..0.47, y 0..1.95); the art sits inside the part of the
   // panel that is full depth, top-aligned, over a blurred wash of itself, so the cabinet's outline never slices a figure
   const sideC = document.createElement('canvas'); sideC.width = 512; sideC.height = 1086;
@@ -505,7 +495,14 @@ function skin(game) {
   s.sideL = [new THREE.MeshStandardMaterial({ map: sideT, roughness: 0.42, metalness: 0.05 }), black];
   s.sideR = [new THREE.MeshStandardMaterial({ map: sideFlip, roughness: 0.42, metalness: 0.05 }), black];
   s.kick = new THREE.MeshStandardMaterial({ map: kickT, roughness: 0.5 });
-  s.panel = new THREE.MeshStandardMaterial({ map: HAS_ART.has(id) ? tex(ART + 'cab/' + id + '_panel.jpg') : nameArt(game.spec, 512, 256, 44), roughness: 0.45 });
+  s.panel = new THREE.MeshStandardMaterial({ map: hasArt ? tex(ART + 'cab/' + aid + '_panel.jpg') : nameArt(game.spec, 512, 256, 44), roughness: 0.45 });
+  if (game.studio) {                                                    // the tube keeps the game's own art; there is no engine behind it
+    const art = tex(game.art);
+    s.screen = new THREE.MeshBasicMaterial({ map: art, color: HOT(0xffffff, 0.92), toneMapped: false });
+    s.warm = 0; s.screenTex = art; s.game = game;
+    s.runner = { phase: 'attract', dirty: false, step() {}, abort() {}, insertCoin() {}, table: { entries: [] }, attract: {} };
+    SKINS.set(game.id, s); return s;
+  }
   // the live tube: the game's own pixels, straight from THE PATH's engine
   const runner = new CabinetRunner(game.cart, { cabinetId: 'junction_' + id, freePlay: true, attractFps: 24 });
   const d = runner.surface.data, px = new Uint8Array(d.buffer, d.byteOffset, d.length);
