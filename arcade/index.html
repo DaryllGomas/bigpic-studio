@@ -133,7 +133,8 @@ const { Cartridges } = await import(ENGINE + 'cartridges.js');
 const { RoundResult } = await import(ENGINE + 'sdk/index.js');
 // SOUND (sound.js: THE PATH's chip modules). Loads beside the page; if it can't, the aisle simply stays silent.
 let AS = null;
-import('./sound.js').then((m) => m.createAisleSound()).then((a) => { AS = a; if (window.__junction) window.__junction.sound = a; }).catch((e) => console.warn('[junction] no sound:', e && e.message));
+// embedded on the studio home (?embed): no sound at all, no hum, no ticks. A click goes to the full /arcade/, which has its own.
+if (!new URLSearchParams(location.search).has('embed')) import('./sound.js').then((m) => m.createAisleSound()).then((a) => { AS = a; if (window.__junction) window.__junction.sound = a; }).catch((e) => console.warn('[junction] no sound:', e && e.message));
 
 const Q = new URLSearchParams(location.search), EMBED = Q.has('embed'), ARCADE = Q.get('arcade') || '/arcade/';
 // The couch opens this exact localhost alias; ordinary localhost previews remain web pages.
