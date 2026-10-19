@@ -1,0 +1,286 @@
+[
+  {
+    "width": 1920,
+    "errors": [],
+    "consoleErrors": [
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=51f3be3f-489d-4f85-82eb-d879e493ff65' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "failedRequests": [
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/liked?visitor=51f3be3f-489d-4f85-82eb-d879e493ff65",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/likes",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/support",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/event",
+        "error": "net::ERR_FAILED"
+      }
+    ],
+    "galleries": [
+      {
+        "key": "Sloth",
+        "src": "assets/info/sloth-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Sloth",
+        "src": "assets/info/sloth-2.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "The Night Warden",
+        "src": "assets/info/warden-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "The Night Warden",
+        "src": "assets/info/warden-2.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Ora",
+        "src": "assets/info/ora-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Ora",
+        "src": "assets/info/ora-2.webp",
+        "fit": "contain",
+        "loaded": true
+      }
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "width": 1366,
+    "errors": [],
+    "consoleErrors": [
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=f8a6bfac-9fc0-4d24-a443-8fc46126cd12' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "failedRequests": [
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/event",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/support",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/likes",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/liked?visitor=f8a6bfac-9fc0-4d24-a443-8fc46126cd12",
+        "error": "net::ERR_FAILED"
+      }
+    ],
+    "galleries": [
+      {
+        "key": "Sloth",
+        "src": "assets/info/sloth-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Sloth",
+        "src": "assets/info/sloth-2.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "The Night Warden",
+        "src": "assets/info/warden-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "The Night Warden",
+        "src": "assets/info/warden-2.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Ora",
+        "src": "assets/info/ora-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Ora",
+        "src": "assets/info/ora-2.webp",
+        "fit": "contain",
+        "loaded": true
+      }
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "width": 820,
+    "errors": [],
+    "consoleErrors": [
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=8f37db80-a6b9-4539-b797-62033ef85072' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "failedRequests": [
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/support",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/liked?visitor=8f37db80-a6b9-4539-b797-62033ef85072",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/likes",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/event",
+        "error": "net::ERR_FAILED"
+      }
+    ],
+    "galleries": [
+      {
+        "key": "Sloth",
+        "src": "assets/info/sloth-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Sloth",
+        "src": "assets/info/sloth-2.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "The Night Warden",
+        "src": "assets/info/warden-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "The Night Warden",
+        "src": "assets/info/warden-2.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Ora",
+        "src": "assets/info/ora-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Ora",
+        "src": "assets/info/ora-2.webp",
+        "fit": "contain",
+        "loaded": true
+      }
+    ],
+    "horizontalOverflow": false
+  },
+  {
+    "width": 390,
+    "errors": [],
+    "consoleErrors": [
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/event' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/likes' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/support' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED",
+      "Access to fetch at 'https://pulse.bigpicsolutions.com/v1/liked?visitor=969b6a46-9f90-410d-87ad-a14d693ef844' from origin 'http://127.0.0.1:41509' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "failedRequests": [
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/event",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/likes",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/support",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://pulse.bigpicsolutions.com/v1/liked?visitor=969b6a46-9f90-410d-87ad-a14d693ef844",
+        "error": "net::ERR_FAILED"
+      }
+    ],
+    "galleries": [
+      {
+        "key": "Sloth",
+        "src": "assets/info/sloth-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Sloth",
+        "src": "assets/info/sloth-2.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "The Night Warden",
+        "src": "assets/info/warden-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "The Night Warden",
+        "src": "assets/info/warden-2.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Ora",
+        "src": "assets/info/ora-1.webp",
+        "fit": "contain",
+        "loaded": true
+      },
+      {
+        "key": "Ora",
+        "src": "assets/info/ora-2.webp",
+        "fit": "contain",
+        "loaded": true
+      }
+    ],
+    "horizontalOverflow": false
+  }
+]
