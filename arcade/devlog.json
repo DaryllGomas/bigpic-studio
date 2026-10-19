@@ -1,8 +1,8 @@
 {
  "game": "the-junction",
  "title": "THE JUNCTION",
- "version": "v1.2",
- "updated": "2026-10-15",
+ "version": "v1.3",
+ "updated": "2026-10-18",
  "now": [
   "Tuning the aisle from your first plays: which games you pick, where it feels slow, what’s hard to find.",
   "Keeping every game free and one click away. No coins, no sign-up."
@@ -24,6 +24,17 @@
   }
  ],
  "releases": [
+  {
+   "version": "v1.3",
+   "date": "2026-10-18",
+   "title": "Our games first",
+   "items": [
+    {
+     "h": "The Studio aisle",
+     "t": "The arcade opens on our games, with larger card art on the tube. Pick one to visit its public game or development page; all 26 cabinets are still a shelf away."
+    }
+   ]
+  },
   {
    "version": "v1.2",
    "date": "2026-10-13",

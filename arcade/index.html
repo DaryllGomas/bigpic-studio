@@ -77,9 +77,9 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
 <div class="ehint" id="ehint">◀ ▶ SPIN · CLICK THE CABINET TO PLAY</div>
 <div class="top">
   <a href="/" title="Back to BigPic Studio">← STUDIO</a>
+  <button type="button" class="jx-open" id="jxLog" data-version="v1.3" title="What's new, what we're building, and feedback"><span class="jx-word">LOG</span></button>
   <label title="Your initials for the high-score tables">PLAYER <input id="ini" maxlength="3" value="YOU" autocomplete="off" spellcheck="false"></label>
   <a href="grid.html" title="Every cabinet at once">GRID VIEW</a>
-  <button type="button" class="jx-open" id="jxLog" data-version="v1.2" title="What's new, what we're building, and feedback"><span class="jx-word">LOG</span></button>
 </div>
 <div class="over" id="over"><div class="s" id="score"></div><div class="c" id="again">PRESS A TO PLAY AGAIN</div></div>
 <div class="pad" id="pad">
@@ -114,8 +114,16 @@ const ART = './';
 const { CabinetRunner, KeyboardPanel } = await import(ENGINE + 'host.js');
 const { Cartridges } = await import(ENGINE + 'cartridges.js');
 const { RoundResult } = await import(ENGINE + 'sdk/index.js');
+// SOUND (sound.js: THE PATH's chip modules). Loads beside the page; if it can't, the aisle simply stays silent.
+let AS = null;
+import('./sound.js').then((m) => m.createAisleSound()).then((a) => { AS = a; if (window.__junction) window.__junction.sound = a; }).catch((e) => console.warn('[junction] no sound:', e && e.message));
 
 const Q = new URLSearchParams(location.search), EMBED = Q.has('embed'), ARCADE = Q.get('arcade') || '/arcade/';
+// The couch opens this exact localhost alias; ordinary localhost previews remain web pages.
+// launcher=tv is an explicit opt-in for other TV hosts (including loopback).
+const TV = Q.get('launcher') === 'tv' || location.hostname === 'arcade.junction.localhost' ||
+  ['loki', 'loki.local'].includes(location.hostname) ||
+  (['127.0.0.1', 'localhost', '[::1]'].includes(location.hostname) && location.port === '8620');
 if (EMBED) document.documentElement.classList.add('embed');
 const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
 const coarse = matchMedia('(pointer: coarse)').matches;
@@ -126,12 +134,31 @@ await Promise.all(['700 80px Cinzel', '900 80px Cinzel', '80px Bungee', '40px VT
 
 // ------------------------------------------------------------------ the games and the three categories
 const GAMES = Cartridges.all.map((c, i) => ({ id: c.id, cart: c, spec: c.spec, order: i }));
+// MEDIA-CENTER PATCH 2026-10-16 (Daryll): a STUDIO aisle above CLASSICS: BigPic Studios' own games. They are not
+// cabinet carts: their card art fills the tube. The TV launches locally; the web opens verified public pages.
+const PUBLIC_STUDIO = {
+  'the-path': 'https://thepath.bigpicsolutions.com/',
+  'the-first-world': 'https://studio.bigpicsolutions.com/the-first-world/play/',
+  'the-house': 'https://studio.bigpicsolutions.com/house/',
+  'beyond-the-nexus': 'https://studio.bigpicsolutions.com/rpg/',
+};
+const STUDIO = [
+  ['the-path', 'THE PATH', 'card-the-path.webp'], ['the-first-world', 'THE FIRST WORLD', 'card-god-game.webp'],
+  ['the-house', 'THE HOUSE', 'card-paper-arena.webp'], ['beyond-the-nexus', 'BEYOND THE NEXUS', 'card-nexus.webp'],
+  /* THE SYSTEM: off the TV until couch-ready (2026-10-16) */ ['seven-hearth', 'HEARTH', 'seven-hearth.png'],
+  ['seven-beacon', 'THE BEACON', 'seven-beacon.png'], ['seven-labyrinth', 'THE LABYRINTH', 'seven-labyrinth.png'],
+  ['seven-resonance', 'THE RESONANCE', 'seven-resonance.png'], ['seven-ascent', 'THE ASCENT', 'seven-ascent.png'],
+  ['seven-tunnel', 'THE TUNNEL', 'seven-tunnel.png'], ['seven-constellation', 'THE CONSTELLATION', 'seven-constellation.png'],
+].map(([id, name, art], i) => ({ id: 'studio:' + id, studio: id, art: 'assets/studio/' + art, cart: null,
+  url: PUBLIC_STUDIO[id], spec: { name, publisher: 'BigPic Studios', year: 2026 }, order: 1000 + i })).filter((g) => TV || g.url);
 const CATS = [
+  { name: 'STUDIO', list: STUDIO },
   { name: 'CLASSICS', list: GAMES.filter((g) => g.spec.year <= 1982) },
   { name: 'NEW ARRIVALS', list: GAMES.slice(-8) },                       // the last eight added to THE JUNCTION
   { name: 'INDIE GEMS', list: GAMES.filter((g) => g.spec.year >= 1983) },
 ];
-let cat = 1;
+let cat = TV ? 1 : 0;   // Keep the couch default; public visitors meet our games first.
+const NA = () => CATS.findIndex((C) => C.name === 'NEW ARRIVALS');
 const HAS_ART = new Set('afterglow castlecrush deepkeep hyperdrift irondojo ironworks lancerider lanejumper lasthuman lastlight lunarduty mudmetal nebularun route9 shortorder sporefield spritepop stackattack sunsetdrive swarmpatrol tunnelrat vaultdigger warlordsroad'.split(' '));
 const SIDE_FALLBACK = { starvector: ART + 'tex/t41_sv_side.jpg', gridcycles: ART + 'tex/t20_poster_gridcycles.jpg' };
 
@@ -292,7 +319,7 @@ const catSigns = [0, 1, 2].map((i) => {
 function drawCats() {
   const n = CATS.length, up = CATS[(cat + n - 1) % n].name, cur = CATS[cat].name, dn = CATS[(cat + 1) % n].name;
   const set = (m, t, k) => { if (m.material.map) m.material.map.dispose(); m.material.map = t; m.material.color = HOT(0xffffff, k); m.material.needsUpdate = true; };
-  set(catSigns[0], catSignTex(up, false, ['▲', '▲']), 0.9); set(catSigns[1], catSignTex(cur, true, ['◀', '▶']), 1.5); set(catSigns[2], catSignTex(dn, false, ['▼', '▼']), 0.9);
+  set(catSigns[0], catSignTex(up, false, ['▲', '▲']), 0.9); set(catSigns[1], catSignTex(cur, true, ['◀', '▶']), 1.0)  /* MEDIA-CENTER PATCH 2026-10-16: 1.5 bloomed the aisle name to white on the TV */; set(catSigns[2], catSignTex(dn, false, ['▼', '▼']), 0.9);
 }
 
 // ------------------------------------------------------------------ one cabinet: geometry built once, art per game
@@ -398,8 +425,21 @@ function nameArt(spec, w, h, size) {
     neon(g, '#33e6ff', () => g.strokeText(spec.name, w / 2, h / 2), 24); g.fillStyle = '#e8fbff'; g.fillText(spec.name, w / 2, h / 2);
   });
 }
+function studioSkin(game) {
+  const s = {}, art = tex(game.art);
+  s.marquee = new THREE.MeshBasicMaterial({ map: nameArt(game.spec, 1024, 256), color: HOT(0xffffff, 1.1), toneMapped: false });
+  s.sideL = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
+  s.sideR = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
+  s.kick = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 40), roughness: 0.5 });
+  s.panel = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 44), roughness: 0.45 });
+  s.screen = new THREE.MeshBasicMaterial({ map: art, color: HOT(0xffffff, 1.05), toneMapped: false });
+  s.warm = 0; s.screenTex = art; s.game = game;
+  s.runner = { phase: 'attract', dirty: false, step() {}, abort() {}, insertCoin() {}, table: { entries: [] }, attract: {} };
+  SKINS.set(game.id, s); return s;
+}
 function skin(game) {
   if (SKINS.has(game.id)) return SKINS.get(game.id);
+  if (game.studio) return studioSkin(game);
   const id = game.id, s = {};
   const mq = HAS_ART.has(id) ? tex(ART + 'cab/' + id + '_marquee.jpg') : nameArt(game.spec, 1024, 256);
   mq.repeat.set(0.75, 1); mq.offset.set(0.125, 0);
@@ -465,6 +505,9 @@ function dress(slot, game) {
   slot.userData.game = game; const m = slot.userData.m, s = skin(game);
   m.marquee.material = s.marquee; m.sideL.material = s.sideL; m.sideR.material = s.sideR;
   m.kick.material = s.kick; m.panel.material = s.panel; m.screen.material = s.screen; m.seatLogo.material = s.marquee;
+  // A larger art window makes our games the headline shelf, retaining the cabinet's glass and trim.
+  const poster = game.studio && !TV;
+  m.screen.scale.y = poster ? 1.25 : 1;
   const type = TYPE[game.id] || 'upright', ks = kickStyle(game.id);
   m.ctl.visible = type === 'upright' || type === 'cockpit'; m.wheel.visible = type === 'driver'; m.bars.visible = type === 'bike';
   m.cock.visible = type === 'cockpit'; m.sideL.visible = m.sideR.visible = type !== 'cockpit';
@@ -533,14 +576,23 @@ ini.addEventListener('keydown', (e) => e.stopPropagation());
 let mode = 'aisle', active = null, wantCoin = false, camT = 0;
 const over = document.getElementById('over'), scoreEl = document.getElementById('score');
 function move(n) { if (mode === 'aisle') target = Math.round(target) + n; }
-function switchCat(n) { if (mode !== 'aisle') return; cat = mod(cat + n, CATS.length); drawCats(); target = 0; pos = -3.5 * Math.sign(n || 1); vel = 0; }
+function switchCat(n) { if (mode !== 'aisle') return; if (AS) AS.whoosh(); cat = mod(cat + n, CATS.length); drawCats(); target = 0; pos = -3.5 * Math.sign(n || 1); vel = 0; }
 function tip() { open('https://bigpicsolutions.com/support/', '_blank', 'noopener'); }
 function play() {
+  if (mode === 'aisle' && featured().userData.game.studio) {
+    const g = featured().userData.game;
+    if (!TV) { (EMBED ? window.top : window).location.href = g.url; return; }
+    // text/plain keeps it a simple request (no preflight); the room agent reads the JSON body either way
+    fetch('http://127.0.0.1:8731/games', { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action: 'play', id: g.studio }) }).catch(() => {});
+    return;
+  }
   if (EMBED) { const g = featured().userData.game; (window.top || window).location.href = ARCADE + '?game=' + encodeURIComponent(g.id); return; }
   if (mode !== 'aisle') { if (active && active.runner.phase !== 'playing') wantCoin = true; return; }
   target = Math.round(target); pos = target; vel = 0; layoutAisle();
   const s = featured(), sk = SKINS.get(s.userData.game.id);
   active = { slot: s, runner: sk.runner };
+  if (AS) AS.enter(sk.runner);
   sk.runner.onRoundOver = (result, summary, info) => {
     if (info && info.aborted) return;
     scoreEl.textContent = (result === RoundResult.Won ? 'CLEARED · ' : 'GAME OVER · ') + String(info && info.score != null ? info.score : 0).padStart(6, '0');
@@ -551,6 +603,7 @@ function play() {
 function back() {
   if (mode === 'aisle') return;
   if (active) active.runner.abort();
+  if (AS) AS.leave();
   over.classList.remove('show'); mode = 'pull'; camT = 0; keys.enabled = false; document.documentElement.classList.remove('playing'); renderHints();
 }
 // ------------------------------------------------------------------ prompts that match the visitor's controls
@@ -628,7 +681,9 @@ const touch = { x: 0, y: 0, a: false, b: false, start: false };
 // a gamepad, if one is connected (the hint bar is drawn for one)
 const padPrev = {};
 function gamepad() {
-  const gp = navigator.getGamepads ? [...navigator.getGamepads()].find(Boolean) : null; if (!gp) return null;
+  // MEDIA-CENTER PATCH 2026-10-16: listen to every pad, not just the first (a second pad or the TV's test pad)
+  const pads = navigator.getGamepads ? [...navigator.getGamepads()].filter(Boolean) : [];
+  const gp = pads.find((p) => p.buttons.some((x) => x.pressed) || p.axes.some((a) => Math.abs(a) > 0.5)) || pads[0]; if (!gp) return null;
   if (gp.buttons.some((x) => x.pressed) || gp.axes.some((v) => Math.abs(v) > 0.5)) useDevice('pad');
   const b = (i) => !!(gp.buttons[i] && gp.buttons[i].pressed), edge = (n, v) => { const was = padPrev[n]; padPrev[n] = v; return v && !was; };
   const x = ((b(15) ? 1 : 0) - (b(14) ? 1 : 0)) || (Math.abs(gp.axes[0]) > 0.5 ? Math.sign(gp.axes[0]) : 0);
@@ -636,6 +691,7 @@ function gamepad() {
   if (mode === 'aisle') {
     if (edge('l', x < 0)) move(-1); if (edge('r', x > 0)) move(1); if (edge('u', y > 0)) switchCat(-1); if (edge('d', y < 0)) switchCat(1);
     if (edge('a', b(0)) | edge('st', b(9))) play();
+    if (edge('bk', b(1)) && Q.get('home')) location.href = Q.get('home');   // MEDIA-CENTER PATCH 2026-10-16: B in the aisle = back to the TV home
   } else {
     const idle = active && active.runner.phase !== 'playing';
     if (edge('bk', b(1)) && idle) back();
@@ -669,13 +725,17 @@ function pushTarget() {
 const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
 // ------------------------------------------------------------------ the loop
-{ const want = Q.get('game') || 'warlordsroad'; let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (CATS[1].list.some((g) => g.id === want)) c = 1; if (c >= 0) { cat = c; pos = target = CATS[c].list.findIndex((g) => g.id === want); } }
+{ const want = Q.get('game') || (TV && !Q.get('home') ? 'warlordsroad' : null); let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (CATS[NA()].list.some((g) => g.id === want)) c = NA(); if (c >= 0) { cat = c; pos = target = CATS[c].list.findIndex((g) => g.id === want); } }
 drawCats(); layoutAisle(); drawPlate(featured().userData.game);
 const IDLE = { x: 0, y: 0, a: false, b: false, start: false };
 let last = performance.now(), from = null;
 function frame(now) {
   const dt = Math.max(0, Math.min(0.05, (now - last) / 1000)); last = now;   // rAF can stamp a frame before `last`: never step backwards
   const gp = gamepad();
+  if (AS) {   // the room: a tick for each cabinet the aisle slides past, the hum only while you are in the aisle
+    const fk = cat * 1000 + Math.round(pos); if (mode === 'aisle' && fk !== frame.fk) { if (frame.fk !== undefined) AS.tick(); } frame.fk = fk;
+    const inA = mode === 'aisle'; if (inA !== frame.inA) { frame.inA = inA; AS.hum(inA); }
+  }
   if (mode === 'aisle') {
     const k = 70, c = 2 * Math.sqrt(k); vel += (k * (target - pos) - c * vel) * dt; pos += vel * dt;   // critically damped slide
     if (Math.abs(target - pos) < 0.0005 && Math.abs(vel) < 0.001) { pos = target; vel = 0; }
@@ -712,12 +772,15 @@ function frame(now) {
       wantCoin = false;
       const kb = keys.frame(), p = gp || IDLE;
       sk.runner.step(dt, { x: kb.x || touch.x || p.x, y: kb.y || touch.y || p.y, a: kb.a || touch.a || p.a, b: kb.b || touch.b || p.b, start: kb.start || touch.start || p.start });
+      if (AS) AS.frame(sk.runner, dt, RoundResult.Won);
     } else sk.runner.step(dt, IDLE);
     if (sk.runner.dirty) { sk.screenTex.needsUpdate = true; sk.runner.dirty = false; }
   }
   composer.render();
   requestAnimationFrame(frame);
 }
+// JUNCTION-LAUNCHER PATCH (loki copy only): ?game=<id> focuses that cabinet, &play=1 walks up to it
+{ const want = Q.get("game"); if (want) { let c = CATS.findIndex((C) => C.list.some((g) => g.id === want)); if (CATS[NA()].list.some((g) => g.id === want)) c = NA(); if (c >= 0) { cat = c; drawCats(); pos = target = CATS[c].list.findIndex((g) => g.id === want); layoutAisle(); if (Q.has("play")) setTimeout(play, 1200); } } }
 requestAnimationFrame(frame);
 setTimeout(() => document.getElementById('load').classList.add('done'), 600);
 if (EMBED) {
@@ -734,7 +797,7 @@ if (EMBED) {
   }
 }
 if (EMBED) setTimeout(() => { const h = document.getElementById('ehint'); if (h) h.style.opacity = '0'; }, 6000);
-window.__junction = { cam: () => ({ p: camera.position.toArray().map((v) => +v.toFixed(2)), l: camLook.toArray().map((v) => +v.toFixed(2)) }), get mode() { return mode; }, get pos() { return pos; }, move, switchCat, play, back, get run() { return active && active.runner; }, slots, CATS };
+window.__junction = { sound: AS, cam: () => ({ p: camera.position.toArray().map((v) => +v.toFixed(2)), l: camLook.toArray().map((v) => +v.toFixed(2)) }), get category() { return CATS[cat].name; }, get selected() { return featured().userData.game.id; }, TV, get mode() { return mode; }, get pos() { return pos; }, move, switchCat, play, back, get run() { return active && active.runner; }, slots, CATS };
 </script>
 <script src="hub-panel.js" defer></script>
 <script src="../assets/hub/hub.js" defer></script>
