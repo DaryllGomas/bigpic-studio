@@ -434,11 +434,14 @@ function makeSlot() {
 const SKINS = new Map();
 // each game's most colourful demo moment, measured offline (2026-10-11) in 0.25 s steps with this exact attract set-up
 const BRIGHT = { gridcycles: 39.5, starvector: 39.75, relicquest: 27.5, castlecrush: 45, lancerider: 31.75, lasthuman: 5.25, lanejumper: 44.5, shortorder: 1, spritepop: 41, hyperdrift: 3.5, irondojo: 30.5, ironworks: 21.25, nebularun: 29.25, stackattack: 49.75, tunnelrat: 1, vaultdigger: 20.75, lastlight: 23, sporefield: 1, swarmpatrol: 2.75, afterglow: 30, lunarduty: 1, mudmetal: 3.25, route9: 1, sunsetdrive: 12.25, warlordsroad: 48.25, deepkeep: 6.25 };
-function nameArt(spec, w, h, size) {
-  return canvasTex(w, h, (g) => {
-    const r = g.createLinearGradient(0, 0, 0, h); r.addColorStop(0, '#1a0c2a'); r.addColorStop(1, '#07030c'); g.fillStyle = r; g.fillRect(0, 0, w, h);
-    g.font = (size || Math.round(h * 0.42)) + 'px Bungee'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    neon(g, '#33e6ff', () => g.strokeText(spec.name, w / 2, h / 2), 24); g.fillStyle = '#e8fbff'; g.fillText(spec.name, w / 2, h / 2);
+function nameArt(spec, w, h, size) {   // drawn at 2x, shrunk to fit, a soft halo behind a crisp face (Daryll, 2026-10-18: "they still look blurry")
+  return canvasTex(w * 2, h * 2, (g, W, H) => {
+    const r = g.createLinearGradient(0, 0, 0, H); r.addColorStop(0, '#1a0c2a'); r.addColorStop(1, '#07030c'); g.fillStyle = r; g.fillRect(0, 0, W, H);
+    let px = (size || Math.round(h * 0.42)) * 2; g.font = px + 'px Bungee'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    const fit = g.measureText(spec.name).width; if (fit > W * 0.88) { px = Math.floor(px * W * 0.88 / fit); g.font = px + 'px Bungee'; }
+    g.save(); g.shadowColor = '#33e6ff'; g.shadowBlur = px * 0.4; g.fillStyle = '#33e6ff'; g.fillText(spec.name, W / 2, H / 2); g.restore();
+    g.lineWidth = Math.max(2, px * 0.06); g.lineJoin = 'round'; g.strokeStyle = '#0b4a5c'; g.strokeText(spec.name, W / 2, H / 2);
+    g.fillStyle = '#eafcff'; g.fillText(spec.name, W / 2, H / 2);
   });
 }
 function studioSkin(game) {
@@ -446,7 +449,7 @@ function studioSkin(game) {
   s.marquee = new THREE.MeshBasicMaterial({ map: nameArt(game.spec, 1024, 256), color: HOT(0xffffff, 0.82), toneMapped: false });
   s.sideL = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
   s.sideR = [new THREE.MeshStandardMaterial({ map: art, roughness: 0.42, metalness: 0.05, color: 0x8a8a8a }), black];
-  s.kick = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 40), roughness: 0.5, color: 0x9a9a9a });
+  s.kick = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 40), roughness: 0.5, color: 0xd8d8d8 });
   s.panel = new THREE.MeshStandardMaterial({ map: nameArt(game.spec, 512, 256, 44), roughness: 0.45 });
   s.screen = new THREE.MeshBasicMaterial({ map: art, color: HOT(0xffffff, 0.92), toneMapped: false });
   s.warm = 0; s.screenTex = art; s.game = game;
