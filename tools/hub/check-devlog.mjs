@@ -5,6 +5,8 @@
 // addresses, machine names, file paths, personal topics, people, money, commit hashes or secrets. It also
 // checks the shape the hub expects. Plain node, no npm. Run it before every publish; extend RULES as needed.
 import { readFileSync } from 'node:fs';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 
 /** [label, pattern]. Every pattern runs against every string in the devlog (keys and values) and every raw line. */
 export const RULES = [
@@ -22,16 +24,7 @@ export const RULES = [
   ['file path (C:\\)', /\b[A-Z]:\\/i],
   ['file path (/Users/, /mnt/, /tmp/, /etc/)', /\/(?:Users|mnt|tmp|etc|var|opt|srv)\//],
   ['source file name', /\b[\w-]+\.(?:md|sh|py|ts|mjs|cjs|tsx|jsx|env|yml|yaml|toml|ini|log)\b/i],
-  // machines, hosts and internal services
-  ['host or machine name', /\b(?:thor|loki|sentinel|hermes|knox|scanner|spicymeatball|odin)\b/i],
-  // Atlas is the hero's name (and Atlas Veyr the universe), so capitalised "Atlas" is allowed; the render box is caught by
-  // the lowercase name and by the ways people talk about a machine.
-  ['machine name (atlas, lowercase)', /\batlas\b(?!\s+veyr)/],
-  ['machine name (Atlas the box; Atlas the hero is fine)', /\batlas[-_](?:run|shot)\b|\batlas\s+(?:box|gpu|machine|server|render\w*|host|pc)\b|\b(?:on|from|via|ssh)\s+atlas\b(?!\s+veyr)/i],
-  ['internal service', /pulse\.bigpicsolutions|life\.bigpicsolutions|markets\.bigpicsolutions/i],
   ['.local hostname', /\.local\b/i],
-  ['NAS', /\bNAS\b|\bKNOX-NAS\b|cold data/i],
-  ['Life OS', /\blife\s*os\b/i],
   ['Telegram / Slack / Discord admin', /\b(?:telegram|slack)\b/i],
   ['payments (Stripe, PayPal, Ko-fi admin, invoice)', /\b(?:stripe|paypal|invoice|invoices|ko-?fi\s+admin|payout|bank)\b/i],
   ['repo or branch talk', /\b(?:git|github|commit|branch|merge|worktree|deploy|pull request|PR #?\d+)\b/i],
@@ -43,8 +36,6 @@ export const RULES = [
   ['personal: health', /\bhealth\b(?!\s+bars?\b)|\b(?:disability|disabled|medical|therapy|therapist|doctor|hospital|diagnos\w*|medication|surgery)\b/i],
   ['personal: money', /\b(?:salary|debt|loan|income|paycheck|runway|broke)\b/i],
   ['money amount', /[$€£]\s?\d|\b\d+(?:\.\d+)?\s?(?:USD|dollars|bucks)\b/i],
-  ['personal name (surname)', /\bgomas\b/i],
-  ['personal name', /\b(?:rachel|daryll)\b/i],
   // identifiers and secrets
   ['commit hash', /\b(?=[0-9a-f]*\d)(?=[0-9a-f]*[a-f])[0-9a-f]{7,40}\b/i],
   ['API key or token', /\b(?:sk|pk|rk)[-_](?:live|test|ant|proj)?[-_]?[A-Za-z0-9_-]{8,}|\bgh[pousr]_[A-Za-z0-9]{16,}|\bAKIA[0-9A-Z]{12,}|\bxox[abpr]-[A-Za-z0-9-]{8,}|\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{4,}/],
@@ -54,6 +45,16 @@ export const RULES = [
   // markup that would never render (the hub uses textContent) and usually means a copy-paste from somewhere else
   ['HTML or script', /<\s*\/?\s*[a-z!][^>]*>|javascript:/i],
 ];
+
+// Names of people, machines and private services live OUTSIDE the repo, because this file is published with the site.
+// Format: [{"label": "...", "pattern": "regex source", "flags": "i"}]. Missing file = refuse to run (fail closed).
+const PRIVATE = process.env.DEVLOG_PRIVATE_RULES || join(homedir(), '.config', 'bigpic-studio', 'devlog-private.json');
+try {
+  for (const r of JSON.parse(readFileSync(PRIVATE, 'utf8'))) RULES.push([r.label, new RegExp(r.pattern, r.flags || '')]);
+} catch (e) {
+  console.error(`✗ private rules missing or invalid at ${PRIVATE} (${e.code || e.message}); refusing to check without them`);
+  process.exit(2);
+}
 
 const ISO = /^\d{4}-\d{2}-\d{2}$/;
 const shape = (d) => {
