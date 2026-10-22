@@ -1,0 +1,212 @@
+[
+  {
+    "beat": 0,
+    "endBeat": 4,
+    "bar": 1,
+    "time": 0,
+    "text": "The Current: the river at night, Atlas on the bank. Song starts; pads only until bar 9."
+  },
+  {
+    "beat": 4,
+    "endBeat": 12,
+    "bar": 2,
+    "time": 2.4,
+    "text": "The river shimmers (story moment, 2 bars)"
+  },
+  {
+    "beat": 16,
+    "endBeat": 24,
+    "bar": 5,
+    "time": 9.6,
+    "text": "Her song reaches out (story moment, 2 bars)"
+  },
+  {
+    "beat": 32,
+    "endBeat": 40,
+    "bar": 9,
+    "time": 19.2,
+    "text": "Her barrage: Atlas braces (hold) through the burst"
+  },
+  {
+    "beat": 42,
+    "endBeat": 42,
+    "bar": 11,
+    "time": 25.2,
+    "text": "Parry: the last shot of the barrage"
+  },
+  {
+    "beat": 44,
+    "endBeat": 52,
+    "bar": 12,
+    "time": 26.4,
+    "text": "The pull (story moment, 2 bars)"
+  },
+  {
+    "beat": 60,
+    "endBeat": 64,
+    "bar": 16,
+    "time": 36,
+    "text": "Story panel 1: Everyone drifts toward her. No one arrives."
+  },
+  {
+    "beat": 60,
+    "endBeat": 60,
+    "bar": 16,
+    "time": 36,
+    "text": "Wake stage 1: her pose changes"
+  },
+  {
+    "beat": 64,
+    "endBeat": 67,
+    "bar": 17,
+    "time": 38.4,
+    "text": "She attacks (story moment, 3 beats)"
+  },
+  {
+    "beat": 68,
+    "endBeat": 76,
+    "bar": 18,
+    "time": 40.8,
+    "text": "Her barrage: Atlas braces (hold) through the burst"
+  },
+  {
+    "beat": 78,
+    "endBeat": 78,
+    "bar": 20,
+    "time": 46.8,
+    "text": "Parry: the last shot of the barrage"
+  },
+  {
+    "beat": 80,
+    "endBeat": 84,
+    "bar": 21,
+    "time": 48,
+    "text": "Atlas answers (story moment, 1 bar)"
+  },
+  {
+    "beat": 96,
+    "endBeat": 100,
+    "bar": 25,
+    "time": 57.6,
+    "text": "Atlas reaches through (story moment, 1 bar)"
+  },
+  {
+    "beat": 128,
+    "endBeat": 132,
+    "bar": 33,
+    "time": 76.8,
+    "text": "Story panel 2: He doesn’t look."
+  },
+  {
+    "beat": 128,
+    "endBeat": 128,
+    "bar": 33,
+    "time": 76.8,
+    "text": "Wake stage 2: her pose changes"
+  },
+  {
+    "beat": 136,
+    "endBeat": 144,
+    "bar": 35,
+    "time": 81.6,
+    "text": "The lure (story moment, 2 bars)"
+  },
+  {
+    "beat": 156,
+    "endBeat": 172,
+    "bar": 40,
+    "time": 93.6,
+    "text": "Dueling Dragons (summon movie, bars 40–43); she survives, the pictures scatter; impact frame at beat 168"
+  },
+  {
+    "beat": 176,
+    "endBeat": 184,
+    "bar": 45,
+    "time": 105.6,
+    "text": "Steady (story moment, 2 bars)"
+  },
+  {
+    "beat": 192,
+    "endBeat": 200,
+    "bar": 49,
+    "time": 115.2,
+    "text": "She gathers the river (story moment, 2 bars)"
+  },
+  {
+    "beat": 208,
+    "endBeat": 216,
+    "bar": 53,
+    "time": 124.8,
+    "text": "Her barrage: Atlas braces (hold) through the burst"
+  },
+  {
+    "beat": 218,
+    "endBeat": 218,
+    "bar": 55,
+    "time": 130.8,
+    "text": "Parry: the last shot of the barrage"
+  },
+  {
+    "beat": 220,
+    "endBeat": 224,
+    "bar": 56,
+    "time": 132,
+    "text": "Story panel 3: The river lets go."
+  },
+  {
+    "beat": 224,
+    "endBeat": 227,
+    "bar": 57,
+    "time": 134.4,
+    "text": "Final attack (story moment, 3 beats)"
+  },
+  {
+    "beat": 224,
+    "endBeat": 224,
+    "bar": 57,
+    "time": 134.4,
+    "text": "Wake stage 3: her pose changes"
+  },
+  {
+    "beat": 228,
+    "endBeat": 236,
+    "bar": 58,
+    "time": 136.8,
+    "text": "Her barrage: Atlas braces (hold) through the burst"
+  },
+  {
+    "beat": 238,
+    "endBeat": 238,
+    "bar": 60,
+    "time": 142.8,
+    "text": "Parry: the last shot of the barrage"
+  },
+  {
+    "beat": 256,
+    "endBeat": 272,
+    "bar": 65,
+    "time": 153.6,
+    "text": "The Pearl (finisher movie, bars 65–68); impact frame at beat 268"
+  },
+  {
+    "beat": 272,
+    "endBeat": 280,
+    "bar": 69,
+    "time": 163.2,
+    "text": "Ending: she wakes"
+  },
+  {
+    "beat": 280,
+    "endBeat": 288,
+    "bar": 71,
+    "time": 168,
+    "text": "Ending: the town wakes"
+  },
+  {
+    "beat": 288,
+    "endBeat": 296,
+    "bar": 73,
+    "time": 172.8,
+    "text": "Ending: the river runs clear (the drop resolves at bar 73); score card at bar 74"
+  }
+]

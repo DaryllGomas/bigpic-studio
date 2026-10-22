@@ -1,0 +1,286 @@
+{
+  "group": "C - The Current battle",
+  "bpm": 110,
+  "key": "D minor",
+  "bars": 32,
+  "round": 1,
+  "pass_number": 3,
+  "beats_per_bar": 4,
+  "progression": [
+    "Dm9",
+    "Dm9",
+    "Gm7/D",
+    "Gm7/D",
+    "Bbmaj7",
+    "Asus4-A7",
+    "Dm9",
+    "Dm9",
+    "Dm9",
+    "Fmaj7/C",
+    "Gm9",
+    "Bbmaj7",
+    "Dm/A",
+    "Asus4-A7",
+    "Dm9",
+    "Dm9",
+    "Dm",
+    "C/D",
+    "Bb/D",
+    "C/D",
+    "Dm",
+    "C/E",
+    "Fmaj7",
+    "A7",
+    "Gm9",
+    "Gm9",
+    "Dm9",
+    "Dm9",
+    "Bbmaj7",
+    "A7b9",
+    "Dm9",
+    "Dm9"
+  ],
+  "loop": true,
+  "frames": 3078982,
+  "seconds": 69.81818594104308,
+  "sample_rate": 44100,
+  "channels": 2,
+  "subtype": "PCM_24",
+  "bar_boundaries_frames": [
+    0,
+    96218,
+    192436,
+    288655,
+    384873,
+    481091,
+    577309,
+    673527,
+    769745,
+    865964,
+    962182,
+    1058400,
+    1154618,
+    1250836,
+    1347055,
+    1443273,
+    1539491,
+    1635709,
+    1731927,
+    1828145,
+    1924364,
+    2020582,
+    2116800,
+    2213018,
+    2309236,
+    2405455,
+    2501673,
+    2597891,
+    2694109,
+    2790327,
+    2886545,
+    2982764,
+    3078982
+  ],
+  "ideal_frames": 3078981.818181818,
+  "grid_rounding_error_frames": 0.18181818211451173,
+  "id": "D31-round1",
+  "title": "D31-round1 \u2014 siren tune removed, counter lead and transient repair",
+  "d3_source_id": "D3-round1",
+  "source_id": "D2S-round1",
+  "source_midi_sha256": "0c9a09bc338871d15d2707766b5a0540404aba92c62b875e028a690001fc0830",
+  "sha256": "c4a681e6eaf174dc9d097ddfede69de8415093f102149fdc2396bb9ae96f166b",
+  "mastering": {
+    "low_shelf_db": 3.2,
+    "low_shelf_hz": 120,
+    "warmth_db": 0.6,
+    "warmth_hz": 250,
+    "warmth_q": 0.8,
+    "air_db": 1.25,
+    "air_hz": 10000,
+    "side_gain": 1.08,
+    "mono_below_hz": 100,
+    "side_full_hz": 200,
+    "compressor_threshold_db": -24,
+    "compressor_ratio": 1.25,
+    "compressor_attack_ms": 30,
+    "compressor_release_ms": 180,
+    "compressor_knee_db": 9.03,
+    "target_lufs": -16,
+    "ceiling_dbtp": -1.1
+  },
+  "mastering_gain_db": -8.129999999999999,
+  "compression": {
+    "rms_gain_db": -4.676844582712655,
+    "middle_vs_third_max_error": 0.0
+  },
+  "mp3_encoder_compensation_db": 0.26000000000000156,
+  "lufs": -16.0,
+  "true_peak_dbtp": -2.01,
+  "lra_lu": 3.6,
+  "parts": {
+    "harp": {
+      "source_patch": "harp",
+      "target_rms": 0.03877,
+      "pan": -0.35,
+      "notes": 250
+    },
+    "celesta": {
+      "source_patch": "celesta",
+      "target_rms": 0.0086,
+      "pan": -0.12,
+      "notes": 256
+    },
+    "strings": {
+      "source_patch": "strings",
+      "target_rms": 0.019,
+      "pan": 0.22,
+      "notes": 131
+    },
+    "bass": {
+      "source_patch": "bass",
+      "target_rms": 0.03237,
+      "pan": 0,
+      "notes": 60
+    },
+    "counter-melody": {
+      "source_patch": "solo-cello",
+      "target_rms": 0.028,
+      "pan": -0.06,
+      "notes": 48
+    },
+    "kick-35": {
+      "source_patch": "kick",
+      "target_rms": 0.03305,
+      "pan": 0,
+      "notes": 60
+    },
+    "snare-38": {
+      "source_patch": "snare",
+      "target_rms": 0.0018,
+      "pan": 0,
+      "notes": 6
+    },
+    "clap-39": {
+      "source_patch": "clap",
+      "target_rms": 0.00882,
+      "pan": 0,
+      "notes": 30
+    },
+    "hat-42": {
+      "source_patch": "hat",
+      "target_rms": 0.00341,
+      "pan": 0,
+      "notes": 128
+    },
+    "crash-55": {
+      "source_patch": "crash",
+      "target_rms": 0.001,
+      "pan": 0,
+      "notes": 2
+    },
+    "maracas-70": {
+      "source_patch": "maracas",
+      "target_rms": 0.00031,
+      "pan": 0,
+      "notes": 128
+    }
+  },
+  "processing": {
+    "harp": {
+      "levelling": "3:1, threshold .045, 3ms attack / 90ms release"
+    },
+    "celesta": {
+      "band_hz": [
+        3500,
+        8000
+      ],
+      "max_reduction_db": 4,
+      "threshold_rms": 4.1641942730182015e-05,
+      "measured_max_db": 4.0
+    },
+    "bass": {
+      "levelling": "3:1, threshold .045, 3ms attack / 90ms release"
+    },
+    "kick-35": {
+      "levelling": "3:1, threshold .045, 3ms attack / 90ms release"
+    },
+    "snare-38": {
+      "levelling": "3:1, threshold .045, 3ms attack / 90ms release"
+    },
+    "clap-39": {
+      "levelling": "3:1, threshold .045, 3ms attack / 90ms release"
+    },
+    "maracas-70": {
+      "band_hz": [
+        3500,
+        8000
+      ],
+      "max_reduction_db": 4,
+      "threshold_rms": 2.3572646333578184e-05,
+      "measured_max_db": 4.0
+    },
+    "mix_deess": {
+      "band_hz": [
+        3500,
+        8000
+      ],
+      "max_reduction_db": 4,
+      "threshold_rms": 0.0013570061974068194,
+      "measured_max_db": 4.0
+    },
+    "master_input": {
+      "gain": 10,
+      "d3_gain": 10,
+      "limiter": "No hard limiter in D3 source; reduced round-3 input by 10dB into existing slow RMS glue"
+    }
+  },
+  "removed_buses": [
+    "Siren",
+    "Siren layer",
+    "Onset breath flute"
+  ],
+  "role_note_counts": {
+    "Water harp": 250,
+    "Screen crystal": 256,
+    "Strings": 131,
+    "Bass": 60,
+    "Counter melody": 48,
+    "Drums": 354
+  },
+  "drop_bars_display": [
+    8,
+    9
+  ],
+  "bass_delay_ms": 6.5,
+  "siren_overlap": {
+    "Water harp": {
+      "removed": 6,
+      "remaining": 0
+    },
+    "Screen crystal": {
+      "removed": 0,
+      "remaining": 0
+    },
+    "Strings": {
+      "removed": 5,
+      "remaining": 0
+    },
+    "Bass": {
+      "removed": 0,
+      "remaining": 0
+    },
+    "Counter melody": {
+      "removed": 0,
+      "remaining": 0
+    },
+    "Drums": {
+      "removed": 0,
+      "remaining": 0
+    }
+  },
+  "counter_lead": "Existing counter pitches/onsets on recorded solo cello with connected phrasing and CC1/11",
+  "sync_group": "D31-110-32",
+  "loop_start_frame": 0,
+  "loop_end_frame_exclusive": 3078982,
+  "seam_step": 0.0
+}

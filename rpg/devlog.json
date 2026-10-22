@@ -26,10 +26,34 @@
  ],
  "releases": [
   {
+   "version": "Log 04b",
+   "date": "2026-10-21",
+   "title": "Playable on the web, up to The Current",
+   "summary": "A concept build of Beyond the Nexus now plays in the browser, from the Nexus to The Current.",
+   "items": [
+    {
+     "h": "Play the concept",
+     "t": "The studio page has a Play button. The build is in development and ends where the road does, so expect rough edges."
+    },
+    {
+     "h": "What is in it",
+     "t": "The Nexus, the City and THE HOUSE, the open road, Sloth’s one-button rhythm fight, the River road, and The Current’s three-round gem duel."
+    },
+    {
+     "h": "More to come",
+     "t": "Winning The Current wakes her and ends the concept with a calm card: back to the studio, or keep exploring the road. Each new battle will move the end of the road forward."
+    },
+    {
+     "h": "Keyboard or controller",
+     "t": "Both work on the web, as they do in the full build."
+    }
+   ]
+  },
+  {
    "version": "Log 04",
    "date": "2026-10-21",
    "title": "The Current wakes, and the music gets real",
-   "summary": "A new kind of duel on the River road, and battle music played by an orchestra. Not playable on the web yet.",
+   "summary": "A new kind of duel on the River road, and battle music played by an orchestra.",
    "items": [
     {
      "h": "A duel on the water",
@@ -61,7 +85,7 @@
    "version": "Log 03",
    "date": "2026-10-18",
    "title": "Sloth wakes, and the river finds its way home",
-   "summary": "Two bosses, a longer road, and a build made for the couch. Not playable on the web yet.",
+   "summary": "Two bosses, a longer road, and a build made for the couch.",
    "items": [
     {
      "h": "A walk all the way out",

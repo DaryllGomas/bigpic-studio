@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beyond the Nexus · BigPic Studios</title>
-<meta name="description" content="Beyond the Nexus, the RPG of the Atlas Veyr universe. In development: two rhythm battles and a road to the river.">
+<meta name="description" content="Beyond the Nexus, the RPG of the Atlas Veyr universe. In development, with a playable concept build on the web: the Nexus, the City, THE HOUSE, the road, Sloth and The Current.">
 <meta property="og:title" content="Beyond the Nexus · BigPic Studios">
-<meta property="og:description" content="Atlas takes a body and walks out into the City. In development: two rhythm battles and a road to the river.">
+<meta property="og:description" content="Atlas takes a body and walks out into the City. In development: play the concept build on the web, up to The Current.">
 <meta property="og:image" content="https://studio.bigpicsolutions.com/rpg/img/01_dusk_wide.webp">
 <meta property="og:url" content="https://studio.bigpicsolutions.com/rpg/">
 <link rel="canonical" href="https://studio.bigpicsolutions.com/rpg/">
@@ -53,6 +53,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
 .hero p{max-width:620px;margin-top:18px;font-size:clamp(17px,1.5vw,21px);color:var(--light);text-shadow:0 1px 16px rgba(0,0,0,.9)}
 
+/* play */
+.playrow{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:24px}
+.btn-play{padding:16px 30px;font-size:15px;letter-spacing:.16em}
+.btn-play svg{width:16px;height:16px}
+.playnote{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dawn);text-shadow:0 1px 12px rgba(0,0,0,.9)}
+.lead{max-width:760px;color:var(--mist);margin:0 0 18px}
+.series{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:0 0 26px;padding:14px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(10,15,26,.55);font-family:var(--sans);font-size:14px;color:var(--mist)}
+.series b{color:var(--light);font-weight:600}
+.series a{color:var(--gold);border-bottom:1px solid var(--line-strong)}
+.series a:hover{color:var(--light)}
+.shot span b{display:inline-block;min-width:1.6em;margin-right:4px;color:var(--sunrise);font-weight:700}
+.shot span i{display:block;margin-top:2px;font-style:normal;font-size:11.5px;color:var(--mist)}
+.shots+.lbl{margin-top:34px}
 /* the build */
 main{padding:34px var(--pad) 30px}
 .lbl{display:flex;align-items:center;gap:10px;margin:8px 0 14px;font-family:var(--sans);font-weight:600;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--dawn)}
@@ -131,45 +144,61 @@ footer{padding:18px var(--pad) 26px;font-family:var(--sans);font-size:11.5px;col
   <div>
     <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></svg>The Atlas Veyr universe &middot; 03</span>
     <h1>Beyond the <em>Nexus</em></h1>
-    <span class="status">In development &middot; Two bosses built</span>
-    <p>From the Nexus to the City, past Sloth and down to the river. A hand-built diorama world, with one-button rhythm battles told in painted panels.</p>
+    <span class="status">In development &middot; Playable concept</span>
+    <p>From the Nexus to the City, past Sloth and down to the river. A hand-built diorama world, with one-button rhythm battles told in painted panels, and a gem duel on the water. Play the concept build now, as far as The Current.</p>
+    <div class="playrow">
+      <a class="btn btn-gold btn-play" href="/rpg/play/?scene=nexus"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>Play the concept</a>
+      <span class="playnote">In development &middot; concept build &middot; up to The Current</span>
+    </div>
   </div>
 </section>
 
 <main>
+  <h2 class="lbl">What you can play now</h2>
+  <p class="lead">The concept build is a real slice of the game, played in the browser from the Nexus to The Current. Keyboard works, and so does a controller. It is still in development, so expect rough edges, and it ends where the road does.</p>
+  <p class="series"><b>A modular series:</b> THE PATH, then <a href="/the-first-world/">THE FIRST WORLD</a>, then Beyond the Nexus. This game continues from THE FIRST WORLD.</p>
+  <div class="shots" id="route">
+    <button class="shot w3" type="button"><img src="img/play-nexus.webp" alt="The domed Nexus hall with its orrery, torches and gold ring floor" loading="lazy"><span><b>1</b>The Nexus<i>Atlas takes form under the dome.</i></span></button>
+    <button class="shot w3" type="button"><img src="img/play-city.webp" alt="The City plaza at dusk, seen from the build" loading="lazy"><span><b>2</b>The City<i>One City, with the temple doors and the gate.</i></span></button>
+    <button class="shot w3" type="button"><img src="img/play-house.webp" alt="THE HOUSE: the Oath screen in the great hall" loading="lazy"><span><b>3</b>THE HOUSE<i>The door in the plaza opens a paper-trading hall.</i></span></button>
+    <button class="shot w3" type="button"><img src="img/play-road.webp" alt="Atlas and Ora walking the open road toward the bridge" loading="lazy"><span><b>4</b>The road<i>The lamps, the Green and the long causeway.</i></span></button>
+    <button class="shot w3" type="button"><img src="img/play-sloth.webp" alt="Sloth, mossed in stone, at the start of the rhythm fight" loading="lazy"><span><b>5</b>Sloth<i>A one-button rhythm fight told in painted panels.</i></span></button>
+    <button class="shot w3" type="button"><img src="img/play-river.webp" alt="The Current waiting on the river beside the drifting boats" loading="lazy"><span><b>6</b>The River road<i>Mill Landing, Tobin, and the water that waits.</i></span></button>
+    <button class="shot w3" type="button"><img src="img/play-current.webp" alt="The Current gem duel on the water board" loading="lazy"><span><b>7</b>The Current<i>A three-round gem duel. A win wakes her.</i></span></button>
+    <button class="shot w3" type="button"><img src="img/play-more.webp" alt="The More to come card over the River road" loading="lazy"><span><b>8</b>More to come<i>The concept ends here, for now.</i></span></button>
+  </div>
+
   <h2 class="lbl">From the build</h2>
   <div class="shots" id="shots">
-    <button class="shot big" type="button" data-i="0"><img src="img/form_moment.webp" alt="Atlas takes form on the dais inside the Nexus" loading="lazy"><span>Atlas takes form</span></button>
-    <button class="shot w3" type="button" data-i="1"><img src="img/wide_hall.webp" alt="The domed hall of seven gates inside the Nexus" loading="lazy"><span>The Nexus: the hall of seven gates</span></button>
-    <button class="shot w3" type="button" data-i="2"><img src="img/atlas_ora_dais.webp" alt="Atlas with Ora, a round orb of light, at the dais" loading="lazy"><span>Atlas and Ora at the dais</span></button>
-    <button class="shot mid" type="button" data-i="3"><img src="img/recognition.webp" alt="The crowd on the temple steps, seeing Atlas for the first time" loading="lazy"><span>Recognition</span></button>
-    <button class="shot mid" type="button" data-i="4"><img src="img/plaza_wide.webp" alt="The City plaza from above" loading="lazy"><span>The City plaza</span></button>
-    <button class="shot mid" type="button" data-i="5"><img src="img/house_door.webp" alt="The door of THE HOUSE in the plaza" loading="lazy"><span>The House&rsquo;s door</span></button>
-    <button class="shot mid" type="button" data-i="6"><img src="img/02_dusk_gate_colossus.webp" alt="The glyph ring gate and the mourning stone colossus" loading="lazy"><span>The ring gate and the colossus</span></button>
-    <button class="shot mid" type="button" data-i="7"><img src="img/07_close_atlas_ora_dusk.webp" alt="Atlas and Ora on the road at dusk" loading="lazy"><span>Atlas and Ora on the road</span></button>
-    <button class="shot mid" type="button" data-i="8"><img src="img/06_dawn_bridge.webp" alt="The causeway at dawn" loading="lazy"><span>The causeway at dawn</span></button>
-    <button class="shot w3" type="button" data-i="9"><img src="img/stone_circle.webp" alt="The old stone circle with a fire at its heart" loading="lazy"><span>The old stone circle</span></button>
-    <button class="shot w3" type="button" data-i="10"><img src="img/01_dusk_wide.webp" alt="The gate road at dusk, the first scene built" loading="lazy"><span>The gate road at dusk</span></button>
-    <button class="shot w3" type="button" data-i="11"><img src="img/01-fork.webp" alt="The river fork beyond Sloth’s lantern" loading="lazy"><span>The River road</span></button>
-    <button class="shot w3" type="button" data-i="12"><img src="img/02-mill-approach.webp" alt="The mill and aqueduct at Mill Landing" loading="lazy"><span>Mill Landing</span></button>
-    <button class="shot w3" type="button" data-i="13"><img src="img/04-current-before.webp" alt="The Current waiting on the river beside the drifting boats" loading="lazy"><span>The Current waits</span></button>
-    <button class="shot w3" type="button" data-i="14"><img src="img/07-current-after.webp" alt="The awakened Current and the cleared river after the battle" loading="lazy"><span>The river wakes</span></button>
+    <button class="shot big" type="button"><img src="img/form_moment.webp" alt="Atlas takes form on the dais inside the Nexus" loading="lazy"><span>Atlas takes form</span></button>
+    <button class="shot w3" type="button"><img src="img/wide_hall.webp" alt="The domed hall of seven gates inside the Nexus" loading="lazy"><span>The Nexus: the hall of seven gates</span></button>
+    <button class="shot w3" type="button"><img src="img/atlas_ora_dais.webp" alt="Atlas with Ora, a round orb of light, at the dais" loading="lazy"><span>Atlas and Ora at the dais</span></button>
+    <button class="shot mid" type="button"><img src="img/recognition.webp" alt="The crowd on the temple steps, seeing Atlas for the first time" loading="lazy"><span>Recognition</span></button>
+    <button class="shot mid" type="button"><img src="img/house_door.webp" alt="The door of THE HOUSE in the plaza" loading="lazy"><span>The House&rsquo;s door</span></button>
+    <button class="shot mid" type="button"><img src="img/02_dusk_gate_colossus.webp" alt="The glyph ring gate and the mourning stone colossus" loading="lazy"><span>The ring gate and the colossus</span></button>
+    <button class="shot mid" type="button"><img src="img/07_close_atlas_ora_dusk.webp" alt="Atlas and Ora on the road at dusk" loading="lazy"><span>Atlas and Ora on the road</span></button>
+    <button class="shot mid" type="button"><img src="img/06_dawn_bridge.webp" alt="The causeway at dawn" loading="lazy"><span>The causeway at dawn</span></button>
+    <button class="shot w3" type="button"><img src="img/stone_circle.webp" alt="The old stone circle with a fire at its heart" loading="lazy"><span>The old stone circle</span></button>
+    <button class="shot w3" type="button"><img src="img/02-mill-approach.webp" alt="The mill and aqueduct at Mill Landing" loading="lazy"><span>Mill Landing</span></button>
+    <button class="shot w3" type="button"><img src="img/04-current-before.webp" alt="The Current waiting on the river beside the drifting boats" loading="lazy"><span>The Current waits</span></button>
+    <button class="shot w3" type="button"><img src="img/07-current-after.webp" alt="The awakened Current and the cleared river after the battle" loading="lazy"><span>The river wakes</span></button>
   </div>
 
   <section class="note">
     <div>
       <h2>Still being <em>built</em></h2>
-      <p>These are real screenshots from the build: the journey through the City and the Green, Sloth waking on the bridge, and the River road to Mill Landing. Two battles are built, and the road is still growing.</p>
-      <p>Not playable on the web yet.</p>
+      <p>These are real screenshots from the build: the Nexus, the City and THE HOUSE, Sloth waking on the bridge, and the River road to The Current. Two battles are built, and the road is still growing.</p>
+      <p>The web concept ends at The Current. Each new battle will move the end of the road.</p>
       <div class="cta">
-        <a class="btn btn-gold" href="/the-first-world/">Play The First World</a>
+        <a class="btn btn-gold" href="/rpg/play/?scene=nexus">Play the concept</a>
+        <a class="btn btn-ghost" href="/the-first-world/">Start with The First World</a>
         <a class="btn btn-ghost" href="/#log">Follow the lab log</a>
         <a class="btn btn-ghost" href="#devlog-feedback">Tell us what you think</a>
       </div>
     </div>
     <ul aria-label="Built so far">
       <li>The Nexus and &ldquo;Atlas takes form&rdquo;</li>
-      <li>The City plaza, one City for everyone</li>
+      <li>The City plaza and THE HOUSE</li>
       <li>The lamps, the Green and the open road</li>
       <li>Sloth: THE BEAT and Dueling Dragons</li>
       <li>Mill Landing, Tobin and The Current</li>
@@ -193,7 +222,7 @@ footer{padding:18px var(--pad) 26px;font-family:var(--sans);font-size:11.5px;col
 </div>
 <script>
 (() => {
-  const shots = [...document.querySelectorAll('#shots .shot')], lb = document.getElementById('lb'), im = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const shots = [...document.querySelectorAll('.shot')], lb = document.getElementById('lb'), im = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
   let i = 0, last = null;
   const show = n => { i = (n + shots.length) % shots.length; const s = shots[i], img = s.querySelector('img'); im.src = img.src; im.alt = img.alt; cap.textContent = s.querySelector('span').textContent; };
   const open = n => { last = document.activeElement; show(n); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus(); };

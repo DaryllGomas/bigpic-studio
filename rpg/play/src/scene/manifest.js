@@ -1,0 +1,22 @@
+// The art manifest for the gate road. Procedural today; any entry can become an image (our painted art) without code changes.
+export const MANIFEST = {
+  road: { painter: 'paintRoad', args: [11] },
+  pale: { painter: 'paintPaleStone', args: [3] },
+  dark: { painter: 'paintDarkStone', args: [5] },
+  pave: { painter: 'paintPaving', args: [6] },
+  win0: { painter: 'paintWindowWall', args: [21, { litChance: 0.7 }] },
+  win1: { painter: 'paintWindowWall', args: [33, { litChance: 0.55, cyanChance: 0.18 }] },
+  win2: { painter: 'paintWindowWall', args: [47, { litChance: 0.8 }] },
+  roof: { painter: 'paintRoof', args: [4] },
+  cliff: { painter: 'paintCliff', args: [8] },
+  grass: { painter: 'paintGrass', args: [9] },
+  iron: { painter: 'paintMetal', args: ['iron', 2] },
+  brass: { painter: 'paintMetal', args: ['brass', 3] },
+  banner: { painter: 'paintBanner', args: [1] },
+  lantern: { painter: 'paintLantern' },
+  compass: { painter: 'paintCompass' },
+  atlas: { painter: 'paintAtlasSheet', sprite: { frameW: 64, frameH: 96, cols: 6, rows: 4, ppu: 40 } },
+  tree: { painter: 'paintTree', args: [3], sprite: { ppu: 13 } },
+  tree2: { painter: 'paintTree', args: [17], sprite: { ppu: 13 } },
+  bush: { painter: 'paintBush', args: [5], sprite: { ppu: 14 } },
+};

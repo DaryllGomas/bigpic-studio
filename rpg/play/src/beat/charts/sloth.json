@@ -1,0 +1,691 @@
+{
+  "id": "sloth",
+  "name": "Sloth",
+  "song": {
+    "bpm": 112.70005,
+    "beats": 196,
+    "firstBeatOffset": 0.911,
+    "passes": 4,
+    "loopStartBeat": 132,
+    "loopBeats": 16,
+    "url": "/rpg/play/pitch/beat/music/intro.flac",
+    "pieces": {
+      "intro": "/rpg/play/pitch/beat/music/intro.flac",
+      "loop": "/rpg/play/pitch/beat/music/loop.flac",
+      "outro": "/rpg/play/pitch/beat/music/outro.flac"
+    },
+    "procedural": {
+      "chords": [
+        [
+          146.83,
+          174.61,
+          220
+        ],
+        [
+          130.81,
+          164.81,
+          196
+        ],
+        [
+          116.54,
+          146.83,
+          174.61
+        ],
+        [
+          130.81,
+          164.81,
+          196
+        ]
+      ],
+      "hook": [
+        0,
+        2,
+        1,
+        2,
+        0,
+        1,
+        2,
+        1
+      ],
+      "build": [
+        88,
+        104
+      ],
+      "drop": [
+        104,
+        144
+      ],
+      "quiet": [
+        16,
+        192
+      ],
+      "break": [
+        100,
+        104
+      ],
+      "roll": 96,
+      "lift": 144,
+      "intro": 48
+    }
+  },
+  "chart": [
+    {
+      "beat": 0,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 8,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 15,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 22,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 28,
+      "type": "charge",
+      "duration": 3,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 36,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 38,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 40,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 44,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 1
+    },
+    {
+      "beat": 48,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 49,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 50,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 52,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 1
+    },
+    {
+      "beat": 56,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 59,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 60,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 4
+    },
+    {
+      "beat": 64,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 65,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 66,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 68,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 4
+    },
+    {
+      "beat": 70,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 72,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 76,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 3
+    },
+    {
+      "beat": 79,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 80,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 82,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 86,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 88,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 92,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 1
+    },
+    {
+      "beat": 93.5,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 100,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 102,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 104,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 108,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 2
+    },
+    {
+      "beat": 110,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 112,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 114,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 116,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 2
+    },
+    {
+      "beat": 118,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 120,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 123.5,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 1
+    },
+    {
+      "beat": 125.5,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 127.5,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 3
+    },
+    {
+      "beat": 129.5,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 136,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 1
+    },
+    {
+      "beat": 138,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 140,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 144,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 4
+    },
+    {
+      "beat": 146,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 152,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 2
+    },
+    {
+      "beat": 154,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 156,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 158,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 160,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 168,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 3
+    },
+    {
+      "beat": 170,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 4
+    },
+    {
+      "beat": 174,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 176,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 2
+    },
+    {
+      "beat": 178,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 3
+    },
+    {
+      "beat": 184,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 4
+    },
+    {
+      "beat": 186,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 1
+    },
+    {
+      "beat": 188,
+      "type": "hold",
+      "duration": 2,
+      "parry": false,
+      "number": 2
+    },
+    {
+      "beat": 192,
+      "type": "tap",
+      "duration": 0,
+      "parry": true,
+      "number": 3
+    },
+    {
+      "beat": 194,
+      "type": "tap",
+      "duration": 0,
+      "parry": false,
+      "number": 4
+    }
+  ],
+  "sections": [
+    {
+      "beat": 32,
+      "id": "p1-intro",
+      "caption": "Even stone remembers a rhythm.",
+      "start": 0,
+      "art": {
+        "good": "/rpg/play/pitch/beat/panels/p1-intro.png",
+        "stumble": "/rpg/play/pitch/beat/panels/p1-intro.png"
+      }
+    },
+    {
+      "beat": 96,
+      "id": "p2",
+      "good": "A little warmth finds its way in.",
+      "stumble": "The weight settles. Atlas stays.",
+      "start": 32,
+      "art": {
+        "good": "/rpg/play/pitch/beat/panels/p2-good.png",
+        "stumble": "/rpg/play/pitch/beat/panels/p2-stumble.png"
+      }
+    },
+    {
+      "beat": 132,
+      "id": "p3",
+      "good": "He remembers how to rise.",
+      "stumble": "Ora keeps a small light burning.",
+      "start": 96,
+      "art": {
+        "good": "/rpg/play/pitch/beat/panels/p3-good.png",
+        "stumble": "/rpg/play/pitch/beat/panels/p3-stumble.png"
+      }
+    },
+    {
+      "beat": 196,
+      "id": "p4-finale",
+      "caption": "The weight lifts.",
+      "start": 132,
+      "art": {
+        "good": "/rpg/play/pitch/beat/panels/p4-finale.png",
+        "stumble": "/rpg/play/pitch/beat/panels/p4-finale.png"
+      }
+    }
+  ],
+  "art": {
+    "cutins": {
+      "base": "/rpg/play/pitch/duel/assets/base.jpg",
+      "charge": "/rpg/play/pitch/duel/assets/charge.jpg",
+      "strike": "/rpg/play/pitch/duel/assets/strike.jpg"
+    },
+    "background": "/rpg/play/pitch/duel/assets/bg.png",
+    "boss": {
+      "stirring": "/rpg/play/pitch/beat/sloth-wake/01-stage-stirring.png",
+      "waking": "/rpg/play/pitch/beat/sloth-wake/02-stage-waking.png",
+      "risen": "/rpg/play/pitch/beat/sloth-wake/03-stage-risen.png",
+      "idle": "/rpg/play/pitch/duel/assets/sloth-idle.png",
+      "windup": "/rpg/play/pitch/duel/assets/sloth-windup.png",
+      "slam": "/rpg/play/pitch/duel/assets/sloth-slam.png"
+    },
+    "atlas": {
+      "ready": "/rpg/play/pitch/duel/assets/atlas-ready.png",
+      "strike": "/rpg/play/pitch/duel/assets/atlas-strike.png",
+      "parry": "/rpg/play/pitch/duel/assets/atlas-parry.png"
+    },
+    "fallback": {
+      "stumble": "/rpg/play/pitch/duel/assets/charge.jpg",
+      "good": "/rpg/play/pitch/duel/assets/strike.jpg"
+    }
+  },
+  "wakeStages": {
+    "threshold": 0.6,
+    "crossfadeBeats": 1,
+    "poses": [
+      "idle",
+      "stirring",
+      "waking",
+      "risen"
+    ],
+    "cues": [
+      {
+        "beat": 32,
+        "stage": 1,
+        "start": 0
+      },
+      {
+        "beat": 96,
+        "stage": 2,
+        "start": 32
+      },
+      {
+        "beat": 180,
+        "stage": 3,
+        "start": 164
+      }
+    ]
+  },
+  "cutins": [
+    {
+      "beat": 96,
+      "duration": 1.25,
+      "art": "/rpg/play/pitch/beat/sloth-wake/04-cutin-eyes-open.png"
+    },
+    {
+      "beat": 132,
+      "duration": 1.25,
+      "art": "/rpg/play/pitch/beat/sloth-wake/05-cutin-light-wave.png"
+    }
+  ],
+  "ending": {
+    "barBeats": 4,
+    "shots": [
+      {
+        "bar": 0,
+        "art": "/rpg/play/pitch/beat/sloth-wake/06-ending-rises.png"
+      },
+      {
+        "bar": 3,
+        "art": "/rpg/play/pitch/beat/sloth-wake/07-ending-steps-aside.png"
+      },
+      {
+        "bar": 6,
+        "finale": true
+      }
+    ],
+    "scoreBar": 8
+  },
+  "streak": {
+    "fullCombo": 20,
+    "motes": 28,
+    "flakes": 16
+  },
+  "wake": {
+    "colour": [
+      255,
+      206,
+      111
+    ],
+    "initial": 0.25,
+    "min": 0.08,
+    "perfect": 0.025,
+    "good": 0.016,
+    "miss": -0.055
+  },
+  "summon": {
+    "art": [
+      "/rpg/play/pitch/beat/summon/01-call.png",
+      "/rpg/play/pitch/beat/summon/02-rise.png",
+      "/rpg/play/pitch/beat/summon/03-climb.png",
+      "/rpg/play/pitch/beat/summon/04-split.png",
+      "/rpg/play/pitch/beat/summon/05-dance.png",
+      "/rpg/play/pitch/beat/summon/06-focus.png",
+      "/rpg/play/pitch/beat/summon/07-impact.png",
+      "/rpg/play/pitch/beat/summon/08-return.png"
+    ],
+    "icon": "/rpg/play/pitch/beat/summon/09-icon.png",
+    "beats": 16,
+    "minBeat": 100,
+    "fullBeat": 128,
+    "downbeat": 4,
+    "leadBeats": 4,
+    "window": 0.24,
+    "wakeBeat": 12,
+    "wake": 0.3,
+    "meter": {
+      "perfect": 0.03,
+      "good": 0.029,
+      "miss": -0.008
+    }
+  },
+  "twist": null
+}

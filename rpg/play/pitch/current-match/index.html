@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The Current · Atlas Veyr</title><link rel="icon" href="data:,"><link rel="stylesheet" href="../../src/match/style.css"></head>
+<body>
+<main id="arena" aria-label="The Current">
+ <svg class="render-filters" aria-hidden="true" width="0" height="0"><defs>
+  <!-- Remove only the near-pure red/yellow cutout contamination, not painted gold. -->
+  <filter id="frame-edge-clean" color-interpolation-filters="sRGB" x="-2%" y="-2%" width="104%" height="104%">
+   <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  12 0 -12 0 -10.2" result="fringe"/>
+   <feMorphology in="fringe" operator="dilate" radius="1.4" result="edge"/>
+   <feComposite in="SourceGraphic" in2="edge" operator="out"/>
+  </filter>
+ </defs></svg>
+ <div id="arena-depth" aria-hidden="true">
+  <img class="arena-state" id="arena-spell" src="../beat/art/current/arena/arena-1-spell.png" alt="">
+  <img class="arena-state" id="arena-turning" src="../beat/art/current/arena/arena-2-turning.png" alt="">
+  <img class="arena-state" id="arena-clear" src="../beat/art/current/arena/arena-3-clear.png" alt="">
+  <div id="card-shimmer"></div><div id="river-mist"></div>
+ </div>
+ <div id="feed-river" aria-hidden="true"></div>
+ <div id="crest-water" aria-hidden="true"></div>
+ <div id="clear-river" aria-hidden="true"></div>
+ <div id="atlas-reflection" class="atlas-art fighter-reflection" aria-hidden="true"><img data-fighter="atlas" src="../beat/art/current/atlas/atlas-idle.png" alt=""></div>
+ <div id="siren-reflection" class="siren-stage fighter-reflection" aria-hidden="true"><img class="siren-art" data-fighter="siren" src="../beat/art/current/poses/idle.png" alt=""></div>
+ <div id="atlas-contact" aria-hidden="true"></div><div id="gauntlet-water" aria-hidden="true"></div>
+ <div id="siren-stage" class="siren-stage"><img id="siren" class="siren-art" data-fighter="siren" alt="The Current" src="../beat/art/current/poses/idle.png"></div>
+ <img id="atlas" class="atlas-art" data-fighter="atlas" src="../beat/art/current/atlas/atlas-idle.png" aria-label="Atlas, his Signal gauntlet lit" alt="Atlas, his Signal gauntlet lit">
+ <div id="water-front" aria-hidden="true"></div>
+ <div id="effects" aria-hidden="true"></div>
+ <div id="board" role="grid" aria-label="The river">
+  <img id="board-frame" src="../beat/art/current/arena/board-frame.png" aria-hidden="true" alt="">
+  <div id="water" aria-hidden="true"><div class="caustics"></div></div>
+ </div>
+ <div id="meter" role="progressbar" aria-label="Healing" aria-valuemin="0" aria-valuemax="72"><i></i><span class="summon-mark" aria-hidden="true"><svg viewBox="0 0 48 48" width="42" height="42" fill="none" stroke="currentColor" stroke-width="3"><path d="M23 40C2 33 6 16 17 19S30 10 16 7L8 12L13 2M25 40C46 33 42 16 31 19S18 10 32 7L40 12L35 2"/><path d="M10 22L3 16L5 31M38 22L45 16L43 31"/></svg></span><span class="pearl-mark" aria-hidden="true">●</span></div>
+ <section id="atlas-hud" class="fighter-hud" aria-label="Atlas"></section>
+ <section id="siren-hud" class="fighter-hud" aria-label="The Current"></section>
+ <div id="round-seals" aria-label="Round 1 of 3"><i></i><i></i><i></i></div>
+ <div id="move-panel" hidden aria-live="polite"><img alt=""><div><b></b><span></span></div></div>
+ <div id="undertow" hidden aria-hidden="true"></div>
+ <div id="control-hint" hidden></div>
+ <div id="power-preview" hidden aria-live="polite"></div>
+ <svg id="tide" viewBox="0 0 240 24" aria-label="48 turns left of 48" role="img">
+  <path class="tide-channel" d="M20 6 Q120 1 220 6 L220 19 Q120 24 20 19Z"/>
+  <g id="tide-progress"></g>
+  <path class="leader leader-atlas" d="M10 6 L16 12 L10 18 L4 12Z"/>
+  <path class="leader leader-current" d="M234 5 A7 7 0 1 0 234 19 A8 8 0 0 1 234 5Z"/>
+ </svg>
+ <div id="cinema" hidden><img alt="" id="painting"><div id="cinema-lanterns" aria-hidden="true"></div></div>
+ <button id="start" aria-label="Enter the river">◈</button>
+ <div id="credits" hidden>Undertow Ascendant — original score</div>
+</main>
+<script type="module" src="../../src/match/main.js"></script>
+</body></html>
