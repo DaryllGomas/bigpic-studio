@@ -1,6 +1,28 @@
 {
-  "newest": "2026-10-18",
+  "newest": "2026-10-21",
   "modal": [
+    {
+      "game": "beyond-the-nexus",
+      "gameName": "Beyond the Nexus",
+      "version": "Log 04",
+      "date": "2026-10-21",
+      "title": "The Current wakes, and the music gets real",
+      "href": "rpg/",
+      "text": "A new kind of duel on the River road, and battle music played by an orchestra. Not playable on the web yet.",
+      "label": "Beyond the Nexus Log 04: The Current wakes, and the music gets real",
+      "short": "Beyond the Nexus Log 04"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.12.1",
+      "date": "2026-10-20",
+      "title": "A steadier hand",
+      "href": "the-first-world/",
+      "text": "Two fixes to the hand from a playtest: it never gets stuck after turning the camera, and things by the shore come up when you reach for them.",
+      "label": "The First World v0.12.1: A steadier hand",
+      "short": "The First World v0.12.1"
+    },
     {
       "game": "beyond-the-nexus",
       "gameName": "Beyond the Nexus",
@@ -55,17 +77,6 @@
       "text": "The arcade opens on our games, with larger card art on the tube. Pick one to visit its public game or development page; all 26 cabinets are still a shelf away.",
       "label": "The Junction v1.3: Our games first",
       "short": "The Junction v1.3"
-    },
-    {
-      "game": "the-first-world",
-      "gameName": "The First World",
-      "version": "v0.10",
-      "date": "2026-10-17",
-      "title": "The last age",
-      "href": "the-first-world/",
-      "text": "Story mode doesn't end with Vexahl any more. After him, the three villages come together for one last age, and the island finally has its true ending.",
-      "label": "The First World v0.10: The last age",
-      "short": "The First World v0.10"
     },
     {
       "game": "the-path",
@@ -77,20 +88,31 @@
       "text": "Plug in or wake an Xbox, PlayStation, 8BitDo or Switch pad and play the whole chapter from the couch. The left stick walks (gently to creep, hard to hurry), the right stick looks, A uses, B steps…",
       "label": "The Path v0.3: Play it from the couch",
       "short": "The Path v0.3"
-    },
-    {
-      "game": "the-junction",
-      "gameName": "The Junction",
-      "version": "v1.2",
-      "date": "2026-10-13",
-      "title": "Plays your way",
-      "href": "arcade/",
-      "text": "The hints at the bottom follow whatever you play with: keyboard keys, gamepad buttons, or taps on a phone.",
-      "label": "The Junction v1.2: Plays your way",
-      "short": "The Junction v1.2"
     }
   ],
   "log": [
+    {
+      "game": "beyond-the-nexus",
+      "gameName": "Beyond the Nexus",
+      "version": "Log 04",
+      "date": "2026-10-21",
+      "title": "The Current wakes, and the music gets real",
+      "href": "rpg/",
+      "text": "A new kind of duel on the River road, and battle music played by an orchestra. Not playable on the web yet.",
+      "label": "Beyond the Nexus Log 04: The Current wakes, and the music gets real",
+      "short": "Beyond the Nexus Log 04"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.12.1",
+      "date": "2026-10-20",
+      "title": "A steadier hand",
+      "href": "the-first-world/",
+      "text": "Two fixes to the hand from a playtest: it never gets stuck after turning the camera, and things by the shore come up when you reach for them.",
+      "label": "The First World v0.12.1: A steadier hand",
+      "short": "The First World v0.12.1"
+    },
     {
       "game": "beyond-the-nexus",
       "gameName": "Beyond the Nexus",
@@ -156,17 +178,6 @@
       "text": "Story mode doesn't end with Vexahl any more. After him, the three villages come together for one last age, and the island finally has its true ending.",
       "label": "The First World v0.10: The last age",
       "short": "The First World v0.10"
-    },
-    {
-      "game": "the-first-world",
-      "gameName": "The First World",
-      "version": "v0.9",
-      "date": "2026-10-17",
-      "title": "Faces, and a village worth living in",
-      "href": "the-first-world/",
-      "text": "Lumi and Fizz have painted faces now, the villages are full of life, and the island glows warmer by day.",
-      "label": "The First World v0.9: Faces, and a village worth living in",
-      "short": "The First World v0.9"
     },
     {
       "game": "the-path",
@@ -211,17 +222,6 @@
       "text": "Driving cabinets with wheels, motocross bars, a sit-down cockpit, and three styles of kick panel.",
       "label": "The Junction v1.1: A warmer room, and no coins",
       "short": "The Junction v1.1"
-    },
-    {
-      "game": "beyond-the-nexus",
-      "gameName": "Beyond the Nexus",
-      "version": "Log 01",
-      "date": "2026-10-10",
-      "title": "First scenes beyond the Nexus",
-      "href": "rpg/",
-      "text": "The first scenes of the build, all in a hand-built diorama world.",
-      "label": "Beyond the Nexus Log 01: First scenes beyond the Nexus",
-      "short": "Beyond the Nexus Log 01"
     }
   ]
 }

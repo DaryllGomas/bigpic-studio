@@ -8,8 +8,8 @@ for(const width of [1920,390]){
  const page=await browser.newPage({viewport:{width,height:1080},reducedMotion:'reduce'});
  const errors=[],consoleErrors=[]; page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text())});
  await page.goto(`${process.env.SITE_URL}/rpg/`,{waitUntil:'networkidle'});
- await page.getByText('Sloth wakes, and the river finds its way home',{exact:true}).waitFor();
- check(await page.locator('.hub-ver').first().textContent()==='Log 03','Latest log missing');
+ await page.getByText('The Current wakes, and the music gets real',{exact:true}).waitFor();
+ check(await page.locator('.hub-ver').first().textContent()==='Log 04','Latest log missing');
  check(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'Horizontal overflow');
  await page.locator('#shots').scrollIntoViewIfNeeded();
  await page.locator('.note').scrollIntoViewIfNeeded();
@@ -22,6 +22,6 @@ for(const width of [1920,390]){
  await page.keyboard.press('Escape');
  check(!await page.locator('#lb').evaluate(e=>e.classList.contains('open')),'Escape failed');
  check(await page.locator('.btn-gold').getAttribute('href')==='/the-first-world/','Play button changed');
- check(errors.length===0,'Page errors');results.push({width,errors,consoleErrors,shots:15,devlog:'Log 03'});await page.close();
+ check(errors.length===0,'Page errors');results.push({width,errors,consoleErrors,shots:15,devlog:'Log 04'});await page.close();
 }
 await writeFile(`${out}/results.json`,JSON.stringify(results,null,2));await browser.close();

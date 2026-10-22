@@ -75,15 +75,15 @@ assert.equal(news.newest, '2026-10-18');
 const wnDate = await hp.locator('[data-whatsnew] time').getAttribute('datetime'); assert.equal(wnDate, news.newest);
 await hp.locator('[data-whatsnew]').click(); await hp.waitForTimeout(500);
 const wnItems = await hp.locator('#wnModal li').evaluateAll((ls) => ls.map((l) => ({ t: l.querySelector('b').textContent, href: l.querySelector('a').getAttribute('href'), d: l.querySelector('time').dateTime })));
-assert.ok(wnItems.some((i) => i.t.startsWith('Beyond the Nexus Log 03') && i.href === 'rpg/'), 'Beyond the Nexus Log 03 listed');
+assert.ok(wnItems.some((i) => i.t.startsWith('Beyond the Nexus Log 04') && i.href === 'rpg/'), 'Beyond the Nexus Log 04 listed');
 assert.ok(wnItems.some((i) => i.t.startsWith('The Junction v1.4')), 'Junction update listed');
 assert.ok(wnItems.some((i) => i.t.startsWith('The Path v0.3')), 'The Path listed');
 assert.ok(wnItems.some((i) => i.t.startsWith('The First World v0.12')), 'First World listed');
 assert.equal(wnItems.length, 8); assert.ok(wnItems.every((x, i) => i === 0 || x.d <= wnItems[i - 1].d), 'newest first');
 await hp.screenshot({ path: out + '/whats-new-1920.png' });
 await hp.keyboard.press('Escape');
-const logTxt = await hp.locator('#log .log2').innerText(); assert.ok(logTxt.includes('Beyond the Nexus Log 03') && logTxt.includes('The Junction v1.4'), 'Lab log has the newest');
-ok(`home What's new = ${wnItems.length} newest items across games (incl. Beyond the Nexus Log 03, Junction v1.4, The Path v0.3); button date = ${wnDate}; Lab log regenerated`);
+const logTxt = await hp.locator('#log .log2').innerText(); assert.ok(logTxt.includes('Beyond the Nexus Log 04') && logTxt.includes('The Junction v1.4'), 'Lab log has the newest');
+ok(`home What's new = ${wnItems.length} newest items across games (incl. Beyond the Nexus Log 04, Junction v1.4, The Path v0.3); button date = ${wnDate}; Lab log regenerated`);
 assert.deepEqual(homeErrs, []);
 
 // ---- 5. home band: chevrons, nudge, drag, wheel, click-to-centre, click-to-enter

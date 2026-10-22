@@ -2,10 +2,10 @@
  "game": "beyond-the-nexus",
  "title": "Beyond the Nexus",
  "version": "",
- "updated": "2026-10-18",
+ "updated": "2026-10-21",
  "now": [
   "The road beyond the river, and more of the island to explore.",
-  "The next forces of the road: The Drift, The Burden, The Rust and The Night Warden. Their paintings are taking shape; their songs and battles come next.",
+  "The next forces of the road: The Drift, The Burden, The Rust and The Night Warden. Their paintings are taking shape; their battles and music come next.",
   "The moment the Nexus forms, when the seven marks come together.",
   "Light and atmosphere for every new place, until each one feels as good as the gate road at dusk."
  ],
@@ -25,6 +25,38 @@
   }
  ],
  "releases": [
+  {
+   "version": "Log 04",
+   "date": "2026-10-21",
+   "title": "The Current wakes, and the music gets real",
+   "summary": "A new kind of duel on the River road, and battle music played by an orchestra. Not playable on the web yet.",
+   "items": [
+    {
+     "h": "A duel on the water",
+     "t": "Talking to The Current on the River road now opens a three-round match-3 duel: painted gems on a see-through water board in a gold frame, and a few named moves like Signal Flare, Still Water and Break the Loop."
+    },
+    {
+     "h": "A river that heals",
+     "t": "The arena warms from violet night to golden clear as you win, and her bar fills with gold Clarity as she wakes. Each round win plays a painted moment, from the Dragons to the Pearl’s release."
+    },
+    {
+     "h": "Gentle by design",
+     "t": "Losing a round only means being pulled under, and you try again. There is no game over, and the duel is easy by default."
+    },
+    {
+     "h": "The feed on the river",
+     "t": "Cards drift past on the water, dark when she scores, then flipping bright and floating away when you do."
+    },
+    {
+     "h": "Real instruments",
+     "t": "The battle music is now built from recorded orchestra samples: strings, harp, celesta, horn, brass, a drum kit and a concert-hall reverb. It builds across the rounds, from a moody cello line to Atlas’s horn theme to a last stand."
+    },
+    {
+     "h": "She wakes",
+     "t": "Win, and The Current wakes and changes. The river changes with her, and the boats return."
+    }
+   ]
+  },
   {
    "version": "Log 03",
    "date": "2026-10-18",
