@@ -21,6 +21,7 @@ import { Ora } from '../engine/actors/ora.js';
 import { getLegacy, oraGreeting, ORA_TONE_TINT } from '../engine/legacy.js';
 import { Input } from '../engine/input.js';
 import { Ambience } from '../engine/audio.js';
+import { BUILD } from '../build-config.js';
 import * as L from './nexus/layout.js';
 import { RotundaCamera } from './nexus/camera.js';
 import { paintNexusFloor, paintMark, paintDoorLeaf, paintBand } from './nexus/paint.js';
@@ -439,7 +440,7 @@ export async function createNexus(engine, { time = 'dusk', from = null, go } = {
         else if (Math.abs(L.dAng(d, L.ALIVE.deg)) < 8 && r > aliveF.Rp + 0.35) {
           exiting = { dir: L.polar(L.ALIVE.deg, 1), t: 0, gate: alive };
           sfx.breath();
-          const ret = encodeURIComponent(location.origin + '/?scene=nexus&from=path');
+          const ret = encodeURIComponent(location.origin + (BUILD.webConcept ? location.pathname.replace(/[^/]*$/, '') : '/') + '?scene=nexus&from=path');
           const url = `${THE_PATH}?world=80s&return=${ret}`;
           const f = document.getElementById('fade') || Object.assign(document.body.appendChild(document.createElement('div')), { id: 'fade' });
           f.style.transition = 'opacity 1.1s ease'; f.style.background = '#fff6e4';
