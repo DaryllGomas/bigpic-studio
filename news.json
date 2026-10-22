@@ -15,6 +15,17 @@
     {
       "game": "the-first-world",
       "gameName": "The First World",
+      "version": "v0.12.2",
+      "date": "2026-10-21",
+      "title": "On to Beyond the Nexus",
+      "href": "the-first-world/",
+      "text": "The true ending now offers a real choice: go on to the next game, Beyond the Nexus, or stay on your island.",
+      "label": "The First World v0.12.2: On to Beyond the Nexus",
+      "short": "The First World v0.12.2"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
       "version": "v0.12.1",
       "date": "2026-10-20",
       "title": "A steadier hand",
@@ -44,17 +55,6 @@
       "text": "Stay on your island after the true ending and Telor keeps living: a festival every season, newcomers arriving by boat, and a city that grows while you look after it.",
       "label": "The First World v0.12: After the ending",
       "short": "The First World v0.12"
-    },
-    {
-      "game": "the-first-world",
-      "gameName": "The First World",
-      "version": "v0.11",
-      "date": "2026-10-18",
-      "title": "Not away. Back.",
-      "href": "the-first-world/",
-      "text": "The ending has more to say. Before the hood falls, your rival makes his case, and the people closest to you answer him.",
-      "label": "The First World v0.11: Not away. Back.",
-      "short": "The First World v0.11"
     },
     {
       "game": "the-junction",
@@ -105,6 +105,17 @@
     {
       "game": "the-first-world",
       "gameName": "The First World",
+      "version": "v0.12.2",
+      "date": "2026-10-21",
+      "title": "On to Beyond the Nexus",
+      "href": "the-first-world/",
+      "text": "The true ending now offers a real choice: go on to the next game, Beyond the Nexus, or stay on your island.",
+      "label": "The First World v0.12.2: On to Beyond the Nexus",
+      "short": "The First World v0.12.2"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
       "version": "v0.12.1",
       "date": "2026-10-20",
       "title": "A steadier hand",
@@ -167,17 +178,6 @@
       "text": "The arcade opens on our games, with larger card art on the tube. Pick one to visit its public game or development page; all 26 cabinets are still a shelf away.",
       "label": "The Junction v1.3: Our games first",
       "short": "The Junction v1.3"
-    },
-    {
-      "game": "the-first-world",
-      "gameName": "The First World",
-      "version": "v0.10",
-      "date": "2026-10-17",
-      "title": "The last age",
-      "href": "the-first-world/",
-      "text": "Story mode doesn't end with Vexahl any more. After him, the three villages come together for one last age, and the island finally has its true ending.",
-      "label": "The First World v0.10: The last age",
-      "short": "The First World v0.10"
     },
     {
       "game": "the-path",

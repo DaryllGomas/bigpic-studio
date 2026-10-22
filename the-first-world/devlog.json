@@ -1,10 +1,10 @@
 {
   "game": "the-first-world",
   "title": "THE FIRST WORLD",
-  "version": "v0.12.1",
-  "updated": "2026-10-20",
+  "version": "v0.12.2",
+  "updated": "2026-10-21",
   "now": [
-    "The next game picks up where this one ends.",
+    "Beyond the Nexus, the next game, is in development and growing piece by piece.",
     "Tuning when Vexahl offers the ring, so it lands at the moments that tempt you most.",
     "Smoother frames on laptops and older machines."
   ],
@@ -32,6 +32,22 @@
     }
   ],
   "releases": [
+    {
+      "version": "v0.12.2",
+      "date": "2026-10-21",
+      "title": "On to Beyond the Nexus",
+      "summary": "The true ending now offers a real choice: go on to the next game, Beyond the Nexus, or stay on your island.",
+      "items": [
+        {
+          "h": "A choice at the end",
+          "t": "After Telor's Nexus opens, the closing card asks if you would like to go on to the next game. Continue to Beyond the Nexus (marked in development) takes you to its concept build at the Nexus; stay on this island keeps the island going as before. A, Enter or a click chooses to go on; B or Escape stays."
+        },
+        {
+          "h": "Come back to it any time",
+          "t": "Once you have seen the ending, the help screen (H, or the controller's View button) has a Continue to Beyond the Nexus button, so you can go on later without replaying the ending."
+        }
+      ]
+    },
     {
       "version": "v0.12.1",
       "date": "2026-10-20",
