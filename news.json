@@ -1,6 +1,28 @@
 {
-  "newest": "2026-10-21",
+  "newest": "2026-10-23",
   "modal": [
+    {
+      "game": "beyond-the-nexus",
+      "gameName": "Beyond the Nexus",
+      "version": "Log 04c",
+      "date": "2026-10-23",
+      "title": "The controller stays with the duel",
+      "href": "rpg/",
+      "text": "In The Current's duel, the controller no longer also acts on the world behind it.",
+      "label": "Beyond the Nexus Log 04c: The controller stays with the duel",
+      "short": "Beyond the Nexus Log 04c"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.12.3",
+      "date": "2026-10-23",
+      "title": "Continue is there when you come back",
+      "href": "the-first-world/",
+      "text": "After the ending, the Continue to Beyond the Nexus button now shows on the opening screen straight away.",
+      "label": "The First World v0.12.3: Continue is there when you come back",
+      "short": "The First World v0.12.3"
+    },
     {
       "game": "beyond-the-nexus",
       "gameName": "Beyond the Nexus",
@@ -44,28 +66,6 @@
       "text": "Two fixes to the hand from a playtest: it never gets stuck after turning the camera, and things by the shore come up when you reach for them.",
       "label": "The First World v0.12.1: A steadier hand",
       "short": "The First World v0.12.1"
-    },
-    {
-      "game": "beyond-the-nexus",
-      "gameName": "Beyond the Nexus",
-      "version": "Log 03",
-      "date": "2026-10-18",
-      "title": "Sloth wakes, and the river finds its way home",
-      "href": "rpg/",
-      "text": "Two bosses, a longer road, and a build made for the couch.",
-      "label": "Beyond the Nexus Log 03: Sloth wakes, and the river finds its way home",
-      "short": "Beyond the Nexus Log 03"
-    },
-    {
-      "game": "the-first-world",
-      "gameName": "The First World",
-      "version": "v0.12",
-      "date": "2026-10-18",
-      "title": "After the ending",
-      "href": "the-first-world/",
-      "text": "Stay on your island after the true ending and Telor keeps living: a festival every season, newcomers arriving by boat, and a city that grows while you look after it.",
-      "label": "The First World v0.12: After the ending",
-      "short": "The First World v0.12"
     },
     {
       "game": "the-junction",
@@ -94,6 +94,28 @@
     {
       "game": "beyond-the-nexus",
       "gameName": "Beyond the Nexus",
+      "version": "Log 04c",
+      "date": "2026-10-23",
+      "title": "The controller stays with the duel",
+      "href": "rpg/",
+      "text": "In The Current's duel, the controller no longer also acts on the world behind it.",
+      "label": "Beyond the Nexus Log 04c: The controller stays with the duel",
+      "short": "Beyond the Nexus Log 04c"
+    },
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.12.3",
+      "date": "2026-10-23",
+      "title": "Continue is there when you come back",
+      "href": "the-first-world/",
+      "text": "After the ending, the Continue to Beyond the Nexus button now shows on the opening screen straight away.",
+      "label": "The First World v0.12.3: Continue is there when you come back",
+      "short": "The First World v0.12.3"
+    },
+    {
+      "game": "beyond-the-nexus",
+      "gameName": "Beyond the Nexus",
       "version": "Log 04b",
       "date": "2026-10-21",
       "title": "Playable on the web, up to The Current",
@@ -156,17 +178,6 @@
       "text": "Stay on your island after the true ending and Telor keeps living: a festival every season, newcomers arriving by boat, and a city that grows while you look after it.",
       "label": "The First World v0.12: After the ending",
       "short": "The First World v0.12"
-    },
-    {
-      "game": "the-first-world",
-      "gameName": "The First World",
-      "version": "v0.11",
-      "date": "2026-10-18",
-      "title": "Not away. Back.",
-      "href": "the-first-world/",
-      "text": "The ending has more to say. Before the hood falls, your rival makes his case, and the people closest to you answer him.",
-      "label": "The First World v0.11: Not away. Back.",
-      "short": "The First World v0.11"
     },
     {
       "game": "the-junction",
@@ -211,17 +222,6 @@
       "text": "The hints at the bottom follow whatever you play with: keyboard keys, gamepad buttons, or taps on a phone.",
       "label": "The Junction v1.2: Plays your way",
       "short": "The Junction v1.2"
-    },
-    {
-      "game": "beyond-the-nexus",
-      "gameName": "Beyond the Nexus",
-      "version": "Log 02",
-      "date": "2026-10-11",
-      "title": "The first quest, and a world beyond the walls",
-      "href": "rpg/",
-      "text": "Not playable yet. Here’s what grew in the build this week.",
-      "label": "Beyond the Nexus Log 02: The first quest, and a world beyond the walls",
-      "short": "Beyond the Nexus Log 02"
     }
   ]
 }
