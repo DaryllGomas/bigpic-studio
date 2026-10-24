@@ -2,7 +2,7 @@
  "game": "beyond-the-nexus",
  "title": "Beyond the Nexus",
  "version": "",
- "updated": "2026-10-21",
+ "updated": "2026-10-23",
  "now": [
   "The road beyond the river, and more of the island to explore.",
   "The next forces of the road: The Drift, The Burden, The Rust and The Night Warden. Their paintings are taking shape; their battles and music come next.",
@@ -25,6 +25,18 @@
   }
  ],
  "releases": [
+  {
+   "version": "Log 04c",
+   "date": "2026-10-23",
+   "title": "The controller stays with the duel",
+   "summary": "In The Current's duel, the controller no longer also acts on the world behind it.",
+   "items": [
+    {
+     "h": "One screen at a time",
+     "t": "Pressing B in the duel used to open the pause card of the road underneath, and A or the D-pad could nudge the hero there. While the duel is up, the controller now belongs to the duel alone."
+    }
+   ]
+  },
   {
    "version": "Log 04b",
    "date": "2026-10-21",

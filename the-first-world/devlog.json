@@ -1,8 +1,8 @@
 {
   "game": "the-first-world",
   "title": "THE FIRST WORLD",
-  "version": "v0.12.2",
-  "updated": "2026-10-21",
+  "version": "v0.12.3",
+  "updated": "2026-10-23",
   "now": [
     "Beyond the Nexus, the next game, is in development and growing piece by piece.",
     "Tuning when Vexahl offers the ring, so it lands at the moments that tempt you most.",
@@ -32,6 +32,18 @@
     }
   ],
   "releases": [
+    {
+      "version": "v0.12.3",
+      "date": "2026-10-23",
+      "title": "Continue is there when you come back",
+      "summary": "After the ending, the Continue to Beyond the Nexus button now shows on the opening screen straight away.",
+      "items": [
+        {
+          "h": "Continue on the opening screen",
+          "t": "Once you have seen the ending, Continue to Beyond the Nexus used to appear only after you closed the help screen and opened it again. It now shows the moment the page opens."
+        }
+      ]
+    },
     {
       "version": "v0.12.2",
       "date": "2026-10-21",

@@ -178,8 +178,9 @@ export class PadDriver {
   releaseAll() { for (const c of [...this.held]) this.hold(c, false); }
 
   update(dt) {
-    // The battle document owns the physical pad, including Start and all face buttons.
-    if(document.getElementById('beat-host')){this.releaseAll();const p=readPad();if(p)this.prev=snapshot(p).buttons;return;}
+    // The battle (THE BEAT) and the duel (The Current's match) documents own the physical pad, including Start and all
+    // face buttons: without this, B in the duel also paused the world underneath and A/D-pad moved the hero.
+    if(document.getElementById('beat-host')||document.getElementById('match-host')){this.releaseAll();const p=readPad();if(p)this.prev=snapshot(p).buttons;return;}
     this.journal.observe(); // JOURNAL: remember Greenfolk conversations without scene edits
     const pad = readPad();
     if (!pad) { this.releaseAll(); if (this.seen) { this.seen = false; this.setActive(false); } return; }
