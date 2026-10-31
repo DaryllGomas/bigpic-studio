@@ -49,4 +49,4 @@ Mount: `mountJunctionBand(el, { arcadeUrl: '/arcade/', engine: '/arcade/cabinet/
 ## Signal Arena on the studio shelf (2026-10-31)
 - A fifth web STUDIO cabinet, opening `/signal-arena/`. Web only (`WEB_ONLY` in `index.html`): the TV's room agent has no launcher for it. Source change: `the-junction-test` branch `signal-arena`; the same lines are carried into `index.html` here, LOG `data-version` v1.5.
 - Art: `cab/studio-signal-arena_{marquee,side,panel}.jpg` (recipe in `tools/cabinets/compose.html`; `tools/cabinets/atlas-compose.mjs` builds them on Atlas), tube `assets/studio/card-signal-arena.webp`.
-- Re-render `band/aisle-poster.jpg` only if the first view changes (it opens on THE PATH, so it doesn't).
+- `band/aisle-poster.jpg` re-rendered (Atlas, embed mode, 1600x612): the aisle wraps, so Signal Arena now stands left of THE PATH.
