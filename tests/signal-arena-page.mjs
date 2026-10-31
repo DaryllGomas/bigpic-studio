@@ -26,13 +26,16 @@ await p.waitForTimeout(800);
 await p.screenshot({ path: out + '/page-desktop-hero.png' });
 assert.equal(await p.locator('h1').innerText(), 'SIGNAL ARENA'.toUpperCase());
 assert.ok(await p.locator('a.btn-play[href="play/?map=study"]').count(), 'Play button');
-await p.waitForFunction(() => document.querySelectorAll('#log li h3').length > 0);
-assert.equal(await p.locator('#log li h3').first().innerText(), 'The Operator’s Study');
+await p.waitForFunction(() => document.querySelectorAll('#log .hub-rel').length > 0);
+assert.equal(await p.locator('#log .hub-h').first().innerText(), "WHAT'S NEW".toUpperCase());
+assert.equal(await p.locator('#log .hub-rel-title').first().innerText(), 'The Operator’s Study');
+assert.equal(await p.locator('#log .hub-ver').first().innerText(), 'V0.3');
+assert.equal(await p.locator('#log form, #log .hub-form').count(), 0, 'What\'s new only: no feedback form');
 const broken = await p.evaluate(async () => { const bad = []; for (const im of document.images) { if (im.loading === 'lazy') { im.loading = 'eager'; } }
   await new Promise((r) => setTimeout(r, 1500)); for (const im of document.images) if (im.getAttribute("src") && (!im.complete || !im.naturalWidth)) bad.push(im.getAttribute('src')); return bad; });
 assert.deepEqual(broken, [], 'every image loads');
 await p.screenshot({ path: out + '/page-desktop-full.png', fullPage: true });
-ok('page: hero, Play, devlog from devlog.json, every image loads (desktop 1440)');
+ok('page: hero, Play, What\'s new from devlog.json (shared hub, no form), every image loads (desktop 1440)');
 
 // ---- 2. the trailer plays
 const codec = await p.evaluate(() => document.createElement('video').canPlayType('video/mp4; codecs="avc1.640028"'));
