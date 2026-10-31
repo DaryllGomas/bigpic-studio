@@ -78,6 +78,7 @@ const wnItems = await hp.locator('#wnModal li').evaluateAll((ls) => ls.map((l) =
 assert.ok(wnItems[0].t.startsWith('Signal Arena v0.3') && wnItems[0].href === 'signal-arena/', 'Signal Arena v0.3 leads');
 assert.ok(wnItems.some((i) => i.t.startsWith('Beyond the Nexus Log 04') && i.href === 'rpg/'), 'Beyond the Nexus Log 04 listed');
 assert.ok(wnItems.some((i) => i.t.startsWith('The Junction v1.5')), 'Junction update listed');
+assert.ok(wnItems.some((i) => i.t.startsWith('The Path v0.5')), 'The Path listed');
 assert.ok(wnItems.some((i) => i.t.startsWith('The First World v0.12')), 'First World listed');
 assert.equal(wnItems.length, 8); assert.ok(wnItems.every((x, i) => i === 0 || x.d <= wnItems[i - 1].d), 'newest first');
 await hp.screenshot({ path: out + '/whats-new-1920.png' });
