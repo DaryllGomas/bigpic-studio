@@ -1,6 +1,17 @@
 {
-  "newest": "2026-10-23",
+  "newest": "2026-10-31",
   "modal": [
+    {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.5",
+      "date": "2026-10-31",
+      "title": "The ride downtown, rebuilt",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "A real house now: a shingle roof with a brick chimney and a TV antenna, siding, lit windows, a back door with a porch light, and a garage.",
+      "label": "The Path v0.5: The ride downtown, rebuilt",
+      "short": "The Path v0.5"
+    },
     {
       "game": "beyond-the-nexus",
       "gameName": "Beyond the Nexus",
@@ -68,30 +79,30 @@
       "short": "The First World v0.12.1"
     },
     {
-      "game": "the-junction",
-      "gameName": "The Junction",
-      "version": "v1.4",
-      "date": "2026-10-18",
-      "title": "One arcade, two shelves",
-      "href": "arcade/",
-      "text": "The aisle now has two shelves, the same on the big screen and the web: our games first, then all 26 cabinets in one row.",
-      "label": "The Junction v1.4: One arcade, two shelves",
-      "short": "The Junction v1.4"
-    },
-    {
-      "game": "the-junction",
-      "gameName": "The Junction",
-      "version": "v1.3",
-      "date": "2026-10-18",
-      "title": "Our games first",
-      "href": "arcade/",
-      "text": "The arcade opens on our games, with larger card art on the tube. Pick one to visit its public game or development page; all 26 cabinets are still a shelf away.",
-      "label": "The Junction v1.3: Our games first",
-      "short": "The Junction v1.3"
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.4",
+      "date": "2026-10-19",
+      "title": "THE JUNCTION's floor, rebuilt",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "Each game on the floor now has 5 to 8 stages, each with something new, and a final boss or finale that wins it: lives and an extra life, a card before each stage and a bonus count after it.",
+      "label": "The Path v0.4: THE JUNCTION's floor, rebuilt",
+      "short": "The Path v0.4"
     }
   ],
   "log": [
     {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.5",
+      "date": "2026-10-31",
+      "title": "The ride downtown, rebuilt",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "A real house now: a shingle roof with a brick chimney and a TV antenna, siding, lit windows, a back door with a porch light, and a garage.",
+      "label": "The Path v0.5: The ride downtown, rebuilt",
+      "short": "The Path v0.5"
+    },
+    {
       "game": "beyond-the-nexus",
       "gameName": "Beyond the Nexus",
       "version": "Log 04c",
@@ -156,6 +167,17 @@
       "text": "Two fixes to the hand from a playtest: it never gets stuck after turning the camera, and things by the shore come up when you reach for them.",
       "label": "The First World v0.12.1: A steadier hand",
       "short": "The First World v0.12.1"
+    },
+    {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.4",
+      "date": "2026-10-19",
+      "title": "THE JUNCTION's floor, rebuilt",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "Each game on the floor now has 5 to 8 stages, each with something new, and a final boss or finale that wins it: lives and an extra life, a card before each stage and a bonus count after it.",
+      "label": "The Path v0.4: THE JUNCTION's floor, rebuilt",
+      "short": "The Path v0.4"
     },
     {
       "game": "beyond-the-nexus",
@@ -200,28 +222,6 @@
       "text": "The arcade opens on our games, with larger card art on the tube. Pick one to visit its public game or development page; all 26 cabinets are still a shelf away.",
       "label": "The Junction v1.3: Our games first",
       "short": "The Junction v1.3"
-    },
-    {
-      "game": "the-path",
-      "gameName": "The Path",
-      "version": "v0.3",
-      "date": "2026-10-17",
-      "title": "Play it from the couch",
-      "href": "https://thepath.bigpicsolutions.com/",
-      "text": "Plug in or wake an Xbox, PlayStation, 8BitDo or Switch pad and play the whole chapter from the couch. The left stick walks (gently to creep, hard to hurry), the right stick looks, A uses, B steps…",
-      "label": "The Path v0.3: Play it from the couch",
-      "short": "The Path v0.3"
-    },
-    {
-      "game": "the-junction",
-      "gameName": "The Junction",
-      "version": "v1.2",
-      "date": "2026-10-13",
-      "title": "Plays your way",
-      "href": "arcade/",
-      "text": "The hints at the bottom follow whatever you play with: keyboard keys, gamepad buttons, or taps on a phone.",
-      "label": "The Junction v1.2: Plays your way",
-      "short": "The Junction v1.2"
     }
   ]
 }
