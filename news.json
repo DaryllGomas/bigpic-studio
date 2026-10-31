@@ -24,6 +24,17 @@
       "short": "The Junction v1.5"
     },
     {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.5",
+      "date": "2026-10-31",
+      "title": "The ride downtown, rebuilt",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "A real house now: a shingle roof with a brick chimney and a TV antenna, siding, lit windows, a back door with a porch light, and a garage.",
+      "label": "The Path v0.5: The ride downtown, rebuilt",
+      "short": "The Path v0.5"
+    },
+    {
       "game": "beyond-the-nexus",
       "gameName": "Beyond the Nexus",
       "version": "Log 04c",
@@ -77,17 +88,6 @@
       "text": "The true ending now offers a real choice: go on to the next game, Beyond the Nexus, or stay on your island.",
       "label": "The First World v0.12.2: On to Beyond the Nexus",
       "short": "The First World v0.12.2"
-    },
-    {
-      "game": "the-first-world",
-      "gameName": "The First World",
-      "version": "v0.12.1",
-      "date": "2026-10-20",
-      "title": "A steadier hand",
-      "href": "the-first-world/",
-      "text": "Two fixes to the hand from a playtest: it never gets stuck after turning the camera, and things by the shore come up when you reach for them.",
-      "label": "The First World v0.12.1: A steadier hand",
-      "short": "The First World v0.12.1"
     }
   ],
   "log": [
@@ -114,6 +114,17 @@
       "short": "The Junction v1.5"
     },
     {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.5",
+      "date": "2026-10-31",
+      "title": "The ride downtown, rebuilt",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "A real house now: a shingle roof with a brick chimney and a TV antenna, siding, lit windows, a back door with a porch light, and a garage.",
+      "label": "The Path v0.5: The ride downtown, rebuilt",
+      "short": "The Path v0.5"
+    },
+    {
       "game": "beyond-the-nexus",
       "gameName": "Beyond the Nexus",
       "version": "Log 04c",
@@ -180,6 +191,17 @@
       "short": "The First World v0.12.1"
     },
     {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.4",
+      "date": "2026-10-19",
+      "title": "THE JUNCTION's floor, rebuilt",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "Each game on the floor now has 5 to 8 stages, each with something new, and a final boss or finale that wins it: lives and an extra life, a card before each stage and a bonus count after it.",
+      "label": "The Path v0.4: THE JUNCTION's floor, rebuilt",
+      "short": "The Path v0.4"
+    },
+    {
       "game": "beyond-the-nexus",
       "gameName": "Beyond the Nexus",
       "version": "Log 03",
@@ -200,28 +222,6 @@
       "text": "Stay on your island after the true ending and Telor keeps living: a festival every season, newcomers arriving by boat, and a city that grows while you look after it.",
       "label": "The First World v0.12: After the ending",
       "short": "The First World v0.12"
-    },
-    {
-      "game": "the-junction",
-      "gameName": "The Junction",
-      "version": "v1.4",
-      "date": "2026-10-18",
-      "title": "One arcade, two shelves",
-      "href": "arcade/",
-      "text": "The aisle now has two shelves, the same on the big screen and the web: our games first, then all 26 cabinets in one row.",
-      "label": "The Junction v1.4: One arcade, two shelves",
-      "short": "The Junction v1.4"
-    },
-    {
-      "game": "the-junction",
-      "gameName": "The Junction",
-      "version": "v1.3",
-      "date": "2026-10-18",
-      "title": "Our games first",
-      "href": "arcade/",
-      "text": "The arcade opens on our games, with larger card art on the tube. Pick one to visit its public game or development page; all 26 cabinets are still a shelf away.",
-      "label": "The Junction v1.3: Our games first",
-      "short": "The Junction v1.3"
     }
   ]
 }
