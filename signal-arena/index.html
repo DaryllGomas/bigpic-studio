@@ -150,6 +150,13 @@ footer{margin-top:clamp(40px,5vw,64px);padding:18px var(--pad) 26px;font-family:
 }
 @media (max-width:560px){ .btn-play{width:100%;justify-content:center} }
 @media (prefers-reduced-motion:reduce){.hero picture img{animation:none}}
+
+/* wide screens: the content sits in a centred frame (as on The First World and THE PATH); the hero art stays wide.
+   Up to --frame plus the side padding nothing changes. */
+:root{--frame:1240px;--gut:max(var(--pad),calc((100% - var(--frame)) / 2))}
+.bar,.hero,main,footer{padding-left:var(--gut);padding-right:var(--gut)}
+.hero::before{--hl:max(0px,calc((100% - var(--frame)) / 2 - var(--pad)));--hw:min(100%,calc(var(--frame) + 2 * var(--pad)));
+  background:linear-gradient(90deg,rgba(6,7,11,.9) var(--hl),rgba(6,7,11,.45) calc(var(--hl) + var(--hw) * .42),rgba(6,7,11,0) calc(var(--hl) + var(--hw) * .72)),linear-gradient(0deg,rgba(6,7,11,.96) 0%,rgba(6,7,11,.2) 48%,transparent 72%)}
 </style>
 </head>
 <body>

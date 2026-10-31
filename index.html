@@ -589,6 +589,26 @@ footer::before{content:"";position:absolute;left:50%;bottom:-340px;width:1400px;
   .foot2-links{margin-left:0;flex-wrap:wrap}
 }
 
+/* ---------- wide screens: the content sits in a centred frame (as on The First World and THE PATH) ----------
+   Up to --frame plus the side padding nothing changes; past it the gutters grow, while the hero art and
+   the band backgrounds stay wide behind the frame. */
+:root{--frame:1600px;--gut:max(var(--pad),calc((100% - var(--frame)) / 2))}
+nav{padding-left:max(clamp(20px,4vw,48px),calc((100% - var(--frame)) / 2));padding-right:max(clamp(20px,4vw,48px),calc((100% - var(--frame)) / 2))}
+.hero2,.uni,.work2,.foot2{padding-left:var(--gut);padding-right:var(--gut)}
+/* the game cards grow to fit their line instead of clipping it (THE FIRST WORLD's arrow, Beyond the Nexus's last line) */
+@media (min-width:1081px){.uni .u-game{height:auto;min-height:clamp(150px,11vw,180px)}}
+@media (min-width:821px){
+  /* the hero's left shade follows the frame, so the title keeps its dark backing */
+  .hero2::before{--hl:max(0px,calc((100% - var(--frame)) / 2 - var(--pad)));--hw:min(100%,calc(var(--frame) + 2 * var(--pad)));
+    background:linear-gradient(90deg,rgba(4,6,11,.82) var(--hl),rgba(4,6,11,.45) calc(var(--hl) + var(--hw) * .38),rgba(4,6,11,0) calc(var(--hl) + var(--hw) * .62)),linear-gradient(0deg,rgba(4,6,11,.75),transparent 40%),linear-gradient(180deg,rgba(4,6,11,.55),transparent 22%)}
+}
+/* THE JUNCTION stays full-bleed up to 1920 wide; wider than that it becomes a framed stage the width of the frame,
+   so it can't fill a whole ultra-wide screen (at 3440 it was 1310 px tall) */
+@media (min-width:1921px){
+  .band-junction{padding:18px var(--gut)}
+  .junction-slot{margin:0 auto;border:1px solid rgba(255,70,90,.35);border-radius:18px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 80px rgba(255,40,70,.08)}
+}
+
 /* ---------- info pop-ups (every card that can't be played) ---------- */
 [data-info]{cursor:pointer}
 .info{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px);background:rgba(2,3,8,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
