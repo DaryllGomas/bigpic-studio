@@ -131,6 +131,13 @@ footer{padding:18px var(--pad) 26px;font-family:var(--sans);font-size:11.5px;col
   .note{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){.hero img{animation:none}}
+
+/* wide screens: the content sits in a centred frame (as on The First World and THE PATH); the hero art stays wide.
+   Up to --frame plus the side padding nothing changes. */
+:root{--frame:1240px;--gut:max(var(--pad),calc((100% - var(--frame)) / 2))}
+.bar,.hero,main,footer{padding-left:var(--gut);padding-right:var(--gut)}
+.hero::before{--hl:max(0px,calc((100% - var(--frame)) / 2 - var(--pad)));--hw:min(100%,calc(var(--frame) + 2 * var(--pad)));
+  background:linear-gradient(90deg,rgba(4,6,11,.85) var(--hl),rgba(4,6,11,.4) calc(var(--hl) + var(--hw) * .4),rgba(4,6,11,0) calc(var(--hl) + var(--hw) * .7)),linear-gradient(0deg,rgba(4,6,11,.95) 0%,rgba(4,6,11,.2) 45%,transparent 70%)}
 </style>
 </head>
 <body>
