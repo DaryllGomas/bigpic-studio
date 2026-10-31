@@ -28,8 +28,10 @@ assert.equal(await p.locator('h1').innerText(), 'SIGNAL ARENA'.toUpperCase());
 assert.ok(await p.locator('a.btn-play[href="play/?map=study"]').count(), 'Play button');
 await p.waitForFunction(() => document.querySelectorAll('#log .hub-rel').length > 0);
 assert.equal(await p.locator('#log .hub-h').first().innerText(), "WHAT'S NEW".toUpperCase());
-assert.equal(await p.locator('#log .hub-rel-title').first().innerText(), 'The Operator’s Study');
-assert.equal(await p.locator('#log .hub-ver').first().innerText(), 'V0.3');
+const dl = await (await fetch(base + '/signal-arena/devlog.json')).json();   // the newest release, whatever it is
+assert.equal(await p.locator('#log .hub-rel-title').first().innerText(), dl.releases[0].title);
+assert.equal(await p.locator('#log .hub-ver').first().innerText(), dl.releases[0].version.toUpperCase());
+assert.ok(await p.locator('#levels a.btn-play[href="play/?map=tower"]').count(), 'More levels: Play Relay Tower');
 assert.equal(await p.locator('#log form, #log .hub-form').count(), 0, 'What\'s new only: no feedback form');
 const broken = await p.evaluate(async () => { const bad = []; for (const im of document.images) { if (im.loading === 'lazy') { im.loading = 'eager'; } }
   await new Promise((r) => setTimeout(r, 1500)); for (const im of document.images) if (im.getAttribute("src") && (!im.complete || !im.naturalWidth)) bad.push(im.getAttribute('src')); return bad; });
@@ -74,7 +76,7 @@ assert.equal(await card.locator('a.u-game').getAttribute('href'), 'signal-arena/
 await p.evaluate(() => scrollTo(0, 0)); await p.waitForTimeout(300);
 await p.locator('[data-whatsnew]').click(); await p.waitForTimeout(600);
 const first = await p.locator('#wnModal li b').first().innerText();
-assert.ok(first.startsWith('Signal Arena v0.3'), first);
+assert.ok(first.startsWith('Signal Arena ' + dl.releases[0].version), first);
 await p.screenshot({ path: out + '/whats-new.png' });
 ok(`home: card links to signal-arena/; What's new leads with "${first}"`);
 await p.close();

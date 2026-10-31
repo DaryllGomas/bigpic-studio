@@ -1,11 +1,18 @@
 {
  "game": "signal-arena",
  "title": "Signal Arena",
- "version": "v0.3",
+ "version": "v0.4",
  "updated": "2026-10-31",
  "now": [],
  "ask": [],
  "releases": [
+  {
+   "version": "v0.4",
+   "date": "2026-10-31",
+   "title": "Relay Tower, rebuilt",
+   "summary": "Relay Tower, rebuilt. Our first map gets the full treatment: craggy floating islands, real lattice masts, a new dusk sky and sea of clouds. Pick your map from the menu, and the library’s reading table is fixed.",
+   "items": []
+  },
   {
    "version": "v0.3",
    "date": "2026-10-31",

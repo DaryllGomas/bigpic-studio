@@ -105,6 +105,8 @@ section.sec{padding:clamp(40px,5vw,68px) 0 0;scroll-margin-top:70px}
 .shot.w3{grid-column:span 3}
 .shot.w2{grid-column:span 2}
 .shots+.lbl{margin-top:34px}
+#levels .lead{margin-bottom:22px}
+@media (max-width:560px){ #levels .shot.w2{grid-column:1/-1} }
 
 /* controls */
 .controls{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -288,6 +290,21 @@ footer{margin-top:clamp(40px,5vw,64px);padding:18px var(--pad) 26px;font-family:
         <button class="shot" type="button" data-full="img/plaque.webp" style="display:block;width:100%;border:0;border-radius:0"><img src="img/plaque-1280.webp" alt="A brass plaque over the study's fireplace: This map is dedicated to the memory of Richard “Levelord” Gray, 1957–2026." width="1280" height="720" loading="lazy" style="height:auto"><span hidden>The plaque over the study&rsquo;s fireplace</span></button>
         <figcaption>The plaque over the study&rsquo;s fireplace, in the game</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="levels" aria-labelledby="levels-h">
+    <!-- PUBLIC TEXT (more levels): approved by Daryll 2026-10-31. New levels go here, one block each. -->
+    <h2 class="lbl" id="levels-h">More levels</h2>
+    <h3 class="h2">Relay Tower</h3>
+    <p class="lead">Floating islands of brass masts and glowing signal cables, high above a sea of clouds at dusk. Swing between the masts and take the long shot.</p>
+    <div class="shots">
+      <button class="shot w2" type="button" data-full="img/tower-air.webp"><img src="img/tower-air-800.webp" alt="Relay Tower from the air: floating islands and lit masts above a sea of clouds at dusk" loading="lazy"><span>Relay Tower</span></button>
+      <button class="shot w2" type="button" data-full="img/tower-base.webp"><img src="img/tower-base-800.webp" alt="The cyan base on its floating island, lit windows and lattice masts" loading="lazy"><span>The cyan base</span></button>
+      <button class="shot w2" type="button" data-full="img/tower-ride.webp"><img src="img/tower-ride-800.webp" alt="First person on a tether, pulled toward the glowing central tower" loading="lazy"><span>A tether to the central tower</span></button>
+    </div>
+    <div class="playrow">
+      <a class="btn btn-gold btn-play" href="play/?map=tower" data-track="signal-arena-play-tower"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>Play Relay Tower</a>
     </div>
   </section>
 
