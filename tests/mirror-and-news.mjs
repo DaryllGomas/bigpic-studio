@@ -39,7 +39,7 @@ assert.deepEqual(tv.map((r) => r.name), ['STUDIO', 'ARCADE']);
 assert.equal(await J(() => __junction.category), 'STUDIO');
 assert.deepEqual(tv[1].ids, web[1].ids, 'ARCADE row identical');
 assert.equal(tv[0].ids.length, 11);
-assert.deepEqual(tv[0].ids.filter((id) => !id.startsWith('studio:seven-')), web[0].ids, 'STUDIO identical minus the seven');
+assert.deepEqual(tv[0].ids.filter((id) => !id.startsWith('studio:seven-')), web[0].ids.filter((id) => id !== 'studio:signal-arena'), 'STUDIO identical minus the seven (TV) and Signal Arena (web only)');
 assert.equal(tv[0].ids.filter((id) => id.startsWith('studio:seven-')).length, 7);
 await p.screenshot({ path: out + '/tv-aisle-1920.png' });
 let body; await p.route('http://127.0.0.1:8731/games', async (r) => { body = r.request().postData(); await r.fulfill({ status: 200, body: '{}' }); });
