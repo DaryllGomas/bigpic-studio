@@ -15,6 +15,9 @@
  *   data-title    optional heading for the block (default "Built in the open").
  *   data-level    optional heading level for the block title, 2 (default) to 4; sub-headings go one below.
  *   data-ask-intro optional line under "Help us test" (default "Play a while, then tell us. One line helps.").
+ *   data-parts    optional. "news" shows only the What's new list (every release, newest first; heading at
+ *                 data-level): no header, Now building, Help us test or form, so nothing is posted anywhere and
+ *                 data-game can be any game's slug. For a page whose game isn't set up for feedback yet.
  *
  * Theme: set these custom properties on the page (or on .game-hub) to make the block look native.
  *   --hub-accent, --hub-accent-2, --hub-ink, --hub-ink-soft, --hub-ink-dim, --hub-line, --hub-surface,
@@ -426,6 +429,16 @@
     let log = null, logErr = false;
     try { log = await loadDevlog(root.dataset.src); } catch { logErr = true; }
     if (log && log.game && log.game !== game) log = null; // a devlog for another game is never shown
+    const releases = log && Array.isArray(log.releases) ? log.releases.filter((r) => r && typeof r === 'object') : [];
+
+    // What's new on its own: the changelog, nothing else
+    if (root.dataset.parts === 'news') {
+      root.classList.add('hub-news-only');
+      if (releases.length) root.appendChild(renderNews(releases, lvl));
+      else root.appendChild(h('div', 'hub-news hub-empty')).appendChild(h('p', null, logErr ? 'The devlog didn’t load. Try again in a moment.' : 'The first entry is on its way.'));
+      return;
+    }
+
     const version = str(root.dataset.version || (log && log.version), VERSION_MAX);
     const gameTitle = str(log && log.title, 60);
 
@@ -445,7 +458,6 @@
 
     const form = renderForm(root, game, version, sub, gameTitle);
     const grid = h('div', 'hub-grid');
-    const releases = log && Array.isArray(log.releases) ? log.releases.filter((r) => r && typeof r === 'object') : [];
     if (releases.length) grid.appendChild(renderNews(releases, sub));
     else {
       const box = h('div', 'hub-news hub-empty');

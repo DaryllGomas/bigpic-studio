@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/hub/hub.css">
 <link rel="preload" as="image" href="img/study-overview.webp" fetchpriority="high" media="(min-width: 701px)">
 <style>
 /* Signal Arena's own colours: the game's brass and gold, amber and cyan teams, on night navy */
@@ -125,12 +126,19 @@ kbd{display:inline-block;min-width:24px;padding:1px 7px;margin:0 2px 2px 0;borde
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
 .credits{list-style:none;display:grid;gap:8px;font-family:var(--sans);font-size:14.5px;color:var(--mist)}
 .credits b{color:var(--light);font-weight:600}
-.log{list-style:none;display:grid;gap:14px}
-.log li{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(11,18,32,.6)}
-.log .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.log .ver{padding:2px 10px;border-radius:999px;color:var(--cyan);border:1px solid rgba(63,211,200,.35);background:rgba(63,211,200,.1)}
-.log h3{margin:8px 0 4px;font-family:var(--serif);font-weight:500;font-size:22px}
-.log p{color:var(--mist)}
+/* What's new: the shared game hub (../assets/hub) showing only the changelog, in this page's brass and cyan */
+.sa-news{--hub-accent:var(--cyan);--hub-accent-2:var(--gold);--hub-ink:var(--light);--hub-ink-soft:var(--mist);--hub-ink-dim:var(--muted);
+  --hub-line:var(--line);--hub-page:var(--void);--hub-surface:rgba(11,18,32,.6);
+  --hub-font-display:var(--serif);--hub-font-ui:var(--sans);--hub-font-body:var(--serif);--hub-radius:12px;font-size:17px}
+.sa-news:not(.hub-ready){min-height:160px}
+.sa-news .hub-col-head{margin-bottom:16px}
+.sa-news .hub-h{gap:10px;font-size:11.5px;letter-spacing:.26em;color:var(--gold)}
+.sa-news .hub-h::after{content:"";flex:0 0 110px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.sa-news .hub-ver{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);background:rgba(63,211,200,.1);border-color:rgba(63,211,200,.35);border-radius:999px;padding:2px 10px}
+.sa-news .hub-date{text-transform:uppercase;letter-spacing:.14em;font-size:12px}
+.sa-news .hub-rel-title{font-weight:500;font-size:22px}
+.sa-news .hub-sum{color:var(--mist);font-size:17px}
+.sa-news .hub-items li{font-size:16px}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
 footer{margin-top:clamp(40px,5vw,64px);padding:18px var(--pad) 26px;font-family:var(--sans);font-size:11.5px;color:var(--muted);border-top:1px solid var(--line)}
 
@@ -283,11 +291,10 @@ footer{margin-top:clamp(40px,5vw,64px);padding:18px var(--pad) 26px;font-family:
     </div>
   </section>
 
-  <section class="sec" id="devlog" aria-labelledby="devlog-h">
+  <section class="sec" id="devlog" aria-label="What&rsquo;s new and credits">
     <div class="two">
       <div>
-        <h2 class="lbl" id="devlog-h">Devlog</h2>
-        <ol class="log" id="log"><li><p>The devlog is loading.</p></li></ol>
+        <div class="game-hub sa-news" id="log" data-game="signal-arena" data-src="devlog.json" data-parts="news" data-level="2"></div>
         <noscript><p class="lead">The devlog needs JavaScript. The latest: v0.3, The Operator&rsquo;s Study.</p></noscript>
         <div class="cta">
           <a class="btn btn-gold" href="play/?map=study" data-track="signal-arena-play-log">Play</a>
@@ -333,22 +340,6 @@ footer{margin-top:clamp(40px,5vw,64px);padding:18px var(--pad) 26px;font-family:
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
   document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
 
-  // ---- the devlog: devlog.json (same origin), every string set with textContent ----
-  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = String(text); return e; };
-  const fmt = d => { try { return new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }); } catch (e) { return d; } };
-  const log = document.getElementById('log');
-  fetch('devlog.json', { cache: 'no-cache', credentials: 'omit' }).then(r => r.ok ? r.json() : Promise.reject(r.status)).then(d => {
-    log.textContent = '';
-    for (const r of (d && Array.isArray(d.releases) ? d.releases : [])) {
-      const li = el('li'), top = el('div', 'top');
-      top.appendChild(el('span', 'ver', r.version)); const t = el('time', null, fmt(r.date)); t.dateTime = r.date; top.appendChild(t);
-      li.appendChild(top); li.appendChild(el('h3', null, r.title));
-      if (r.summary) li.appendChild(el('p', null, r.summary));
-      for (const it of Array.isArray(r.items) ? r.items : []) { const s = typeof it === 'string' ? it : [it.h, it.t].filter(Boolean).join(': '); if (s) li.appendChild(el('p', null, s)); }
-      log.appendChild(li);
-    }
-  }).catch(() => { log.textContent = ''; log.appendChild(el('li', null, 'The devlog didn’t load. Try again in a moment.')); });
-
   // ---- BigPic Pulse: anonymous visit counting (the same as the studio's other game pages) ----
   const PULSE = 'https://pulse.bigpicsolutions.com';
   const store = (k, st) => { try { let v = st.getItem(k); if (!v) { v = crypto.randomUUID(); st.setItem(k, v); } return v; } catch (e) { return crypto.randomUUID(); } };
@@ -368,5 +359,6 @@ footer{margin-top:clamp(40px,5vw,64px);padding:18px var(--pad) 26px;font-family:
   });
 })();
 </script>
+<script src="../assets/hub/hub.js" defer></script>
 </body>
 </html>
