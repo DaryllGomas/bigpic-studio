@@ -4,7 +4,7 @@
 // index.html (so the lists work with JavaScript off). Plain node, no npm.
 //   node tools/hub/build-news.mjs           rebuild
 //   node tools/hub/build-news.mjs --check   exit 1 if news.json / index.html are out of date (writes nothing)
-// Sources (repo-relative): the-first-world/, rpg/, arcade/ devlogs, and THE PATH's devlog. THE PATH's lives in its own
+// Sources (repo-relative): the-first-world/, rpg/, arcade/, signal-arena/ devlogs, and THE PATH's devlog. THE PATH's lives in its own
 // site repo (~/Projects/sites/thepath-site/devlog.json); a copy is kept at tools/hub/sources/the-path.devlog.json
 // and refreshed from it automatically when that repo is next to this one. Studio-level items: tools/hub/news-extra.json.
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
@@ -16,6 +16,7 @@ const CHECK = process.argv.includes('--check');
 const MODAL_N = 8, MODAL_PER_GAME = 3, LOG_N = 12, LOG_PER_GAME = 4;
 
 const GAMES = [   // order = tie-break for entries on the same day
+  { slug: 'signal-arena', name: 'Signal Arena', file: 'signal-arena/devlog.json', href: 'signal-arena/' },
   { slug: 'beyond-the-nexus', name: 'Beyond the Nexus', file: 'rpg/devlog.json', href: 'rpg/' },
   { slug: 'the-first-world', name: 'The First World', file: 'the-first-world/devlog.json', href: 'the-first-world/' },
   { slug: 'the-junction', name: 'The Junction', file: 'arcade/devlog.json', href: 'arcade/' },
@@ -24,7 +25,7 @@ const GAMES = [   // order = tie-break for entries on the same day
 ];
 
 // keep THE PATH's copy fresh when its repo is beside this one (read only on that side)
-const pathGame = GAMES[3];
+const pathGame = GAMES.find((g) => g.slug === 'the-path');
 if (!CHECK && existsSync(pathGame.live)) {
   mkdirSync(dirname(join(ROOT, pathGame.file)), { recursive: true });
   const fresh = readFileSync(pathGame.live, 'utf8');
