@@ -4,7 +4,7 @@
 #   3. prints what else must ship together. It never commits, pushes or publishes.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-DEVLOGS=(the-first-world/devlog.json rpg/devlog.json arcade/devlog.json)
+DEVLOGS=(the-first-world/devlog.json rpg/devlog.json arcade/devlog.json signal-arena/devlog.json)
 # THE PATH's devlog lives in its own site repo; build-news.mjs refreshes our copy from it when it sits beside this repo
 PATHLIVE="../thepath-site/devlog.json"
 [ -f "$PATHLIVE" ] && DEVLOGS+=("$PATHLIVE") || DEVLOGS+=(tools/hub/sources/the-path.devlog.json)

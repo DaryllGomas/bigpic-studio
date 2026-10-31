@@ -25,11 +25,11 @@ assert.equal(await J(() => __junction.TV), false);
 assert.equal(await J(() => __junction.category), 'STUDIO');
 const web = await rows();
 assert.deepEqual(web.map((r) => r.name), ['STUDIO', 'ARCADE']);
-assert.equal(web[0].ids.length, 4); assert.equal(web[1].ids.length, 26);
+assert.equal(web[0].ids.length, 5); assert.ok(web[0].ids.includes('studio:signal-arena')); assert.equal(web[1].ids.length, 26);
 await p.screenshot({ path: out + '/web-aisle-1920.png' });
 await pad(13); assert.equal(await J(() => __junction.category), 'ARCADE'); await p.screenshot({ path: out + '/web-aisle-arcade-1920.png' });
 await pad(12); assert.equal(await J(() => __junction.category), 'STUDIO');
-ok('web rows STUDIO(4) + ARCADE(26); no NEW ARRIVALS / CLASSICS / INDIE GEMS; opens on STUDIO');
+ok('web rows STUDIO(5, with Signal Arena) + ARCADE(26); no NEW ARRIVALS / CLASSICS / INDIE GEMS; opens on STUDIO');
 
 // ---- 2. TV mode: same rows; only the seven Path games extra
 await load('?launcher=tv&home=http://127.0.0.1:8731/tv/');
@@ -39,7 +39,7 @@ assert.deepEqual(tv.map((r) => r.name), ['STUDIO', 'ARCADE']);
 assert.equal(await J(() => __junction.category), 'STUDIO');
 assert.deepEqual(tv[1].ids, web[1].ids, 'ARCADE row identical');
 assert.equal(tv[0].ids.length, 11);
-assert.deepEqual(tv[0].ids.filter((id) => !id.startsWith('studio:seven-')), web[0].ids, 'STUDIO identical minus the seven');
+assert.deepEqual(tv[0].ids.filter((id) => !id.startsWith('studio:seven-')), web[0].ids.filter((id) => id !== 'studio:signal-arena'), 'STUDIO identical minus the seven (TV) and Signal Arena (web only)');
 assert.equal(tv[0].ids.filter((id) => id.startsWith('studio:seven-')).length, 7);
 await p.screenshot({ path: out + '/tv-aisle-1920.png' });
 let body; await p.route('http://127.0.0.1:8731/games', async (r) => { body = r.request().postData(); await r.fulfill({ status: 200, body: '{}' }); });
@@ -71,19 +71,20 @@ await p.unroute(/.*/);
 const hp = await ctx.newPage(); watch(hp); const homeErrs = []; hp.on('pageerror', (e) => homeErrs.push(e.message));
 await hp.goto(base + '/', { waitUntil: 'networkidle' });
 const news = await (await hp.request.get(base + '/news.json')).json();
-assert.equal(news.newest, '2026-10-18');
+assert.equal(news.newest, '2026-10-31');
 const wnDate = await hp.locator('[data-whatsnew] time').getAttribute('datetime'); assert.equal(wnDate, news.newest);
 await hp.locator('[data-whatsnew]').click(); await hp.waitForTimeout(500);
 const wnItems = await hp.locator('#wnModal li').evaluateAll((ls) => ls.map((l) => ({ t: l.querySelector('b').textContent, href: l.querySelector('a').getAttribute('href'), d: l.querySelector('time').dateTime })));
+assert.ok(wnItems[0].t.startsWith('Signal Arena v0.3') && wnItems[0].href === 'signal-arena/', 'Signal Arena v0.3 leads');
 assert.ok(wnItems.some((i) => i.t.startsWith('Beyond the Nexus Log 04') && i.href === 'rpg/'), 'Beyond the Nexus Log 04 listed');
-assert.ok(wnItems.some((i) => i.t.startsWith('The Junction v1.4')), 'Junction update listed');
-assert.ok(wnItems.some((i) => i.t.startsWith('The Path v0.3')), 'The Path listed');
+assert.ok(wnItems.some((i) => i.t.startsWith('The Junction v1.5')), 'Junction update listed');
+assert.ok(wnItems.some((i) => i.t.startsWith('The Path v0.5')), 'The Path listed');
 assert.ok(wnItems.some((i) => i.t.startsWith('The First World v0.12')), 'First World listed');
 assert.equal(wnItems.length, 8); assert.ok(wnItems.every((x, i) => i === 0 || x.d <= wnItems[i - 1].d), 'newest first');
 await hp.screenshot({ path: out + '/whats-new-1920.png' });
 await hp.keyboard.press('Escape');
-const logTxt = await hp.locator('#log .log2').innerText(); assert.ok(logTxt.includes('Beyond the Nexus Log 04') && logTxt.includes('The Junction v1.4'), 'Lab log has the newest');
-ok(`home What's new = ${wnItems.length} newest items across games (incl. Beyond the Nexus Log 04, Junction v1.4, The Path v0.3); button date = ${wnDate}; Lab log regenerated`);
+const logTxt = await hp.locator('#log .log2').innerText(); assert.ok(logTxt.includes('Signal Arena v0.3') && logTxt.includes('The Junction v1.5'), 'Lab log has the newest');
+ok(`home What's new = ${wnItems.length} newest items across games (Signal Arena v0.3 first, Junction v1.5, Beyond the Nexus Log 04); button date = ${wnDate}; Lab log regenerated`);
 assert.deepEqual(homeErrs, []);
 
 // ---- 5. home band: chevrons, nudge, drag, wheel, click-to-centre, click-to-enter

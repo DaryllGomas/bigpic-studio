@@ -1,8 +1,8 @@
 {
  "game": "the-junction",
  "title": "THE JUNCTION",
- "version": "v1.4",
- "updated": "2026-10-18",
+ "version": "v1.5",
+ "updated": "2026-10-31",
  "now": [
   "Tuning the aisle from your first plays: which games you pick, where it feels slow, what\u2019s hard to find.",
   "Keeping every game free and one click away. No coins, no sign-up."
@@ -24,6 +24,17 @@
   }
  ],
  "releases": [
+  {
+   "version": "v1.5",
+   "date": "2026-10-31",
+   "title": "Signal Arena on the studio shelf",
+   "items": [
+    {
+     "h": "A new cabinet",
+     "t": "Signal Arena, our capture-the-flag game, joins our games on the STUDIO shelf. Pick it to visit its page and play."
+    }
+   ]
+  },
   {
    "version": "v1.4",
    "date": "2026-10-18",

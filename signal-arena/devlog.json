@@ -1,0 +1,17 @@
+{
+ "game": "signal-arena",
+ "title": "Signal Arena",
+ "version": "v0.3",
+ "updated": "2026-10-31",
+ "now": [],
+ "ask": [],
+ "releases": [
+  {
+   "version": "v0.3",
+   "date": "2026-10-31",
+   "title": "The Operator’s Study",
+   "summary": "A new game, and a new map. Shrink to mouse size in an old radio operator’s house: the study, the hallway and the library, with five ways between the bases, behind the bookcases, under the floorboards and through the ducts. Grapple, fling, snipe, capture.",
+   "items": []
+  }
+ ]
+}

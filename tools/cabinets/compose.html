@@ -11,7 +11,7 @@
 // { src: url } an optional replacement hero image for the backdrop.
 const SS = 2;                       // drawn at 2x, shrunk to the exact size: crisp type
 const SIZE = { marquee: [1024, 256], side: [512, 1024], panel: [512, 256] };
-const A = 'arcade/assets/studio/', U = 'assets/universe/', FW = 'the-first-world/media/', RPG = 'rpg/img/';
+const A = 'arcade/assets/studio/', U = 'assets/universe/', FW = 'the-first-world/media/', RPG = 'rpg/img/', SA = 'signal-arena/img/';
 const cache = {};
 const load = (u) => cache[u] || (cache[u] = new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('load ' + u)); i.src = '/' + u.replace(/^\//, ''); }));
 
@@ -229,6 +229,31 @@ const R = {
       g.save(); g.beginPath(); g.rect(30, 78, 140, 150); g.clip(); cover(g, atlas, 30, 78, 140, 150, 0.5, 0.5, 1.5); g.restore(); frame(g, 30, 78, 140, 150, '#e8b659', 4);
       drawTitle(g, [['BEYOND THE NEXUS', 1]], { cx: W / 2, cy: 44, maxW: 410, maxH: 56, font: 'Cinzel', style: 'gold', pal, track: 1 });
       rings(g, ['#e8b659', '#fff0c0']); frame(g, 0, 0, W, H, '#e8b659', 6, 4, 10);
+    }
+  },
+
+  async 'signal-arena'(g, W, H, kind, over) {   // the game's brass gold on night navy, with its cyan and amber
+    const pal = { glow: 'rgba(63,211,200,.55)', fill: [[0, '#fff3d2'], [0.45, '#f1dcaa'], [0.55, '#d4b06a'], [1, '#7a5a26']], edge: '#06070b' };
+    const study = await load(over.src || SA + 'study-overview.webp'), tower = await load(SA + 'tower-arena.webp'), amber = await load(SA + 'library-amber.webp'), rack = await load(SA + 'rack-top.webp');
+    const cable = (y0, y1, a = 0.9) => { g.save(); g.strokeStyle = `rgba(63,211,200,${a})`; g.shadowColor = '#3fd3c8'; g.shadowBlur = 12; g.lineWidth = 3; g.beginPath(); g.moveTo(-10, y0); g.quadraticCurveTo(W / 2, y1, W + 10, y0); g.stroke(); g.restore(); };
+    if (kind === 'marquee') {
+      cover(g, study, 0, 0, W, H, 0.5, 0.35, 1.0); g.fillStyle = 'rgba(6,7,11,.35)'; g.fillRect(0, 0, W, H);
+      radial(g, W / 2, H / 2, 30, W * 0.46, [[0, 'rgba(6,9,20,.88)'], [0.6, 'rgba(6,9,20,.55)'], [1, 'rgba(6,9,20,.05)']], W, H);
+      cable(30, 120, 0.7); vignette(g, W, H, 0.55);
+      drawTitle(g, [['SIGNAL ARENA', 1]], { cx: W / 2, cy: H * 0.46, maxW: 720, maxH: 120, font: 'Cinzel', style: 'gold', pal, track: 6, maxPx: 110 });
+      g.fillStyle = '#e0a040'; g.fillRect(W * 0.2, H * 0.72, W * 0.28, 3); g.fillStyle = '#3fd3c8'; g.fillRect(W * 0.52, H * 0.72, W * 0.28, 3);
+      frame(g, 0, 0, W, H, '#d4b06a', 4, 6, 8); frame(g, 0, 0, W, H, 'rgba(212,176,106,.5)', 1.5, 13);
+      studioTag(g, W, H, { x: W / 2, y: 242, px: 15, align: 'center', color: '#f1dcaa' });
+    } else if (kind === 'side') {
+      cover(g, tower, 0, 0, W, H, 0.5, 0.5, 1.6); vgrad(g, 0, 0, W, 360, [[0, 'rgba(6,9,20,.95)'], [1, 'rgba(6,9,20,0)']]); vgrad(g, 0, H - 340, W, 340, [[0, 'rgba(6,9,20,0)'], [1, 'rgba(6,9,20,.94)']]);
+      g.save(); g.beginPath(); g.arc(W / 2, 800, 118, 0, 7); g.clip(); cover(g, amber, W / 2 - 118, 682, 236, 236, 0.5, 0.42, 1.7); g.restore();
+      g.strokeStyle = '#d4b06a'; g.lineWidth = 6; g.shadowColor = '#3fd3c8'; g.shadowBlur = 14; g.beginPath(); g.arc(W / 2, 800, 122, 0, 7); g.stroke(); g.shadowBlur = 0; g.lineWidth = 2; g.strokeStyle = '#3fd3c8'; g.beginPath(); g.arc(W / 2, 800, 134, 0, 7); g.stroke();
+      drawTitle(g, [['SIGNAL', 1], ['ARENA', 1]], { cx: W / 2, cy: 170, maxW: 430, maxH: 250, font: 'Cinzel', style: 'gold', pal, track: 4 });
+      frame(g, 0, 0, W, H, '#d4b06a', 6, 12, 10); studioTag(g, W, H, { x: W / 2, y: 1000, px: 20, align: 'center', color: '#f1dcaa' });
+    } else {
+      cover(g, rack, 0, 0, W, H, 0.5, 0.45, 1.2); g.fillStyle = 'rgba(6,9,20,.55)'; g.fillRect(0, 0, W, H);
+      drawTitle(g, [['SIGNAL ARENA', 1]], { cx: W / 2, cy: 44, maxW: 400, maxH: 54, font: 'Cinzel', style: 'gold', pal, track: 3 });
+      rings(g, ['#3fd3c8', '#e0a040']); frame(g, 0, 0, W, H, '#d4b06a', 6, 4, 10);
     }
   },
 };

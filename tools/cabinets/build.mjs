@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Rebuild the studio cabinet art: arcade/cab/studio-<id>_{marquee,side,panel}.jpg
-//   node tools/cabinets/build.mjs [id ...]        (no ids = all 11)
+//   node tools/cabinets/build.mjs [id ...]        (no ids = all 12)
 // Source art: art-in/<id>/{marquee,side,panel}.{png,jpg,jpeg,webp} replaces that piece outright (cover-fit to the exact size);
 // art-in/<id>/{hero,source}.{png,jpg,jpeg,webp} replaces the game's backdrop image in the built pieces;
 // otherwise the game's own art (see compose.html). Needs playwright-core (npm i playwright-core in a scratch folder,
@@ -9,7 +9,7 @@ import http from 'node:http'; import fs from 'node:fs'; import path from 'node:p
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const require = createRequire(path.join(process.env.CAB_TOOLS || path.join(process.env.HOME, 'work/cab-tools'), 'x.js'));
 const { chromium } = require('playwright-core');
-const ALL = ['the-path', 'the-first-world', 'the-house', 'beyond-the-nexus', 'seven-hearth', 'seven-beacon', 'seven-labyrinth', 'seven-resonance', 'seven-ascent', 'seven-tunnel', 'seven-constellation'];
+const ALL = ['the-path', 'the-first-world', 'the-house', 'beyond-the-nexus', 'signal-arena', 'seven-hearth', 'seven-beacon', 'seven-labyrinth', 'seven-resonance', 'seven-ascent', 'seven-tunnel', 'seven-constellation'];
 const ids = process.argv.slice(2).length ? process.argv.slice(2) : ALL;
 const MIME = { '.html': 'text/html', '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.js': 'text/javascript', '.json': 'application/json' };
 const srv = http.createServer((q, r) => { const f = path.join(root, decodeURIComponent(q.url.split('?')[0])); if (!f.startsWith(root) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'content-type': MIME[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(r); }).listen(0);
