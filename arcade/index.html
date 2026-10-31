@@ -94,7 +94,7 @@ canvas#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-acti
 <button type="button" class="chev r" id="chevR" aria-label="Next cabinet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4l8 8-8 8"/></svg></button>
 <div class="top">
   <a href="/" title="Back to BigPic Studio">← STUDIO</a>
-  <button type="button" class="jx-open" id="jxLog" data-version="v1.4" title="What's new, what we're building, and feedback"><span class="jx-word">LOG</span></button>
+  <button type="button" class="jx-open" id="jxLog" data-version="v1.5" title="What's new, what we're building, and feedback"><span class="jx-word">LOG</span></button>
   <label title="Your initials for the high-score tables">PLAYER <input id="ini" maxlength="3" value="YOU" autocomplete="off" spellcheck="false"></label>
   <a href="grid.html" title="Every cabinet at once">GRID VIEW</a>
 </div>
@@ -159,16 +159,20 @@ const PUBLIC_STUDIO = {
   'the-first-world': 'https://studio.bigpicsolutions.com/the-first-world/play/',
   'the-house': 'https://studio.bigpicsolutions.com/house/',
   'beyond-the-nexus': 'https://studio.bigpicsolutions.com/rpg/',
+  'signal-arena': 'https://studio.bigpicsolutions.com/signal-arena/',
 };
+// Web-only studio games: the TV's room agent has no launcher for them yet (Signal Arena, 2026-10-31).
+const WEB_ONLY = new Set(['signal-arena']);
 const STUDIO = [
   ['the-path', 'THE PATH', 'card-the-path.webp'], ['the-first-world', 'THE FIRST WORLD', 'card-god-game.webp'],
   ['the-house', 'THE HOUSE', 'card-paper-arena.webp'], ['beyond-the-nexus', 'BEYOND THE NEXUS', 'card-nexus.webp'],
+  ['signal-arena', 'SIGNAL ARENA', 'card-signal-arena.webp'],   // 2026-10-31: standalone CTF game, opens its studio page
   /* THE SYSTEM: off the TV until couch-ready (2026-10-16) */ ['seven-hearth', 'HEARTH', 'seven-hearth.png'],
   ['seven-beacon', 'THE BEACON', 'seven-beacon.png'], ['seven-labyrinth', 'THE LABYRINTH', 'seven-labyrinth.png'],
   ['seven-resonance', 'THE RESONANCE', 'seven-resonance.png'], ['seven-ascent', 'THE ASCENT', 'seven-ascent.png'],
   ['seven-tunnel', 'THE TUNNEL', 'seven-tunnel.png'], ['seven-constellation', 'THE CONSTELLATION', 'seven-constellation.png'],
 ].map(([id, name, art], i) => ({ id: 'studio:' + id, studio: id, art: 'assets/studio/' + art, cart: null,
-  url: PUBLIC_STUDIO[id], spec: { name, publisher: 'BigPic Studios', year: 2026 }, order: 1000 + i })).filter((g) => TV || g.url);
+  url: PUBLIC_STUDIO[id], spec: { name, publisher: 'BigPic Studios', year: 2026 }, order: 1000 + i })).filter((g) => (TV ? !WEB_ONLY.has(g.studio) : g.url));
 // Two rows, the same on the TV and the web (2026-10-18, Daryll: "a mirror"): STUDIO (our games first) and ARCADE
 // (all 26 cabinets). A genre split is tabled for later (see arcade/README.md, "Later").
 const CATS = [
