@@ -180,13 +180,13 @@ footer{margin-top:clamp(40px,5vw,64px);padding:18px var(--pad) 26px;font-family:
   <section class="sec" id="trailer" aria-labelledby="trailer-h">
     <h2 class="lbl" id="trailer-h">The trailer</h2>
     <div class="player">
-      <video id="film" preload="none" playsinline muted poster="media/poster.webp" aria-label="Signal Arena trailer, no sound">
+      <video id="film" preload="none" playsinline poster="media/poster.webp" aria-label="Signal Arena trailer, with music">
         <source src="media/trailer.mp4" type="video/mp4">
       </video>
-      <button class="cover" id="cover" type="button" aria-label="Play the Signal Arena trailer, about a minute, no sound">
+      <button class="cover" id="cover" type="button" aria-label="Play the Signal Arena trailer, about a minute, with music">
         <img src="media/poster.webp" width="1600" height="900" alt="" loading="lazy">
         <span class="pbtn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3.5v17L20 12z"/></svg></span>
-        <span class="cap" aria-hidden="true"><b>The trailer</b><span id="filmLen">0:59</span> &middot; no sound</span>
+        <span class="cap" aria-hidden="true"><b>The trailer</b><span id="filmLen">0:52</span> &middot; with music</span>
       </button>
     </div>
   </section>
@@ -309,7 +309,7 @@ footer{margin-top:clamp(40px,5vw,64px);padding:18px var(--pad) 26px;font-family:
 (() => {
   // ---- the trailer: the poster until it's asked for ----
   const film = document.getElementById('film'), cover = document.getElementById('cover');
-  cover.addEventListener('click', () => { cover.hidden = true; film.controls = true; film.preload = 'auto'; const p = film.play(); if (p && p.catch) p.catch(() => {}); film.focus(); track('trailer_play', 'signal-arena'); });
+  cover.addEventListener('click', () => { cover.hidden = true; film.muted = false; film.controls = true; film.preload = 'auto'; const p = film.play(); if (p && p.catch) p.catch(() => {}); film.focus(); track('trailer_play', 'signal-arena'); });
   film.addEventListener('loadedmetadata', () => { const s = Math.round(film.duration || 0); if (s) document.getElementById('filmLen').textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); });
 
   // ---- screenshots: a lightbox ----
