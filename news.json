@@ -1,6 +1,17 @@
 {
-  "newest": "2026-10-31",
+  "newest": "2026-11-01",
   "modal": [
+    {
+      "game": "signal-arena",
+      "gameName": "Signal Arena",
+      "version": "v0.4.1",
+      "date": "2026-11-01",
+      "title": "Relay Tower, clearer skies",
+      "href": "signal-arena/",
+      "text": "Relay Tower, clearer skies. The cloud sea sits lower, so there’s open air to swing through under the islands, and diving into the clouds is a soft haze now, not a wall.",
+      "label": "Signal Arena v0.4.1: Relay Tower, clearer skies",
+      "short": "Signal Arena v0.4.1"
+    },
     {
       "game": "signal-arena",
       "gameName": "Signal Arena",
@@ -77,20 +88,20 @@
       "text": "A concept build of Beyond the Nexus now plays in the browser, from the Nexus to The Current.",
       "label": "Beyond the Nexus Log 04b: Playable on the web, up to The Current",
       "short": "Beyond the Nexus Log 04b"
-    },
-    {
-      "game": "beyond-the-nexus",
-      "gameName": "Beyond the Nexus",
-      "version": "Log 04",
-      "date": "2026-10-21",
-      "title": "The Current wakes, and the music gets real",
-      "href": "rpg/",
-      "text": "A new kind of duel on the River road, and battle music played by an orchestra.",
-      "label": "Beyond the Nexus Log 04: The Current wakes, and the music gets real",
-      "short": "Beyond the Nexus Log 04"
     }
   ],
   "log": [
+    {
+      "game": "signal-arena",
+      "gameName": "Signal Arena",
+      "version": "v0.4.1",
+      "date": "2026-11-01",
+      "title": "Relay Tower, clearer skies",
+      "href": "signal-arena/",
+      "text": "Relay Tower, clearer skies. The cloud sea sits lower, so there’s open air to swing through under the islands, and diving into the clouds is a soft haze now, not a wall.",
+      "label": "Signal Arena v0.4.1: Relay Tower, clearer skies",
+      "short": "Signal Arena v0.4.1"
+    },
     {
       "game": "signal-arena",
       "gameName": "Signal Arena",
@@ -211,17 +222,6 @@
       "text": "Each game on the floor now has 5 to 8 stages, each with something new, and a final boss or finale that wins it: lives and an extra life, a card before each stage and a bonus count after it.",
       "label": "The Path v0.4: THE JUNCTION's floor, rebuilt",
       "short": "The Path v0.4"
-    },
-    {
-      "game": "beyond-the-nexus",
-      "gameName": "Beyond the Nexus",
-      "version": "Log 03",
-      "date": "2026-10-18",
-      "title": "Sloth wakes, and the river finds its way home",
-      "href": "rpg/",
-      "text": "Two bosses, a longer road, and a build made for the couch.",
-      "label": "Beyond the Nexus Log 03: Sloth wakes, and the river finds its way home",
-      "short": "Beyond the Nexus Log 03"
     }
   ]
 }

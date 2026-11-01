@@ -1,11 +1,18 @@
 {
  "game": "signal-arena",
  "title": "Signal Arena",
- "version": "v0.4",
- "updated": "2026-10-31",
+ "version": "v0.4.1",
+ "updated": "2026-11-01",
  "now": [],
  "ask": [],
  "releases": [
+  {
+   "version": "v0.4.1",
+   "date": "2026-11-01",
+   "title": "Relay Tower, clearer skies",
+   "summary": "Relay Tower, clearer skies. The cloud sea sits lower, so there’s open air to swing through under the islands, and diving into the clouds is a soft haze now, not a wall. The sun has moved off to the side, so it’s no longer in your eyes on the run to the amber base.",
+   "items": []
+  },
   {
    "version": "v0.4",
    "date": "2026-10-31",
