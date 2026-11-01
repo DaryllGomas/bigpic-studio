@@ -13,6 +13,17 @@
       "short": "Signal Arena v0.4.1"
     },
     {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.6",
+      "date": "2026-11-01",
+      "title": "The basement, lived in",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "A STARVECTOR poster, a pennant, a note from Mom under the car poster, tapes on the TV, and a bookshelf with role-playing rule books, a dice bag and dice, a little chest and ivy trailing down.",
+      "label": "The Path v0.6: The basement, lived in",
+      "short": "The Path v0.6"
+    },
+    {
       "game": "signal-arena",
       "gameName": "Signal Arena",
       "version": "v0.4",
@@ -77,17 +88,6 @@
       "text": "After the ending, the Continue to Beyond the Nexus button now shows on the opening screen straight away.",
       "label": "The First World v0.12.3: Continue is there when you come back",
       "short": "The First World v0.12.3"
-    },
-    {
-      "game": "beyond-the-nexus",
-      "gameName": "Beyond the Nexus",
-      "version": "Log 04b",
-      "date": "2026-10-21",
-      "title": "Playable on the web, up to The Current",
-      "href": "rpg/",
-      "text": "A concept build of Beyond the Nexus now plays in the browser, from the Nexus to The Current.",
-      "label": "Beyond the Nexus Log 04b: Playable on the web, up to The Current",
-      "short": "Beyond the Nexus Log 04b"
     }
   ],
   "log": [
@@ -101,6 +101,17 @@
       "text": "Relay Tower, clearer skies. The cloud sea sits lower, so there’s open air to swing through under the islands, and diving into the clouds is a soft haze now, not a wall.",
       "label": "Signal Arena v0.4.1: Relay Tower, clearer skies",
       "short": "Signal Arena v0.4.1"
+    },
+    {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.6",
+      "date": "2026-11-01",
+      "title": "The basement, lived in",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "A STARVECTOR poster, a pennant, a note from Mom under the car poster, tapes on the TV, and a bookshelf with role-playing rule books, a dice bag and dice, a little chest and ivy trailing down.",
+      "label": "The Path v0.6: The basement, lived in",
+      "short": "The Path v0.6"
     },
     {
       "game": "signal-arena",
@@ -211,17 +222,6 @@
       "text": "Two fixes to the hand from a playtest: it never gets stuck after turning the camera, and things by the shore come up when you reach for them.",
       "label": "The First World v0.12.1: A steadier hand",
       "short": "The First World v0.12.1"
-    },
-    {
-      "game": "the-path",
-      "gameName": "The Path",
-      "version": "v0.4",
-      "date": "2026-10-19",
-      "title": "THE JUNCTION's floor, rebuilt",
-      "href": "https://thepath.bigpicsolutions.com/",
-      "text": "Each game on the floor now has 5 to 8 stages, each with something new, and a final boss or finale that wins it: lives and an extra life, a card before each stage and a bonus count after it.",
-      "label": "The Path v0.4: THE JUNCTION's floor, rebuilt",
-      "short": "The Path v0.4"
     }
   ]
 }
