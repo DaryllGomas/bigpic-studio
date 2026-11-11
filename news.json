@@ -4,6 +4,17 @@
     {
       "game": "the-path",
       "gameName": "The Path",
+      "version": "v0.8.1",
+      "date": "2026-11-11",
+      "title": "The pull, finished",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "The end of the chapter has its own sound now, and more to see on the way through. Play it to the end.",
+      "label": "The Path v0.8.1: The pull, finished",
+      "short": "The Path v0.8.1"
+    },
+    {
+      "game": "the-path",
+      "gameName": "The Path",
       "version": "v0.8",
       "date": "2026-11-11",
       "title": "Voices, a smoother ride, and the pull",
@@ -33,17 +44,6 @@
       "text": "Relay Tower, clearer skies. The cloud sea sits lower, so there’s open air to swing through under the islands, and diving into the clouds is a soft haze now, not a wall.",
       "label": "Signal Arena v0.4.1: Relay Tower, clearer skies",
       "short": "Signal Arena v0.4.1"
-    },
-    {
-      "game": "the-path",
-      "gameName": "The Path",
-      "version": "v0.6",
-      "date": "2026-11-01",
-      "title": "The basement, lived in",
-      "href": "https://thepath.bigpicsolutions.com/",
-      "text": "A STARVECTOR poster, a pennant, a note from Mom under the car poster, tapes on the TV, and a bookshelf with role-playing rule books, a dice bag and dice, a little chest and ivy trailing down.",
-      "label": "The Path v0.6: The basement, lived in",
-      "short": "The Path v0.6"
     },
     {
       "game": "signal-arena",
@@ -94,6 +94,17 @@
     {
       "game": "the-path",
       "gameName": "The Path",
+      "version": "v0.8.1",
+      "date": "2026-11-11",
+      "title": "The pull, finished",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "The end of the chapter has its own sound now, and more to see on the way through. Play it to the end.",
+      "label": "The Path v0.8.1: The pull, finished",
+      "short": "The Path v0.8.1"
+    },
+    {
+      "game": "the-path",
+      "gameName": "The Path",
       "version": "v0.8",
       "date": "2026-11-11",
       "title": "Voices, a smoother ride, and the pull",
@@ -167,17 +178,6 @@
       "text": "Signal Arena, our capture-the-flag game, joins our games on the STUDIO shelf. Pick it to visit its page and play.",
       "label": "The Junction v1.5: Signal Arena on the studio shelf",
       "short": "The Junction v1.5"
-    },
-    {
-      "game": "the-path",
-      "gameName": "The Path",
-      "version": "v0.5",
-      "date": "2026-10-31",
-      "title": "The ride downtown, rebuilt",
-      "href": "https://thepath.bigpicsolutions.com/",
-      "text": "A real house now: a shingle roof with a brick chimney and a TV antenna, siding, lit windows, a back door with a porch light, and a garage.",
-      "label": "The Path v0.5: The ride downtown, rebuilt",
-      "short": "The Path v0.5"
     },
     {
       "game": "beyond-the-nexus",
