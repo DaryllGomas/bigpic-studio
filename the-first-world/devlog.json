@@ -1,8 +1,8 @@
 {
   "game": "the-first-world",
   "title": "THE FIRST WORLD",
-  "version": "v0.12.3",
-  "updated": "2026-10-23",
+  "version": "v0.12.4",
+  "updated": "2026-11-18",
   "now": [
     "Beyond the Nexus, the next game, is in development and growing piece by piece.",
     "Tuning when Vexahl offers the ring, so it lands at the moments that tempt you most.",
@@ -32,6 +32,38 @@
     }
   ],
   "releases": [
+    {
+      "version": "v0.12.4",
+      "date": "2026-11-18",
+      "title": "Every rock, and a smoother island",
+      "summary": "Every rock you can see can now be picked up, the game runs much faster at high speed, winter reaches the cliffs, and a long list of fixes from a full playtest.",
+      "items": [
+        {
+          "h": "Every rock can be picked up",
+          "t": "The island is covered in small rocks, but most of them used to be scenery the hand passed straight through. Now any rock you can see inside your light comes when you take it, and a rock you move stays the shape and colour it was. A rock you set down stays where you put it instead of rolling down the hill."
+        },
+        {
+          "h": "Faster at 4x",
+          "t": "Growing fields no longer slow the whole island down. At 4x speed the frame rate roughly doubles, and on most screens the picture quality stays high instead of dropping and staying low."
+        },
+        {
+          "h": "Winter everywhere",
+          "t": "Snow now settles on the cliff tops along the shore and on the boulders, so nothing stays summer green in deep winter."
+        },
+        {
+          "h": "Prayers that make sense",
+          "t": "The first prayer is answered by a single tree, as Ora says. Food dropped anywhere in a hungry village answers its prayer. A lost child always waits inside your light. A fire that burns itself out no longer counts as answered, and fire no longer drives off Vexahl's whispers."
+        },
+        {
+          "h": "A clearer screen",
+          "t": "Village names no longer sit on top of the panels, the golem's panel folds itself away on smaller screens, banners are easier to read, small text is bigger, and the controls list covers every key. Sound and music remember how you left them."
+        },
+        {
+          "h": "Controller fixes",
+          "t": "A on the middle of a prayer card now opens it, and if the controller is unplugged or its battery dies while you hold a button, the game lets go instead of leaving the view stuck."
+        }
+      ]
+    },
     {
       "version": "v0.12.3",
       "date": "2026-10-23",
