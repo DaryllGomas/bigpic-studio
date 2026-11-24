@@ -1,6 +1,28 @@
 {
-  "newest": "2026-11-11",
+  "newest": "2026-11-18",
   "modal": [
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.12.4",
+      "date": "2026-11-18",
+      "title": "Every rock, and a smoother island",
+      "href": "the-first-world/",
+      "text": "Every rock you can see can now be picked up, the game runs much faster at high speed, winter reaches the cliffs, and a long list of fixes from a full playtest.",
+      "label": "The First World v0.12.4: Every rock, and a smoother island",
+      "short": "The First World v0.12.4"
+    },
+    {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.8.2",
+      "date": "2026-11-17",
+      "title": "The van's headlights",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "The black van's headlight beams and lamp rings now sit on its headlamps. They were floating above the hood.",
+      "label": "The Path v0.8.2: The van's headlights",
+      "short": "The Path v0.8.2"
+    },
     {
       "game": "the-path",
       "gameName": "The Path",
@@ -22,17 +44,6 @@
       "text": "The people who speak now have voices: the two kids at the keyboard in the opening, your friend on the walkie through the radio's crackle, and the last words at the end. The words stay on screen too.",
       "label": "The Path v0.8: Voices, a smoother ride, and the pull",
       "short": "The Path v0.8"
-    },
-    {
-      "game": "the-path",
-      "gameName": "The Path",
-      "version": "v0.7",
-      "date": "2026-11-08",
-      "title": "The town, the delivery, and a fairer fight",
-      "href": "https://thepath.bigpicsolutions.com/",
-      "text": "The dark boxes behind the shops are real buildings now: red brick, painted brick and stucco, full rows of windows with lamps and blinds behind them, shop fronts with awnings, back lanes and parking…",
-      "label": "The Path v0.7: The town, the delivery, and a fairer fight",
-      "short": "The Path v0.7"
     },
     {
       "game": "signal-arena",
@@ -77,20 +88,31 @@
       "text": "Signal Arena, our capture-the-flag game, joins our games on the STUDIO shelf. Pick it to visit its page and play.",
       "label": "The Junction v1.5: Signal Arena on the studio shelf",
       "short": "The Junction v1.5"
-    },
-    {
-      "game": "beyond-the-nexus",
-      "gameName": "Beyond the Nexus",
-      "version": "Log 04c",
-      "date": "2026-10-23",
-      "title": "The controller stays with the duel",
-      "href": "rpg/",
-      "text": "In The Current's duel, the controller no longer also acts on the world behind it.",
-      "label": "Beyond the Nexus Log 04c: The controller stays with the duel",
-      "short": "Beyond the Nexus Log 04c"
     }
   ],
   "log": [
+    {
+      "game": "the-first-world",
+      "gameName": "The First World",
+      "version": "v0.12.4",
+      "date": "2026-11-18",
+      "title": "Every rock, and a smoother island",
+      "href": "the-first-world/",
+      "text": "Every rock you can see can now be picked up, the game runs much faster at high speed, winter reaches the cliffs, and a long list of fixes from a full playtest.",
+      "label": "The First World v0.12.4: Every rock, and a smoother island",
+      "short": "The First World v0.12.4"
+    },
+    {
+      "game": "the-path",
+      "gameName": "The Path",
+      "version": "v0.8.2",
+      "date": "2026-11-17",
+      "title": "The van's headlights",
+      "href": "https://thepath.bigpicsolutions.com/",
+      "text": "The black van's headlight beams and lamp rings now sit on its headlamps. They were floating above the hood.",
+      "label": "The Path v0.8.2: The van's headlights",
+      "short": "The Path v0.8.2"
+    },
     {
       "game": "the-path",
       "gameName": "The Path",
@@ -134,17 +156,6 @@
       "text": "Relay Tower, clearer skies. The cloud sea sits lower, so there’s open air to swing through under the islands, and diving into the clouds is a soft haze now, not a wall.",
       "label": "Signal Arena v0.4.1: Relay Tower, clearer skies",
       "short": "Signal Arena v0.4.1"
-    },
-    {
-      "game": "the-path",
-      "gameName": "The Path",
-      "version": "v0.6",
-      "date": "2026-11-01",
-      "title": "The basement, lived in",
-      "href": "https://thepath.bigpicsolutions.com/",
-      "text": "A STARVECTOR poster, a pennant, a note from Mom under the car poster, tapes on the TV, and a bookshelf with role-playing rule books, a dice bag and dice, a little chest and ivy trailing down.",
-      "label": "The Path v0.6: The basement, lived in",
-      "short": "The Path v0.6"
     },
     {
       "game": "signal-arena",
@@ -211,17 +222,6 @@
       "text": "A concept build of Beyond the Nexus now plays in the browser, from the Nexus to The Current.",
       "label": "Beyond the Nexus Log 04b: Playable on the web, up to The Current",
       "short": "Beyond the Nexus Log 04b"
-    },
-    {
-      "game": "beyond-the-nexus",
-      "gameName": "Beyond the Nexus",
-      "version": "Log 04",
-      "date": "2026-10-21",
-      "title": "The Current wakes, and the music gets real",
-      "href": "rpg/",
-      "text": "A new kind of duel on the River road, and battle music played by an orchestra.",
-      "label": "Beyond the Nexus Log 04: The Current wakes, and the music gets real",
-      "short": "Beyond the Nexus Log 04"
     }
   ]
 }
